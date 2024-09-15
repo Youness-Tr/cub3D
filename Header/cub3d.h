@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/14 17:16:28 by kali             ###   ########.fr       */
+/*   Updated: 2024/09/15 10:31:08 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 // # include <mlx.h>
 #include "../mlx/mlx.h"
 # include <math.h>
+# include <fcntl.h>
+# include "get_next_line.h"
 
 #define WIN_H  1900
 # define WIN_W  1000
@@ -49,27 +51,30 @@ typedef struct s_ray //the ray structure
  int  flag;  // flag for the wall
 } t_ray;
 
-typedef struct s_data //the data structure
+typedef struct s_map //the data structure
 {
- char **map2d; // the map
- int  p_x;  // player x position in the map
- int  p_y;  // player y position in the map
- int  w_map;  // map width
- int  h_map;  // map height
-} t_data;
+ char **map2d;
+ int  p_x;
+ int  p_y;
+ int  map_w;
+ int  map_h;
+} t_map;
 
 typedef struct s_mlx //the mlx structure
 {
- void     *img; // the image
- void *mlx_w;
- int x;
- int y;
+ void       *img; // the image
+ void       *mlx_w;
+ void       *mlxp;
+ t_ray      ray;
+ t_map      map;
+ t_player   ply;
+} t_cub;
 
- void *mlxp;   // the mlx pointer
- t_ray   *ray; // the ray structure
- t_data   *dt; // the data structure
- t_player  ply; // the player structure
-} t_mlx;
-
+int get_win_h(char **av);
+void ft_putstr(char *s);
+int ft_strcmp(char *ptr1, char *ptr2);
+void ft_putstrv2(const char *s, char *str);
+char *ft_substr(char *s, unsigned int start, size_t len);
+char **ft_split(char *s, char c);
 
 #endif

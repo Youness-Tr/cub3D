@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/14 17:15:29 by kali             ###   ########.fr       */
+/*   Updated: 2024/09/15 09:46:44 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void change_color(char *addr, int w, int h, int color, int size, int bpp)
 }
 
 
-void put_ray(t_mlx *cub, int len)
+void put_ray(t_cub *cub, int len)
 {
 	float deltaX;
 	float deltaY;
@@ -52,7 +52,7 @@ void put_ray(t_mlx *cub, int len)
 	}
 }
 
-int mv(int keycode, t_mlx *cub)
+int mv(int keycode, t_cub *cub)
 {
 
 
@@ -109,7 +109,7 @@ int mv(int keycode, t_mlx *cub)
 }
 
 
-void init_p(t_mlx *cub)
+void init_p(t_cub *cub)
 {
 	cub->ply.angle = PI / 4;
 	cub->ply.px = 400;
@@ -122,7 +122,7 @@ void init_p(t_mlx *cub)
 int main(int ac, char **av)
 {
 
-	t_mlx cub;
+	t_cub cub;
 	int bpp;
 	int size_len;
 	int endian;
