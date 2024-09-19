@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 09:39:55 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/15 11:43:43 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/09/19 11:05:09 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,7 +229,7 @@ int    render_map(t_cub *data)
         i++;
     }
 	put_ray(data, 100);
-    // renderPlayer(data, data->ply.px / TILE_SIZE, data->ply.py / TILE_SIZE);
+    renderPlayer(data, data->ply.px / TILE_SIZE, data->ply.py / TILE_SIZE);
     return (0);
 }
 
@@ -247,7 +247,6 @@ void data_init(t_cub *data, char *file)
     data->mlxp = mlx_init();
     data->mlx_w = mlx_new_window(data->mlxp,
              data->map.map_w * TILE_SIZE, data->map.map_h * TILE_SIZE,"cub");
-    render_map(data);
 }
 
 int main(int ac, char **av)
@@ -259,6 +258,10 @@ int main(int ac, char **av)
     // }
     data_init(&data, av[1]);
 	// mlx_loop_hook(data.mlxp, render_map, &data);
+	render_map(&data);
     mlx_hook(data.mlx_w,2,1L<<0,&mv, &data);
     mlx_loop(data.mlxp);
 }
+
+//--------------------------------------------------------------
+

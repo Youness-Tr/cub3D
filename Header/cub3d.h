@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/15 10:31:08 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/09/19 12:07:00 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 #define WIN_H  1900
 # define WIN_W  1000
-#define TILE_SIZE 32
+#define TILE_SIZE 50
 #define FOV 60
 # define ROT_SPEED 0.045
 # define P_SPEED 15
@@ -33,11 +33,11 @@
 
 typedef struct s_player //the player structure
 {
- int  plyr_x; // player x position in pixels
- int  plyr_y; // player y position in pixels
- double angle; // player angle
- float fov_rd; // field of view in radians
- int  rot; // rotation flag
+ int  plyr_x;
+ int  plyr_y;
+ double angle;
+ float fov_rd;
+ int  rot;
  double dirX;
  double dirY;
  double px;
@@ -54,8 +54,8 @@ typedef struct s_ray //the ray structure
 typedef struct s_map //the data structure
 {
  char **map2d;
- int  p_x;
- int  p_y;
+//  int  p_x;
+//  int  p_y;
  int  map_w;
  int  map_h;
 } t_map;
@@ -67,7 +67,7 @@ typedef struct s_mlx //the mlx structure
  void       *mlxp;
  t_ray      ray;
  t_map      map;
- t_player   ply;
+ t_player   plyr;
 } t_cub;
 
 int get_win_h(char **av);
@@ -76,5 +76,7 @@ int ft_strcmp(char *ptr1, char *ptr2);
 void ft_putstrv2(const char *s, char *str);
 char *ft_substr(char *s, unsigned int start, size_t len);
 char **ft_split(char *s, char c);
+void ft_error(char *s);
+char **get_map(char *file);
 
 #endif
