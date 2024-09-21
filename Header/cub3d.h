@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/19 12:07:00 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/09/21 11:51:17 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,30 @@
 
 #define WIN_H  1900
 # define WIN_W  1000
-#define TILE_SIZE 50
+#define TILE_SIZE 32
 #define FOV 60
-# define ROT_SPEED 0.045
-# define P_SPEED 15
+# define ROT_SPEED 0.45
+# define P_SPEED 10
 # define PI  3.141592653589
+# define L_ARROW 65361
+#define R_ARROW 65363
+#define W  119
+#define A 97
+#define S 115
+#define D 100
+#define ESC 65307
+
 
 typedef struct s_player //the player structure
 {
  int  plyr_x;
  int  plyr_y;
  double angle;
- float fov_rd;
- int  rot;
- double dirX;
- double dirY;
+ double fov_rd;
+ double  rot;
+ double plyr_speed;
+ //  double dirX;
+ //  double dirY;
  double px;
  double py;
 } t_player;
@@ -60,9 +69,20 @@ typedef struct s_map //the data structure
  int  map_h;
 } t_map;
 
+typedef struct img
+{
+    void *img;
+    char *addr;
+    int bpp;
+    int len;
+    int endian;
+}t_img;
+
 typedef struct s_mlx //the mlx structure
 {
- void       *img; // the image
+ t_img       img; // the image
+//  void       *floor;
+//  void       *plyr;
  void       *mlx_w;
  void       *mlxp;
  t_ray      ray;
@@ -78,5 +98,6 @@ char *ft_substr(char *s, unsigned int start, size_t len);
 char **ft_split(char *s, char c);
 void ft_error(char *s);
 char **get_map(char *file);
+void render_map(t_cub *cub);
 
 #endif

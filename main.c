@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/19 12:05:56 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/09/21 12:25:44 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void find_plyr_cordn(t_cub *o)
 		{
 			if (o->map.map2d[i][j] == 'P')
 			{
-				o->plyr.px = j;
-				o->plyr.py = i;
+				o->plyr.plyr_x = j;
+				o->plyr.plyr_y = i;
 				break;
 			}
 			j++;
@@ -38,38 +38,160 @@ void find_plyr_cordn(t_cub *o)
 void init_p(t_cub *o)
 {
 	o->plyr.angle = PI / 4;
+	o->plyr.rot = 0.1;
+	o->plyr.plyr_speed = P_SPEED;
 	o->plyr.fov_rd = FOV * PI / 180;
 	find_plyr_cordn(o);
-	// printf("(%f, %f)\n",o->plyr.px, o->plyr.py);
+	o->plyr.px = o->plyr.plyr_x * TILE_SIZE + TILE_SIZE / 2; // we calculate the position in pixels level;
+	o->plyr.py = o->plyr.plyr_y * TILE_SIZE + TILE_SIZE / 2;
+	printf("(%f, %f)\n", o->plyr.px, o->plyr.py);
 }
 
-
-void render_map(t_cub *cub)
+int is_valid_move(t_cub *cub, int new_x, int new_y)
 {
+    if (cub->map.map2d[new_y][new_x] != '1' && new_x >= 0 && new_y >= 0 && new_x < cub->map.map_h && new_y < cub->map.map_h)
+        return 1;
+    return 0;
+}
+void put_ray(t_cub *cub, int len)
+{
+	float deltaX;
+	float deltaY;
+	int x, y;
+
 	int i;
-	int j;
-	int x,y;
+
 	i = 0;
-	while (i < cub->map.map_h)
+	deltaX = cos(cub->plyr.angle);
+	deltaY = sin(cub->plyr.angle);
+	while (i < len)
 	{
-		j = 0;
-		while (j < cub->map.map_w)
-		{
-			if (cub->map.map2d[i][j] == '1')
-			{
-				cub->img = mlx_xpm_file_to_image(cub->mlxp, "./Assets/walls.xpm",&x, &y);
-				mlx_put_image_to_window(cub->mlxp, cub->mlx_w,cub->img, j * TILE_SIZE, i* TILE_SIZE);
-			}
-			else if (cub->map.map2d[i][j] == '0')
-			{
-				cub->img = mlx_xpm_file_to_image(cub->mlxp, "./Assets/floor.xpm",&x, &y);
-				mlx_put_image_to_window(cub->mlxp, cub->mlx_w,cub->img, j* TILE_SIZE, i* TILE_SIZE);
-			}
-			j++;
-		}
+		x = (cub->plyr.px + i * deltaX) + TILE_SIZE / 2;
+		y = (cub->plyr.py + i * deltaY) + TILE_SIZE / 2;
+		mlx_pixel_put(cub->mlxp, cub->mlx_w, x, y, 0xFF0000);
 		i++;
 	}
 }
+
+void mv_player(t_cub *cub, float target_x, float target_y)
+{
+    // Move the player to the target position in pixels
+    cub->plyr.px = target_x;
+    cub->plyr.py = target_y;
+
+    // Update the player's map position
+    cub->plyr.plyr_x = (int)(cub->plyr.px / TILE_SIZE);
+    cub->plyr.plyr_y = (int)(cub->plyr.py / TILE_SIZE);
+}
+
+int mv(int key, t_cub *cub)
+{
+    float target_x = cub->plyr.px;
+    float target_y = cub->plyr.py;
+	if (key == R_ARROW)
+		cub->plyr.angle += cub->plyr.rot * ROT_SPEED;
+	else if (key == L_ARROW)
+		cub->plyr.angle -= cub->plyr.rot * ROT_SPEED;
+	else if (key == W) // Move forward
+    {
+        target_x += cos(cub->plyr.angle) * cub->plyr.plyr_speed;
+        target_y += sin(cub->plyr.angle) * cub->plyr.plyr_speed;
+    }
+    else if (key == S) // Move backward
+    {
+        target_x -= cos(cub->plyr.angle) * cub->plyr.plyr_speed;
+        target_y -= sin(cub->plyr.angle) * cub->plyr.plyr_speed;
+    }
+    else if (key == A) // Move left
+    {
+        target_x -= sin(cub->plyr.angle) * cub->plyr.plyr_speed;
+        target_y += cos(cub->plyr.angle) * cub->plyr.plyr_speed;
+    }
+    else if (key == D) // Move right
+    {
+        target_x += sin(cub->plyr.angle) * cub->plyr.plyr_speed;
+        target_y -= cos(cub->plyr.angle) * cub->plyr.plyr_speed;
+    }
+	else if (key == ESC)
+		exit(0); // free memory
+	if (is_valid_move(cub, (int)(target_x / TILE_SIZE), (int)(target_y / TILE_SIZE)))
+	{
+        // Update player position
+        mv_player(cub, target_x, target_y);
+    }
+	else
+		printf("_______________________OHOY_________________________\n");
+
+	render_map(cub);
+    put_ray(cub, 100);
+    return 0;
+}
+
+
+void modf_img(t_cub *cub, int x, int y, int color)
+{
+    char *dst;
+
+    if (x < 0 || y < 0 || x >= (TILE_SIZE * cub->map.map_w) || y >= (TILE_SIZE * cub->map.map_h))
+        return;
+
+    dst = cub->img.addr + (y * cub->img.len + x * (cub->img.bpp / 8));
+    *(unsigned int *)dst = color;
+}
+
+void ft_create_imgs(t_cub *cub)
+{
+    cub->img.img = mlx_new_image(cub->mlxp, TILE_SIZE * cub->map.map_w, TILE_SIZE * cub->map.map_h);
+    cub->img.addr = mlx_get_data_addr(cub->img.img, &cub->img.bpp, &cub->img.len, &cub->img.endian);
+}
+
+void drow_elements(t_cub *cub, int x, int y, int color, int size)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (i < size)
+    {
+        j = 0;
+        while (j < size)
+        {
+            modf_img(cub, x + j, y + i, color);
+            j++;
+        }
+        i++;
+    }
+}
+
+void render_map(t_cub *cub)
+{
+    int i, j;
+
+    for (i = 0; i < cub->map.map_h; i++)
+    {
+        for (j = 0; j < cub->map.map_w; j++)
+        {
+            if (cub->map.map2d[i][j] == '1')
+            {
+                drow_elements(cub, j * TILE_SIZE, i * TILE_SIZE, 0x964B00, TILE_SIZE - 1);
+            }
+            else if (cub->map.map2d[i][j] == '0' || cub->map.map2d[i][j] == 'P')
+            {
+                drow_elements(cub, j * TILE_SIZE, i * TILE_SIZE, 0xFFFFFF, TILE_SIZE - 1);
+            }
+        }
+    }
+
+    // Render player as floating
+    int player_size = TILE_SIZE / 2;
+    int x_offset = (TILE_SIZE - player_size) / 2;
+    int y_offset = (TILE_SIZE - player_size) / 2 - TILE_SIZE / 8;
+    drow_elements(cub, (int)cub->plyr.px * TILE_SIZE, (int)cub->plyr.py * TILE_SIZE, 0xFFFFFF, TILE_SIZE - 1);
+    drow_elements(cub, (int)cub->plyr.px + x_offset, (int)cub->plyr.py + y_offset, 0xFF0000, player_size);
+    mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
+}
+
+
 
 void init(t_cub *cub, int ac, char **av)
 {
@@ -85,7 +207,9 @@ void init(t_cub *cub, int ac, char **av)
 	screen_w = TILE_SIZE * cub->map.map_w;
 	screen_h = TILE_SIZE * cub->map.map_h;
 	cub->mlxp = mlx_init();
+	ft_create_imgs(cub);//tmp function for learning
 	cub->mlx_w = mlx_new_window(cub->mlxp, screen_w, screen_h, "Cub3D");
+	mlx_hook(cub->mlx_w, 2, 1L<<0, &mv, cub);
 	render_map(cub);
 	mlx_loop(cub->mlxp);
 }
@@ -98,135 +222,3 @@ int main(int ac, char **av)
 		ft_error("Error: too many args !!");
 	init(&cub, ac, av);
 }
-
-//_------------------------------------------------------------------------_
-// void change_color(char *addr, int w, int h, int color, int size, int bpp)
-// {
-// 	int x=0, y=0;
-// 	char *px;
-
-// 	while (y < h)
-// 	{
-// 		x = 0;
-// 		while (x < w)
-// 		{
-// 			px = addr + (y * size + x * (bpp / 8));
-// 			*(int *)px = color;
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
-
-
-// void put_ray(t_cub *cub, int len)
-// {
-// 	float deltaX;
-// 	float deltaY;
-// 	int x, y;
-
-// 	int i;
-
-// 	i = 0;
-// 	deltaX = cos(cub->ply.angle);
-// 	deltaY = sin(cub->ply.angle);
-// 	while (i < len)
-// 	{
-// 		x = cub->ply.px + i * deltaX;
-// 		y = cub->ply.py + i * deltaY;
-// 		mlx_pixel_put(cub->mlxp, cub->mlx_w, x, y, 0xFF0001);
-// 		i++;
-// 	}
-// }
-
-// int mv(int keycode, t_cub *cub)
-// {
-
-
-// 	mlx_clear_window(cub->mlxp, cub->mlx_w);
-// 	if (keycode == 65361)
-// 	{ // Left arrow key
-// 		printf("Left\n");
-// 		cub->ply.px += cub->ply.dirX * P_SPEED;
-// 		cub->ply.py -= cub->ply.dirY * P_SPEED;
-// 	}
-// 	else if (keycode == 65362)
-// 	{ // Up arrow key
-// 		printf("Up\n");
-// 		cub->ply.px += cub->ply.dirX * P_SPEED;
-// 		cub->ply.py += cub->ply.dirY * P_SPEED;
-// 	}
-// 	else if (keycode == 65363)
-// 	{ // Right arrow key
-// 		printf("Right\n");
-// 		cub->ply.px -= cub->ply.dirX * P_SPEED;
-// 		cub->ply.py += cub->ply.dirY * P_SPEED;
-
-
-
-// 	}
-// 	else if (keycode == 65364)
-// 	{ // Down arrow key
-// 		printf("Down\n");
-// 		cub->ply.px -= cub->ply.dirX * P_SPEED;
-// 		cub->ply.py -= cub->ply.dirY * P_SPEED;
-// 	}
-// 	else if (keycode == 113)// Q
-// 	{
-// 		//rotate to the right
-// 		cub->ply.angle += ROT_SPEED;
-// 		cub->ply.dirX = cos(cub->ply.angle);
-// 		cub->ply.dirY = sin(cub->ply.angle);
-// 	}
-// 	else if (keycode == 115)// S
-// 	{
-// 		//!rotate to the right
-// 		cub->ply.angle -= ROT_SPEED;
-// 		cub->ply.dirX = cos(cub->ply.angle);
-// 		cub->ply.dirY = sin(cub->ply.angle);
-// 	}
-// 	else if (keycode == 65307)
-// 	{ // ESC key
-// 		mlx_destroy_window(cub->mlxp, cub->mlx_w);
-//         exit(0);
-// 	}
-// 	put_ray(cub, 100);
-// 	mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img, cub->ply.px, cub->ply.py);
-// 	return (0);
-// }
-
-
-// void init_p(t_cub *cub)
-// {
-// 	cub->ply.angle = PI / 4;
-// 	cub->ply.px = 400;
-// 	cub->ply.py = 400;
-// 	cub->ply.dirX = cos(cub->ply.angle);
-//     cub->ply.dirY = sin(cub->ply.angle);
-// }
-
-
-// int main(int ac, char **av)
-// {
-
-// 	t_cub cub;
-// 	int bpp;
-// 	int size_len;
-// 	int endian;
-// 	char *addr;
-
-// 	printf("Here\n");
-// 	init_p(&cub);
-// 	cub.mlxp = mlx_init();
-// 	cub.mlx_w = mlx_new_window(cub.mlxp,800, 800, "cub3D");
-// 	cub.img = mlx_new_image(cub.mlxp,10,10);
-// 	addr = mlx_get_cub_addr(cub.img,&bpp, &size_len, &endian);
-// 	change_color(addr, 10, 10, 0xFF0001, size_len, bpp);
-// 	put_ray(&cub, 8);
-// 	// mlx_key_hook(cub.mlx_w,mv, &cub);
-// 	mlx_hook(cub.mlx_w,2,1L<<0,&mv, &cub);
-// 	mlx_loop(cub.mlxp);
-// }
-
-
-
