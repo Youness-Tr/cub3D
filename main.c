@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/21 12:25:44 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/09/21 15:10:57 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,39 @@ void init_p(t_cub *o)
 	printf("(%f, %f)\n", o->plyr.px, o->plyr.py);
 }
 
-int is_valid_move(t_cub *cub, int new_x, int new_y)
+
+int is_collision_with_wall(t_cub *cub, int player_x, int player_y)
 {
-    if (cub->map.map2d[new_y][new_x] != '1' && new_x >= 0 && new_y >= 0 && new_x < cub->map.map_h && new_y < cub->map.map_h)
-        return 1;
-    return 0;
+    // Check surrounding pixels of the player
+    for (int i = 0; i < TILE_SIZE / 2; i++)
+    {
+        for (int j = 0; j < TILE_SIZE / 2; j++)
+        {
+            // Calculate the pixel position
+            int check_x = player_x + i;
+            int check_y = player_y + j;
+
+            // Ensure the coordinates are within bounds
+            if (check_x < 0 || check_y < 0 || check_x >= (TILE_SIZE * cub->map.map_w) || check_y >= (TILE_SIZE * cub->map.map_h))
+                return 1; // Treat out of bounds as a collision
+
+            // Get the color of the pixel
+            char *dst = cub->img.addr + (check_y * cub->img.len + check_x * (cub->img.bpp / 8));
+            unsigned int color = *(unsigned int *)dst;
+
+            // Define the wall color (brown in this case)
+            unsigned int wall_color = 0x964B00;
+
+            // Check if the player's pixel is touching a wall pixel
+            if (color == wall_color)
+                return 1; // Collision detected
+        }
+    }
+    return 0; // No collision
 }
+
+
+
 void put_ray(t_cub *cub, int len)
 {
 	float deltaX;
@@ -68,7 +95,7 @@ void put_ray(t_cub *cub, int len)
 	{
 		x = (cub->plyr.px + i * deltaX) + TILE_SIZE / 2;
 		y = (cub->plyr.py + i * deltaY) + TILE_SIZE / 2;
-		mlx_pixel_put(cub->mlxp, cub->mlx_w, x, y, 0xFF0000);
+		mlx_pixel_put(cub->mlxp, cub->mlx_w, x, y, 0xFF00FF);
 		i++;
 	}
 }
@@ -114,7 +141,8 @@ int mv(int key, t_cub *cub)
     }
 	else if (key == ESC)
 		exit(0); // free memory
-	if (is_valid_move(cub, (int)(target_x / TILE_SIZE), (int)(target_y / TILE_SIZE)))
+	printf("(%f, %f)\n", (target_x / TILE_SIZE), (target_x / TILE_SIZE));
+	if (!is_collision_with_wall(cub, (int)(target_x),  (int)(target_y)))
 	{
         // Update player position
         mv_player(cub, target_x, target_y);
@@ -186,7 +214,7 @@ void render_map(t_cub *cub)
     int player_size = TILE_SIZE / 2;
     int x_offset = (TILE_SIZE - player_size) / 2;
     int y_offset = (TILE_SIZE - player_size) / 2 - TILE_SIZE / 8;
-    drow_elements(cub, (int)cub->plyr.px * TILE_SIZE, (int)cub->plyr.py * TILE_SIZE, 0xFFFFFF, TILE_SIZE - 1);
+    // drow_elements(cub, (int)cub->plyr.px * TILE_SIZE, (int)cub->plyr.py * TILE_SIZE, 0xFFFFFF, TILE_SIZE);
     drow_elements(cub, (int)cub->plyr.px + x_offset, (int)cub->plyr.py + y_offset, 0xFF0000, player_size);
     mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
 }
