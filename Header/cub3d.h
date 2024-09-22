@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/21 15:06:29 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/09/22 16:13:23 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 #define WIN_H  1900
 # define WIN_W  1000
 #define TILE_SIZE 32
-#define FOV 60
+#define FOV 360
 # define ROT_SPEED 0.45
-# define P_SPEED 10
+# define P_SPEED 5
 # define PI  3.141592653589
 # define L_ARROW 65361
 #define R_ARROW 65363
@@ -36,6 +36,8 @@
 #define A 97
 #define S 115
 #define D 100
+#define Q 113
+#define R 114
 #define ESC 65307
 
 
@@ -99,5 +101,6 @@ char **ft_split(char *s, char c);
 void ft_error(char *s);
 char **get_map(char *file);
 void render_map(t_cub *cub);
+void put_ray(t_cub *cub, int len);
 
 #endif

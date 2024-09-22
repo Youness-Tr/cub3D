@@ -6,12 +6,13 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/21 15:10:57 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/09/22 16:13:39 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "Header/cub3d.h"
 
+void drow_elements(t_cub *cub, int x, int y, int color, int size);
 void find_plyr_cordn(t_cub *o)
 {
 	int i;
@@ -37,7 +38,7 @@ void find_plyr_cordn(t_cub *o)
 
 void init_p(t_cub *o)
 {
-	o->plyr.angle = PI / 4;
+	o->plyr.angle = PI / 2;
 	o->plyr.rot = 0.1;
 	o->plyr.plyr_speed = P_SPEED;
 	o->plyr.fov_rd = FOV * PI / 180;
@@ -46,6 +47,11 @@ void init_p(t_cub *o)
 	o->plyr.py = o->plyr.plyr_y * TILE_SIZE + TILE_SIZE / 2;
 	printf("(%f, %f)\n", o->plyr.px, o->plyr.py);
 }
+
+
+#define MAX_RAYS 60 // Number of rays to cast
+#define DISTANCE_LIMIT 1000 // Maximum distance to cast rays
+
 
 
 int is_collision_with_wall(t_cub *cub, int player_x, int player_y)
@@ -77,6 +83,92 @@ int is_collision_with_wall(t_cub *cub, int player_x, int player_y)
     }
     return 0; // No collision
 }
+
+void put_line(t_cub *cub, int len, int x, int y)
+{
+    float deltaX;
+    float deltaY;
+
+    int i = 0;
+    deltaX = cos(cub->plyr.angle);
+    deltaY = sin(cub->plyr.angle);
+
+    while (i < len)
+    {
+        int draw_x = x + i * deltaX;
+        int draw_y = y + i * deltaY;
+
+        // Draw only if within window bounds
+        if (draw_x >= 0 && draw_x < TILE_SIZE * cub->map.map_w &&
+            draw_y >= 0 && draw_y < TILE_SIZE * cub->map.map_h)
+        {
+            mlx_pixel_put(cub->mlxp, cub->mlx_w, draw_x, draw_y, 0xFF00FF);
+        }
+        i++;
+    }
+}
+
+void cast_rays(t_cub *cub)
+{
+    float ray_angle;
+    float angle_step;
+    int ray_count = MAX_RAYS;
+    float ray_dir_x;
+    float ray_dir_y;
+
+    // Calculate the angle increment per ray
+    angle_step = cub->plyr.fov_rd / ray_count;
+    ray_angle = cub->plyr.angle - (cub->plyr.fov_rd / 2);
+
+    for (int i = 0; i < ray_count; i++)
+    {
+        // Calculate the ray direction using cosine and sine
+        ray_dir_x = cos(ray_angle);
+        ray_dir_y = sin(ray_angle);
+
+        float current_x = cub->plyr.px;
+        float current_y = cub->plyr.py;
+
+        float step_x = (ray_dir_x > 0) ? TILE_SIZE : -TILE_SIZE;
+        float step_y = (ray_dir_y > 0) ? TILE_SIZE : -TILE_SIZE;
+
+        float delta_x = step_x * fabs(ray_dir_y / ray_dir_x);
+        float delta_y = step_y * fabs(ray_dir_x / ray_dir_y);
+
+        int hit = 0;
+        float distance = 0;
+
+        // DDA Loop
+        while (!hit && distance < DISTANCE_LIMIT)
+        {
+            // Move to the next grid cell
+            if (fabs(current_x - cub->plyr.px) < fabs(current_y - cub->plyr.py))
+            {
+                current_x += step_x;
+                current_y += ray_dir_y * (step_x / ray_dir_x);
+            }
+            else
+            {
+                current_y += step_y;
+                current_x += ray_dir_x * (step_y / ray_dir_y);
+            }
+
+            // Check for collision
+            if (is_collision_with_wall(cub, (int)current_x, (int)current_y))
+            {
+                hit = 1;
+                put_line(cub, distance, cub->plyr.px, cub->plyr.py);
+            }
+
+            // Increment distance
+            distance += sqrt(delta_x * delta_x + delta_y * delta_y);
+        }
+
+        // Move to the next ray angle
+        ray_angle += angle_step;
+    }
+}
+
 
 
 
@@ -117,8 +209,12 @@ int mv(int key, t_cub *cub)
     float target_y = cub->plyr.py;
 	if (key == R_ARROW)
 		cub->plyr.angle += cub->plyr.rot * ROT_SPEED;
-	else if (key == L_ARROW)
-		cub->plyr.angle -= cub->plyr.rot * ROT_SPEED;
+    else if (key == Q)
+        cub->plyr.plyr_speed += 5;
+    else if (key == R)
+        cub->plyr.plyr_speed -= 5;
+    else if (key == L_ARROW)
+        cub->plyr.angle -= cub->plyr.rot * ROT_SPEED;
 	else if (key == W) // Move forward
     {
         target_x += cos(cub->plyr.angle) * cub->plyr.plyr_speed;
@@ -151,8 +247,41 @@ int mv(int key, t_cub *cub)
 		printf("_______________________OHOY_________________________\n");
 
 	render_map(cub);
-    put_ray(cub, 100);
+    cast_rays(cub);
+    put_ray(cub, 1001);
     return 0;
+}
+void render_minimap(t_cub *cub)
+{
+    int minimap_x = 10; // X position on the screen
+    int minimap_y = 10; // Y position on the screen
+    int minimap_scale = 0.2; // Scale for minimap tiles (20% of original size)
+
+    for (int i = 0; i < cub->map.map_h; i++)
+    {
+        for (int j = 0; j < cub->map.map_w; j++)
+        {
+            int color;
+
+            if (cub->map.map2d[i][j] == '1')
+                color = 0x964B00; // Wall color
+            else if (cub->map.map2d[i][j] == '0')
+                color = 0xFFFFFF; // Empty space color
+            else if (cub->map.map2d[i][j] == 'P')
+                color = 0x0000FF; // Player color
+
+            // Draw the scaled tile
+            drow_elements(cub, minimap_x + j * TILE_SIZE * minimap_scale,
+                          minimap_y + i * TILE_SIZE * minimap_scale,
+                          color, TILE_SIZE * minimap_scale);
+        }
+    }
+
+    // Optionally, draw the player position on the minimap
+    int player_size = TILE_SIZE * minimap_scale;
+    int player_x = minimap_x + (cub->plyr.plyr_x * TILE_SIZE * minimap_scale) + (player_size / 4);
+    int player_y = minimap_y + (cub->plyr.plyr_y * TILE_SIZE * minimap_scale) + (player_size / 4);
+    drow_elements(cub, player_x, player_y, 0xFF0000, player_size / 2); // Draw player in red
 }
 
 
@@ -201,25 +330,25 @@ void render_map(t_cub *cub)
         {
             if (cub->map.map2d[i][j] == '1')
             {
-                drow_elements(cub, j * TILE_SIZE, i * TILE_SIZE, 0x964B00, TILE_SIZE - 1);
+                drow_elements(cub, j * TILE_SIZE, i * TILE_SIZE, 0x964B00, TILE_SIZE);
             }
             else if (cub->map.map2d[i][j] == '0' || cub->map.map2d[i][j] == 'P')
             {
-                drow_elements(cub, j * TILE_SIZE, i * TILE_SIZE, 0xFFFFFF, TILE_SIZE - 1);
+                drow_elements(cub, j * TILE_SIZE, i * TILE_SIZE, 0xFFFFFF, TILE_SIZE);
             }
         }
     }
 
     // Render player as floating
-    int player_size = TILE_SIZE / 2;
+
+    int player_size = TILE_SIZE/ 8;
     int x_offset = (TILE_SIZE - player_size) / 2;
     int y_offset = (TILE_SIZE - player_size) / 2 - TILE_SIZE / 8;
     // drow_elements(cub, (int)cub->plyr.px * TILE_SIZE, (int)cub->plyr.py * TILE_SIZE, 0xFFFFFF, TILE_SIZE);
-    drow_elements(cub, (int)cub->plyr.px + x_offset, (int)cub->plyr.py + y_offset, 0xFF0000, player_size);
+    render_minimap(cub);
+    drow_elements(cub, (int)cub->plyr.px + x_offset, (int)cub->plyr.py + y_offset, 0x000000, player_size);
     mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
 }
-
-
 
 void init(t_cub *cub, int ac, char **av)
 {
