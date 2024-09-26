@@ -56,6 +56,31 @@ void ft_init(char *line, t_data *data)
     else    
         data->test = "NOTHING";
 }
+
+
+int ft_check(t_data *data)
+{
+    int i = 0;
+
+    while (data->array[i])
+    {   
+        if (data->array[i][0] == '1' || data->array[i][0] == '0')
+        {
+            if (data->array[i][0] != '1')
+            {
+                printf("dkhlat\n");
+                return (1);
+            }
+            else if (data->array[i][strlen(data->array[i]) - 2] != '1')
+            {
+                return (1);
+            }
+        }
+        i++;
+    }
+    return (0);
+}
+
 int main()
 {
     int i = 0;
@@ -76,12 +101,11 @@ int main()
     data->array[i] = NULL;
     printf("here\n");
     i = 0;
+    if (ft_check(data))
+        printf("Error\n");
     // while (data->array[i])
     // {
     //     printf("array[i] :: %s", data->array[i]);
     //     i++;
     // }
 }
-
-
-int ft_check(t_data *data)
