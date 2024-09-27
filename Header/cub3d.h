@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/22 16:13:23 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/09/23 16:13:33 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@
 # include <fcntl.h>
 # include "get_next_line.h"
 
+
 #define WIN_H  1900
 # define WIN_W  1000
-#define TILE_SIZE 32
-#define FOV 360
+#define TILE_SIZE 30
+#define PLAYER_RADIUS (TILE_SIZE / 4)
+#define FOV 60
 # define ROT_SPEED 0.45
 # define P_SPEED 5
 # define PI  3.141592653589
@@ -78,7 +80,8 @@ typedef struct img
     int bpp;
     int len;
     int endian;
-}t_img;
+    // int h,w;
+} t_img;
 
 typedef struct s_mlx //the mlx structure
 {
@@ -100,7 +103,11 @@ char *ft_substr(char *s, unsigned int start, size_t len);
 char **ft_split(char *s, char c);
 void ft_error(char *s);
 char **get_map(char *file);
+// void render_map(t_cub *cub);
+// void put_ray(t_cub *cub, int len);
+void create_img(t_cub *cub);
+void my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void render_map(t_cub *cub);
-void put_ray(t_cub *cub, int len);
+int mv(int key, t_cub *cub);
 
 #endif
