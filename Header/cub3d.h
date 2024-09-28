@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/23 16:13:33 by kali             ###   ########.fr       */
+/*   Updated: 2024/09/28 12:30:56 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,41 @@
 # include "get_next_line.h"
 
 
+/*
+colors
+selver 0xC0C0C0
+gray 0x808080
+Light Wood: #C19A6B (Light Brown)
+Medium Wood: #8B5A2B (Saddle Brown)
+Dark Wood: #654321 (Dark Brown)
+2. Stone Floor (Earthy, Rugged Feel)
+Light Stone: #D3D3D3 (Light Gray)
+Medium Stone: #A9A9A9 (Dark Gray)
+Dark Stone: #696969 (Dim Gray)
+3. Tile Floor (Modern, Sleek Feel)
+White Tile: #F5F5F5 (White Smoke)
+Gray Tile: #B0C4DE (Light Steel Blue)
+Dark Tile: #2F4F4F (Dark Slate Gray)
+4. Marble Floor (Luxurious and Elegant)
+White Marble: #F8F8FF (Ghost White)
+Gray Marble: #BEBEBE (Gray Marble)
+Black Marble: #2C2C2C (Black Gray)
+5. Rustic Floor (Vintage, Earthy Look)
+Terracotta: #E2725B (Warm Earthy Orange)
+Clay: #D2691E (Chocolate)
+Rust: #8B0000 (Dark Red)
+6. Industrial Floor (Concrete, Neutral Look)
+Concrete Gray: #808080 (Gray)
+Steel Gray: #A9A9A9 (Dark Gray)
+Charcoal: #36454F (Charcoal Gray)
+*/
+
 #define WIN_H  1900
 # define WIN_W  1000
-#define TILE_SIZE 30
-#define PLAYER_RADIUS (TILE_SIZE / 4)
-#define FOV 60
+#define TILE_SIZE 40
+#define PLAYER_RADIUS (TILE_SIZE / 8)
+#define FOV 360
+# define PLR 8 // plYER HIGHT WIEGHT
 # define ROT_SPEED 0.45
 # define P_SPEED 5
 # define PI  3.141592653589
@@ -49,12 +79,10 @@ typedef struct s_player //the player structure
  int  plyr_y;
  double angle;
  double fov_rd;
- double  rot;
+ double  rot; // i think i'll use the macros i don'y need that
  double plyr_speed;
- //  double dirX;
- //  double dirY;
- double px;
- double py;
+ double px; // remove me later
+ double py; // remove me later
 } t_player;
 
 typedef struct s_ray //the ray structure
@@ -67,8 +95,8 @@ typedef struct s_ray //the ray structure
 typedef struct s_map //the data structure
 {
  char **map2d;
-//  int  p_x;
-//  int  p_y;
+ int  posx;
+ int  posy;
  int  map_w;
  int  map_h;
 } t_map;

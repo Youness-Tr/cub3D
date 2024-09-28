@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:38:47 by kali              #+#    #+#             */
-/*   Updated: 2024/09/26 14:52:25 by kali             ###   ########.fr       */
+/*   Updated: 2024/09/27 16:08:54 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ static void	put_mini_player(t_cub *data, int x, int y, int color)
 	int	j;
 
 	i = 0;
-	while (i < TILE_SIZE / 3)
+	while (i < PLAYER_RADIUS)
 	{
 		j = 0;
-		while (j < TILE_SIZE / 3)
+		while (j < PLAYER_RADIUS)
 		{
 			my_mlx_pixel_put(&data->img, x + i, y + j, color);
 			j++;
