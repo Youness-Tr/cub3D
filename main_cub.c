@@ -11,7 +11,7 @@ int is_wall(t_cub *cub,  double x, int y)
 
     px = floor(x / TILE_SIZE);
     py = floor(y / TILE_SIZE);
-    printf("(px, py)(%f, %f)\n", px, py);
+    // printf("(px, py)(%f, %f)\n", px, py);
     if (px > cub->map.map_w || px < 0 || py < 0 || py > cub->map.map_h)
     {
         printf("Hello\n");
@@ -84,11 +84,12 @@ int mv(int key, t_cub *cub)
     {
         cub->plyr.plyr_x = x;
         cub->plyr.plyr_y = y;
-        printf("\t\t\t(%d, %d)\n", (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
     }
 
-    put_line(cub, 10000, (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
+        printf("\t\t\t(%d, %d)\n", (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
     render_2d(cub);
+    // put_line(cub, 100, (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
+    raycaster(cub);
 }
 
 

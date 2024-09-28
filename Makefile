@@ -1,4 +1,4 @@
-SRC = main_cub.c #main.c render.c move.c
+SRC = main_cub.c  raycaster.c  #main.c render.c move.c
 SRC += Utils/utils1.c Utils/substr.c Utils/split.c Utils/err.c
 SRC += Utils/init.c
 SRC += gnl/get_next_line.c gnl/gnl_utils.c

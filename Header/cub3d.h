@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/28 12:30:56 by kali             ###   ########.fr       */
+/*   Updated: 2024/09/28 15:18:47 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ Charcoal: #36454F (Charcoal Gray)
 
 #define WIN_H  1900
 # define WIN_W  1000
-#define TILE_SIZE 40
-#define PLAYER_RADIUS (TILE_SIZE / 8)
-#define FOV 360
+#define TILE_SIZE 64
+#define PLAYER_RADIUS (TILE_SIZE / 10)
+#define FOV 60
 # define PLR 8 // plYER HIGHT WIEGHT
 # define ROT_SPEED 0.45
-# define P_SPEED 5
+# define P_SPEED 8
 # define PI  3.141592653589
 # define L_ARROW 65361
 #define R_ARROW 65363
@@ -89,7 +89,7 @@ typedef struct s_ray //the ray structure
 {
  double ray_ngl; // ray angle
  double distance; // distance to the wall
- int  flag;  // flag for the wall
+ int  hit;  // flag for the wall
 } t_ray;
 
 typedef struct s_map //the data structure
@@ -137,5 +137,7 @@ void create_img(t_cub *cub);
 void my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void render_map(t_cub *cub);
 int mv(int key, t_cub *cub);
+void raycaster(t_cub *cub);
+void put_line(t_cub *cub, int len, int x, int y);
 
 #endif
