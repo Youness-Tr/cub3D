@@ -199,7 +199,7 @@ void put_rays(t_cub *cub, int len, int x, int y, float ngl)
         if (draw_x >= 0 && draw_x < TILE_SIZE * cub->map.map_w &&
             draw_y >= 0 && draw_y < TILE_SIZE * cub->map.map_h)
         {
-            mlx_pixel_put(cub->mlxp, cub->mlx_w, draw_x, draw_y, 0x0000FF);
+            mlx_pixel_put(cub->mlxp, cub->mlx_w, draw_x, draw_y, 0xFFFF00);// 0xFFFFE0
         }
         i++;
     }
@@ -212,8 +212,9 @@ void raycaster(t_cub *cub)
     int nray;
 
     nray = 0;
-    cub->ray.ray_ngl = cub->plyr.angle - (cub->plyr.fov_rd / 2);
-    while (nray < cub->map.map_w)
+    cub->ray.ray_ngl = angle_range(cub->plyr.angle - (cub->plyr.fov_rd / 2));
+    printf("\t----ray-ngl--> %f\n",cub->ray.ray_ngl);
+    while (nray < 100)
     {
         cub->ray.hit = 0;
         h_inter = get_hinter(cub, angle_range(cub->ray.ray_ngl));
@@ -228,6 +229,8 @@ void raycaster(t_cub *cub)
         put_rays(cub, cub->ray.distance, cub->plyr.plyr_x, cub->plyr.plyr_y, cub->ray.ray_ngl);
         // render_wall(cub, ray); // render the wall
         nray++; // next ray
-		cub->ray.ray_ngl += (cub->plyr.fov_rd / cub->map.map_w);
+		// cub->ray.ray_ngl += (cub->plyr.fov_rd / cub->map.map_w);
+        // cub->ray.ray_ngl += 0.01;
+        cub->ray.ray_ngl = angle_range( cub->ray.ray_ngl + 0.01);
     }
 }

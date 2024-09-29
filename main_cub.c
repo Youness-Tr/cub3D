@@ -74,9 +74,9 @@ int mv(int key, t_cub *cub)
         y -= cos(cub->plyr.angle) * P_SPEED;
     }
     else if (key == L_ARROW) // Rotate left
-        cub->plyr.angle += cub->plyr.rot * ROT_SPEED;
-    else if (key == R_ARROW) // Rotate right
         cub->plyr.angle -= cub->plyr.rot * ROT_SPEED;
+    else if (key == R_ARROW) // Rotate right
+        cub->plyr.angle += cub->plyr.rot * ROT_SPEED;
     else if (key == ESC)
         exit(0);
 
@@ -88,8 +88,8 @@ int mv(int key, t_cub *cub)
 
         printf("\t\t\t(%d, %d)\n", (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
     render_2d(cub);
-    // put_line(cub, 100, (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
     raycaster(cub);
+    put_line(cub, 100, (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
 }
 
 
@@ -143,7 +143,7 @@ void init_plyr(t_cub *cub)
     cub->plyr.plyr_x = cub->map.posx * TILE_SIZE + TILE_SIZE / 2;
     cub->plyr.plyr_y = cub->map.posy * TILE_SIZE + TILE_SIZE / 2;
     // printf("\t\t(%d, %d)\n",cub->plyr.plyr_x, cub->plyr.plyr_y);
-    cub->plyr.angle = 0;
+    cub->plyr.angle = (90 * PI) / 180;
     cub->plyr.rot = 0.1;
     cub->plyr.fov_rd = (FOV * PI) / 180;
 }
@@ -208,10 +208,10 @@ void render_2d(t_cub *cub)
         while (i < cub->map.map_w)
         {
             if (cub->map.map2d[j][i] == '1')
-                render_square(&cub->img, i *TILE_SIZE, j *TILE_SIZE, TILE_SIZE,0xC0C0C0);
+                render_square(&cub->img, i *TILE_SIZE, j *TILE_SIZE, TILE_SIZE ,0xC0C0C0);
             else if (cub->map.map2d[j][i] == '0' || cub->map.map2d[j][i] == 'P')
             {
-                render_square(&cub->img, i *TILE_SIZE, j *TILE_SIZE, TILE_SIZE,0x8B5A2B);
+                render_square(&cub->img, i *TILE_SIZE, j *TILE_SIZE, TILE_SIZE,0x000000);// 0x8B5A2B
             }
             i++;
         }

@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/28 15:18:47 by kali             ###   ########.fr       */
+/*   Updated: 2024/09/29 10:56:08 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ Charcoal: #36454F (Charcoal Gray)
 
 #define WIN_H  1900
 # define WIN_W  1000
-#define TILE_SIZE 64
+#define TILE_SIZE 32
 #define PLAYER_RADIUS (TILE_SIZE / 10)
 #define FOV 60
 # define PLR 8 // plYER HIGHT WIEGHT
