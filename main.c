@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/22 16:13:39 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/09/29 12:58:45 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,59 +53,91 @@ void ft_init(char *line, t_data *data)
         data->F = ft_substr(line, 1, strlen(&line[1]));
     else if (!strncmp("C", line, 1))
         data->F = ft_substr(line, 1, strlen(&line[1]));
-    else    
-        data->test = "NOTHING";
+    else if (!strncmp(" ", line, 1) || !strncmp("\n", line, 1))
+        data->stop = 0;
+    else
+    {
+        // data->array[*i] = NULL;
+        data->stop = 1;
+        // *i = -1;
+    }
 }
 
 
 int ft_check(t_data *data)
 {
     int i = 0;
+    int j = 0;
 
-    while (data->array[i])
-    {   
-        if (data->array[i][0] == '1' || data->array[i][0] == '0')
+    while (data->map[i])
+    {
+        j = 0;
+        while (data->map[i][j])
         {
-            if (data->array[i][0] != '1')
-            {
-                printf("dkhlat\n");
+            if (data->map[i][j] != '1' && data->map[i][j] != '0'
+                && data->map[i][j] != ' ' && data->map[i][j] != 'N')
                 return (1);
-            }
-            else if (data->array[i][strlen(data->array[i]) - 2] != '1')
-            {
-                return (1);
-            }
+            j++;
         }
-        i++;
+        if (data->array[i][0] != '1')
+        {
+            printf("dkhlat\n");
+            return (1);
+        }
+        else if (data->array[i][strlen(data->array[i]) - 2] != '1')
+        {
+            return (1);
+        }
     }
+        i++;
     return (0);
 }
 
 int main()
 {
     int i = 0;
-    t_data *data;
+    int j = 0;
+    t_data data;
     char *line;
+    data.stop = 0;
 
-    int fd = open("./file", O_RDWR);
-
+    int fd = open("./file", O_RDONLY);
+    if (fd == -1)
+    {
+        printf("Error\n");
+        return (1);
+    }
+    data.map = malloc(sizeof(char *) * 15);
     line = get_next_line(fd);
     while (line)
     {
-        // printf("%s", line);
-        data->array[i] = ft_strdup(line);
-        ft_init(line, data);
+        if (!data.stop)
+        {
+            // data.array[i] = strcpy(data.array[i], line);
+            ft_init(line, &data);
+            i++;
+        }
+        if (data.stop)
+        {
+            data.map[j] = ft_strdup(line); //i have to count how much space that i need to allocate;
+            j++;
+        }
         line = get_next_line(fd);
+    }
+    // data.array[i] = NULL;
+    data.map[j] = NULL;
+    printf("here\n");
+    // if (ft_check(data))
+        // printf("Error\n");
+    // printf("NO :: %s", data.NO);
+    // printf("WE :: %s", data.WE);
+    // printf("SO :: %s", data.SO);
+    // printf("EA :: %s", data.EA);
+    // printf("-------------------------------------------\n");
+    i = 0;
+    while (data.map[i])
+    {
+        printf("map[i] :: %s", data.map[i]);
         i++;
     }
-    data->array[i] = NULL;
-    printf("here\n");
-    i = 0;
-    if (ft_check(data))
-        printf("Error\n");
-    // while (data->array[i])
-    // {
-    //     printf("array[i] :: %s", data->array[i]);
-    //     i++;
-    // }
 }
