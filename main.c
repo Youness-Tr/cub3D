@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/29 12:58:45 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:01:28 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void ft_init(char *line, t_data *data)
         // *i = -1;
     }
 }
-
-
 int ft_check(t_data *data)
 {
     int i = 0;
@@ -72,24 +70,46 @@ int ft_check(t_data *data)
     while (data->map[i])
     {
         j = 0;
-        while (data->map[i][j])
-        {
-            if (data->map[i][j] != '1' && data->map[i][j] != '0'
-                && data->map[i][j] != ' ' && data->map[i][j] != 'N')
-                return (1);
-            j++;
-        }
-        if (data->array[i][0] != '1')
+        if (data->map[i][0] != '1' && data->map[i][0] != ' ')
         {
             printf("dkhlat\n");
             return (1);
         }
-        else if (data->array[i][strlen(data->array[i]) - 2] != '1')
+        // printf("heeeeere\n");
+        if (data->map[i][strlen(data->map[i]) - 2] != '1')
         {
+            printf("ayih\n");
             return (1);
         }
-    }
+        while (data->map[i][j])
+        {
+            if (i == 0)
+            {
+                if (data->map[i][j] != '1' && data->map[i][j] != ' '
+                    && data->map[i][j] != '\n')
+                    return (1);
+            }
+            if (data->map[i][j] != '1' && data->map[i][j] != '0'
+                && data->map[i][j] != ' ' && data->map[i][j] != 'N'
+                && data->map[i][j] != '\n')
+            {
+                printf("hna\n");
+                return (1);
+            }
+            // printf("%c\n", data->map[i][j]);
+            j++;
+        }
         i++;
+    }
+    j = 0;
+    i = i - 1;
+    while(data->map[i][j])
+    {
+        if (data->map[i][j] != '1' && data->map[i][j] != ' '
+            && data->map[i][j] != '\n')
+            return (1);
+        j++;
+    }
     return (0);
 }
 
@@ -107,7 +127,7 @@ int main()
         printf("Error\n");
         return (1);
     }
-    data.map = malloc(sizeof(char *) * 15);
+    data.map = malloc(sizeof(char *) * 30);//i have to count how much space that i need to allocate;
     line = get_next_line(fd);
     while (line)
     {
@@ -119,16 +139,17 @@ int main()
         }
         if (data.stop)
         {
-            data.map[j] = ft_strdup(line); //i have to count how much space that i need to allocate;
+            data.map[j] = ft_strdup(line);
             j++;
         }
         line = get_next_line(fd);
     }
     // data.array[i] = NULL;
     data.map[j] = NULL;
-    printf("here\n");
-    // if (ft_check(data))
-        // printf("Error\n");
+    // printf("here\n");
+    if (ft_check(&data))
+        printf("Error\n");
+    //here check for spaces;
     // printf("NO :: %s", data.NO);
     // printf("WE :: %s", data.WE);
     // printf("SO :: %s", data.SO);
@@ -137,7 +158,7 @@ int main()
     i = 0;
     while (data.map[i])
     {
-        printf("map[i] :: %s", data.map[i]);
+        printf("%s", data.map[i]);
         i++;
     }
 }
