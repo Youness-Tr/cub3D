@@ -1,7 +1,7 @@
 NAME = cub3d
 
 SRC = main.c
-SRC += gnl/get_next_line.c gnl/gnl_utils.c
+SRC += gnl/get_next_line.c gnl/gnl_utils.c floodfill.c
 
 all:
 	# @gcc main.c -o cub3d

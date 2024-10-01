@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/01 14:01:28 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/10/01 18:43:20 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,13 @@ int ft_check(t_data *data)
         }
         while (data->map[i][j])
         {
+            if (data->map[i][j] == 'N')
+            {
+                data->player_x = i;
+                data->player_Y = j;
+            }
+            if (data->map[i][j] == ' ')
+                data->space++;
             if (i == 0)
             {
                 if (data->map[i][j] != '1' && data->map[i][j] != ' '
@@ -102,6 +109,7 @@ int ft_check(t_data *data)
         i++;
     }
     j = 0;
+    data->lines = i;
     i = i - 1;
     while(data->map[i][j])
     {
@@ -120,6 +128,7 @@ int main()
     t_data data;
     char *line;
     data.stop = 0;
+    data.space = 0;
 
     int fd = open("./file", O_RDONLY);
     if (fd == -1)
@@ -128,6 +137,7 @@ int main()
         return (1);
     }
     data.map = malloc(sizeof(char *) * 30);//i have to count how much space that i need to allocate;
+    data.map_cp = malloc(sizeof(char *) * 30);
     line = get_next_line(fd);
     while (line)
     {
@@ -140,15 +150,18 @@ int main()
         if (data.stop)
         {
             data.map[j] = ft_strdup(line);
+            data.map_cp[j] = ft_strdup(line);
             j++;
         }
         line = get_next_line(fd);
     }
     // data.array[i] = NULL;
     data.map[j] = NULL;
+    data.map_cp[j] = NULL;
     // printf("here\n");
     if (ft_check(&data))
         printf("Error\n");
+    floodfill_check(&data);
     //here check for spaces;
     // printf("NO :: %s", data.NO);
     // printf("WE :: %s", data.WE);
@@ -156,9 +169,9 @@ int main()
     // printf("EA :: %s", data.EA);
     // printf("-------------------------------------------\n");
     i = 0;
-    while (data.map[i])
+    while (data.map_cp[i])
     {
-        printf("%s", data.map[i]);
+        printf("%s", data.map_cp[i]);
         i++;
     }
 }
