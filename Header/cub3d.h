@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/29 10:56:08 by kali             ###   ########.fr       */
+/*   Updated: 2024/10/03 11:06:31 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,11 @@ Charcoal: #36454F (Charcoal Gray)
 
 #define WIN_H  1900
 # define WIN_W  1000
-#define TILE_SIZE 32
+#define TILE_SIZE 40
 #define PLAYER_RADIUS (TILE_SIZE / 10)
 #define FOV 60
 # define PLR 8 // plYER HIGHT WIEGHT
+# define NRAYS 120
 # define ROT_SPEED 0.45
 # define P_SPEED 8
 # define PI  3.141592653589
@@ -72,7 +73,17 @@ Charcoal: #36454F (Charcoal Gray)
 #define R 114
 #define ESC 65307
 
-
+/****************TxTColoR*******************/
+#define RED     "\033[1;31m"
+#define GREEN   "\033[1;32m"
+#define YELLOW  "\033[1;33m"
+#define BLUE    "\033[1;34m"
+#define MAGENTA "\033[1;35m"
+#define CYAN    "\033[1;36m"
+#define WHITE   "\033[1;37m"
+#define RES     "\033[0m"
+/****************TxTColoR*******************/
+typedef struct s_mlx t_cub;
 typedef struct s_player //the player structure
 {
  int  plyr_x;
@@ -108,10 +119,17 @@ typedef struct img
     int bpp;
     int len;
     int endian;
+    t_cub *gme;
     // int h,w;
 } t_img;
+// this struct is for variable for norms or any shared variable
+typedef struct vars
+{
+    int s_w; // screen wigth
+    int s_h; // screen wieght
+} t_vars;
 
-typedef struct s_mlx //the mlx structure
+struct s_mlx //the mlx structure
 {
  t_img       img; // the image
 //  void       *floor;
@@ -121,7 +139,8 @@ typedef struct s_mlx //the mlx structure
  t_ray      ray;
  t_map      map;
  t_player   plyr;
-} t_cub;
+ t_vars      var;
+};
 
 int get_win_h(char **av);
 void ft_putstr(char *s);

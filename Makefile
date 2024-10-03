@@ -5,6 +5,6 @@ SRC += gnl/get_next_line.c gnl/gnl_utils.c
 
 all:
 	# @gcc main.c -lmlx -lXext -lX11 -o cub3d
-	gcc $(SRC) -Lmlx -lmlx_Linux -lXext -lX11 -lm  -o cub3D #-fsanitize=address -g3
+	gcc $(SRC) -Lmlx -lmlx_Linux -lXext -lX11 -lm  -o cub3D -fsanitize=address -g3
 clean:
 	rm cub3D

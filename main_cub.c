@@ -42,7 +42,7 @@ void put_line(t_cub *cub, int len, int x, int y)
         if (draw_x >= 0 && draw_x < TILE_SIZE * cub->map.map_w &&
             draw_y >= 0 && draw_y < TILE_SIZE * cub->map.map_h)
         {
-            mlx_pixel_put(cub->mlxp, cub->mlx_w, draw_x, draw_y, 0x000000);
+            mlx_pixel_put(cub->mlxp, cub->mlx_w, draw_x, draw_y, 0xFFFFFF);
         }
         i++;
     }
@@ -119,9 +119,15 @@ void find_plyr_cordn(t_cub *o)
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
 	char	*dst;
-
-	dst = data->addr + (y * data->len + x * (data->bpp / 8));
-	*(unsigned int*)dst = color;
+    // int s_w, s_h;
+    // s_w = data->gme->var.s_w;
+    // s_h = data->gme->var.s_w;
+    // if (x < 0 || x > s_w)
+    //     return;
+    // if (y > s_h || s_h < 0)
+    //     return;
+    dst = data->addr + (y * data->len + x * (data->bpp / 8));
+    *(unsigned int*)dst = color;
 }
 
 void init_map(t_cub *cub, char *file)
@@ -192,6 +198,7 @@ void init_image(t_cub *cub)
 {
     t_img *imge;
     imge = &cub->img;
+    imge->gme = cub;
     cub->img.addr = mlx_get_data_addr(imge->img, &imge->bpp, &imge->len, &imge->endian);
 }
 
@@ -211,11 +218,18 @@ void render_2d(t_cub *cub)
                 render_square(&cub->img, i *TILE_SIZE, j *TILE_SIZE, TILE_SIZE ,0xC0C0C0);
             else if (cub->map.map2d[j][i] == '0' || cub->map.map2d[j][i] == 'P')
             {
-                render_square(&cub->img, i *TILE_SIZE, j *TILE_SIZE, TILE_SIZE,0x000000);// 0x8B5A2B
+                render_square(&cub->img, i *TILE_SIZE, j *TILE_SIZE, TILE_SIZE,0x654321);// 0x8B5A2B
             }
             i++;
         }
-        j++;
+        j++; // int s_w, s_h;
+    // s_w = data->gme->var.s_w;
+    // s_h = data->gme->var.s_w;
+	// char	*dst;
+    // if (x < 0 || x > s_w)
+    //     return;
+    // if (y > s_h || s_h < 0)
+    //     return;
     }
     // render_square(&cub->img, cub->plyr.plyr_x , cub->plyr.plyr_y, PLAYER_RADIUS,0xFFFFFF);
     render_circle(&cub->img, cub->plyr.plyr_x , cub->plyr.plyr_y, PLAYER_RADIUS,0xFFFFFF);
@@ -229,13 +243,13 @@ void init_mlx(t_cub *mlx)
     int s_w;
     int s_h;
 
-    s_w = mlx->map.map_w * TILE_SIZE;
-    s_h = mlx->map.map_h * TILE_SIZE;
+    mlx->var.s_w = mlx->map.map_w * TILE_SIZE;
+    mlx->var.s_h = mlx->map.map_h * TILE_SIZE;
     mlx->mlxp = mlx_init();
-    mlx->img.img = mlx_new_image(mlx->mlxp, s_w, s_h);
-    mlx->mlx_w = mlx_new_window(mlx->mlxp, s_w, s_h, "Cub3D");
+    mlx->img.img = mlx_new_image(mlx->mlxp,  mlx->var.s_w, mlx->var.s_h);
+    mlx->mlx_w = mlx_new_window(mlx->mlxp, mlx->var.s_w, mlx->var.s_h, "Cub3D");
     init_image(mlx);
-    render_2d(mlx);
+    // render_2d(mlx);
 }
 
 void init_engin(t_cub *cub, char *file)
