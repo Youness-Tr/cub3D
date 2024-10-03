@@ -49,22 +49,6 @@ int	inter_check(double angle, double *inter, double *step, int is_horizon)
 	}
 	return (1);
 }
-// int	wall_hit(float x, float y, t_cub *mlx)
-// {
-// 	int		x_m;
-// 	int		y_m;
-
-// 	if (x < 0 || y < 0)
-// 		return (0);
-// 	x_m = floor (x / TILE_SIZE); // get the x position in the map
-// 	y_m = floor (y / TILE_SIZE); // get the y position in the map
-// 	if ((y_m >= mlx->map.map_h || x_m >= mlx->map.map_w))
-// 		return (0);
-// 	if (mlx->map.map2d[y_m] && x_m <= (int)strlen(mlx->map.map2d[y_m]))
-// 		if (mlx->map.map2d[y_m][x_m] == '1')
-// 			return (0);
-// 	return (1);
-// }
 
 int wall_hit(float x, float y, t_cub *mlx) {
     int x_m;
@@ -89,28 +73,6 @@ int wall_hit(float x, float y, t_cub *mlx) {
     return 1; // No wall hit
 }
 
-// double get_hinter(t_cub *cub, double ngl)
-// {
-//     double hx;
-//     double hy;
-//     double y_step;
-//     double x_step;
-//     int pxl;
-
-//     y_step = TILE_SIZE;
-//     x_step = y_step / tan(ngl);
-//     hy = floor((cub->plyr.plyr_y / TILE_SIZE) * TILE_SIZE);
-//     pxl = inter_check(ngl, &hy, &y_step, 1);
-//     hx = floor(cub->plyr.plyr_x + (hy - cub->plyr.plyr_y / tan(ngl)));
-//     if ((unit_circle(ngl, 'y') && x_step > 0) || (!unit_circle(ngl, 'y') && x_step < 0))
-// 		x_step *= -1;
-//     while (wall_hit(hx, hy - pxl, cub))
-// 	{
-// 		hx += x_step;
-// 		hy += y_step;
-// 	}
-//     return (sqrt(pow(hx - cub->plyr.plyr_x, 2) + pow(hy - cub->plyr.plyr_y, 2)));
-// }
 
 double get_hinter(t_cub *cub, double ngl)
 {
@@ -209,12 +171,48 @@ void put_rays(t_cub *cub, int len, int x, int y, float ngl)
 }
 /**********************<RENDER_3D>************************************/
 
+void draw_floor_ceiling(t_cub *cub, int raypt, int toppxl, int lowpxl) // draw the floor and the ceiling
+{
+ int  i;
+ int  c;
+
+	i = lowpxl;
+	while (i < cub->var.s_h)
+		my_mlx_pixel_put(&cub->img, raypt, i++, 0xC8E6C9); // floor
+	i = 0;
+	while (i < toppxl)
+		my_mlx_pixel_put(&cub->img, raypt, i++, 0xE8F5E9); // ceiling //F0EAD6
+}
+
+
+int get_color(t_cub *cub, int flag) // get the color of the wall
+{
+	cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl); // normalize the angle
+	if (flag == 0)
+	{
+		if (cub->ray.ray_ngl > PI / 2 && cub->ray.ray_ngl < 3 * (PI / 2))
+			return (0xA5D6A7); // west wall
+		else
+			return (0x81C784); // east wall
+	}
+	else
+	{
+		if (cub->ray.ray_ngl > 0 && cub->ray.ray_ngl < PI)
+			return (0x388E3C); // south wall
+		else
+			return (0x4CAF50); // north wall
+	}
+}
+
 void render_wll(t_cub *cub, int toppxl, int lowpxl, int raypt)
 {
 
     printf(MAGENTA "lowpxl |%d| *** toppxl |%d|\n", lowpxl, toppxl);
+    int color;
+
+    color = get_color(cub, cub->ray.hit);
     while (lowpxl > toppxl)
-        my_mlx_pixel_put(&cub->img, raypt, toppxl++, 0xFFFFFF);
+        my_mlx_pixel_put(&cub->img, raypt, toppxl++, color);
     mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
 }
 
@@ -241,8 +239,10 @@ void ft_renderThreeD(t_cub *cub, double distnce, int raypt)
     if (lowpxl < 0)
         lowpxl = 0;
     render_wll(cub, toppxl, lowpxl, raypt);
+    draw_floor_ceiling(cub, raypt, toppxl, lowpxl);
 }
 /***************************</RENDER_3D>********************************/
+
 
 void raycaster(t_cub *cub)
 {
@@ -251,26 +251,61 @@ void raycaster(t_cub *cub)
     int nray;
 
     nray = 0;
-    cub->ray.ray_ngl = angle_range(cub->plyr.angle - (cub->plyr.fov_rd / 2));
-    while (nray < NRAYS)
+    // NRAYS = cub->var.s_w;
+    cub->ray.ray_ngl = angle_range(cub->plyr.angle - (cub->plyr.fov_rd / 2)); // Start ray angle from left FOV boundary
+    while (nray < cub->var.s_w) // Loop through each column (ray) in the screen
     {
-        printf("\t----ray-ngl--> %f\n",cub->ray.ray_ngl);
-        cub->ray.hit = 0;
-        h_inter = get_hinter(cub, angle_range(cub->ray.ray_ngl));
-        v_inter = get_vinter(cub, angle_range(cub->ray.ray_ngl));
-        if (v_inter <= h_inter) // check the distance
-			cub->ray.distance = v_inter; // get the distance
-		else
-		{
-			cub->ray.distance = h_inter; // get the distance
-			cub->ray.hit = 1; // flag for the wall
-		}
-        printf("\t----ray-distnce--> %f\n",cub->ray.distance);
-        // put_rays(cub, cub->ray.distance, cub->plyr.plyr_x, cub->plyr.plyr_y, angle_range(cub->ray.ray_ngl));
+        printf("\t----ray-ngl--> %f\n", cub->ray.ray_ngl);
+        cub->ray.hit = 0; // Reset hit flag for this ray
+        h_inter = get_hinter(cub, angle_range(cub->ray.ray_ngl)); // Get horizontal intersection
+        v_inter = get_vinter(cub, angle_range(cub->ray.ray_ngl)); // Get vertical intersection
+
+        // Determine if horizontal or vertical hit is closer
+        if (v_inter <= h_inter)
+            cub->ray.distance = v_inter; // Use vertical intersection distance
+        else
+        {
+            cub->ray.distance = h_inter; // Use horizontal intersection distance
+            cub->ray.hit = 1; // Mark that we hit a horizontal wall
+        }
+
+        // Render the 3D wall slice for this ray
         ft_renderThreeD(cub, cub->ray.distance, nray);
-        printf(GREEN"\t\t\tRENDER_LINE\n"RES);
-        nray++; // next ray
-		// cub->ray.ray_ngl += (cub->plyr.fov_rd / cub->map.map_w);
-        cub->ray.ray_ngl = angle_range( cub->ray.ray_ngl + 0.01);
+
+        // Increment ray angle and ray counter
+        // cub->ray.ray_ngl += (cub->plyr.fov_rd / cub->var.s_w);
+        cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl + (cub->plyr.fov_rd / cub->var.s_w));
+        nray++;
     }
 }
+
+// void raycaster(t_cub *cub)
+// {
+//     double h_inter;
+//     double v_inter;
+//     int nray;
+
+//     nray = 0;
+//     cub->ray.ray_ngl = angle_range(cub->plyr.angle - (cub->plyr.fov_rd / 2));
+//     while (nray < cub->var.s_w)
+//     {
+//         printf("\t----ray-ngl--> %f\n",cub->ray.ray_ngl);
+//         cub->ray.hit = 0;
+//         h_inter = get_hinter(cub, angle_range(cub->ray.ray_ngl));
+//         v_inter = get_vinter(cub, angle_range(cub->ray.ray_ngl));
+//         if (v_inter <= h_inter) // check the distance
+// 			cub->ray.distance = v_inter; // get the distance
+// 		else
+// 		{
+// 			cub->ray.distance = h_inter; // get the distance
+// 			cub->ray.hit = 1; // flag for the wall
+// 		}
+//         printf("\t----ray-distnce--> %f\n",cub->ray.distance);
+//         // put_rays(cub, cub->ray.distance, cub->plyr.plyr_x, cub->plyr.plyr_y, angle_range(cub->ray.ray_ngl));
+//         ft_renderThreeD(cub, cub->ray.distance, nray);
+//         printf(GREEN"\t\t\tRENDER_LINE\n"RES);
+//         nray++; // next ray
+// 		// cub->ray.ray_ngl += (cub->plyr.fov_rd / cub->map.map_w);
+//         cub->ray.ray_ngl = angle_range( cub->ray.ray_ngl + 0.01);
+//     }
+// }

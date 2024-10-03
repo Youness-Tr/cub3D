@@ -42,7 +42,7 @@ void put_line(t_cub *cub, int len, int x, int y)
         if (draw_x >= 0 && draw_x < TILE_SIZE * cub->map.map_w &&
             draw_y >= 0 && draw_y < TILE_SIZE * cub->map.map_h)
         {
-            mlx_pixel_put(cub->mlxp, cub->mlx_w, draw_x, draw_y, 0xFFFFFF);
+            mlx_pixel_put(cub->mlxp, cub->mlx_w, draw_x, draw_y, 0x000000);
         }
         i++;
     }
@@ -87,9 +87,9 @@ int mv(int key, t_cub *cub)
     }
 
         printf("\t\t\t(%d, %d)\n", (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
-    render_2d(cub);
     raycaster(cub);
-    put_line(cub, 100, (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
+    render_2d(cub);
+    put_line(cub, 20, (int)cub->plyr.plyr_x/ (TILE_SIZE / 8), (int)cub->plyr.plyr_y/ (TILE_SIZE / 8));
 }
 
 
@@ -126,6 +126,8 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
     //     return;
     // if (y > s_h || s_h < 0)
     //     return;
+     if (x < 0 || x >= data->gme->var.s_w || y < 0 || y >= data->gme->var.s_h)
+        return;
     dst = data->addr + (y * data->len + x * (data->bpp / 8));
     *(unsigned int*)dst = color;
 }
@@ -215,24 +217,17 @@ void render_2d(t_cub *cub)
         while (i < cub->map.map_w)
         {
             if (cub->map.map2d[j][i] == '1')
-                render_square(&cub->img, i *TILE_SIZE, j *TILE_SIZE, TILE_SIZE ,0xC0C0C0);
+                render_square(&cub->img, i *TILE_SIZE / 4, j * TILE_SIZE / 4, TILE_SIZE / 4 ,0xC0C0C0);
             else if (cub->map.map2d[j][i] == '0' || cub->map.map2d[j][i] == 'P')
             {
-                render_square(&cub->img, i *TILE_SIZE, j *TILE_SIZE, TILE_SIZE,0x654321);// 0x8B5A2B
+                render_square(&cub->img, i *TILE_SIZE / 4, j *TILE_SIZE / 4, TILE_SIZE / 4,0x654321);// 0x8B5A2B
             }
             i++;
         }
-        j++; // int s_w, s_h;
-    // s_w = data->gme->var.s_w;
-    // s_h = data->gme->var.s_w;
-	// char	*dst;
-    // if (x < 0 || x > s_w)
-    //     return;
-    // if (y > s_h || s_h < 0)
-    //     return;
+        j++;
     }
     // render_square(&cub->img, cub->plyr.plyr_x , cub->plyr.plyr_y, PLAYER_RADIUS,0xFFFFFF);
-    render_circle(&cub->img, cub->plyr.plyr_x , cub->plyr.plyr_y, PLAYER_RADIUS,0xFFFFFF);
+    render_circle(&cub->img, cub->plyr.plyr_x/ (TILE_SIZE / 8), cub->plyr.plyr_y/ (TILE_SIZE / 8), PLAYER_RADIUS/2,0x000000);
     mlx_clear_window(cub->mlxp, cub->mlx_w);
     mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
 }

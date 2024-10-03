@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/03 11:06:31 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/10/03 16:19:47 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ Charcoal: #36454F (Charcoal Gray)
 
 #define WIN_H  1900
 # define WIN_W  1000
-#define TILE_SIZE 40
+#define TILE_SIZE 42
 #define PLAYER_RADIUS (TILE_SIZE / 10)
-#define FOV 60
+#define FOV 84
 # define PLR 8 // plYER HIGHT WIEGHT
 # define NRAYS 120
 # define ROT_SPEED 0.45
-# define P_SPEED 8
+# define P_SPEED 10
 # define PI  3.141592653589
 # define L_ARROW 65361
 #define R_ARROW 65363
