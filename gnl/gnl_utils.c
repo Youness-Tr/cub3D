@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 10:29:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/29 16:27:30 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:37:39 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,3 +114,5 @@ char	*ft_strjoin(char *s1, char *s2)
 	strs[t_len] = '\0';
 	return (strs);
 }
+
+

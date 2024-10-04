@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/01 18:43:20 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/10/02 19:02:18 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ int ft_check(t_data *data)
                 data->player_x = i;
                 data->player_Y = j;
             }
-            if (data->map[i][j] == ' ')
-                data->space++;
             if (i == 0)
             {
                 if (data->map[i][j] != '1' && data->map[i][j] != ' '
@@ -121,6 +119,29 @@ int ft_check(t_data *data)
     return (0);
 }
 
+void add_to_map(t_data *data)
+{
+    int i = 0;
+    int big = 0;
+    
+    while (data->map_cp[i])
+    {
+        if (ft_strlen(data->map_cp[i]) > big)
+            big = ft_strlen(data->map_cp[i]);
+        i++;
+    }
+    i = 0;
+    while (data->map_cp[i])
+    {
+        while (ft_strlen(data->map_cp[i]) < big)
+        {
+            data->map_cp[i] = ft_strjoin(data->map_cp[i], "s");
+        }
+        // data->map_cp[i] = ft_strjoin(data->map_cp[i], "\n");
+        i++;
+    }
+}
+
 int main()
 {
     int i = 0;
@@ -129,6 +150,7 @@ int main()
     char *line;
     data.stop = 0;
     data.space = 0;
+    data.faragh = 0;
 
     int fd = open("./file", O_RDONLY);
     if (fd == -1)
@@ -136,8 +158,8 @@ int main()
         printf("Error\n");
         return (1);
     }
-    data.map = malloc(sizeof(char *) * 30);//i have to count how much space that i need to allocate;
-    data.map_cp = malloc(sizeof(char *) * 30);
+    data.map = malloc(sizeof(char *) * 50);//i have to count how much space that i need to allocate;
+    data.map_cp = malloc(sizeof(char *) * 50);
     line = get_next_line(fd);
     while (line)
     {
@@ -161,6 +183,14 @@ int main()
     // printf("here\n");
     if (ft_check(&data))
         printf("Error\n");
+    add_to_map(&data);
+    i = 0;
+    // while (data.map_cp[i])
+    // {
+    //     printf("%s", data.map_cp[i]);
+    //     i++;
+    // }
+    count_spaces(&data);
     floodfill_check(&data);
     //here check for spaces;
     // printf("NO :: %s", data.NO);
@@ -168,10 +198,9 @@ int main()
     // printf("SO :: %s", data.SO);
     // printf("EA :: %s", data.EA);
     // printf("-------------------------------------------\n");
-    i = 0;
     while (data.map_cp[i])
     {
-        printf("%s", data.map_cp[i]);
+        printf("%s\n", data.map_cp[i]);
         i++;
     }
 }
