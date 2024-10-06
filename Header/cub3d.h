@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/03 17:13:35 by kali             ###   ########.fr       */
+/*   Updated: 2024/10/06 12:42:59 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ Charcoal: #36454F (Charcoal Gray)
 
 #define WIN_H  1900
 # define WIN_W  1000
-#define TILE_SIZE 42
+#define TILE_SIZE 24
 #define PLAYER_RADIUS (TILE_SIZE / 10)
-#define FOV 84
+#define FOV 90
 # define PLR 8 // plYER HIGHT WIEGHT
-# define NRAYS 120
-# define ROT_SPEED 0.45
-# define P_SPEED 10
+# define NRAYS 540
+# define ROT_SPEED 0.5
+# define P_SPEED 5
 # define PI  3.141592653589
 # define L_ARROW 65361
 #define R_ARROW 65363
@@ -128,23 +128,46 @@ typedef struct vars
     int s_w; // screen wigth
     int s_h; // screen wieght
 } t_vars;
+/******************/
+typedef struct s_data
+{
+    char *NO;
+    char *SO;
+    char *WE;
+    char *EA;
+    char *F;
+    char *C;
+    char **array;// remove me
+    char **map;
+    char **map_cp;
+    char *file_path; //
+    int fd;
+    int player_x;
+    int player_Y;
+    int space;
+    int faragh;
+    int lines;
+    int stop;
+    int len;
+    int map_len;
+} t_data;
+/***************************/
 
 struct s_mlx //the mlx structure
 {
- t_img       img; // the image
-//  void       *floor;
-//  void       *plyr;
+ t_img       img;
  void       *mlx_w;
  void       *mlxp;
  t_ray      ray;
  t_map      map;
  t_player   plyr;
- t_vars      var;
+ t_data     parse;
+ t_vars     var;
 };
 
 int get_win_h(char **av);
 void ft_putstr(char *s);
-int ft_strcmp(char *ptr1, char *ptr2);
+// int ft_strcmp(char *ptr1, char *ptr2);
 void ft_putstrv2(const char *s, char *str);
 char *ft_substr(char *s, unsigned int start, size_t len);
 char **ft_split(char *s, char c);
@@ -152,11 +175,21 @@ void ft_error(char *s);
 char **get_map(char *file);
 // void render_map(t_cub *cub);
 // void put_ray(t_cub *cub, int len);
-void create_img(t_cub *cub);
+// void create_img(t_cub *cub);
 void my_mlx_pixel_put(t_img *data, int x, int y, int color);
-void render_map(t_cub *cub);
+// void render_map(t_cub *cub);
 int mv(int key, t_cub *cub);
-void raycaster(t_cub *cub);
+int raycaster(t_cub *cub);
 void put_line(t_cub *cub, int len, int x, int y);
-
+int parser(t_data *data);
+void	floodfill_check(t_data *data);
+void count_spaces(t_data *data);
+int is_valid_char(char c);
+void init(t_data *data);
+int	ft_strcmp(const char *s1, const char *s2);
+char	*ft_strnstr(const char *big, const char *little, size_t len);
+int count_len(t_data *data);
+void ft_error(char *str);
+void render_2d(t_cub *cub);
+void render_mini_2d(t_cub *cub);
 #endif

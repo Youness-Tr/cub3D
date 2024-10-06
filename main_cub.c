@@ -1,7 +1,6 @@
 
 # include "Header/cub3d.h"
 
-void render_2d(t_cub *cub);
 
 int is_wall(t_cub *cub,  double x, int y)
 {
@@ -88,8 +87,8 @@ int mv(int key, t_cub *cub)
 
         printf("\t\t\t(%d, %d)\n", (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
     raycaster(cub);
-    render_2d(cub);
-    put_line(cub, 20, (int)cub->plyr.plyr_x/ (TILE_SIZE / 8), (int)cub->plyr.plyr_y/ (TILE_SIZE / 8));
+    render_mini_2d(cub);
+    put_line(cub, 50, (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
 }
 
 
@@ -104,7 +103,7 @@ void find_plyr_cordn(t_cub *o)
 		j = 0;
 		while (j < o->map.map_w)
 		{
-			if (o->map.map2d[i][j] == 'P')
+			if (o->map.map2d[i][j] == 'N')
 			{
 				o->map.posx = j;
 				o->map.posy = i;
@@ -134,15 +133,23 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 
 void init_map(t_cub *cub, char *file)
 {
-    cub->map.map2d = get_map(file);
+    // cub->map.map2d = get_map(file);
+    cub->map.map2d = cub->parse.map;
     if (!cub->map.map2d)
     {
         ft_error("Error: Could not load map");
         exit(1);
     }
-    cub->map.map_h = get_win_h(cub->map.map2d);
-    cub->map.map_w = ft_strlen(cub->map.map2d[0]);
-    find_plyr_cordn(cub);
+    // for(int i = 0; i < 18; i++)
+    //     printf("%s", cub->parse.map_cp[i]);
+    // exit(0);
+    // cub->map.map_h = get_win_h(cub->map.map2d);
+    // cub->map.map_w = ft_strlen(cub->map.map2d[0]);
+    cub->map.map_h = cub->parse.lines;
+    cub->map.map_w = cub->parse.map_len;
+    cub->map.posx = cub->parse.player_Y;
+    cub->map.posy = cub->parse.player_x;
+    // find_plyr_cordn(cub);
     printf("\t(%d, %d)\n",cub->map.posx, cub->map.posy);
 }
 
@@ -151,7 +158,7 @@ void init_plyr(t_cub *cub)
     cub->plyr.plyr_x = cub->map.posx * TILE_SIZE + TILE_SIZE / 2;
     cub->plyr.plyr_y = cub->map.posy * TILE_SIZE + TILE_SIZE / 2;
     // printf("\t\t(%d, %d)\n",cub->plyr.plyr_x, cub->plyr.plyr_y);
-    cub->plyr.angle = (90 * PI) / 180;
+    cub->plyr.angle = 0; //(90 * PI) / 180;
     cub->plyr.rot = 0.1;
     cub->plyr.fov_rd = (FOV * PI) / 180;
 }
@@ -217,6 +224,34 @@ void render_2d(t_cub *cub)
         while (i < cub->map.map_w)
         {
             if (cub->map.map2d[j][i] == '1')
+                render_square(&cub->img, i *TILE_SIZE, j * TILE_SIZE, TILE_SIZE ,0xC0C0C0);
+            else if (cub->map.map2d[j][i] == '0' || cub->map.map2d[j][i] == 'P')
+            {
+                render_square(&cub->img, i *TILE_SIZE , j *TILE_SIZE, TILE_SIZE,0x654321);// 0x8B5A2B
+            }
+            i++;
+        }
+        j++;
+    }
+    // render_square(&cub->img, cub->plyr.plyr_x , cub->plyr.plyr_y, PLAYER_RADIUS,0xFFFFFF);
+    render_circle(&cub->img, cub->plyr.plyr_x, cub->plyr.plyr_y, PLAYER_RADIUS,0x000000);
+    mlx_clear_window(cub->mlxp, cub->mlx_w);
+    mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
+}
+
+void render_mini_2d(t_cub *cub)
+{
+    int i;
+    int j;
+
+    j = 0;
+    mlx_clear_window(cub->mlxp, cub->mlx_w);
+    while (j < cub->map.map_h)
+    {
+        i = 0;
+        while (i < cub->map.map_w)
+        {
+            if (cub->map.map2d[j][i] == '1')
                 render_square(&cub->img, i *TILE_SIZE / 4, j * TILE_SIZE / 4, TILE_SIZE / 4 ,0xC0C0C0);
             else if (cub->map.map2d[j][i] == '0' || cub->map.map2d[j][i] == 'P')
             {
@@ -249,17 +284,20 @@ void init_mlx(t_cub *mlx)
 
 void init_engin(t_cub *cub, char *file)
 {
-    init_map(cub, file);
+    cub->parse.file_path = file;
+    parser(&cub->parse);
+    init_map(cub, file); //
     init_plyr(cub);
     init_mlx(cub);
     mlx_hook(cub->mlx_w, 2, 1L<<0, &mv, cub);
+    // mlx_loop_hook(cub->mlxp, raycaster, cub);
     mlx_loop(cub->mlxp);
 }
 int main(int ac, char **av)
 {
     t_cub cub;
 
-    if (ac != 2 /*!parsing*/)
+    if (ac != 2)
         ft_error("Error: ./cub3D Assets/maps/file.cub");
     init_engin(&cub, av[1]);
 }

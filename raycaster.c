@@ -178,10 +178,10 @@ void draw_floor_ceiling(t_cub *cub, int raypt, int toppxl, int lowpxl) // draw t
 
 	i = lowpxl;
 	while (i < cub->var.s_h)
-		my_mlx_pixel_put(&cub->img, raypt, i++, 0xC8E6C9); // floor
+		my_mlx_pixel_put(&cub->img, raypt, i++, 0xC19A6B); // floor C8E6C9
 	i = 0;
 	while (i < toppxl)
-		my_mlx_pixel_put(&cub->img, raypt, i++, 0xE8F5E9); // ceiling //F0EAD6
+		my_mlx_pixel_put(&cub->img, raypt, i++, 0xF0EAD6); // ceiling //F0EAD6
 }
 
 
@@ -228,6 +228,7 @@ void ft_renderThreeD(t_cub *cub, double distnce, int raypt)
 
     s_w = cub->var.s_w;
     s_h = cub->var.s_h;
+    printf(WHITE"\t\t\t\t\t %f\n", distnce);
     distnce *= cos(cub->ray.ray_ngl - cub->plyr.angle);
     printf(RED "--------------------------->>(S_W : %d)\n\t(S_H : %d)\n" RES, s_w, s_h);
     wll_h = (TILE_SIZE / distnce) * ((s_w / 2) * tan(cub->plyr.fov_rd / 2));
@@ -244,7 +245,7 @@ void ft_renderThreeD(t_cub *cub, double distnce, int raypt)
 /***************************</RENDER_3D>********************************/
 
 
-void raycaster(t_cub *cub)
+int raycaster(t_cub *cub)
 {
     double h_inter;
     double v_inter;
@@ -270,8 +271,9 @@ void raycaster(t_cub *cub)
         }
 
         // Render the 3D wall slice for this ray
-        ft_renderThreeD(cub, cub->ray.distance, nray);
-
+        ft_renderThreeD(cub, cub->ray.distance + 1, nray);
+         printf("\t----ray-distnce--> %f\n",cub->ray.distance);
+        // put_rays(cub, cub->ray.distance, cub->plyr.plyr_x, cub->plyr.plyr_y, angle_range(cub->ray.ray_ngl));
         // Increment ray angle and ray counter
         // cub->ray.ray_ngl += (cub->plyr.fov_rd / cub->var.s_w);
         cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl + (cub->plyr.fov_rd / cub->var.s_w));
