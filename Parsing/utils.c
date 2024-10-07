@@ -1,31 +1,31 @@
 # include "../Header/cub3d.h"
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	size_t	s_len;
-	char	*p;
+// char	*ft_substr(char *s, unsigned int start, size_t len)
+// {
+// 	size_t	i;
+// 	size_t	s_len;
+// 	char	*p;
 
-	i = 0;
-	if (!s)
-		return (NULL);
-	s_len = ft_strlen(s);
-	if (start > s_len)
-		return (ft_strdup(""));
-	else if (s_len - start < len)
-		return (ft_strdup(&s[start]));
-	p = malloc((len + 1) * sizeof(char));
-	if (!p)
-		return (NULL);
-	while (i < len && s[i])
-	{
-		p[i] = s[start];
-		i++;
-		start++;
-	}
-	p[i] = '\0';
-	return (p);
-}
+// 	i = 0;
+// 	if (!s)
+// 		return (NULL);
+// 	s_len = ft_strlen(s);
+// 	if (start > s_len)
+// 		return (ft_strdup(""));
+// 	else if (s_len - start < len)
+// 		return (ft_strdup(&s[start]));
+// 	p = malloc((len + 1) * sizeof(char));
+// 	if (!p)
+// 		return (NULL);
+// 	while (i < len && s[i])
+// 	{
+// 		p[i] = s[start];
+// 		i++;
+// 		start++;
+// 	}
+// 	p[i] = '\0';
+// 	return (p);
+// }
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

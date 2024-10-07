@@ -1,11 +1,11 @@
-NAME = cub3d
+SRC = main_cub.c  raycaster.c   Parsing/parser.c  Parsing/utils.c Parsing/floodfill.c
+SRC += Utils/utils1.c Utils/substr.c Utils/split.c Utils/err.c
+SRC += Utils/init.c
 
-SRC = main.c
-SRC += Parsing/parser.c Parsing/utils.c gnl/get_next_line.c gnl/gnl_utils.c floodfill.c
+SRC += gnl/get_next_line.c gnl/gnl_utils.c
 
 all:
-	# @gcc main.c -o cub3d
-	gcc $(SRC) -o cub3d 
-#-fsanitize=address -g3
+	# @gcc main.c -lmlx -lXext -lX11 -o cub3d
+	gcc $(SRC) -L/home/youness/minilibx-linux -Lmlx -lmlx_Linux -lXext -lX11 -lm  -o cub3D #-fsanitize=address -g3
 clean:
-	rm cub3d
+	rm cub3D

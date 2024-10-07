@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/04 15:27:54 by youness          ###   ########.fr       */
+/*   Updated: 2024/10/07 19:22:33 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int ft_check(t_data *data)
     while (data->map[i])
     {
         if (data->map[i][0] != '1' && data->map[i][0] != ' ')
-            return (1);
+            ft_error("Error : map not valid"); // return (1);
 
         if (data->map[i][strlen(data->map[i]) - 2] != '1')
             return (1);
@@ -73,12 +73,48 @@ int ft_check(t_data *data)
     return 0;
 }
 
+char	*join_space(char *s1, char *s2)
+{
+	int		len1;
+	int		len2;
+    int     i;
+	char	*str;
+
+    i = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	while (s1[i])
+    {
+        if (s1[i] == '\n')
+            break;
+        i++;
+    }
+	len2 = ft_strlen(s2);
+	str = malloc((i + len2 + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	len2 = 0;
+	len1 = 0;
+	while (len1 < i)
+	{
+		str[len1] = s1[len1];
+		len1++;
+	}
+	while (s2[len2] != '\0')
+	{
+		str[len1 + len2] = s2[len2];
+		len2++;
+	}
+	str[len1 + len2] = '\0';
+	return (str);
+}
+
 
 void add_to_map(t_data *data)
 {
     int i = 0;
     int big = 0;
-    
+
     while (data->map_cp[i])
     {
         if (ft_strlen(data->map_cp[i]) > big)
@@ -88,13 +124,17 @@ void add_to_map(t_data *data)
     i = 0;
     while (data->map_cp[i])
     {
-        while (ft_strlen(data->map_cp[i]) < big)
+        if (ft_strlen(data->map_cp[i]) < big)
         {
-            data->map_cp[i] = ft_strjoin(data->map_cp[i], " ");
+            while (ft_strlen(data->map_cp[i]) < big)
+            {
+                data->map_cp[i] = join_space(data->map_cp[i], " ");
+            }
+            data->map_cp[i] = ft_strjoin(data->map_cp[i], "\n");
         }
-        // data->map_cp[i] = ft_strjoin(data->map_cp[i], "\n");
         i++;
     }
+    data->map_len = big;
 }
 
 int count_len(t_data *data)
@@ -127,7 +167,6 @@ void map_fill(t_data *data)
     {
         if (!data->stop)
         {
-            // data.array[i] = strcpy(data.array[i], line);
             ft_init(line, data);
             i++;
         }
@@ -139,7 +178,6 @@ void map_fill(t_data *data)
         }
         line = get_next_line(fd);
     }
-    // data.array[i] = NULL;
     data->map[j] = NULL;
     data->map_cp[j] = NULL;
 }
@@ -149,20 +187,22 @@ int parser(t_data *data)
     init(data);
     map_fill(data);
     if (ft_check(data))
-        printf("Error\n");
+        ft_error("Error\n");
     add_to_map(data);
     int i = 0;
     count_spaces(data);
     floodfill_check(data);
     //here check for spaces;
-    // printf("NO :: %s", data->NO);
+    // printf("NO :: %s", data->NO);sudo apt-get install libx11-dev libxext-dev
     // printf("WE :: %s", data->WE);
     // printf("SO :: %s", data->SO);
     // printf("EA :: %s", data->EA);
     // printf("-------------------------------------------\n");
-    // while (data->map_cp[i])
-    // {
-    //     printf("%s", data->map_cp[i]);
-    //     i++;
-    // }
+    while (data->map_cp[i])
+    {
+        printf("%s", data->map_cp[i]);
+        i++;
+    }
+    exit(1);
+    return (0);
 }

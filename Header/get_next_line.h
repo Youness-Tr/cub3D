@@ -30,7 +30,7 @@ size_t	ft_strlen(char *c);
 void	*ft_memmove(void *dst, void *src, size_t n);
 //___________________________________________________
 
-// char	*ft_substr(char *s, unsigned int start, size_t len);
-// char	**ft_split(char *s, char c);
+char	*ft_substr(char *s, unsigned int start, size_t len);
+char	**ft_split(char *s, char c);
 
 #endif
