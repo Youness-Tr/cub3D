@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/06 12:42:59 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/10/08 19:34:56 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,17 +135,16 @@ typedef struct s_data
     char *SO;
     char *WE;
     char *EA;
-    char *F;
-    char *C;
+    int *F;
+    int *C;
     char **array;// remove me
     char **map;
-    char **map_cp;
+    // char **map_cp;
     char *file_path; //
     int fd;
     int player_x;
     int player_Y;
-    int space;
-    int faragh;
+    int map_w;
     int lines;
     int stop;
     int len;
@@ -182,14 +181,18 @@ int mv(int key, t_cub *cub);
 int raycaster(t_cub *cub);
 void put_line(t_cub *cub, int len, int x, int y);
 int parser(t_data *data);
-void	floodfill_check(t_data *data);
-void count_spaces(t_data *data);
-int is_valid_char(char c);
+// void	floodfill_check(t_data *data);need to be removed
 void init(t_data *data);
-int	ft_strcmp(const char *s1, const char *s2);
-char	*ft_strnstr(const char *big, const char *little, size_t len);
-int count_len(t_data *data);
 void ft_error(char *str);
 void render_2d(t_cub *cub);
 void render_mini_2d(t_cub *cub);
+
+//  parsing utils  //
+int is_valid_char(char c);
+int	create_trgb(int t, int r, int g, int b);
+int	ft_atoi(const char *nptr);
+char	*ft_itoa(int n);
+int count_len(t_data *data);
+int	ft_strcmp(const char *s1, const char *s2);
+char	*ft_strnstr(const char *big, const char *little, size_t len);
 #endif

@@ -3,29 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/08 11:19:39 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/10/08 19:37:26 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../Header/cub3d.h"
 
+void *get_value(char *s, unsigned int start, int flag)
+{
+    size_t s_len;
+    char *ss;
+
+    if (!s)
+        return (NULL);
+    s_len = ft_strlen(s);
+    while (s[start] && s[start] == ' ')
+        start++;
+    while (s_len > 0 && s[s_len - 1] == ' ')
+        s_len--;
+    ss = ft_substr(s, start, s_len - start);
+
+    if (flag == 1)
+    {
+        char **db = ft_split(ss, ',');
+        if (!db || !db[0] || !db[1] || !db[2])
+        {
+            free(ss);
+            return NULL;
+        }
+        int hexa = create_trgb(0, ft_atoi(db[0]), ft_atoi(db[1]), ft_atoi(db[2]));
+        printf("color :: %x\n", hexa);
+        free(ss);
+        free(db);
+        return ((void *)(size_t)hexa);
+    }
+    return (ss);
+}
+
+
 void ft_init(char *line, t_data *data)
 {
     if (!strncmp("NO", line, 2))
-        data->NO = ft_substr(line, 2, strlen(&line[2]));
+        data->NO = get_value(line, 2, 0);
     else if (!strncmp("SO", line, 2))
-        data->SO = ft_substr(line, 2, strlen(&line[2]));
+        data->SO = get_value(line, 2, 0);
     else if (!strncmp("WE", line, 2))
-        data->WE = ft_substr(line, 2, strlen(&line[2]));
+        data->WE = get_value(line, 2, 0);
     else if (!strncmp("EA", line, 2))
-        data->EA = ft_substr(line, 2, strlen(&line[2]));
+        data->EA = get_value(line, 2, 0);
     else if (!strncmp("F", line, 1))
-        data->F = ft_substr(line, 1, strlen(&line[1]));
+        data->F = get_value(line, 1, 1);
     else if (!strncmp("C", line, 1))
-        data->F = ft_substr(line, 1, strlen(&line[1]));
+        data->F = get_value(line, 1, 1);
     else if (!strncmp(" ", line, 1) || !strncmp("\n", line, 1))
         data->stop = 0;
     else
@@ -37,37 +69,24 @@ void ft_init(char *line, t_data *data)
 int ft_check(t_data *data)
 {
     int i = 0;
+    int j;
 
     while (data->map[i])
     {
-        if (data->map[i][0] != '1' && data->map[i][0] != ' ')
-            ft_error("Error : map not valid"); // return (1);
-
-        if (data->map[i][strlen(data->map[i]) - 2] != '1')
-            return (1);
-
-        for (int j = 0; data->map[i][j]; j++)
+        j = -1;
+        while (data->map[i][++j])
         {
             if (data->map[i][j] == 'N')
             {
                 data->player_x = i;
                 data->player_Y = j;
             }
-            if (i == 0 && !is_valid_char(data->map[i][j]))
-                return (1);
-
             if (!is_valid_char(data->map[i][j]))
                 return (1);
         }
         i++;
     }
-
     data->lines = i - 1;
-    for (int j = 0; data->map[data->lines][j]; j++)
-    {
-        if (!is_valid_char(data->map[data->lines][j]))
-            return printf("Invalid character in last row\n"), 1;
-    }
     return 0;
 }
 
@@ -104,47 +123,26 @@ char	*join_space(char *s1, char *s2)
 void add_to_map(t_data *data)
 {
     int i = 0;
-    int big = 0;
+    data->map_w = 0;
 
-    while (data->map_cp[i])
+    while (data->map[i])
     {
-        if (ft_strlen(data->map_cp[i]) > big)
-            big = ft_strlen(data->map_cp[i]);
+        if (ft_strlen(data->map[i]) > data->map_w)
+            data->map_w = ft_strlen(data->map[i]);
         i++;
     }
     i = 0;
-    while (data->map_cp[i])
+    while (data->map[i])
     {
-        if (ft_strlen(data->map_cp[i]) < big)
+        if (ft_strlen(data->map[i]) < data->map_w)
         {
-            while (ft_strlen(data->map_cp[i]) < big)
-            {
-                data->map_cp[i] = join_space(data->map_cp[i], " ");
+            while (ft_strlen(data->map[i]) < data->map_w)
                 data->map[i] = join_space(data->map[i], " ");
-            }
-            data->map_cp[i] = ft_strjoin(data->map_cp[i], "\n");
             data->map[i] = ft_strjoin(data->map[i], "\n");
         }
         i++;
     }
-    data->map_len = big;
-}
-
-int count_len(t_data *data)
-{
-    int i = 0;
-    char *line;
-
-    int fd = open(data->file_path, O_RDONLY);
-    if (fd == -1)
-        ft_error("invalid path\n");
-    line = get_next_line(fd);
-    while (line)
-    {
-        i++;
-        line = get_next_line(fd);
-    }
-    return i;
+    data->map_len = data->map_w;
 }
 
 void map_fill(t_data *data)
@@ -166,13 +164,38 @@ void map_fill(t_data *data)
         if (data->stop)
         {
             data->map[j] = ft_strdup(line);
-            data->map_cp[j] = ft_strdup(line);
             j++;
         }
         line = get_next_line(fd);
     }
     data->map[j] = NULL;
-    data->map_cp[j] = NULL;
+}
+
+void	map_scan(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i <= data->lines)
+	{
+		j = -1;
+		while (++j < data->map_w)
+		{
+            if (data->map[i][j] == '0' || data->map[i][j] == 'N')
+	        {
+		        if (i == 0 || i == data->lines|| j == 0
+			        || j == data->map_w - 2)
+                {
+                        printf ("i ::%i && j ::%i", data->lines, data->map_w);
+			            ft_error("error::::: invalid map");
+                }
+		        if (data->map[i - 1][j] == ' ' || data->map[(i) + 1][j] == ' '
+			        || data->map[i][j - 1] == ' ' || data->map[i][j + 1] == ' ')
+			            ft_error("error::::: invalid map");
+	        }
+        }
+	}
 }
 
 int parser(t_data *data)
@@ -182,18 +205,16 @@ int parser(t_data *data)
     if (ft_check(data))
         ft_error("Error\n");
     add_to_map(data);
+    map_scan(data);
+    printf("NO ::%s", data->NO);
+    printf("WE ::%s", data->WE);
+    printf("SO ::%s", data->SO);
+    printf("EA ::%s", data->EA);
+    printf("-------------------------------------------\n");
     int i = 0;
-    count_spaces(data);
-    floodfill_check(data);
-    //here check for spaces;
-    // printf("NO :: %s", data->NO);
-    // printf("WE :: %s", data->WE);
-    // printf("SO :: %s", data->SO);
-    // printf("EA :: %s", data->EA);
-    // printf("-------------------------------------------\n");
-    while (data->map_cp[i])
+    while (data->map[i])
     {
-        printf("%s", data->map_cp[i]);
+        printf("%s", data->map[i]);
         i++;
     }
     exit(1);
