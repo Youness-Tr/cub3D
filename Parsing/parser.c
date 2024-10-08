@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/07 19:22:33 by youness          ###   ########.fr       */
+/*   Updated: 2024/10/08 11:19:39 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ void ft_init(char *line, t_data *data)
         data->stop = 0;
     else
     {
-        // data->array[*i] = NULL;
         data->stop = 1;
-        // *i = -1;
     }
 }
 
@@ -76,12 +74,11 @@ int ft_check(t_data *data)
 char	*join_space(char *s1, char *s2)
 {
 	int		len1;
-	int		len2;
     int     i;
 	char	*str;
 
     i = 0;
-	if (!s1 || !s2)
+	if (!s1)
 		return (NULL);
 	while (s1[i])
     {
@@ -89,23 +86,17 @@ char	*join_space(char *s1, char *s2)
             break;
         i++;
     }
-	len2 = ft_strlen(s2);
-	str = malloc((i + len2 + 1) * sizeof(char));
+	str = malloc((i + 2) * sizeof(char));
 	if (!str)
 		return (NULL);
-	len2 = 0;
 	len1 = 0;
 	while (len1 < i)
 	{
 		str[len1] = s1[len1];
 		len1++;
 	}
-	while (s2[len2] != '\0')
-	{
-		str[len1 + len2] = s2[len2];
-		len2++;
-	}
-	str[len1 + len2] = '\0';
+	str[len1] = s2[0];
+	str[len1 + 1] = '\0';
 	return (str);
 }
 
@@ -129,8 +120,10 @@ void add_to_map(t_data *data)
             while (ft_strlen(data->map_cp[i]) < big)
             {
                 data->map_cp[i] = join_space(data->map_cp[i], " ");
+                data->map[i] = join_space(data->map[i], " ");
             }
             data->map_cp[i] = ft_strjoin(data->map_cp[i], "\n");
+            data->map[i] = ft_strjoin(data->map[i], "\n");
         }
         i++;
     }
@@ -193,7 +186,7 @@ int parser(t_data *data)
     count_spaces(data);
     floodfill_check(data);
     //here check for spaces;
-    // printf("NO :: %s", data->NO);sudo apt-get install libx11-dev libxext-dev
+    // printf("NO :: %s", data->NO);
     // printf("WE :: %s", data->WE);
     // printf("SO :: %s", data->SO);
     // printf("EA :: %s", data->EA);
