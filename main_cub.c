@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_cub.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:56:34 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 11:52:56 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/10/12 12:51:55 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void init_plyr(t_cub *cub)
 {
     cub->plyr.plyr_x = cub->map.posx * TILE_SIZE + TILE_SIZE / 2;
     cub->plyr.plyr_y = cub->map.posy * TILE_SIZE + TILE_SIZE / 2;
-    cub->plyr.angle = 0; //(90 * PI) / 180;
+    // cub->plyr.angle = 0; //(90 * PI) / 180;
     cub->plyr.rot = 0.1;
     cub->plyr.fov_rd = (FOV * PI) / 180;
 }
@@ -65,6 +65,7 @@ void init_mlx(t_cub *mlx)
 void init_engin(t_cub *cub, char *file)
 {
     cub->parse.file_path = file;
+    cub->parse.info = cub;
     parser(&cub->parse);
     init_map(cub, file); //
     init_plyr(cub);

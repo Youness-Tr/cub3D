@@ -1,32 +1,5 @@
 # include "../Header/cub3d.h"
 
-// char	*ft_substr(char *s, unsigned int start, size_t len)
-// {
-// 	size_t	i;
-// 	size_t	s_len;
-// 	char	*p;
-
-// 	i = 0;
-// 	if (!s)
-// 		return (NULL);
-// 	s_len = ft_strlen(s);
-// 	if (start > s_len)
-// 		return (ft_strdup(""));
-// 	else if (s_len - start < len)
-// 		return (ft_strdup(&s[start]));
-// 	p = malloc((len + 1) * sizeof(char));
-// 	if (!p)
-// 		return (NULL);
-// 	while (i < len && s[i])
-// 	{
-// 		p[i] = s[start];
-// 		i++;
-// 		start++;
-// 	}
-// 	p[i] = '\0';
-// 	return (p);
-// }
-
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	i;
@@ -61,7 +34,32 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	return (NULL);
 }
 
+int	ft_atoi(const char *nptr)
+{
+	int			i;
+	int			m;
+	long long	result;
 
+	m = 1;
+	result = 0;
+	i = 0;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
+		i++;
+	if (nptr[i] == '+')
+		i++;
+	else if (nptr[i] == '-')
+	{
+		m *= -1;
+		i++;
+	}
+	while (nptr[i] >= 48 && nptr[i] <= 57)
+	{
+		result *= 10;
+		result += nptr[i] - 48;
+		i++;
+	}
+	return (result * m);
+}
 
 int is_valid_char(char c)
 {
@@ -70,15 +68,35 @@ int is_valid_char(char c)
     return (0);
 }
 
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+int count_len(t_data *data)
+{
+    int i = 0;
+    char *line;
+
+    int fd = open(data->file_path, O_RDONLY);
+    if (fd == -1)
+        ft_error("invalid path\n");
+    line = get_next_line(fd);
+    while (line)
+    {
+        i++;
+        line = get_next_line(fd);
+    }
+    return i;
+}
+
 void init(t_data *data)
 {
     data->stop = 0;
-    data->space = 0;
     int len = 0;
 
     data->len = 0;
     len = count_len(data);
     data->map = malloc(sizeof(char *) * len);
-    data->map_cp = malloc(sizeof(char *) * len);
 }
 

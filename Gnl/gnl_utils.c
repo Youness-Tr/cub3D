@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   gnl_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 10:29:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/15 10:07:58 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/10/12 12:35:01 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/get_next_line.h"
 
 
-size_t	ft_strlen(char *c)
+int	ft_strlen(char *c)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (!c)

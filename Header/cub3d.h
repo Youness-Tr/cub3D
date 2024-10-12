@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 11:13:01 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/10/12 12:48:02 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,21 +135,19 @@ typedef struct s_data
     char *SO;
     char *WE;
     char *EA;
-    char *F;
-    char *C;
-    char **array;// remove me
+    int *F;
+    int *C;
     char **map;
-    char **map_cp;
     char *file_path; //
     int fd;
     int player_x;
     int player_Y;
-    int space;
-    int faragh;
+    int map_w;
     int lines;
     int stop;
     int len;
     int map_len;
+    t_cub *info;
 } t_data;
 /***************************/
 
@@ -167,19 +165,15 @@ struct s_mlx //the mlx structure
 
 int get_win_h(char **av);
 void ft_putstr(char *s);
-// int ft_strcmp(char *ptr1, char *ptr2);
 void ft_putstrv2(const char *s, char *str);
 char *ft_substr(char *s, unsigned int start, size_t len);
 char **ft_split(char *s, char c);
 void ft_error(char *s);
 char **get_map(char *file);
-//Rendring > render3D.c:
 void my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int raycaster(t_cub *cub);
 void put_line(t_cub *cub, int len, int x, int y);
 int parser(t_data *data);
-void	floodfill_check(t_data *data);
-void count_spaces(t_data *data);
 int is_valid_char(char c);
 void init(t_data *data);
 int	ft_strcmp(const char *s1, const char *s2);
@@ -196,4 +190,12 @@ int mv(int key, t_cub *cub);
 int is_wall(t_cub *cub, double x, int y);
 // Glogic/
 double angle_range(double ngl);
+
+// int is_valid_char(char c);
+int	create_trgb(int t, int r, int g, int b);
+int	ft_atoi(const char *nptr);
+char	*ft_itoa(int n);
+// int count_len(t_data *data);
+// int	ft_strcmp(const char *s1, const char *s2);
+// char	*ft_strnstr(const char *big, const char *little, size_t len);
 #endif
