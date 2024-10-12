@@ -95,8 +95,10 @@ void init(t_data *data)
     data->stop = 0;
     int len = 0;
 
-    data->len = 0;
-    len = count_len(data);
+	// data->info->parse.F = data->F;
+	// data->F = NULL;
+	data->len = 0;
+	len = count_len(data);
     data->map = malloc(sizeof(char *) * len);
 }
 

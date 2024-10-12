@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render3D.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 11:56:25 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/10/12 14:59:24 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,14 @@ void draw_floor_ceiling(t_cub *cub, int raypt, int toppxl, int lowpxl) // draw t
 //  int  c;
 
 	i = lowpxl;
-	while (i < cub->var.s_h)
-		my_mlx_pixel_put(&cub->img, raypt, i++, 0xC19A6B); // floor C8E6C9
-	i = 0;
+    // t_data *data = &cub->parse;
+    // int f = *data->F;
+    // printf(RED"---------------> %d\n", f);
+    while (i < cub->var.s_h)
+    my_mlx_pixel_put(&cub->img, raypt, i++, cub->parse.F); // floor C8E6C9
+    i = 0;
 	while (i < toppxl)
-		my_mlx_pixel_put(&cub->img, raypt, i++, 0xF0EAD6); // ceiling //F0EAD6
+		my_mlx_pixel_put(&cub->img, raypt, i++, cub->parse.C); // ceiling //F0EAD6
 }
 
 

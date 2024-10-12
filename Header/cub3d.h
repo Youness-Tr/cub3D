@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 12:48:02 by kali             ###   ########.fr       */
+/*   Updated: 2024/10/12 14:53:47 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ typedef struct vars
 {
     int s_w; // screen wigth
     int s_h; // screen wieght
+
 } t_vars;
 /******************/
 typedef struct s_data
@@ -135,8 +136,8 @@ typedef struct s_data
     char *SO;
     char *WE;
     char *EA;
-    int *F;
-    int *C;
+    int F;
+    int C;
     char **map;
     char *file_path; //
     int fd;

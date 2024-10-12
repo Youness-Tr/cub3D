@@ -10,7 +10,7 @@ SRC = main_cub.c
 SRC += Utils/utils1.c Utils/substr.c Utils/split.c Utils/err.c
 SRC += Utils/init.c
 #Parsing/
-SRC += Parsing/parser.c  Parsing/utils.c Parsing/floodfill.c
+SRC += Parsing/parser.c  Parsing/utils.c
 #RayCasting/
 SRC += RayCasting/raycaster.c
 #Rendring/
@@ -27,7 +27,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(SRC) $(CFLAGS) $(MLX_FLAGS) -o $(NAME) #$(FSA)
+	$(CC) $(SRC) $(CFLAGS) $(MLX_FLAGS) $(FSA) -o $(NAME)
 # bonus:$(B_NAME)
 
 # $(B_NAME):$(B_OBJ)
