@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/06 12:42:59 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/10/12 11:13:01 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,12 +173,8 @@ char *ft_substr(char *s, unsigned int start, size_t len);
 char **ft_split(char *s, char c);
 void ft_error(char *s);
 char **get_map(char *file);
-// void render_map(t_cub *cub);
-// void put_ray(t_cub *cub, int len);
-// void create_img(t_cub *cub);
+//Rendring > render3D.c:
 void my_mlx_pixel_put(t_img *data, int x, int y, int color);
-// void render_map(t_cub *cub);
-int mv(int key, t_cub *cub);
 int raycaster(t_cub *cub);
 void put_line(t_cub *cub, int len, int x, int y);
 int parser(t_data *data);
@@ -192,4 +188,12 @@ int count_len(t_data *data);
 void ft_error(char *str);
 void render_2d(t_cub *cub);
 void render_mini_2d(t_cub *cub);
+void ft_renderThreeD(t_cub *cub, double distnce, int raypt);
+
+//Glogic > playerMoves.c:
+int mv(int key, t_cub *cub);
+//Glogic > Wall_intersection.c:
+int is_wall(t_cub *cub, double x, int y);
+// Glogic/
+double angle_range(double ngl);
 #endif

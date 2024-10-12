@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/06 12:23:24 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/10/12 11:07:39 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,14 @@ void add_to_map(t_data *data)
 
     while (data->map_cp[i])
     {
-        if (ft_strlen(data->map_cp[i]) > big)
+        if (ft_strlen(data->map_cp[i]) > (size_t)big)
             big = ft_strlen(data->map_cp[i]);
         i++;
     }
     i = 0;
     while (data->map_cp[i])
     {
-        while (ft_strlen(data->map_cp[i]) < big)
+        while (ft_strlen(data->map_cp[i]) < (size_t)big)
         {
             data->map_cp[i] = ft_strjoin(data->map_cp[i], " ");
         }
@@ -151,7 +151,7 @@ int parser(t_data *data)
     if (ft_check(data))
         ft_error("Error\n");
     add_to_map(data);
-    int i = 0;
+    // int i = 0;
     count_spaces(data);
     floodfill_check(data);
     //here check for spaces;

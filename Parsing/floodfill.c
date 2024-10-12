@@ -21,7 +21,7 @@ void count_spaces(t_data *data)
 
 void	f_floodfill(char **map, int x, int z, t_data *data)
 {
-	if (x < 0 || x >= data->lines || z < 0 || z >= (ft_strlen(map[x]))
+	if (x < 0 || x >= data->lines || z < 0 || (size_t)z >= (ft_strlen(map[x]))
 		|| map[x][z] == '1' || map[x][z] == 'H')
 	{
 		return ;
