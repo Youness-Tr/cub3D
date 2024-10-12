@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 11:12:32 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/10/12 11:56:25 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int get_color(t_cub *cub, int flag) // get the color of the wall
 void render_wll(t_cub *cub, int toppxl, int lowpxl, int raypt)
 {
 
-    printf(MAGENTA "lowpxl |%d| *** toppxl |%d|\n", lowpxl, toppxl);
+    // printf(MAGENTA "lowpxl |%d| *** toppxl |%d|\n", lowpxl, toppxl);
     int color;
 
     color = get_color(cub, cub->ray.hit);
@@ -88,11 +88,11 @@ void ft_renderThreeD(t_cub *cub, double distnce, int raypt)
 
     s_w = cub->var.s_w;
     s_h = cub->var.s_h;
-    printf(WHITE"\t\t\t\t\t %f\n", distnce);
+    // printf(WHITE"\t\t\t\t\t %f\n", distnce);
     distnce *= cos(cub->ray.ray_ngl - cub->plyr.angle);
-    printf(RED "--------------------------->>(S_W : %d)\n\t(S_H : %d)\n" RES, s_w, s_h);
+    // printf(RED "--------------------------->>(S_W : %d)\n\t(S_H : %d)\n" RES, s_w, s_h);
     wll_h = (TILE_SIZE / distnce) * ((s_w / 2) * tan(cub->plyr.fov_rd / 2));
-    printf(CYAN"\t\t\t\tWall_H |----->> %f\n", wll_h);
+    // printf(CYAN"\t\t\t\tWall_H |----->> %f\n", wll_h);
     toppxl = (s_h / 2) - (wll_h / 2);
     lowpxl = (s_h / 2) + (wll_h / 2);
     if (toppxl > s_w)

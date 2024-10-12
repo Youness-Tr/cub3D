@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 11:09:55 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/10/12 11:54:03 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ int raycaster(t_cub *cub)
     cub->ray.ray_ngl = angle_range(cub->plyr.angle - (cub->plyr.fov_rd / 2)); // Start ray angle from left FOV boundary
     while (nray < cub->var.s_w) // Loop through each column (ray) in the screen
     {
-        printf("\t----ray-ngl--> %f\n", cub->ray.ray_ngl);
+        // printf("\t----ray-ngl--> %f\n", cub->ray.ray_ngl);
         cub->ray.hit = 0; // Reset hit flag for this ray
         h_inter = get_hinter(cub, angle_range(cub->ray.ray_ngl)); // Get horizontal intersection
         v_inter = get_vinter(cub, angle_range(cub->ray.ray_ngl)); // Get vertical intersection

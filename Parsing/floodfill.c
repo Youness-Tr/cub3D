@@ -55,7 +55,7 @@ void	floodfill_check(t_data *data)
 	}
     if (count != data->space)
 		printf("invalid map\n");
-	printf("counter::%i && spaces::%i\n", count, data->space);
+	// printf("counter::%i && spaces::%i\n", count, data->space);
 }
 
 

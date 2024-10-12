@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:56:34 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 11:06:07 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/10/12 11:52:56 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void init_map(t_cub *cub, char *file)
     cub->map.map_w = cub->parse.map_len;
     cub->map.posx = cub->parse.player_Y;
     cub->map.posy = cub->parse.player_x;
-    printf("\t(%d, %d)\n",cub->map.posx, cub->map.posy);//Remove
+    // printf("\t(%d, %d)\n",cub->map.posx, cub->map.posy);//Remove
 }
 
 void init_plyr(t_cub *cub)
@@ -70,6 +70,7 @@ void init_engin(t_cub *cub, char *file)
     init_plyr(cub);
     init_mlx(cub);
     mlx_hook(cub->mlx_w, 2, 1L<<0, &mv, cub);
+    raycaster(cub);
     mlx_loop(cub->mlxp);
 }
 int main(int ac, char **av)

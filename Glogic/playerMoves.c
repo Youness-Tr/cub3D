@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 11:13:29 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/10/12 11:53:00 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int mv(int key, t_cub *cub)
         cub->plyr.plyr_y = y;
     }
 
-        printf("\t\t\t(%d, %d)\n", (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
+        // printf("\t\t\t(%d, %d)\n", (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
     // render_2d(cub);
     raycaster(cub);
     put_line(cub, 50, (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
