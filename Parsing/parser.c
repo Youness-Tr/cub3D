@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/08 19:37:26 by youness          ###   ########.fr       */
+/*   Updated: 2024/10/12 14:57:48 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../Header/cub3d.h"
 
-void *get_value(char *s, unsigned int start, int flag)
+void *get_value(char *s, unsigned int start)
 {
     size_t s_len;
     char *ss;
@@ -25,45 +25,57 @@ void *get_value(char *s, unsigned int start, int flag)
     while (s_len > 0 && s[s_len - 1] == ' ')
         s_len--;
     ss = ft_substr(s, start, s_len - start);
-
-    if (flag == 1)
-    {
-        char **db = ft_split(ss, ',');
-        if (!db || !db[0] || !db[1] || !db[2])
-        {
-            free(ss);
-            return NULL;
-        }
-        int hexa = create_trgb(0, ft_atoi(db[0]), ft_atoi(db[1]), ft_atoi(db[2]));
-        printf("color :: %x\n", hexa);
-        free(ss);
-        free(db);
-        return ((void *)(size_t)hexa);
-    }
     return (ss);
+}
+
+int get_haxe(char *s, unsigned int start)
+{
+    size_t s_len;
+    char *ss;
+
+    if (!s)
+        return (0);
+    s_len = ft_strlen(s);
+    while (s[start] && s[start] == ' ')
+        start++;
+    while (s_len > 0 && s[s_len - 1] == ' ')
+        s_len--;
+    ss = ft_substr(s, start, s_len - start);
+    char **db = ft_split(ss, ',');
+    if (!db || !db[0] || !db[1] || !db[2])
+    {
+        free(ss);
+        return 0;
+    }
+    int hexa = create_trgb(0, ft_atoi(db[0]), ft_atoi(db[1]), ft_atoi(db[2]));
+    printf("color :: %x\n", hexa);
+    free(ss);
+    free(db);
+    return (hexa);
 }
 
 
 void ft_init(char *line, t_data *data)
 {
     if (!strncmp("NO", line, 2))
-        data->NO = get_value(line, 2, 0);
+        data->NO = get_value(line, 2);
     else if (!strncmp("SO", line, 2))
-        data->SO = get_value(line, 2, 0);
+        data->SO = get_value(line, 2);
     else if (!strncmp("WE", line, 2))
-        data->WE = get_value(line, 2, 0);
+        data->WE = get_value(line, 2);
     else if (!strncmp("EA", line, 2))
-        data->EA = get_value(line, 2, 0);
+        data->EA = get_value(line, 2);
     else if (!strncmp("F", line, 1))
-        data->F = get_value(line, 1, 1);
+        data->F = get_haxe(line, 1);
     else if (!strncmp("C", line, 1))
-        data->F = get_value(line, 1, 1);
+        data->C = get_haxe(line, 1);
     else if (!strncmp(" ", line, 1) || !strncmp("\n", line, 1))
         data->stop = 0;
     else
     {
         data->stop = 1;
     }
+    printf("------------------------------------< %d\n", data->F);
 }
 
 int ft_check(t_data *data)
@@ -78,6 +90,7 @@ int ft_check(t_data *data)
         {
             if (data->map[i][j] == 'N')
             {
+                // data->info->plyr.angle = PI / 2; chamal 3PI/2 janoub 0 sa3odia PI marikan
                 data->player_x = i;
                 data->player_Y = j;
             }
@@ -217,6 +230,6 @@ int parser(t_data *data)
         printf("%s", data->map[i]);
         i++;
     }
-    exit(1);
+    // exit(1);
     return (0);
 }

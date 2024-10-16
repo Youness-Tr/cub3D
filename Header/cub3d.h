@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/08 19:34:56 by youness          ###   ########.fr       */
+/*   Updated: 2024/10/12 14:53:47 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ typedef struct vars
 {
     int s_w; // screen wigth
     int s_h; // screen wieght
+
 } t_vars;
 /******************/
 typedef struct s_data
@@ -135,11 +136,9 @@ typedef struct s_data
     char *SO;
     char *WE;
     char *EA;
-    int *F;
-    int *C;
-    char **array;// remove me
+    int F;
+    int C;
     char **map;
-    // char **map_cp;
     char *file_path; //
     int fd;
     int player_x;
@@ -149,6 +148,7 @@ typedef struct s_data
     int stop;
     int len;
     int map_len;
+    t_cub *info;
 } t_data;
 /***************************/
 
@@ -166,33 +166,37 @@ struct s_mlx //the mlx structure
 
 int get_win_h(char **av);
 void ft_putstr(char *s);
-// int ft_strcmp(char *ptr1, char *ptr2);
 void ft_putstrv2(const char *s, char *str);
 char *ft_substr(char *s, unsigned int start, size_t len);
 char **ft_split(char *s, char c);
 void ft_error(char *s);
 char **get_map(char *file);
-// void render_map(t_cub *cub);
-// void put_ray(t_cub *cub, int len);
-// void create_img(t_cub *cub);
 void my_mlx_pixel_put(t_img *data, int x, int y, int color);
-// void render_map(t_cub *cub);
-int mv(int key, t_cub *cub);
 int raycaster(t_cub *cub);
 void put_line(t_cub *cub, int len, int x, int y);
 int parser(t_data *data);
-// void	floodfill_check(t_data *data);need to be removed
+int is_valid_char(char c);
 void init(t_data *data);
+int	ft_strcmp(const char *s1, const char *s2);
+char	*ft_strnstr(const char *big, const char *little, size_t len);
+int count_len(t_data *data);
 void ft_error(char *str);
 void render_2d(t_cub *cub);
 void render_mini_2d(t_cub *cub);
+void ft_renderThreeD(t_cub *cub, double distnce, int raypt);
 
-//  parsing utils  //
-int is_valid_char(char c);
+//Glogic > playerMoves.c:
+int mv(int key, t_cub *cub);
+//Glogic > Wall_intersection.c:
+int is_wall(t_cub *cub, double x, int y);
+// Glogic/
+double angle_range(double ngl);
+
+// int is_valid_char(char c);
 int	create_trgb(int t, int r, int g, int b);
 int	ft_atoi(const char *nptr);
 char	*ft_itoa(int n);
-int count_len(t_data *data);
-int	ft_strcmp(const char *s1, const char *s2);
-char	*ft_strnstr(const char *big, const char *little, size_t len);
+// int count_len(t_data *data);
+// int	ft_strcmp(const char *s1, const char *s2);
+// char	*ft_strnstr(const char *big, const char *little, size_t len);
 #endif
