@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 14:57:48 by kali             ###   ########.fr       */
+/*   Updated: 2024/10/16 16:27:05 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int get_haxe(char *s, unsigned int start)
     int hexa = create_trgb(0, ft_atoi(db[0]), ft_atoi(db[1]), ft_atoi(db[2]));
     printf("color :: %x\n", hexa);
     free(ss);
-    free(db);
+    ft_free(db);
     return (hexa);
 }
 
@@ -78,6 +78,21 @@ void ft_init(char *line, t_data *data)
     printf("------------------------------------< %d\n", data->F);
 }
 
+int find_direction(t_data *data, char c)
+{
+    if(c == 'N')
+        data->info->plyr.angle = PI / 2;
+    else if (c == 'S')
+        data->info->plyr.angle = (3 * PI) / 2;
+    else if (c == 'W')
+        data->info->plyr.angle = PI;
+    else if (c == 'E')
+        data->info->plyr.angle = 0;
+    else
+        return (0);
+    return (1);
+}
+
 int ft_check(t_data *data)
 {
     int i = 0;
@@ -88,9 +103,9 @@ int ft_check(t_data *data)
         j = -1;
         while (data->map[i][++j])
         {
-            if (data->map[i][j] == 'N')
+            if (find_direction(data, data->map[i][j]))
             {
-                // data->info->plyr.angle = PI / 2; chamal 3PI/2 janoub 0 sa3odia PI marikan
+                // data->info->plyr.angle = PI / 2; chamal 3PI/2 janoub 0 sa3odia PI marikan;
                 data->player_x = i;
                 data->player_Y = j;
             }
@@ -129,7 +144,8 @@ char	*join_space(char *s1, char *s2)
 	}
 	str[len1] = s2[0];
 	str[len1 + 1] = '\0';
-	return (str);
+    free(s1);
+    return (str);
 }
 
 
@@ -165,7 +181,7 @@ void map_fill(t_data *data)
     char *line;
     int fd = open(data->file_path, O_RDONLY);
     if (fd == -1)
-        ft_error("invalid path\n");
+        printf("invalid path\n");
     line = get_next_line(fd);
     while (line)
     {
@@ -179,8 +195,10 @@ void map_fill(t_data *data)
             data->map[j] = ft_strdup(line);
             j++;
         }
+        free(line);
         line = get_next_line(fd);
     }
+    free(line);
     data->map[j] = NULL;
 }
 
@@ -201,11 +219,11 @@ void	map_scan(t_data *data)
 			        || j == data->map_w - 2)
                 {
                         printf ("i ::%i && j ::%i", data->lines, data->map_w);
-			            ft_error("error::::: invalid map");
+			            ft_errorv2(data, "error::::: invalid map");
                 }
 		        if (data->map[i - 1][j] == ' ' || data->map[(i) + 1][j] == ' '
 			        || data->map[i][j - 1] == ' ' || data->map[i][j + 1] == ' ')
-			            ft_error("error::::: invalid map");
+			            ft_errorv2(data, "error::::: invalid map");
 	        }
         }
 	}
@@ -216,20 +234,21 @@ int parser(t_data *data)
     init(data);
     map_fill(data);
     if (ft_check(data))
-        ft_error("Error\n");
+        ft_errorv2(data, "Error\n");
     add_to_map(data);
     map_scan(data);
-    printf("NO ::%s", data->NO);
-    printf("WE ::%s", data->WE);
-    printf("SO ::%s", data->SO);
-    printf("EA ::%s", data->EA);
-    printf("-------------------------------------------\n");
-    int i = 0;
-    while (data->map[i])
-    {
-        printf("%s", data->map[i]);
-        i++;
-    }
+    // printf("NO ::%s", data->NO);
+    // printf("WE ::%s", data->WE);
+    // printf("SO ::%s", data->SO);
+    // printf("EA ::%s", data->EA);
+    // printf("-------------------------------------------\n");
+    // int i = 0;
+    // while (data->map[i])
+    // {
+    //     printf("%s", data->map[i]);
+    //     i++;
+    // }
+    // ft_free(data->map);
     // exit(1);
     return (0);
 }

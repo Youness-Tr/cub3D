@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_cub.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:56:34 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 14:27:18 by kali             ###   ########.fr       */
+/*   Updated: 2024/10/16 16:40:59 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void init_engin(t_cub *cub, char *file)
     cub->parse.file_path = file;
     cub->parse.info = cub;
     parser(&cub->parse);
-    init_map(cub, file); //
+    init_map(cub, file);
     init_plyr(cub);
     init_mlx(cub);
     mlx_hook(cub->mlx_w, 2, 1L<<0, &mv, cub);
@@ -81,5 +81,6 @@ int main(int ac, char **av)
     if (ac != 2)
         ft_error("Error: ./cub3D Assets/maps/file.cub");
     init_engin(&cub, av[1]);
+    ft_free(cub.parse.map);
     return (0);
 }

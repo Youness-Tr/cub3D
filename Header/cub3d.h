@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 14:53:47 by kali             ###   ########.fr       */
+/*   Updated: 2024/10/16 16:21:50 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ void init(t_data *data);
 int	ft_strcmp(const char *s1, const char *s2);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 int count_len(t_data *data);
-void ft_error(char *str);
+void ft_errorv2(t_data *data, char *s);
 void render_2d(t_cub *cub);
 void render_mini_2d(t_cub *cub);
 void ft_renderThreeD(t_cub *cub, double distnce, int raypt);
@@ -196,6 +196,7 @@ double angle_range(double ngl);
 int	create_trgb(int t, int r, int g, int b);
 int	ft_atoi(const char *nptr);
 char	*ft_itoa(int n);
+void ft_free(char **p);
 // int count_len(t_data *data);
 // int	ft_strcmp(const char *s1, const char *s2);
 // char	*ft_strnstr(const char *big, const char *little, size_t len);

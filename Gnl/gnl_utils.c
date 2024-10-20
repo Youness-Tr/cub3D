@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gnl_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 10:29:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 12:35:01 by kali             ###   ########.fr       */
+/*   Updated: 2024/10/16 16:10:53 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	ft_memmove(strs, s1, ft_strlen(s1));
 	ft_memmove(strs + ft_strlen(s1), s2, ft_strlen(s2));
 	strs[t_len] = '\0';
+	free(s1);
 	return (strs);
 }
