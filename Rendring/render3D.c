@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 14:59:24 by kali             ###   ########.fr       */
+/*   Updated: 2024/10/27 22:15:33 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ void ft_renderThreeD(t_cub *cub, double distnce, int raypt)
     int lowpxl;
     // void *tmp_img;
 
-    s_w = cub->var.s_w;
-    s_h = cub->var.s_h;
+    s_w = WIN_W; // cub->var.s_w;
+    s_h = WIN_H; // cub->var.s_h;
     // printf(WHITE"\t\t\t\t\t %f\n", distnce);
     distnce *= cos(cub->ray.ray_ngl - cub->plyr.angle);
     // printf(RED "--------------------------->>(S_W : %d)\n\t(S_H : %d)\n" RES, s_w, s_h);

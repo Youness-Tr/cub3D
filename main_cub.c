@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:56:34 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 14:27:18 by kali             ###   ########.fr       */
+/*   Updated: 2024/10/27 22:12:59 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void init_plyr(t_cub *cub)
 {
     cub->plyr.plyr_x = cub->map.posx * TILE_SIZE + TILE_SIZE / 2;
     cub->plyr.plyr_y = cub->map.posy * TILE_SIZE + TILE_SIZE / 2;
-    // cub->plyr.angle = 0; //(90 * PI) / 180;
+    cub->plyr.angle = 0; //(90 * PI) / 180;
     cub->plyr.rot = 0.1;
     cub->plyr.fov_rd = (FOV * PI) / 180;
 }
@@ -53,8 +53,8 @@ void init_mlx(t_cub *mlx)
     // int s_w;
     // int s_h;
 
-    mlx->var.s_w = mlx->map.map_w * TILE_SIZE;
-    mlx->var.s_h = mlx->map.map_h * TILE_SIZE;
+    mlx->var.s_w = WIN_W; // mlx->map.map_w * TILE_SIZE;
+    mlx->var.s_h = WIN_H;      // mlx->map.map_h *TILE_SIZE;
     mlx->mlxp = mlx_init();
     mlx->img.img = mlx_new_image(mlx->mlxp,  mlx->var.s_w, mlx->var.s_h);
     mlx->mlx_w = mlx_new_window(mlx->mlxp, mlx->var.s_w, mlx->var.s_h, "Cub3D");
@@ -70,10 +70,14 @@ void init_engin(t_cub *cub, char *file)
     init_map(cub, file); //
     init_plyr(cub);
     init_mlx(cub);
-    mlx_hook(cub->mlx_w, 2, 1L<<0, &mv, cub);
-    raycaster(cub);
+    // mlx_hook(cub->mlx_w, 2, 1L<<0, &mv, cub);
+   mlx_hook(cub->mlx_w, 2, 1L<<0, &key_press, cub);
+    mlx_hook(cub->mlx_w, 3, 1L<<1, &key_release, cub);
+    mlx_loop_hook(cub->mlxp, main_loop, cub);
     mlx_loop(cub->mlxp);
 }
+
+
 int main(int ac, char **av)
 {
     t_cub cub;

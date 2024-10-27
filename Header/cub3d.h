@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 14:53:47 by kali             ###   ########.fr       */
+/*   Updated: 2024/10/27 22:17:42 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ Steel Gray: #A9A9A9 (Dark Gray)
 Charcoal: #36454F (Charcoal Gray)
 */
 
-#define WIN_H  1900
-# define WIN_W  1000
-#define TILE_SIZE 24
+#define WIN_H  600
+# define WIN_W  800
+#define TILE_SIZE 22
 #define PLAYER_RADIUS (TILE_SIZE / 10)
 #define FOV 90
 # define PLR 8 // plYER HIGHT WIEGHT
 # define NRAYS 540
-# define ROT_SPEED 0.5
-# define P_SPEED 5
+# define ROT_SPEED 0.2
+# define P_SPEED 10
 # define PI  3.141592653589
 # define L_ARROW 65361
 #define R_ARROW 65363
@@ -162,6 +162,12 @@ struct s_mlx //the mlx structure
  t_player   plyr;
  t_data     parse;
  t_vars     var;
+  int move_forward;
+    int move_backward;
+    int move_left;
+    int move_right;
+    int rotate_left;
+    int rotate_right;
 };
 
 int get_win_h(char **av);
@@ -196,6 +202,9 @@ double angle_range(double ngl);
 int	create_trgb(int t, int r, int g, int b);
 int	ft_atoi(const char *nptr);
 char	*ft_itoa(int n);
+int main_loop(t_cub *cub);
+int key_release(int key, t_cub *cub);
+int key_press(int key, t_cub *cub);
 // int count_len(t_data *data);
 // int	ft_strcmp(const char *s1, const char *s2);
 // char	*ft_strnstr(const char *big, const char *little, size_t len);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 11:54:03 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/10/27 22:13:58 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ int raycaster(t_cub *cub)
 
     nray = 0;
     cub->ray.ray_ngl = angle_range(cub->plyr.angle - (cub->plyr.fov_rd / 2)); // Start ray angle from left FOV boundary
-    while (nray < cub->var.s_w) // Loop through each column (ray) in the screen
+    while (nray < WIN_W) // Loop through each column (ray) in the screen
     {
         // printf("\t----ray-ngl--> %f\n", cub->ray.ray_ngl);
         cub->ray.hit = 0; // Reset hit flag for this ray
@@ -185,7 +185,7 @@ int raycaster(t_cub *cub)
         }
 
         // Render the 3D wall slice for this ray
-        ft_renderThreeD(cub, cub->ray.distance + 1, nray);
+        ft_renderThreeD(cub, cub->ray.distance, nray);
         //  printf("\t----ray-distnce--> %f\n",cub->ray.distance);
         // put_rays(cub, cub->ray.distance, cub->plyr.plyr_x, cub->plyr.plyr_y, angle_range(cub->ray.ray_ngl));
         // Increment ray angle and ray counter
@@ -193,5 +193,6 @@ int raycaster(t_cub *cub)
         cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl + (cub->plyr.fov_rd / cub->var.s_w));
         nray++;
     }
+    mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
     return (0);
 }
