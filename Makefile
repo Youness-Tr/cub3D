@@ -27,7 +27,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(SRC) $(CFLAGS) $(MLX_FLAGS) $(FSA) -o $(NAME)
+	$(CC) $(SRC) $(CFLAGS) $(MLX_FLAGS)  -o $(NAME) $(FSA)
 # bonus:$(B_NAME)
 
 # $(B_NAME):$(B_OBJ)

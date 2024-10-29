@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:56:34 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/27 22:12:59 by kali             ###   ########.fr       */
+/*   Updated: 2024/10/29 12:24:05 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,26 @@ void init_mlx(t_cub *mlx)
     // render_2d(mlx);
 }
 
+void load_texture(t_cub *cub, t_img *texture, char *file_path)
+{
+    texture->img = mlx_xpm_file_to_image(cub->mlxp, file_path, &texture->w, &texture->h);
+    if (!texture->img)
+    {
+        ft_error("Error: Could not load texture");
+        exit(1);
+    }
+    texture->addr = mlx_get_data_addr(texture->img, &texture->bpp, &texture->len, &texture->endian);
+}
+
+void init_textures(t_cub *cub)
+{
+    load_texture(cub, &cub->textures[0], "./Assets/Textures/walls.xpm");
+    load_texture(cub, &cub->textures[1], "./Assets/Textures/walls.xpm");
+    load_texture(cub, &cub->textures[2], "./Assets/Textures/walls.xpm");
+    load_texture(cub, &cub->textures[3], "./Assets/Textures/walls.xpm");
+}
+
+
 void init_engin(t_cub *cub, char *file)
 {
     cub->parse.file_path = file;
@@ -70,8 +90,9 @@ void init_engin(t_cub *cub, char *file)
     init_map(cub, file); //
     init_plyr(cub);
     init_mlx(cub);
+    init_textures(cub);
     // mlx_hook(cub->mlx_w, 2, 1L<<0, &mv, cub);
-   mlx_hook(cub->mlx_w, 2, 1L<<0, &key_press, cub);
+    mlx_hook(cub->mlx_w, 2, 1L << 0, &key_press, cub);
     mlx_hook(cub->mlx_w, 3, 1L<<1, &key_release, cub);
     mlx_loop_hook(cub->mlxp, main_loop, cub);
     mlx_loop(cub->mlxp);

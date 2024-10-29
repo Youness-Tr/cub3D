@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/27 22:17:42 by kali             ###   ########.fr       */
+/*   Updated: 2024/10/29 18:36:42 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ Steel Gray: #A9A9A9 (Dark Gray)
 Charcoal: #36454F (Charcoal Gray)
 */
 
-#define WIN_H  600
-# define WIN_W  800
-#define TILE_SIZE 22
+# define WIN_W  1920//1920
+#define WIN_H  500//1080
+#define TILE_SIZE 8
 #define PLAYER_RADIUS (TILE_SIZE / 10)
 #define FOV 90
 # define PLR 8 // plYER HIGHT WIEGHT
-# define NRAYS 540
-# define ROT_SPEED 0.2
-# define P_SPEED 10
+#define NRAYS 540;
+#define ROT_SPEED 0.1
+# define P_SPEED 8
 # define PI  3.141592653589
 # define L_ARROW 65361
 #define R_ARROW 65363
@@ -120,7 +120,8 @@ typedef struct img
     int len;
     int endian;
     t_cub *gme;
-    // int h,w;
+    int h;
+    int w;
 } t_img;
 // this struct is for variable for norms or any shared variable
 typedef struct vars
@@ -162,12 +163,13 @@ struct s_mlx //the mlx structure
  t_player   plyr;
  t_data     parse;
  t_vars     var;
-  int move_forward;
-    int move_backward;
-    int move_left;
-    int move_right;
-    int rotate_left;
-    int rotate_right;
+ t_img      textures[4];
+ int move_forward;
+ int move_backward;
+ int move_left;
+ int move_right;
+ int rotate_left;
+ int rotate_right;
 };
 
 int get_win_h(char **av);

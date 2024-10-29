@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/27 22:15:33 by kali             ###   ########.fr       */
+/*   Updated: 2024/10/28 11:52:23 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void render_wll(t_cub *cub, int toppxl, int lowpxl, int raypt)
     color = get_color(cub, cub->ray.hit);
     while (lowpxl > toppxl)
         my_mlx_pixel_put(&cub->img, raypt, toppxl++, color);
-    mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
+    // mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
 }
 
 void ft_renderThreeD(t_cub *cub, double distnce, int raypt)
