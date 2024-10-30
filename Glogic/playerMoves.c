@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/27 21:57:00 by kali             ###   ########.fr       */
+/*   Updated: 2024/10/30 18:28:20 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int mv(int key, t_cub *cub)
         // printf("\t\t\t(%d, %d)\n", (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
     // render_2d(cub);
     // raycaster(cub);
-    // put_line(cub, 50, (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
     return (0);
 }
 
@@ -134,6 +133,9 @@ void update_player_position(t_cub *cub)
 int main_loop(t_cub *cub)
 {
     update_player_position(cub);
+    // render_2d(cub);
     raycaster(cub);
+    // put_line(cub, 15, (int)cub->plyr.plyr_x * MINI_MAP, (int)cub->plyr.plyr_y * MINI_MAP);
+
     return (0);
 }

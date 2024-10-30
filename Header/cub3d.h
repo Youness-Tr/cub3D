@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/29 18:36:42 by kali             ###   ########.fr       */
+/*   Updated: 2024/10/30 18:59:39 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,16 @@ Steel Gray: #A9A9A9 (Dark Gray)
 Charcoal: #36454F (Charcoal Gray)
 */
 
-# define WIN_W  1920//1920
-#define WIN_H  500//1080
-#define TILE_SIZE 8
+# define WIN_W 1920
+#define WIN_H  1080
+#define TILE_SIZE 64
+#define MINI_MAP 1
 #define PLAYER_RADIUS (TILE_SIZE / 10)
-#define FOV 90
+#define FOV  90
 # define PLR 8 // plYER HIGHT WIEGHT
-#define NRAYS 540;
-#define ROT_SPEED 0.1
-# define P_SPEED 8
+#define NRAYS 540
+#define ROT_SPEED 0.05
+# define P_SPEED 10
 # define PI  3.141592653589
 # define L_ARROW 65361
 #define R_ARROW 65363
@@ -101,6 +102,8 @@ typedef struct s_ray //the ray structure
  double ray_ngl; // ray angle
  double distance; // distance to the wall
  int  hit;  // flag for the wall
+ double hit_x;
+ double hit_y;
 } t_ray;
 
 typedef struct s_map //the data structure
@@ -191,7 +194,7 @@ int count_len(t_data *data);
 void ft_error(char *str);
 void render_2d(t_cub *cub);
 void render_mini_2d(t_cub *cub);
-void ft_renderThreeD(t_cub *cub, double distnce, int raypt);
+void ft_renderThreeD(t_cub *cub, double distnce, int raypt, int tex_x);
 
 //Glogic > playerMoves.c:
 int mv(int key, t_cub *cub);
@@ -208,6 +211,7 @@ int main_loop(t_cub *cub);
 int key_release(int key, t_cub *cub);
 int key_press(int key, t_cub *cub);
 // int count_len(t_data *data);
+void put_rays(t_cub *cub, int len, int x, int y, float ngl);
 // int	ft_strcmp(const char *s1, const char *s2);
 // char	*ft_strnstr(const char *big, const char *little, size_t len);
 #endif

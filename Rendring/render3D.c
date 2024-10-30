@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/28 11:52:23 by kali             ###   ########.fr       */
+/*   Updated: 2024/10/30 18:28:06 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,39 @@ void render_wll(t_cub *cub, int toppxl, int lowpxl, int raypt)
     int color;
 
     color = get_color(cub, cub->ray.hit);
+    // color =
     while (lowpxl > toppxl)
         my_mlx_pixel_put(&cub->img, raypt, toppxl++, color);
     // mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
 }
 
-void ft_renderThreeD(t_cub *cub, double distnce, int raypt)
+void render_textured_wall(t_cub *cub, int x, int wall_height, int wall_top, int wall_bottom, int tex_x)
+{
+    int tex_y;
+    int color;
+    int y;
+    t_img *texture;
+
+    (void)wall_height;
+    texture = &cub->textures[0];
+    y = wall_top;
+    while (y < wall_bottom)
+    {
+        // tex_y = ((y - wall_top) * texture->h) / wall_height;
+        tex_y = ((y - wall_top) * texture->h) / (wall_bottom - wall_top);
+        color = *(unsigned int *)(texture->addr + (tex_y * texture->len + tex_x * (texture->bpp / 8)));
+        // color =  texture->addr[tex_y * texture->w + tex_x];
+        my_mlx_pixel_put(&cub->img, x, y, color);
+        y++;
+    }
+}
+
+
+
+
+
+
+void ft_renderThreeD(t_cub *cub, double distnce, int raypt, int tex_x)
 {
 
     int s_w;
@@ -102,6 +129,8 @@ void ft_renderThreeD(t_cub *cub, double distnce, int raypt)
         toppxl = s_w;
     if (lowpxl < 0)
         lowpxl = 0;
-    render_wll(cub, toppxl, lowpxl, raypt);
+    render_textured_wall(cub, raypt, wll_h, toppxl, lowpxl, tex_x);
+    // render_wll(cub, toppxl, lowpxl, raypt);
     draw_floor_ceiling(cub, raypt, toppxl, lowpxl);
 }
+
