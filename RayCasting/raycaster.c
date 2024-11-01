@@ -6,16 +6,12 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/30 18:59:18 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/01 18:52:32 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-/*************************************************************/
-//
 # include "../Header/cub3d.h"
-//
-//
+
 double angle_range(double ngl)
 {
     if (ngl < 0)
@@ -24,7 +20,7 @@ double angle_range(double ngl)
         ngl -= (2 * PI);
     return (ngl);
 }
-//
+
 int	unit_circle(float angle, char c)
 {
 	if (c == 'x')
@@ -135,7 +131,7 @@ double get_hinter(t_cub *cub, double ngl)
     return (sqrt(pow(hx - cub->plyr.plyr_x, 2) + pow(hy - cub->plyr.plyr_y, 2)));
 }
 //
-//
+//TODO: ----> make this function do the same as get_hinter
 double	get_vinter(t_cub *cub, double angl)
 {
 	double	vx;
@@ -143,7 +139,6 @@ double	get_vinter(t_cub *cub, double angl)
 	double	x_step;
 	double	y_step;
 	int		pxl;
-//
 	x_step = TILE_SIZE;
 	y_step = TILE_SIZE * tan(angl);
 	vx = floor(cub->plyr.plyr_x / TILE_SIZE) * TILE_SIZE;
@@ -158,8 +153,7 @@ double	get_vinter(t_cub *cub, double angl)
 	}
 	return (sqrt(pow(vx - cub->plyr.plyr_x, 2) + pow(vy - cub->plyr.plyr_y, 2)));
 }
-//
-//
+
 
 double calculate_wall_x(t_ray *ray)
 {
@@ -176,7 +170,8 @@ double calculate_wall_x(t_ray *ray)
     return wall_x;
 }
 
-int get_texture_x(t_cub *cub, double wall_x) {
+int get_texture_x(t_cub *cub, double wall_x)
+{
     int tex_x;
 
     // Map wall_x to texture coordinate
@@ -185,51 +180,6 @@ int get_texture_x(t_cub *cub, double wall_x) {
     return tex_x;
 }
 
-// int raycaster(t_cub *cub)
-// {
-//     double h_inter;
-//     double v_inter;
-//     double wall_x;
-//     int tex_x;
-//     int nray = 0;
-
-//     cub->ray.ray_ngl = angle_range(cub->plyr.angle - (cub->plyr.fov_rd / 2)); // Initial left boundary of FOV
-
-//     while (nray < 1)
-//     {
-//         // Calculate the ray angle for each step within the FOV
-//         cub->ray.ray_ngl = angle_range(cub->plyr.angle - (cub->plyr.fov_rd / 2) + nray * (cub->plyr.fov_rd / cub->var.s_w));
-//         printf("\tRay angle :: %f\n", cub->ray.ray_ngl);
-//         cub->ray.hit = 0;                            // Reset hit flag for this ray
-//         h_inter = get_hinter(cub, cub->ray.ray_ngl); // Get horizontal intersection
-//         v_inter = get_vinter(cub, cub->ray.ray_ngl); // Get vertical intersection
-//         printf("\tRay h_inter :: %f, v_inter :: %f\n", h_inter, v_inter);
-
-//         // Determine which intersection to use
-//         if (v_inter <= h_inter)
-//             cub->ray.distance = v_inter;
-//         else
-//         {
-//             cub->ray.distance = h_inter;
-//             cub->ray.hit = 1; // Mark that we hit a horizontal wall
-//         }
-
-//         // Calculate hit coordinates
-//         cub->ray.hit_x = cub->plyr.plyr_x + cub->ray.distance * cos(cub->ray.ray_ngl);
-//         cub->ray.hit_y = cub->plyr.plyr_y + cub->ray.distance * sin(cub->ray.ray_ngl);
-
-//         wall_x = calculate_wall_x(&cub->ray);
-//         tex_x = get_texture_x(wall_x);
-
-//         // Render the 3D wall slice for this ray
-//         ft_renderThreeD(cub, cub->ray.distance, nray, tex_x);
-
-//         nray++;
-//     }
-
-//     mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
-//     return (0);
-// }
 
 // RayCasting main Function
 int raycaster(t_cub *cub)

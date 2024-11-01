@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/30 18:28:06 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/01 16:43:41 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,27 @@ int get_color(t_cub *cub, int flag) // get the color of the wall
 	}
 }
 
+
+t_img* get_texture(t_cub *cub, int flag) // get the color of the wall
+{
+	cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl); // normalize the angle
+	if (flag == 0)
+	{
+		if (cub->ray.ray_ngl > PI / 2 && cub->ray.ray_ngl < 3 * (PI / 2))
+			return (&cub->textures[0]); // west wall
+		else
+			return (&cub->textures[1]); // east wall
+	}
+	else
+	{
+		if (cub->ray.ray_ngl > 0 && cub->ray.ray_ngl < PI)
+			return (&cub->textures[2]); // south wall
+		else
+			return (&cub->textures[3]); // north wall
+	}
+}
+
+
 void render_wll(t_cub *cub, int toppxl, int lowpxl, int raypt)
 {
 
@@ -77,7 +98,6 @@ void render_wll(t_cub *cub, int toppxl, int lowpxl, int raypt)
     // color =
     while (lowpxl > toppxl)
         my_mlx_pixel_put(&cub->img, raypt, toppxl++, color);
-    // mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
 }
 
 void render_textured_wall(t_cub *cub, int x, int wall_height, int wall_top, int wall_bottom, int tex_x)
@@ -88,7 +108,7 @@ void render_textured_wall(t_cub *cub, int x, int wall_height, int wall_top, int 
     t_img *texture;
 
     (void)wall_height;
-    texture = &cub->textures[0];
+    texture = get_texture(cub, cub->ray.hit);;
     y = wall_top;
     while (y < wall_bottom)
     {

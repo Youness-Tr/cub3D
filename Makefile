@@ -19,6 +19,8 @@ SRC += Rendring/render2d.c Rendring/render3D.c
 SRC += Gnl/get_next_line.c Gnl/gnl_utils.c
 #Glogic/
 SRC += Glogic/playerMoves.c Glogic/Wall_Intersection.c
+#Init/
+SRC += Init/init1.c Init/init.c
 #------------------
 
 OBJ = $(SRC:.c=.o)

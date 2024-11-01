@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/30 18:59:39 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/01 18:33:25 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,42 +24,14 @@
 # include "get_next_line.h"
 
 
-/*
-colors
-selver 0xC0C0C0
-gray 0x808080
-Light Wood: #C19A6B (Light Brown)
-Medium Wood: #8B5A2B (Saddle Brown)
-Dark Wood: #654321 (Dark Brown)
-2. Stone Floor (Earthy, Rugged Feel)
-Light Stone: #D3D3D3 (Light Gray)
-Medium Stone: #A9A9A9 (Dark Gray)
-Dark Stone: #696969 (Dim Gray)
-3. Tile Floor (Modern, Sleek Feel)
-White Tile: #F5F5F5 (White Smoke)
-Gray Tile: #B0C4DE (Light Steel Blue)
-Dark Tile: #2F4F4F (Dark Slate Gray)
-4. Marble Floor (Luxurious and Elegant)
-White Marble: #F8F8FF (Ghost White)
-Gray Marble: #BEBEBE (Gray Marble)
-Black Marble: #2C2C2C (Black Gray)
-5. Rustic Floor (Vintage, Earthy Look)
-Terracotta: #E2725B (Warm Earthy Orange)
-Clay: #D2691E (Chocolate)
-Rust: #8B0000 (Dark Red)
-6. Industrial Floor (Concrete, Neutral Look)
-Concrete Gray: #808080 (Gray)
-Steel Gray: #A9A9A9 (Dark Gray)
-Charcoal: #36454F (Charcoal Gray)
-*/
 
 # define WIN_W 1920
-#define WIN_H  1080
+#define WIN_H  1000
 #define TILE_SIZE 64
 #define MINI_MAP 1
 #define PLAYER_RADIUS (TILE_SIZE / 10)
 #define FOV  90
-# define PLR 8 // plYER HIGHT WIEGHT
+# define PLR 8 // plYER HIGHT WIEGHT (remove this)
 #define NRAYS 540
 #define ROT_SPEED 0.05
 # define P_SPEED 10
@@ -214,4 +186,10 @@ int key_press(int key, t_cub *cub);
 void put_rays(t_cub *cub, int len, int x, int y, float ngl);
 // int	ft_strcmp(const char *s1, const char *s2);
 // char	*ft_strnstr(const char *big, const char *little, size_t len);
+
+// INIT :
+void init_engin(t_cub *cub, char *file);
+void init_plyr(t_cub *cub);
+void init_map(t_cub *cub, char *file);
+
 #endif

@@ -6,55 +6,11 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/30 18:28:20 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/01 18:37:17 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../Header/cub3d.h"
-
-int mv(int key, t_cub *cub)
-{
-    double x = cub->plyr.plyr_x;
-    double y = cub->plyr.plyr_y;
-
-    if (key == W) // Move up
-    {
-        x += cos(cub->plyr.angle) * P_SPEED;
-        y += sin(cub->plyr.angle) * P_SPEED;
-    }
-    else if (key == S) // Move down
-    {
-        x -= cos(cub->plyr.angle) * P_SPEED;
-        y -= sin(cub->plyr.angle) * P_SPEED;
-    }
-    else if (key == A) // Move left
-    {
-        x -= sin(cub->plyr.angle) * P_SPEED;
-        y += cos(cub->plyr.angle) * P_SPEED;
-    }
-    else if (key == D) // Move right
-    {
-        x += sin(cub->plyr.angle) * P_SPEED;
-        y -= cos(cub->plyr.angle) * P_SPEED;
-    }
-    else if (key == L_ARROW) // Rotate left
-        cub->plyr.angle -= cub->plyr.rot * ROT_SPEED;
-    else if (key == R_ARROW) // Rotate right
-        cub->plyr.angle += cub->plyr.rot * ROT_SPEED;
-    else if (key == ESC)
-        exit(0);
-
-    if (is_wall(cub, x, y))
-    {
-        cub->plyr.plyr_x = x;
-        cub->plyr.plyr_y = y;
-    }
-
-        // printf("\t\t\t(%d, %d)\n", (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
-    // render_2d(cub);
-    // raycaster(cub);
-    return (0);
-}
 
 int key_press(int key, t_cub *cub)
 {
@@ -71,7 +27,7 @@ int key_press(int key, t_cub *cub)
     else if (key == R_ARROW)
         cub->rotate_right = 1;
     else if (key == ESC)
-        exit(0);
+        exit(0); // khass free hnaya
     return (0);
 }
 
@@ -121,8 +77,6 @@ void update_player_position(t_cub *cub)
         cub->plyr.angle -= ROT_SPEED;
     if (cub->rotate_right)
         cub->plyr.angle += ROT_SPEED;
-
-    // Check for collision before updating position
     if (is_wall(cub,new_x, new_y))
     {
         cub->plyr.plyr_x = new_x;
@@ -130,12 +84,70 @@ void update_player_position(t_cub *cub)
     }
 }
 
+
+
 int main_loop(t_cub *cub)
 {
     update_player_position(cub);
-    // render_2d(cub);
     raycaster(cub);
+    // render_2d(cub);
+    // ft_render_wepon(cub);
     // put_line(cub, 15, (int)cub->plyr.plyr_x * MINI_MAP, (int)cub->plyr.plyr_y * MINI_MAP);
 
     return (0);
 }
+
+// void ft_render_wepon(t_cub *cub)
+// {
+//     void *wepon;
+//     int x, y;
+//     wepon = mlx_xpm_file_to_image(cub->mlxp, "./Assets/Textures/wepon.xpm", &x, &y);
+//     if (!wepon)
+//         ft_error("Error : wepon is not loaded\n");
+//     mlx_put_image_to_window(cub->mlxp, cub->mlx_w,wepon,cub->plyr.plyr_x, cub->plyr.plyr_x);
+// }
+
+/*This function should be removed */
+// int mv(int key, t_cub *cub)
+// {
+//     double x = cub->plyr.plyr_x;
+//     double y = cub->plyr.plyr_y;
+
+//     if (key == W) // Move up
+//     {
+//         x += cos(cub->plyr.angle) * P_SPEED;
+//         y += sin(cub->plyr.angle) * P_SPEED;
+//     }
+//     else if (key == S) // Move down
+//     {
+//         x -= cos(cub->plyr.angle) * P_SPEED;
+//         y -= sin(cub->plyr.angle) * P_SPEED;
+//     }
+//     else if (key == A) // Move left
+//     {
+//         x -= sin(cub->plyr.angle) * P_SPEED;
+//         y += cos(cub->plyr.angle) * P_SPEED;
+//     }
+//     else if (key == D) // Move right
+//     {
+//         x += sin(cub->plyr.angle) * P_SPEED;
+//         y -= cos(cub->plyr.angle) * P_SPEED;
+//     }
+//     else if (key == L_ARROW) // Rotate left
+//         cub->plyr.angle -= cub->plyr.rot * ROT_SPEED;
+//     else if (key == R_ARROW) // Rotate right
+//         cub->plyr.angle += cub->plyr.rot * ROT_SPEED;
+//     else if (key == ESC)
+//         exit(0);
+
+//     if (is_wall(cub, x, y))
+//     {
+//         cub->plyr.plyr_x = x;
+//         cub->plyr.plyr_y = y;
+//     }
+
+//         // printf("\t\t\t(%d, %d)\n", (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
+//     // render_2d(cub);
+//     // raycaster(cub);
+//     return (0);
+// }

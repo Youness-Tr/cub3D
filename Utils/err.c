@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   err.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:14:56 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/06 12:09:19 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/01 18:50:55 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ void ft_error(char *s)
         i++;
     }
     write(2,"\n", 1);
+    // TODO:
+        // need to free all allocated memory
     exit(1);
 }
