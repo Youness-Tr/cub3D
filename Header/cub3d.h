@@ -26,15 +26,15 @@
 
 
 # define WIN_W 1920
-#define WIN_H  1000
-#define TILE_SIZE 64
+#define WIN_H  1080
+#define TILE_SIZE 32
 #define MINI_MAP 1
 #define PLAYER_RADIUS (TILE_SIZE / 10)
 #define FOV  90
 # define PLR 8 // plYER HIGHT WIEGHT (remove this)
 #define NRAYS 540
-#define ROT_SPEED 0.05
-# define P_SPEED 10
+#define ROT_SPEED 0.01
+# define P_SPEED 2
 # define PI  3.141592653589
 # define L_ARROW 65361
 #define R_ARROW 65363

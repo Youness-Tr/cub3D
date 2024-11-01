@@ -76,8 +76,15 @@ void init_engin(t_cub *cub, char *file)
     init_plyr(cub);
     init_mlx(cub);
     init_textures(cub);
+    cub->move_forward = 0;
+    cub->move_backward = 0;
+    cub->move_left = 0;
+    cub->move_right = 0;
+    cub->rotate_left = 0;
+    cub->rotate_right = 0;
     mlx_hook(cub->mlx_w, 2, 1L << 0, &key_press, cub);
     mlx_hook(cub->mlx_w, 3, 1L<<1, &key_release, cub);
     mlx_loop_hook(cub->mlxp, &main_loop, cub);
+
     mlx_loop(cub->mlxp);
 }

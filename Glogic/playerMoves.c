@@ -55,28 +55,38 @@ void update_player_position(t_cub *cub)
 
     if (cub->move_forward)
     {
+        printf(GREEN"\tUP\n"RES);
         new_x += cos(cub->plyr.angle) * P_SPEED;
         new_y += sin(cub->plyr.angle) * P_SPEED;
     }
     if (cub->move_backward)
     {
+        printf(GREEN"\tDOWN\n"RES);
         new_x -= cos(cub->plyr.angle) * P_SPEED;
         new_y -= sin(cub->plyr.angle) * P_SPEED;
     }
     if (cub->move_left)
     {
+        printf(GREEN"\tLEFT\n"RES);
         new_x -= sin(cub->plyr.angle) * P_SPEED;
         new_y += cos(cub->plyr.angle) * P_SPEED;
     }
     if (cub->move_right)
     {
+        printf(GREEN"\tRIGHT\n"RES);
         new_x += sin(cub->plyr.angle) * P_SPEED;
         new_y -= cos(cub->plyr.angle) * P_SPEED;
     }
     if (cub->rotate_left)
+    {
+        printf(GREEN"\tRotate LEFT\n"RES);
         cub->plyr.angle -= ROT_SPEED;
+    }
     if (cub->rotate_right)
+    {
+        printf(GREEN"\tRotate RIGHT\n"RES);
         cub->plyr.angle += ROT_SPEED;
+    }
     if (is_wall(cub,new_x, new_y))
     {
         cub->plyr.plyr_x = new_x;
@@ -140,14 +150,14 @@ int main_loop(t_cub *cub)
 //     else if (key == ESC)
 //         exit(0);
 
-//     if (is_wall(cub, x, y))
-//     {
+//     // if (is_wall(cub, x, y))
+//     // {
 //         cub->plyr.plyr_x = x;
 //         cub->plyr.plyr_y = y;
-//     }
+//     // }
 
 //         // printf("\t\t\t(%d, %d)\n", (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
 //     // render_2d(cub);
-//     // raycaster(cub);
+//     raycaster(cub);
 //     return (0);
 // }
