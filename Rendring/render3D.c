@@ -145,7 +145,7 @@ void ft_renderThreeD(t_cub *cub, double distnce, int raypt, int tex_x)
     // printf(CYAN"\t\t\t\tWall_H |----->> %f\n", wll_h);
     toppxl = (s_h / 2) - (wll_h / 2);
     lowpxl = (s_h / 2) + (wll_h / 2);
-    if (toppxl > s_w)
+    if (toppxl > s_w) // I think hnaya khass  ikom / s_h
         toppxl = s_w;
     if (lowpxl < 0)
         lowpxl = 0;

@@ -1,7 +1,7 @@
 NO ./Assets/Textures/walls.xpm
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+SO ./Assets/Textures/walls.xpm
+WE ./Assets/Textures/walls.xpm
+EA ./Assets/Textures/walls.xpm
 
 
 F 255,255,255

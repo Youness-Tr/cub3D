@@ -60,10 +60,13 @@ static void load_texture(t_cub *cub, t_img *texture, char *file_path)
 
 static void init_textures(t_cub *cub)
 {
-    load_texture(cub, &cub->textures[0], "./Assets/Textures/walls.xpm");
-    load_texture(cub, &cub->textures[1], "./Assets/Textures/poneglyph.xpm");
-    load_texture(cub, &cub->textures[2], "./Assets/Textures/blue_pone.xpm");
-    load_texture(cub, &cub->textures[3], "./Assets/Textures/bricks.xpm");
+    load_texture(cub, &cub->textures[0], "./Assets/Textures/wall_5.xpm");
+    load_texture(cub, &cub->textures[1], "./Assets/Textures/wall_5.xpm");
+    load_texture(cub, &cub->textures[2], "./Assets/Textures/wall_5.xpm");
+    load_texture(cub, &cub->textures[3], "./Assets/Textures/wall_5.xpm");
+    // load_texture(cub, &cub->textures[1], "./Assets/Textures/bookshelf.xpm");
+    // load_texture(cub, &cub->textures[2], "./Assets/Textures/blue_pone.xpm");
+    // load_texture(cub, &cub->textures[3], "./Assets/Textures/bricks.xpm");
 
 }
 

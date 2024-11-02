@@ -63,7 +63,9 @@ int	ft_atoi(const char *nptr)
 
 int is_valid_char(char c)
 {
-    if (c == '1' || c == '0' || c == ' ' || c == 'N' || c == '\n')
+    if (c == '1' || c == '0' || c == ' ' 
+		|| c == 'N' || c == 'W' 
+		|| c == 'S' || c == 'E'|| c == '\n')
         return 1;
     return (0);
 }

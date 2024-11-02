@@ -27,32 +27,32 @@ void init_map(t_cub *cub, char *file)
     cub->map.posy = cub->parse.player_x;
 }
 
-
-//TODO:
-/*     Need to make E S W valive in map (VENOMS work) */
 void player_ngl(t_cub *cub)
 {
-    int x;
-    int y;
+    int x = cub->parse.player_x;
+    int y = cub->parse.player_Y;
 
-    x = cub->parse.player_x;
-    y = cub->parse.player_Y;
+    // Initialize the player's angle based on their direction
     if (cub->parse.map[y][x] == 'E')
-        cub->plyr.angle = (90 * PI) / 180;
+        cub->plyr.angle = (90 * PI) / 180; // East
     else if (cub->parse.map[y][x] == 'N')
-        cub->plyr.angle = (3 * PI) / 2;
+        cub->plyr.angle = (3 * PI) / 2; // North
     else if (cub->parse.map[y][x] == 'W')
-        cub->plyr.angle = PI;
+        cub->plyr.angle = PI; // West
     else if (cub->parse.map[y][x] == 'S')
-        cub->plyr.angle = 0;
+        cub->plyr.angle = 0; // South
+
+    // Center the angle in the middle of the FOV
+    // cub->plyr.angle += cub->plyr.fov_rd / 2; // Adjust the angle to center it
+    cub->plyr.angle = angle_range(cub->plyr.angle); // Normalize the angle
 }
+
 
 void init_plyr(t_cub *cub)
 {
     cub->plyr.plyr_x = cub->map.posx * TILE_SIZE + TILE_SIZE / 2;
     cub->plyr.plyr_y = cub->map.posy * TILE_SIZE + TILE_SIZE / 2;
-    // player_ngl();
-    cub->plyr.angle = (90 * PI) / 180;
-    cub->plyr.rot = 0.1;
-    cub->plyr.fov_rd = (FOV * PI) / 180;
+    cub->plyr.fov_rd = FOV;
+    player_ngl(cub);
+    cub->plyr.rot = ROT_SPEED;
 }

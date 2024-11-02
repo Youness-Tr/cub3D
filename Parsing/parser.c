@@ -88,7 +88,8 @@ int ft_check(t_data *data)
         j = -1;
         while (data->map[i][++j])
         {
-            if (data->map[i][j] == 'N')
+            if (data->map[i][j] == 'N' || data->map[i][j] == 'W' 
+                || data->map[i][j] == 'E' || data->map[i][j] == 'S')
             {
                 // data->info->plyr.angle = PI / 2; chamal 3PI/2 janoub 0 sa3odia PI marikan
                 data->player_x = i;

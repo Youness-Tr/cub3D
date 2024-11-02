@@ -55,36 +55,36 @@ void update_player_position(t_cub *cub)
 
     if (cub->move_forward)
     {
-        printf(GREEN"\tUP\n"RES);
+        // printf(GREEN"\tUP\n"RES);
         new_x += cos(cub->plyr.angle) * P_SPEED;
         new_y += sin(cub->plyr.angle) * P_SPEED;
     }
     if (cub->move_backward)
     {
-        printf(GREEN"\tDOWN\n"RES);
+        // printf(GREEN"\tDOWN\n"RES);
         new_x -= cos(cub->plyr.angle) * P_SPEED;
         new_y -= sin(cub->plyr.angle) * P_SPEED;
     }
     if (cub->move_left)
     {
-        printf(GREEN"\tLEFT\n"RES);
+        // printf(GREEN"\tLEFT\n"RES);
         new_x -= sin(cub->plyr.angle) * P_SPEED;
         new_y += cos(cub->plyr.angle) * P_SPEED;
     }
     if (cub->move_right)
     {
-        printf(GREEN"\tRIGHT\n"RES);
+        // printf(GREEN"\tRIGHT\n"RES);
         new_x += sin(cub->plyr.angle) * P_SPEED;
         new_y -= cos(cub->plyr.angle) * P_SPEED;
     }
     if (cub->rotate_left)
     {
-        printf(GREEN"\tRotate LEFT\n"RES);
+        // printf(GREEN"\tRotate LEFT\n"RES);
         cub->plyr.angle -= ROT_SPEED;
     }
     if (cub->rotate_right)
     {
-        printf(GREEN"\tRotate RIGHT\n"RES);
+        // printf(GREEN"\tRotate RIGHT\n"RES);
         cub->plyr.angle += ROT_SPEED;
     }
     if (is_wall(cub,new_x, new_y))
@@ -95,27 +95,26 @@ void update_player_position(t_cub *cub)
 }
 
 
+void ft_render_wepon(t_cub *cub)
+{
+    void *wepon;
+    int x, y;
+    wepon = mlx_xpm_file_to_image(cub->mlxp, "./Assets/Textures/wepon.xpm", &x, &y);
+    if (!wepon)
+        ft_error("Error : wepon is not loaded\n");
+    mlx_put_image_to_window(cub->mlxp, cub->mlx_w, wepon, cub->plyr.plyr_x, cub->plyr.plyr_y);
+}
 
 int main_loop(t_cub *cub)
 {
     update_player_position(cub);
     raycaster(cub);
-    // render_2d(cub);
+    render_mini_2d(cub);
     // ft_render_wepon(cub);
-    // put_line(cub, 15, (int)cub->plyr.plyr_x * MINI_MAP, (int)cub->plyr.plyr_y * MINI_MAP);
 
     return (0);
 }
 
-// void ft_render_wepon(t_cub *cub)
-// {
-//     void *wepon;
-//     int x, y;
-//     wepon = mlx_xpm_file_to_image(cub->mlxp, "./Assets/Textures/wepon.xpm", &x, &y);
-//     if (!wepon)
-//         ft_error("Error : wepon is not loaded\n");
-//     mlx_put_image_to_window(cub->mlxp, cub->mlx_w,wepon,cub->plyr.plyr_x, cub->plyr.plyr_x);
-// }
 
 /*This function should be removed */
 // int mv(int key, t_cub *cub)

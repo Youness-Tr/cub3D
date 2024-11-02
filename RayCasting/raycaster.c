@@ -147,6 +147,8 @@ double	get_vinter(t_cub *cub, double angl)
 }
 
 
+
+
 double calculate_wall_x(t_ray *ray)
 {
     double wall_x;
@@ -165,11 +167,14 @@ double calculate_wall_x(t_ray *ray)
 int get_texture_x(t_cub *cub, double wall_x)
 {
     int tex_x;
+    t_img *texture;
 
-    // Map wall_x to texture coordinate
-    tex_x = (int)(wall_x * (cub->textures[0].w / TILE_SIZE)); // Adjust TEXTURE_WIDTH to texture resolution
-    // printf("Inside get_texture_x: tex_x = %d\n", tex_x);
-    return tex_x;
+    texture = get_texture(cub, cub->ray.hit);
+    tex_x = (int)(wall_x * (texture->w / TILE_SIZE));
+    if (tex_x < 0)
+        tex_x = 0;
+
+    return (tex_x);
 }
 
 int raycaster(t_cub *cub)
@@ -179,10 +184,14 @@ int raycaster(t_cub *cub)
     double wall_x;
     int tex_x;
     int nray;
+    double ngl;
 
     nray = 0;
     (void)tex_x;
     cub->ray.ray_ngl = angle_range(cub->plyr.angle - (cub->plyr.fov_rd / 2));
+    ngl = (cub->plyr.fov_rd / ((double)cub->var.s_w));
+    printf("\tngl ----> %f\n", ngl);
+    (void)ngl;
     while (nray < cub->var.s_w)
     {
         cub->ray.hit = 0;
@@ -200,9 +209,12 @@ int raycaster(t_cub *cub)
         cub->ray.hit_x = cub->plyr.plyr_x + cub->ray.distance * cos(angle_range(cub->ray.ray_ngl));
         cub->ray.hit_y = cub->plyr.plyr_y + cub->ray.distance * sin(angle_range(cub->ray.ray_ngl));
         wall_x = calculate_wall_x(&cub->ray);
-        tex_x = get_texture_x(cub,wall_x);
+        tex_x = get_texture_x(cub, wall_x);
         ft_renderThreeD(cub, cub->ray.distance, nray, tex_x);
-         cub->ray.ray_ngl += cub->plyr.fov_rd / cub->var.s_w;
+        put_rays(cub,cub->ray.distance  * MINI_MAP, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP, cub->ray.ray_ngl);
+        put_line(cub, 30, (int)cub->plyr.plyr_x * MINI_MAP, (int)cub->plyr.plyr_y * MINI_MAP);
+        //  cub->ray.ray_ngl += ngl;
+        cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl + ngl);
          nray++;
     }
     mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);

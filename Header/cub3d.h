@@ -27,23 +27,23 @@
 
 # define WIN_W 1920
 #define WIN_H  1080
-#define TILE_SIZE 32
-#define MINI_MAP 1
+#define TILE_SIZE 64
+#define MINI_MAP 0.25
 #define PLAYER_RADIUS (TILE_SIZE / 10)
-#define FOV  90
 # define PLR 8 // plYER HIGHT WIEGHT (remove this)
 #define NRAYS 540
-#define ROT_SPEED 0.01
-# define P_SPEED 2
+#define ROT_SPEED 0.03
+# define P_SPEED 5
 # define PI  3.141592653589
+#define FOV  (84 * PI)/180
 # define L_ARROW 65361
 #define R_ARROW 65363
 #define W  119
 #define A 97
 #define S 115
 #define D 100
-#define Q 113
-#define R 114
+#define Q 113//*REMOVE
+#define R 114//*REMOVE
 #define ESC 65307
 
 /****************TxTColoR*******************/
@@ -191,5 +191,7 @@ void put_rays(t_cub *cub, int len, int x, int y, float ngl);
 void init_engin(t_cub *cub, char *file);
 void init_plyr(t_cub *cub);
 void init_map(t_cub *cub, char *file);
+//Rendering
+t_img* get_texture(t_cub *cub, int flag);
 
 #endif
