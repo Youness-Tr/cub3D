@@ -1,7 +1,7 @@
-NO ./Assets/Textures/walls.xpm
-SO ./Assets/Textures/walls.xpm
-WE ./Assets/Textures/walls.xpm
-EA ./Assets/Textures/walls.xpm
+NO ./Assets/Textures/bookshelf.xpm
+SO ./Assets/Textures/wall_2.xpm
+WE ./Assets/Textures/wall_2.xpm
+EA ./Assets/Textures/wall_2.xpm
 
 
 F 255,255,255

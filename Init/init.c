@@ -60,10 +60,11 @@ static void load_texture(t_cub *cub, t_img *texture, char *file_path)
 
 static void init_textures(t_cub *cub)
 {
-    load_texture(cub, &cub->textures[0], "./Assets/Textures/wall_3.xpm");
-    load_texture(cub, &cub->textures[1], "./Assets/Textures/wall_3.xpm");
-    load_texture(cub, &cub->textures[2], "./Assets/Textures/wall_3.xpm");
-    load_texture(cub, &cub->textures[3], "./Assets/Textures/wall_3.xpm");
+    printf(RED"`%s'\n"RES, cub->parse.NO);
+    load_texture(cub, &cub->textures[0], cub->parse.NO);
+    load_texture(cub, &cub->textures[1], cub->parse.EA);
+    load_texture(cub, &cub->textures[2], cub->parse.WE);
+    load_texture(cub, &cub->textures[3], cub->parse.SO);
     // load_texture(cub, &cub->textures[1], "./Assets/Textures/bookshelf.xpm");
     // load_texture(cub, &cub->textures[2], "./Assets/Textures/blue_pone.xpm");
     // load_texture(cub, &cub->textures[3], "./Assets/Textures/bricks.xpm");

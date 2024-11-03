@@ -24,7 +24,7 @@ void *get_value(char *s, unsigned int start)
         start++;
     while (s_len > 0 && s[s_len - 1] == ' ')
         s_len--;
-    ss = ft_substr(s, start, s_len - start);
+    ss = ft_substr(s, start, s_len - start - 1);// NEO added -1 because the texture path are stored with \n an that is a problem
     return (ss);
 }
 

@@ -190,7 +190,7 @@ int raycaster(t_cub *cub)
     (void)tex_x;
     cub->ray.ray_ngl = angle_range(cub->plyr.angle - (cub->plyr.fov_rd / 2));
     ngl = (cub->plyr.fov_rd / ((double)cub->var.s_w));
-    printf("\tngl ----> %f\n", ngl);
+    // printf("\tngl ----> %f\n", ngl);
     (void)ngl;
     while (nray < cub->var.s_w)
     {
