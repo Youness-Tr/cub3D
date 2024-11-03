@@ -128,6 +128,13 @@ typedef struct s_data
 } t_data;
 /***************************/
 
+
+typedef struct s_leak
+{
+	void			*address;
+	struct s_leak	*next;
+}					t_leak;
+
 struct s_mlx //the mlx structure
 {
  t_img       img;
@@ -139,6 +146,7 @@ struct s_mlx //the mlx structure
  t_data     parse;
  t_vars     var;
  t_img      textures[4];
+ t_leak     *free;
  int move_forward;
  int move_backward;
  int move_left;
@@ -146,6 +154,7 @@ struct s_mlx //the mlx structure
  int rotate_left;
  int rotate_right;
 };
+
 
 int get_win_h(char **av);
 void ft_putstr(char *s);
@@ -193,5 +202,8 @@ void init_plyr(t_cub *cub);
 void init_map(t_cub *cub, char *file);
 //Rendering
 t_img* get_texture(t_cub *cub, int flag);
+
+//Leaks:
+void	*ft_malloc(t_cub *cub, size_t size);
 
 #endif

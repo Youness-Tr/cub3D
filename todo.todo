@@ -2,17 +2,6 @@
   "todotree": {
     "tree": [
       {
-        "key": 1730555219881,
-        "children": [],
-        "todo": {
-          "content": "Fix the fov",
-          "id": 1730555219881,
-          "level": "default",
-          "done": false,
-          "start": 1730555219881
-        }
-      },
-      {
         "key": 1730555236785,
         "children": [],
         "todo": {
@@ -27,11 +16,26 @@
         "key": 1730555281114,
         "children": [],
         "todo": {
-          "content": "fix the wall collesion",
+          "content": "fix map textures",
           "id": 1730555281114,
           "level": "default",
-          "done": false,
-          "start": 1730555281114
+          "done": true,
+          "start": 1730555281114,
+          "focus": false,
+          "end": 1730632265864
+        }
+      },
+      {
+        "key": 1730555219881,
+        "children": [],
+        "todo": {
+          "content": "Fix the fov",
+          "id": 1730555219881,
+          "level": "default",
+          "done": true,
+          "start": 1730555219881,
+          "focus": false,
+          "end": 1730571387793
         }
       },
       {
@@ -62,6 +66,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1730557001845"
+    "version": "1730632265903"
   }
 }

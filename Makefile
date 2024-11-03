@@ -21,6 +21,8 @@ SRC += Gnl/get_next_line.c Gnl/gnl_utils.c
 SRC += Glogic/playerMoves.c Glogic/Wall_Intersection.c
 #Init/
 SRC += Init/init1.c Init/init.c
+#Leaks/
+SRC += Leaks/garbedge.c Leaks/free_all.c
 #------------------
 
 OBJ = $(SRC:.c=.o)
