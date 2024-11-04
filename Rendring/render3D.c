@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 14:59:24 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/01 16:43:41 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,27 @@ int get_color(t_cub *cub, int flag) // get the color of the wall
 	}
 }
 
+
+t_img* get_texture(t_cub *cub, int flag) // get the color of the wall
+{
+	cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl); // normalize the angle
+	if (flag == 0)
+	{
+		if (cub->ray.ray_ngl > PI / 2 && cub->ray.ray_ngl < 3 * (PI / 2))
+			return (&cub->textures[0]); // west wall
+		else
+			return (&cub->textures[1]); // east wall
+	}
+	else
+	{
+		if (cub->ray.ray_ngl > 0 && cub->ray.ray_ngl < PI)
+			return (&cub->textures[2]); // south wall
+		else
+			return (&cub->textures[3]); // north wall
+	}
+}
+
+
 void render_wll(t_cub *cub, int toppxl, int lowpxl, int raypt)
 {
 
@@ -74,12 +95,38 @@ void render_wll(t_cub *cub, int toppxl, int lowpxl, int raypt)
     int color;
 
     color = get_color(cub, cub->ray.hit);
+    // color =
     while (lowpxl > toppxl)
         my_mlx_pixel_put(&cub->img, raypt, toppxl++, color);
-    mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
 }
 
-void ft_renderThreeD(t_cub *cub, double distnce, int raypt)
+void render_textured_wall(t_cub *cub, int x, int wall_height, int wall_top, int wall_bottom, int tex_x)
+{
+    int tex_y;
+    int color;
+    int y;
+    t_img *texture;
+
+    (void)wall_height;
+    texture = get_texture(cub, cub->ray.hit);;
+    y = wall_top;
+    while (y < wall_bottom)
+    {
+        // tex_y = ((y - wall_top) * texture->h) / wall_height;
+        tex_y = ((y - wall_top) * texture->h) / (wall_bottom - wall_top);
+        color = *(unsigned int *)(texture->addr + (tex_y * texture->len + tex_x * (texture->bpp / 8)));
+        // color =  texture->addr[tex_y * texture->w + tex_x];
+        my_mlx_pixel_put(&cub->img, x, y, color);
+        y++;
+    }
+}
+
+
+
+
+
+
+void ft_renderThreeD(t_cub *cub, double distnce, int raypt, int tex_x)
 {
 
     int s_w;
@@ -89,8 +136,8 @@ void ft_renderThreeD(t_cub *cub, double distnce, int raypt)
     int lowpxl;
     // void *tmp_img;
 
-    s_w = cub->var.s_w;
-    s_h = cub->var.s_h;
+    s_w = WIN_W; // cub->var.s_w;
+    s_h = WIN_H; // cub->var.s_h;
     // printf(WHITE"\t\t\t\t\t %f\n", distnce);
     distnce *= cos(cub->ray.ray_ngl - cub->plyr.angle);
     // printf(RED "--------------------------->>(S_W : %d)\n\t(S_H : %d)\n" RES, s_w, s_h);
@@ -98,10 +145,12 @@ void ft_renderThreeD(t_cub *cub, double distnce, int raypt)
     // printf(CYAN"\t\t\t\tWall_H |----->> %f\n", wll_h);
     toppxl = (s_h / 2) - (wll_h / 2);
     lowpxl = (s_h / 2) + (wll_h / 2);
-    if (toppxl > s_w)
+    if (toppxl > s_w) // I think hnaya khass  ikom / s_h
         toppxl = s_w;
     if (lowpxl < 0)
         lowpxl = 0;
-    render_wll(cub, toppxl, lowpxl, raypt);
+    render_textured_wall(cub, raypt, wll_h, toppxl, lowpxl, tex_x);
+    // render_wll(cub, toppxl, lowpxl, raypt);
     draw_floor_ceiling(cub, raypt, toppxl, lowpxl);
 }
+

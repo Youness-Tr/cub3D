@@ -63,9 +63,9 @@ int	ft_atoi(const char *nptr)
 
 int is_valid_char(char c)
 {
-    if (c == '1' || c == '0' || c == ' '
-	|| c == 'N' || c == 'S' || c == 'W'
-	|| c == 'E'|| c == '\n')
+    if (c == '1' || c == '0' || c == ' ' 
+		|| c == 'N' || c == 'W' 
+		|| c == 'S' || c == 'E'|| c == '\n')
         return 1;
     return (0);
 }
@@ -82,21 +82,23 @@ int count_len(t_data *data)
 
     int fd = open(data->file_path, O_RDONLY);
     if (fd == -1)
-        printf("invalid path\n");
+        ft_error("invalid path\n");
     line = get_next_line(fd);
     while (line)
     {
         i++;
-		free(line);
         line = get_next_line(fd);
-	}
-	return i;
+    }
+    return i;
 }
 
 void init(t_data *data)
 {
-    int len = 0;
     data->stop = 0;
+    int len = 0;
+
+	// data->info->parse.F = data->F;
+	// data->F = NULL;
 	data->len = 0;
 	len = count_len(data);
     data->map = malloc(sizeof(char *) * len);

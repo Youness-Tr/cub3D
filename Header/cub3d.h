@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/16 16:21:50 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/01 18:33:25 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,53 +24,26 @@
 # include "get_next_line.h"
 
 
-/*
-colors
-selver 0xC0C0C0
-gray 0x808080
-Light Wood: #C19A6B (Light Brown)
-Medium Wood: #8B5A2B (Saddle Brown)
-Dark Wood: #654321 (Dark Brown)
-2. Stone Floor (Earthy, Rugged Feel)
-Light Stone: #D3D3D3 (Light Gray)
-Medium Stone: #A9A9A9 (Dark Gray)
-Dark Stone: #696969 (Dim Gray)
-3. Tile Floor (Modern, Sleek Feel)
-White Tile: #F5F5F5 (White Smoke)
-Gray Tile: #B0C4DE (Light Steel Blue)
-Dark Tile: #2F4F4F (Dark Slate Gray)
-4. Marble Floor (Luxurious and Elegant)
-White Marble: #F8F8FF (Ghost White)
-Gray Marble: #BEBEBE (Gray Marble)
-Black Marble: #2C2C2C (Black Gray)
-5. Rustic Floor (Vintage, Earthy Look)
-Terracotta: #E2725B (Warm Earthy Orange)
-Clay: #D2691E (Chocolate)
-Rust: #8B0000 (Dark Red)
-6. Industrial Floor (Concrete, Neutral Look)
-Concrete Gray: #808080 (Gray)
-Steel Gray: #A9A9A9 (Dark Gray)
-Charcoal: #36454F (Charcoal Gray)
-*/
 
-#define WIN_H  1900
-# define WIN_W  1000
-#define TILE_SIZE 24
+# define WIN_W 1920
+#define WIN_H  1080
+#define TILE_SIZE 64
+#define MINI_MAP 0.25
 #define PLAYER_RADIUS (TILE_SIZE / 10)
-#define FOV 90
-# define PLR 8 // plYER HIGHT WIEGHT
-# define NRAYS 540
-# define ROT_SPEED 0.5
+# define PLR 8 // plYER HIGHT WIEGHT (remove this)
+#define NRAYS 540
+#define ROT_SPEED 0.03
 # define P_SPEED 5
 # define PI  3.141592653589
+#define FOV  (84 * PI)/180
 # define L_ARROW 65361
 #define R_ARROW 65363
 #define W  119
 #define A 97
 #define S 115
 #define D 100
-#define Q 113
-#define R 114
+#define Q 113//*REMOVE
+#define R 114//*REMOVE
 #define ESC 65307
 
 /****************TxTColoR*******************/
@@ -101,6 +74,8 @@ typedef struct s_ray //the ray structure
  double ray_ngl; // ray angle
  double distance; // distance to the wall
  int  hit;  // flag for the wall
+ double hit_x;
+ double hit_y;
 } t_ray;
 
 typedef struct s_map //the data structure
@@ -120,7 +95,8 @@ typedef struct img
     int len;
     int endian;
     t_cub *gme;
-    // int h,w;
+    int h;
+    int w;
 } t_img;
 // this struct is for variable for norms or any shared variable
 typedef struct vars
@@ -152,6 +128,13 @@ typedef struct s_data
 } t_data;
 /***************************/
 
+
+typedef struct s_leak
+{
+	void			*address;
+	struct s_leak	*next;
+}					t_leak;
+
 struct s_mlx //the mlx structure
 {
  t_img       img;
@@ -162,7 +145,16 @@ struct s_mlx //the mlx structure
  t_player   plyr;
  t_data     parse;
  t_vars     var;
+ t_img      textures[4];
+ t_leak     *free;
+ int move_forward;
+ int move_backward;
+ int move_left;
+ int move_right;
+ int rotate_left;
+ int rotate_right;
 };
+
 
 int get_win_h(char **av);
 void ft_putstr(char *s);
@@ -180,10 +172,10 @@ void init(t_data *data);
 int	ft_strcmp(const char *s1, const char *s2);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 int count_len(t_data *data);
-void ft_errorv2(t_data *data, char *s);
+void ft_error(char *str);
 void render_2d(t_cub *cub);
 void render_mini_2d(t_cub *cub);
-void ft_renderThreeD(t_cub *cub, double distnce, int raypt);
+void ft_renderThreeD(t_cub *cub, double distnce, int raypt, int tex_x);
 
 //Glogic > playerMoves.c:
 int mv(int key, t_cub *cub);
@@ -196,8 +188,22 @@ double angle_range(double ngl);
 int	create_trgb(int t, int r, int g, int b);
 int	ft_atoi(const char *nptr);
 char	*ft_itoa(int n);
-void ft_free(char **p);
+int main_loop(t_cub *cub);
+int key_release(int key, t_cub *cub);
+int key_press(int key, t_cub *cub);
 // int count_len(t_data *data);
+void put_rays(t_cub *cub, int len, int x, int y, float ngl);
 // int	ft_strcmp(const char *s1, const char *s2);
 // char	*ft_strnstr(const char *big, const char *little, size_t len);
+
+// INIT :
+void init_engin(t_cub *cub, char *file);
+void init_plyr(t_cub *cub);
+void init_map(t_cub *cub, char *file);
+//Rendering
+t_img* get_texture(t_cub *cub, int flag);
+
+//Leaks:
+void	*ft_malloc(t_cub *cub, size_t size);
+
 #endif

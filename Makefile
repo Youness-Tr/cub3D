@@ -19,6 +19,10 @@ SRC += Rendring/render2d.c Rendring/render3D.c
 SRC += Gnl/get_next_line.c Gnl/gnl_utils.c
 #Glogic/
 SRC += Glogic/playerMoves.c Glogic/Wall_Intersection.c
+#Init/
+SRC += Init/init1.c Init/init.c
+#Leaks/
+SRC += Leaks/garbedge.c Leaks/free_all.c
 #------------------
 
 OBJ = $(SRC:.c=.o)
@@ -27,7 +31,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(SRC) $(CFLAGS) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(SRC) $(CFLAGS) $(MLX_FLAGS)  -o $(NAME) #$(FSA)
 # bonus:$(B_NAME)
 
 # $(B_NAME):$(B_OBJ)
@@ -39,5 +43,3 @@ fclean: clean
 	@rm -rf $(NAME) $(B_NAME)
 
 re: fclean all
-
-##$(FSA)

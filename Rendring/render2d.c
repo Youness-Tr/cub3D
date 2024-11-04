@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render2d.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:49:43 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 11:12:06 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/10/30 18:03:51 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void render_2d(t_cub *cub)
         {
             if (cub->map.map2d[j][i] == '1')
                 render_square(&cub->img, i *TILE_SIZE, j * TILE_SIZE, TILE_SIZE ,0xC0C0C0);
-            else if (cub->map.map2d[j][i] == '0' || cub->map.map2d[j][i] == 'P')
+            else if (cub->map.map2d[j][i] == '0' || cub->map.map2d[j][i] == 'N')
             {
                 render_square(&cub->img, i *TILE_SIZE , j *TILE_SIZE, TILE_SIZE,0x654321);// 0x8B5A2B
             }
@@ -146,17 +146,17 @@ void render_mini_2d(t_cub *cub)
         while (i < cub->map.map_w)
         {
             if (cub->map.map2d[j][i] == '1')
-                render_square(&cub->img, i *TILE_SIZE / 4, j * TILE_SIZE / 4, TILE_SIZE / 4 ,0xC0C0C0);
-            else if (cub->map.map2d[j][i] == '0' || cub->map.map2d[j][i] == 'P')
+                render_square(&cub->img, (i *TILE_SIZE) * MINI_MAP , (j *TILE_SIZE) * MINI_MAP, TILE_SIZE * MINI_MAP ,0xC0C0C0);
+            else if (cub->map.map2d[j][i] == '0' || cub->map.map2d[j][i] == 'N')
             {
-                render_square(&cub->img, i *TILE_SIZE / 4, j *TILE_SIZE / 4, TILE_SIZE / 4,0x654321);// 0x8B5A2B
+                render_square(&cub->img, (i *TILE_SIZE) * MINI_MAP, (j *TILE_SIZE) * MINI_MAP, TILE_SIZE * MINI_MAP,0x654321);// 0x8B5A2B
             }
             i++;
         }
         j++;
     }
     // render_square(&cub->img, cub->plyr.plyr_x , cub->plyr.plyr_y, PLAYER_RADIUS,0xFFFFFF);
-    render_circle(&cub->img, cub->plyr.plyr_x/ (TILE_SIZE / 8), cub->plyr.plyr_y/ (TILE_SIZE / 8), PLAYER_RADIUS/2,0x000000);
+    render_circle(&cub->img, cub->plyr.plyr_x/ (TILE_SIZE * MINI_MAP), cub->plyr.plyr_y/ (TILE_SIZE * MINI_MAP), PLAYER_RADIUS * MINI_MAP,0x000000);
     mlx_clear_window(cub->mlxp, cub->mlx_w);
     mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
 }
