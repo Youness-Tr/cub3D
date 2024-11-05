@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/01 18:33:25 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/05 09:35:06 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,8 @@ void ft_putstrv2(const char *s, char *str);
 char *ft_substr(char *s, unsigned int start, size_t len);
 char **ft_split(char *s, char c);
 void ft_error(char *s);
+void ft_errorv2(t_data *data ,char *s);
+void ft_free(char **p);
 char **get_map(char *file);
 void my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int raycaster(t_cub *cub);

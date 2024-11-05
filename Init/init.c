@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/01 18:34:14 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/05 10:33:42 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void init_engin(t_cub *cub, char *file)
     parser(&cub->parse);
     init_map(cub, file);
     init_plyr(cub);
+    // exit(0);
     init_mlx(cub);
     init_textures(cub);
     cub->move_forward = 0;
