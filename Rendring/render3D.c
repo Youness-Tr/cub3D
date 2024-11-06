@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/01 16:43:41 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/06 18:53:27 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,31 +126,68 @@ void render_textured_wall(t_cub *cub, int x, int wall_height, int wall_top, int 
 
 
 
+// void ft_renderThreeD(t_cub *cub, double distnce, int raypt, int tex_x)
+// {
+
+//     int s_w;
+//     int s_h;
+//     double wll_h;
+//     int toppxl;
+//     int lowpxl;
+//     // void *tmp_img;
+
+//     s_w = WIN_W; // cub->var.s_w;
+//     s_h = WIN_H; // cub->var.s_h;
+//     // printf(WHITE"\t\t\t\t\t %f\n", distnce);
+//     distnce *= cos(cub->ray.ray_ngl - cub->plyr.angle);
+//     // printf(RED "--------------------------->>(S_W : %d)\n\t(S_H : %d)\n" RES, s_w, s_h);
+//     wll_h = (TILE_SIZE / distnce) * ((s_w / 2) * tan(cub->plyr.fov_rd)); // distance of the projection plane
+//     // printf(CYAN"\t\t\t\tWall_H |----->> %f\n", wll_h);
+//     toppxl = (s_h / 2) - (wll_h / 2);
+//     lowpxl = (s_h / 2) + (wll_h / 2);
+//     if (toppxl > s_w) // I think hnaya khass  ikom / s_h
+//         toppxl = s_w;
+//     if (lowpxl < 0)
+//         lowpxl = 0;
+//     render_textured_wall(cub, raypt, wll_h, toppxl, lowpxl, tex_x);
+//     // render_wll(cub, toppxl, lowpxl, raypt);
+//     draw_floor_ceiling(cub, raypt, toppxl, lowpxl);
+// }
+
 void ft_renderThreeD(t_cub *cub, double distnce, int raypt, int tex_x)
 {
-
     int s_w;
     int s_h;
     double wll_h;
     int toppxl;
     int lowpxl;
-    // void *tmp_img;
+    double distance_to_projection_plane;
 
     s_w = WIN_W; // cub->var.s_w;
     s_h = WIN_H; // cub->var.s_h;
-    // printf(WHITE"\t\t\t\t\t %f\n", distnce);
+
+    // Correct the distance for the fish-eye effect
     distnce *= cos(cub->ray.ray_ngl - cub->plyr.angle);
-    // printf(RED "--------------------------->>(S_W : %d)\n\t(S_H : %d)\n" RES, s_w, s_h);
-    wll_h = (TILE_SIZE / distnce) * ((s_w / 2) * tan(cub->plyr.fov_rd / 2));
-    // printf(CYAN"\t\t\t\tWall_H |----->> %f\n", wll_h);
+
+    // Calculate the distance to the projection plane
+    distance_to_projection_plane = (s_w / 2) / tan(cub->plyr.fov_rd / 2);
+
+    // Calculate the height of the wall slice
+    wll_h = (TILE_SIZE / distnce) * distance_to_projection_plane;
+
+    // Calculate the top and bottom pixel positions of the wall slice
     toppxl = (s_h / 2) - (wll_h / 2);
     lowpxl = (s_h / 2) + (wll_h / 2);
+
+    // Ensure the top and bottom pixel positions are within screen bounds
     if (toppxl > s_w) // I think hnaya khass  ikom / s_h
         toppxl = s_w;
     if (lowpxl < 0)
         lowpxl = 0;
+
+    // Render the textured wall
     render_textured_wall(cub, raypt, wll_h, toppxl, lowpxl, tex_x);
-    // render_wll(cub, toppxl, lowpxl, raypt);
+
+    // Draw the floor and ceiling
     draw_floor_ceiling(cub, raypt, toppxl, lowpxl);
 }
-

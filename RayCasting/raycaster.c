@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/01 18:52:32 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/06 18:50:50 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,8 +211,8 @@ int raycaster(t_cub *cub)
         wall_x = calculate_wall_x(&cub->ray);
         tex_x = get_texture_x(cub, wall_x);
         ft_renderThreeD(cub, cub->ray.distance, nray, tex_x);
-        put_rays(cub,cub->ray.distance  * MINI_MAP, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP, cub->ray.ray_ngl);
-        put_line(cub, 30, (int)cub->plyr.plyr_x * MINI_MAP, (int)cub->plyr.plyr_y * MINI_MAP);
+        // put_rays(cub,cub->ray.distance  * MINI_MAP, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP, cub->ray.ray_ngl);
+        // put_line(cub, 30, (int)cub->plyr.plyr_x * MINI_MAP, (int)cub->plyr.plyr_y * MINI_MAP);
         //  cub->ray.ray_ngl += ngl;
         cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl + ngl);
          nray++;

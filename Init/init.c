@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/01 18:34:14 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/06 19:17:36 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ void init_engin(t_cub *cub, char *file)
     mlx_hook(cub->mlx_w, 2, 1L << 0, &key_press, cub);
     mlx_hook(cub->mlx_w, 3, 1L<<1, &key_release, cub);
     mlx_loop_hook(cub->mlxp, &main_loop, cub);
-
+    if (!cub->mlxp || !cub->mlx_w)
+    {
+        ft_error("Error: Failed to initialize MLX.");
+        exit(1);
+    }
     mlx_loop(cub->mlxp);
 }

@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/01 18:37:17 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/06 19:16:05 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,47 +52,65 @@ void update_player_position(t_cub *cub)
 {
     double new_x = cub->plyr.plyr_x;
     double new_y = cub->plyr.plyr_y;
+    double move_step = P_SPEED;
 
     if (cub->move_forward)
     {
-        // printf(GREEN"\tUP\n"RES);
-        new_x += cos(cub->plyr.angle) * P_SPEED;
-        new_y += sin(cub->plyr.angle) * P_SPEED;
+        new_x += cos(cub->plyr.angle) * move_step;
+        new_y += sin(cub->plyr.angle) * move_step;
     }
     if (cub->move_backward)
     {
-        // printf(GREEN"\tDOWN\n"RES);
-        new_x -= cos(cub->plyr.angle) * P_SPEED;
-        new_y -= sin(cub->plyr.angle) * P_SPEED;
+        new_x -= cos(cub->plyr.angle) * move_step;
+        new_y -= sin(cub->plyr.angle) * move_step;
     }
     if (cub->move_left)
     {
-        // printf(GREEN"\tLEFT\n"RES);
-        new_x -= sin(cub->plyr.angle) * P_SPEED;
-        new_y += cos(cub->plyr.angle) * P_SPEED;
+        new_x -= sin(cub->plyr.angle) * move_step;
+        new_y += cos(cub->plyr.angle) * move_step;
     }
     if (cub->move_right)
     {
-        // printf(GREEN"\tRIGHT\n"RES);
-        new_x += sin(cub->plyr.angle) * P_SPEED;
-        new_y -= cos(cub->plyr.angle) * P_SPEED;
+        new_x += sin(cub->plyr.angle) * move_step;
+        new_y -= cos(cub->plyr.angle) * move_step;
     }
     if (cub->rotate_left)
     {
-        // printf(GREEN"\tRotate LEFT\n"RES);
         cub->plyr.angle -= ROT_SPEED;
     }
     if (cub->rotate_right)
     {
-        // printf(GREEN"\tRotate RIGHT\n"RES);
         cub->plyr.angle += ROT_SPEED;
     }
-    if (is_wall(cub,new_x, new_y))
+
+    // Check for wall collisions and slide along walls
+    if (is_wall(cub, new_x, cub->plyr.plyr_y))
     {
         cub->plyr.plyr_x = new_x;
+    }
+    else
+    {
+        // Slide along the y-axis if x-axis collision detected
+        if (is_wall(cub, cub->plyr.plyr_x, new_y))
+        {
+            cub->plyr.plyr_y = new_y;
+        }
+    }
+
+    if (is_wall(cub, cub->plyr.plyr_x, new_y))
+    {
         cub->plyr.plyr_y = new_y;
     }
+    else
+    {
+        // Slide along the x-axis if y-axis collision detected
+        if (is_wall(cub, new_x, cub->plyr.plyr_y))
+        {
+            cub->plyr.plyr_x = new_x;
+        }
+    }
 }
+
 
 
 void ft_render_wepon(t_cub *cub)
@@ -109,7 +127,7 @@ int main_loop(t_cub *cub)
 {
     update_player_position(cub);
     raycaster(cub);
-    render_mini_2d(cub);
+    // render_mini_2d(cub);
     // ft_render_wepon(cub);
 
     return (0);
