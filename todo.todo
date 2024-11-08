@@ -2,28 +2,6 @@
   "todotree": {
     "tree": [
       {
-        "key": 1730555236785,
-        "children": [],
-        "todo": {
-          "content": "Leaks",
-          "id": 1730555236785,
-          "level": "default",
-          "done": false,
-          "start": 1730555236785
-        }
-      },
-      {
-        "key": 1731097734226,
-        "children": [],
-        "todo": {
-          "content": "mandatory_norms",
-          "id": 1731097734226,
-          "level": "default",
-          "done": false,
-          "start": 1731097734226
-        }
-      },
-      {
         "key": 1731098140876,
         "children": [],
         "todo": {
@@ -31,7 +9,22 @@
           "id": 1731098140876,
           "level": "default",
           "done": false,
-          "start": 1731098140876
+          "start": 1731098140876,
+          "focus": false,
+          "end": 1731101015370
+        }
+      },
+      {
+        "key": 1730555236785,
+        "children": [],
+        "todo": {
+          "content": "Leaks",
+          "id": 1730555236785,
+          "level": "default",
+          "done": false,
+          "start": 1730555236785,
+          "focus": false,
+          "end": 1731101017418
         }
       },
       {
@@ -42,7 +35,9 @@
           "id": 1731098408257,
           "level": "default",
           "done": false,
-          "start": 1731098408257
+          "start": 1731098408257,
+          "focus": false,
+          "end": 1731101018402
         }
       },
       {
@@ -55,9 +50,22 @@
           "done": false,
           "start": 1731099532965
         }
+      },
+      {
+        "key": 1731097734226,
+        "children": [],
+        "todo": {
+          "content": "mandatory_norms",
+          "id": 1731097734226,
+          "level": "default",
+          "done": false,
+          "start": 1731097734226
+        }
       }
     ],
-    "expandKeys": [],
+    "expandKeys": [
+      1731098140876
+    ],
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
     "add_mode": "bottom",
     "virtual": false,
@@ -69,6 +77,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1731100045675"
+    "version": "1731101021046"
   }
 }
