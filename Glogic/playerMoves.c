@@ -27,7 +27,7 @@ int key_press(int key, t_cub *cub)
     else if (key == R_ARROW)
         cub->rotate_right = 1;
     else if (key == ESC)
-        exit(0); // khass free hnaya
+        exit(0); // !khass free hnaya
     return (0);
 }
 
@@ -100,7 +100,7 @@ void mvp(t_cub *cub)
             cub->plyr.plyr_x = new_x;
     }
 }
-
+//TODO
 
 int main_loop(t_cub *cub)
 {

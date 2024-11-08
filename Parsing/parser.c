@@ -150,7 +150,7 @@ void add_to_map(t_data *data)
     {
         if (ft_strlen(data->map[i]) < data->map_w)
         {
-            while (ft_strlen(data->map[i]) < data->map_w)
+            while (ft_strlen(data->map[i]) < data->map_w - 1)
                 data->map[i] = join_space(data->map[i], " ");
             data->map[i] = ft_strjoin(data->map[i], "\n");
         }

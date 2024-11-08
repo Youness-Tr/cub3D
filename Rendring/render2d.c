@@ -142,12 +142,12 @@ void render_mini_2d(t_cub *cub)
     mlx_clear_window(cub->mlxp, cub->mlx_w);
     int len = ft_strlen(cub->map.map2d[0]);
     cub->map.map2d[cub->parse.player_x][cub->parse.player_Y] = 'P';
-    while (j < cub->map.map_h)
+    while (j < cub->map.map_h + 1)
     {
         i = 0;
         while (i < len)
         {
-            if (cub->map.map2d[j][i] == '1')
+            if (cub->map.map2d[j][i] == '1' || cub->map.map2d[j][i] == ' ')
                 render_square(&cub->img, (i *TILE_SIZE) * MINI_MAP , (j *TILE_SIZE) * MINI_MAP, TILE_SIZE * MINI_MAP ,0xC0C0C0);
             else if (cub->map.map2d[j][i] == '0' || cub->map.map2d[j][i] == 'P')
             {

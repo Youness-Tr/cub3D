@@ -28,7 +28,7 @@
 # define WIN_W 1920
 #define WIN_H  1080
 #define TILE_SIZE 64
-#define MINI_MAP 0.25
+#define MINI_MAP 0.15
 #define PLAYER_RADIUS (TILE_SIZE / 10)
 # define PLR 8 // plYER HIGHT WIEGHT (remove this)
 #define NRAYS 540 //!remove this
