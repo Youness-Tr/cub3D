@@ -10,19 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Header/cub3d.h"
 
-# include "Header/cub3d.h"
-
-
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    t_cub cub;
+	t_cub	cub;
 
-    if (ac != 2)
-    {
-        ft_error("Error: ./cub3D Assets/maps/file.cub");
-        return (1);
-    }
-    init_engin(&cub, av[1]);
-    return (0);
+	if (ac != 2)
+	{
+		ft_error("Error: ./cub3D Assets/maps/file.cub");
+		return (1);
+	}
+	init_engin(&cub, av[1]);
+	return (0);
 }

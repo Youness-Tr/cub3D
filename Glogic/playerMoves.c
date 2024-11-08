@@ -48,31 +48,30 @@ int key_release(int key, t_cub *cub)
     return (0);
 }
 
-void update_player_position(t_cub *cub)
+void mvp(t_cub *cub)
 {
     double new_x = cub->plyr.plyr_x;
     double new_y = cub->plyr.plyr_y;
-    double move_step = P_SPEED;
 
     if (cub->move_forward)
     {
-        new_x += cos(cub->plyr.angle) * move_step;
-        new_y += sin(cub->plyr.angle) * move_step;
+        new_x += cos(cub->plyr.angle) *P_SPEED;
+        new_y += sin(cub->plyr.angle) *P_SPEED;
     }
     if (cub->move_backward)
     {
-        new_x -= cos(cub->plyr.angle) * move_step;
-        new_y -= sin(cub->plyr.angle) * move_step;
+        new_x -= cos(cub->plyr.angle) *P_SPEED;
+        new_y -= sin(cub->plyr.angle) *P_SPEED;
     }
     if (cub->move_left)
     {
-        new_x -= sin(cub->plyr.angle) * move_step;
-        new_y += cos(cub->plyr.angle) * move_step;
+        new_x -= sin(cub->plyr.angle) *P_SPEED;
+        new_y += cos(cub->plyr.angle) *P_SPEED;
     }
     if (cub->move_right)
     {
-        new_x += sin(cub->plyr.angle) * move_step;
-        new_y -= cos(cub->plyr.angle) * move_step;
+        new_x += sin(cub->plyr.angle) *P_SPEED;
+        new_y -= cos(cub->plyr.angle) *P_SPEED;
     }
     if (cub->rotate_left)
     {
@@ -83,98 +82,32 @@ void update_player_position(t_cub *cub)
         cub->plyr.angle += ROT_SPEED;
     }
 
-    // Check for wall collisions and slide along walls
+    // ?Check for wall collisions and slide along walls
     if (is_wall(cub, new_x, cub->plyr.plyr_y))
-    {
         cub->plyr.plyr_x = new_x;
-    }
     else
     {
-        // Slide along the y-axis if x-axis collision detected
+        // *Slide along the y-axis if x-axis collision detected
         if (is_wall(cub, cub->plyr.plyr_x, new_y))
-        {
             cub->plyr.plyr_y = new_y;
-        }
     }
-
     if (is_wall(cub, cub->plyr.plyr_x, new_y))
-    {
         cub->plyr.plyr_y = new_y;
-    }
     else
     {
-        // Slide along the x-axis if y-axis collision detected
+        // *Slide along the x-axis if y-axis collision detected
         if (is_wall(cub, new_x, cub->plyr.plyr_y))
-        {
             cub->plyr.plyr_x = new_x;
-        }
     }
 }
 
-
-
-void ft_render_wepon(t_cub *cub)
-{
-    void *wepon;
-    int x, y;
-    wepon = mlx_xpm_file_to_image(cub->mlxp, "./Assets/Textures/wepon.xpm", &x, &y);
-    if (!wepon)
-        ft_error("Error : wepon is not loaded\n");
-    mlx_put_image_to_window(cub->mlxp, cub->mlx_w, wepon, cub->plyr.plyr_x, cub->plyr.plyr_y);
-}
 
 int main_loop(t_cub *cub)
 {
-    update_player_position(cub);
+    mvp(cub);
     raycaster(cub);
-    // render_mini_2d(cub);
-    // ft_render_wepon(cub);
-
+    // render_weapon(cub, 20, 20);
+    render_mini_2d(cub);
+    // mlx_clear_window(cub->mlxp, cub->mlx_w);
     return (0);
 }
-
-
-/*This function should be removed */
-// int mv(int key, t_cub *cub)
-// {
-//     double x = cub->plyr.plyr_x;
-//     double y = cub->plyr.plyr_y;
-
-//     if (key == W) // Move up
-//     {
-//         x += cos(cub->plyr.angle) * P_SPEED;
-//         y += sin(cub->plyr.angle) * P_SPEED;
-//     }
-//     else if (key == S) // Move down
-//     {
-//         x -= cos(cub->plyr.angle) * P_SPEED;
-//         y -= sin(cub->plyr.angle) * P_SPEED;
-//     }
-//     else if (key == A) // Move left
-//     {
-//         x -= sin(cub->plyr.angle) * P_SPEED;
-//         y += cos(cub->plyr.angle) * P_SPEED;
-//     }
-//     else if (key == D) // Move right
-//     {
-//         x += sin(cub->plyr.angle) * P_SPEED;
-//         y -= cos(cub->plyr.angle) * P_SPEED;
-//     }
-//     else if (key == L_ARROW) // Rotate left
-//         cub->plyr.angle -= cub->plyr.rot * ROT_SPEED;
-//     else if (key == R_ARROW) // Rotate right
-//         cub->plyr.angle += cub->plyr.rot * ROT_SPEED;
-//     else if (key == ESC)
-//         exit(0);
-
-//     // if (is_wall(cub, x, y))
-//     // {
-//         cub->plyr.plyr_x = x;
-//         cub->plyr.plyr_y = y;
-//     // }
-
-//         // printf("\t\t\t(%d, %d)\n", (int)cub->plyr.plyr_x, (int)cub->plyr.plyr_y);
-//     // render_2d(cub);
-//     raycaster(cub);
-//     return (0);
-// }

@@ -50,6 +50,17 @@
           "focus": false,
           "end": 1730556596511
         }
+      },
+      {
+        "key": 1731097734226,
+        "children": [],
+        "todo": {
+          "content": "mandatory_norms",
+          "id": 1731097734226,
+          "level": "default",
+          "done": false,
+          "start": 1731097734226
+        }
       }
     ],
     "expandKeys": [
@@ -66,6 +77,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1730632265903"
+    "version": "1731097745277"
   }
 }

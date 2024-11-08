@@ -25,14 +25,14 @@
 
 
 
-# define WIN_W 1000
-#define WIN_H  1000
+# define WIN_W 1920
+#define WIN_H  1080
 #define TILE_SIZE 64
 #define MINI_MAP 0.25
 #define PLAYER_RADIUS (TILE_SIZE / 10)
 # define PLR 8 // plYER HIGHT WIEGHT (remove this)
-#define NRAYS 540
-#define ROT_SPEED 0.05
+#define NRAYS 540 //!remove this
+#define ROT_SPEED 0.04
 # define P_SPEED 8
 # define PI  3.141592653589
 #define FOV  (60 * PI)/180
@@ -145,7 +145,7 @@ struct s_mlx //the mlx structure
  t_player   plyr;
  t_data     parse;
  t_vars     var;
- t_img      textures[4];
+ t_img      textures[5];//!change this to 4
  t_leak     *free;
  int move_forward;
  int move_backward;

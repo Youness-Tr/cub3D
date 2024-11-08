@@ -140,14 +140,16 @@ void render_mini_2d(t_cub *cub)
 
     j = 0;
     mlx_clear_window(cub->mlxp, cub->mlx_w);
+    int len = ft_strlen(cub->map.map2d[0]);
+    cub->map.map2d[cub->parse.player_x][cub->parse.player_Y] = 'P';
     while (j < cub->map.map_h)
     {
         i = 0;
-        while (i < cub->map.map_w)
+        while (i < len)
         {
             if (cub->map.map2d[j][i] == '1')
                 render_square(&cub->img, (i *TILE_SIZE) * MINI_MAP , (j *TILE_SIZE) * MINI_MAP, TILE_SIZE * MINI_MAP ,0xC0C0C0);
-            else if (cub->map.map2d[j][i] == '0' || cub->map.map2d[j][i] == 'N')
+            else if (cub->map.map2d[j][i] == '0' || cub->map.map2d[j][i] == 'P')
             {
                 render_square(&cub->img, (i *TILE_SIZE) * MINI_MAP, (j *TILE_SIZE) * MINI_MAP, TILE_SIZE * MINI_MAP,0x654321);// 0x8B5A2B
             }
