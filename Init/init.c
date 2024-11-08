@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/05 10:33:42 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/08 20:56:31 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void init_image(t_cub *cub)
     imge->gme = cub;
     cub->img.addr = mlx_get_data_addr(imge->img, &imge->bpp, &imge->len, &imge->endian);
     if (!cub->img.img)
-        ft_error("Error : the image is not loaded\n");
+        ft_errorv2(&cub->parse ,"Error : the image is not loaded\n");
 }
 
 static void init_mlx(t_cub *mlx)
@@ -30,17 +30,17 @@ static void init_mlx(t_cub *mlx)
     mlx->mlxp = mlx_init();
     if (!mlx->mlxp)
     {
-        ft_error("Error : mlx pointer\n");
-        exit(1);
+        ft_errorv2(&mlx->parse ,"Error : mlx pointer\n");
+        // exit(1);
     }
     mlx->img.img = mlx_new_image(mlx->mlxp, mlx->var.s_w, mlx->var.s_h);
     if (!mlx->img.img)
-        ft_error("Error : the image is not loaded\n");
+        ft_errorv2(&mlx->parse ,"Error : the image is not loaded\n");
     mlx->mlx_w = mlx_new_window(mlx->mlxp, mlx->var.s_w, mlx->var.s_h, "Cub3D");
     if (!mlx->mlx_w)
     {
-        ft_error("Error : mlx pointer\n");
-        exit(1);
+        ft_errorv2(&mlx->parse ,"Error : mlx pointer\n");
+        // exit(1);
     }
     init_image(mlx);
 }
@@ -52,8 +52,8 @@ static void load_texture(t_cub *cub, t_img *texture, char *file_path)
     texture->img = mlx_xpm_file_to_image(cub->mlxp, file_path, &texture->w, &texture->h);
     if (!texture->img)
     {
-        ft_error("Error: Could not load texture");
-        exit(1); // free hnaya
+        ft_errorv2(&cub->parse ,"Error: Could not load texture");
+        // exit(1); // free hnaya
     }
     texture->addr = mlx_get_data_addr(texture->img, &texture->bpp, &texture->len, &texture->endian);
 }

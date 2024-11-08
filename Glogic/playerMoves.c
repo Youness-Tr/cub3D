@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   playerMoves.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/01 18:37:17 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/08 21:05:03 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int key_press(int key, t_cub *cub)
     else if (key == R_ARROW)
         cub->rotate_right = 1;
     else if (key == ESC)
-        exit(0); // khass free hnaya
+        ft_errorv2(&cub->parse, ""); // khass free hnaya
     return (0);
 }
 
@@ -101,7 +101,7 @@ void ft_render_wepon(t_cub *cub)
     int x, y;
     wepon = mlx_xpm_file_to_image(cub->mlxp, "./Assets/Textures/wepon.xpm", &x, &y);
     if (!wepon)
-        ft_error("Error : wepon is not loaded\n");
+        ft_errorv2(&cub->parse ,"Error : wepon is not loaded\n"); // i have to destroy images
     mlx_put_image_to_window(cub->mlxp, cub->mlx_w, wepon, cub->plyr.plyr_x, cub->plyr.plyr_y);
 }
 
