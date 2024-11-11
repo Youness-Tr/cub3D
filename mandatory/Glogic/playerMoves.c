@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/11 15:02:37 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/11 17:41:07 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void mvp(t_cub *cub)
             cub->plyr.plyr_x = new_x;
     }
 }
-//TODO
+//TODO 
 
 int main_loop(t_cub *cub)
 {

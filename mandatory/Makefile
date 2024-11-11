@@ -10,7 +10,7 @@ SRC = main_cub.c
 SRC += Utils/utils1.c Utils/substr.c Utils/split.c Utils/err.c
 SRC += Utils/init.c
 #Parsing/
-SRC += Parsing/parser.c  Parsing/utils.c
+SRC += Parsing/parser.c  Parsing/utils.c Parsing/tool.c Parsing/utils2.c
 #RayCasting/
 SRC += RayCasting/raycaster.c
 #Rendring/

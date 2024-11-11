@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/11 15:06:38 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/11 17:39:03 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,6 @@ static void	init_textures(t_cub *cub)
 	load_texture(cub, &cub->textures[2], cub->parse.WE);
 	load_texture(cub, &cub->textures[3], cub->parse.SO);
 	// load_texture(cub, &cub->textures[4], "./Assets/Textures/pestol.xpm");
-}
-
-int _close_window(t_cub *cub)
-{
-	int i = 0;
-
-	while (i < 4)
-	{
-		mlx_destroy_image(cub->mlxp, cub->textures[i].img);
-		i++;
-	}
-    mlx_destroy_window(cub->mlxp, cub->mlx_w);
-    ft_exit(&cub->parse);
-	return (0);
 }
 
 //!! Youness you need to handle the extention .cub name if i gave you .cub.cub 

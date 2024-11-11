@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/11 15:05:35 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/11 17:38:49 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,11 @@ void ft_errorv2(t_data *data ,char *s);
 void ft_exit(t_data *data);
 void ft_free(char **p);
 char **get_map(char *file);
+void *get_value(char *s, unsigned int start);
+int get_haxe(char *s, unsigned int start);
+void ft_init(char *line, t_data *data);
+int find_direction(t_data *data, char c);
+char	*join_space(char *s1, char *s2);
 void my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int raycaster(t_cub *cub);
 void put_line(t_cub *cub, int len, int x, int y);
@@ -179,7 +184,7 @@ void ft_error(char *str);
 void render_2d(t_cub *cub);
 void render_mini_2d(t_cub *cub);
 void ft_renderThreeD(t_cub *cub, double distnce, int raypt, int tex_x);
-
+int _close_window(t_cub *cub);
 //Glogic > playerMoves.c:
 int mv(int key, t_cub *cub);
 //Glogic > Wall_intersection.c:
