@@ -44,7 +44,8 @@ int	ft_atoi(const char *nptr)
 	result = 0;
 	i = 0;
 	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
-		ft_error("not a number");
+		ft_error("not a number"); //?to make sure it's in right fomat 
+		//! i have to free here
 	if (nptr[i] == '+')
 		i++;
 	else if (nptr[i] == '-')
@@ -59,7 +60,7 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	if ((result * m) > 255)
-		ft_error("not valid number");
+		ft_error("not valid number"); //! i have to free here
 	return (result * m);
 }
 

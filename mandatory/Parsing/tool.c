@@ -24,23 +24,23 @@ int	ft_isdigit(int c)
 		return (1);
 }
 
-void is_digit(char **p)
-{
-    int i = 0;
-    int c = 0;
+// void is_digit(char **p)
+// {
+//     int i = 0;
+//     int c = 0;
 
-    while (p[i])
-    {
-        c = 0;
-        while (p[i][c])
-        {
-            if (!ft_isdigit(p[i][c]))
-                ft_error("not a digit");
-            c++;
-        }
-        i++;
-    }
-}
+//     while (p[i])
+//     {
+//         c = 0;
+//         while (p[i][c])
+//         {
+//             if (!ft_isdigit(p[i][c]))
+//                 ft_error("not a digit");
+//             c++;
+//         }
+//         i++;
+//     }
+// }
 
 int get_haxe(char *s, unsigned int start)
 {
@@ -62,10 +62,10 @@ int get_haxe(char *s, unsigned int start)
     {
         free(ss);
         ft_free(db);
-        ft_error("color error"); // i need to free allocated db here
+        ft_error("color error"); //! i need to free allocated db here
         return 0;
     }
-    printf("%s\n", db[2]);
+    // printf("%s\n", db[2]);
     hexa = create_trgb(0, ft_atoi(db[0]), ft_atoi(db[1]), ft_atoi(db[2]));
     free(ss);
     ft_free(db);
@@ -76,7 +76,7 @@ int get_haxe(char *s, unsigned int start)
 
 void ft_init(char *line, t_data *data)
 {
-    if (!strncmp("NO ", line, 3))
+    if (!strncmp("NO ", line, 3)) //? space to avoid this case NOOO ./texture.xpm
         data->NO = get_value(line, 2);
     else if (!strncmp("SO ", line, 3))
         data->SO = get_value(line, 2);
@@ -94,7 +94,7 @@ void ft_init(char *line, t_data *data)
         && data->EA && data->F && data->C)
         data->stop = 1;
     else
-        ft_error("args error");
+        ft_error("args error"); //! i have to free here
 }
 
 int find_direction(t_data *data, char c)
