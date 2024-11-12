@@ -90,6 +90,7 @@ void map_fill(t_data *data)
         free(line);
         line = get_next_line(fd);
     }
+    //!i need to check here for load textures and colors;
     data->map[j] = NULL;
 }
 

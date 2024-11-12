@@ -74,6 +74,12 @@ void init(t_data *data)
 	len = 0;
     data->stop = 0;
 	data->len = 0;
+	data->NO = NULL;
+	data->SO = NULL;
+	data->WE = NULL;
+	data->EA = NULL;
+	data->C = 0;
+	data->F = 0;
 	len = count_len(data);
 	if (len == 0)
 		ft_error("empty file");

@@ -61,6 +61,50 @@
           "done": false,
           "start": 1731097734226
         }
+      },
+      {
+        "key": 1731429602295,
+        "children": [],
+        "todo": {
+          "content": "segf in file :: non texture load or other chars are exist",
+          "id": 1731429602295,
+          "level": "default",
+          "done": false,
+          "start": 1731429602295
+        }
+      },
+      {
+        "key": 1731429657727,
+        "children": [],
+        "todo": {
+          "content": "colors check and form (3 values)",
+          "id": 1731429657727,
+          "level": "default",
+          "done": false,
+          "start": 1731429657727
+        }
+      },
+      {
+        "key": 1731429686455,
+        "children": [],
+        "todo": {
+          "content": "rotation are too slow when player get close to the wall",
+          "id": 1731429686455,
+          "level": "default",
+          "done": false,
+          "start": 1731429686455
+        }
+      },
+      {
+        "key": 1731429726160,
+        "children": [],
+        "todo": {
+          "content": "check if all textures are load and colors also",
+          "id": 1731429726160,
+          "level": "default",
+          "done": false,
+          "start": 1731429726160
+        }
       }
     ],
     "expandKeys": [
@@ -77,6 +121,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1731101021046"
+    "version": "1731429757190"
   }
 }

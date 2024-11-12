@@ -16,6 +16,32 @@ void *get_value(char *s, unsigned int start)
     return (ss);
 }
 
+int	ft_isdigit(int c)
+{
+	if ((c < 48 || c > 57))
+		return (0);
+	else
+		return (1);
+}
+
+void is_digit(char **p)
+{
+    int i = 0;
+    int c = 0;
+
+    while (p[i])
+    {
+        c = 0;
+        while (p[i][c])
+        {
+            if (!ft_isdigit(p[i][c]))
+                ft_error("not a digit");
+            c++;
+        }
+        i++;
+    }
+}
+
 int get_haxe(char *s, unsigned int start)
 {
     size_t s_len;
@@ -31,37 +57,44 @@ int get_haxe(char *s, unsigned int start)
         s_len--;
     ss = ft_substr(s, start, s_len - start);
     char **db = ft_split(ss, ',');
+    // is_digit(db);
     if (!db || !db[0] || !db[1] || !db[2])
     {
         free(ss);
-        ft_free(db); // i need to free allocated db here
+        ft_free(db);
+        ft_error("color error"); // i need to free allocated db here
         return 0;
     }
+    printf("%s\n", db[2]);
     hexa = create_trgb(0, ft_atoi(db[0]), ft_atoi(db[1]), ft_atoi(db[2]));
     free(ss);
     ft_free(db);
+    printf ("%x\n", hexa);
     return (hexa);
 }
 
 
 void ft_init(char *line, t_data *data)
 {
-    if (!strncmp("NO", line, 2))
+    if (!strncmp("NO ", line, 3))
         data->NO = get_value(line, 2);
-    else if (!strncmp("SO", line, 2))
+    else if (!strncmp("SO ", line, 3))
         data->SO = get_value(line, 2);
-    else if (!strncmp("WE", line, 2))
+    else if (!strncmp("WE ", line, 3))
         data->WE = get_value(line, 2);
-    else if (!strncmp("EA", line, 2))
+    else if (!strncmp("EA ", line, 3))
         data->EA = get_value(line, 2);
-    else if (!strncmp("F", line, 1))
+    else if (!strncmp("F ", line, 2))
         data->F = get_haxe(line, 1);
-    else if (!strncmp("C", line, 1))
+    else if (!strncmp("C ", line, 2))
         data->C = get_haxe(line, 1);
     else if (!strncmp(" ", line, 1) || !strncmp("\n", line, 1))
         data->stop = 0;
-    else
+    else if (data->NO && data->SO && data->WE 
+        && data->EA && data->F && data->C)
         data->stop = 1;
+    else
+        ft_error("args error");
 }
 
 int find_direction(t_data *data, char c)
