@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   playerMoves.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/06 19:16:05 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/12 09:39:37 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,8 @@ void mvp(t_cub *cub)
 
 int main_loop(t_cub *cub)
 {
+    mlx_clear_window(cub->mlxp, cub->mlx_w);
     mvp(cub);
     raycaster(cub);
-    // render_weapon(cub, 20, 20);
-    render_mini_2d(cub);
-    // mlx_clear_window(cub->mlxp, cub->mlx_w);
     return (0);
 }

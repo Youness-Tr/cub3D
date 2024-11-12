@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/06 19:07:31 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/12 14:13:54 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,37 @@
 # include <fcntl.h>
 # include "get_next_line.h"
 
-
+//2240px × 1260px
 
 # define WIN_W 1920
-#define WIN_H  1080
+#define WIN_H 1080 
 #define TILE_SIZE 64
 #define MINI_MAP 0.15
 #define PLAYER_RADIUS (TILE_SIZE / 10)
 # define PLR 8 // plYER HIGHT WIEGHT (remove this)
 #define NRAYS 540 //!remove this
-#define ROT_SPEED 0.04
-# define P_SPEED 8
+#define ROT_SPEED 0.09
+# define P_SPEED 20
 # define PI  3.141592653589
-#define FOV  (60 * PI)/180
-# define L_ARROW 65361
-#define R_ARROW 65363
-#define W  119
-#define A 97
-#define S 115
-#define D 100
-#define Q 113//*REMOVE
-#define R 114//*REMOVE
-#define ESC 65307
+#define FOV  (63 * PI)/180
+// # define L_ARROW 65361
+// #define R_ARROW 65363
+// #define W  119
+// #define A 97
+// #define S 115
+// #define D 100
+// #define Q 113//*REMOVE
+// #define R 114//*REMOVE
+// #define ESC 65307
 
+# define A 0
+# define S 1
+# define D 2
+# define W 13
+# define ESC 53
+# define S 1
+# define L_ARROW 123
+# define R_ARROW 124
 /****************TxTColoR*******************/
 #define RED     "\033[1;31m"
 #define GREEN   "\033[1;32m"

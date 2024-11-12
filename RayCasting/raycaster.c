@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/06 18:50:50 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/12 09:56:19 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,12 +153,12 @@ double calculate_wall_x(t_ray *ray)
 {
     double wall_x;
 
-    // Calculate wall_x based on hit type (horizontal or vertical)
+    //* Calculate wall_x based on hit type (horizontal or vertical)
     if (ray->hit == 1) {
-        // Horizontal wall hit
+        // *Horizontal wall hit
         wall_x = fmod(ray->hit_x, TILE_SIZE);
     } else {
-        // Vertical wall hit
+        // *Vertical wall hit
         wall_x = fmod(ray->hit_y, TILE_SIZE);
     }
     return wall_x;
@@ -171,9 +171,8 @@ int get_texture_x(t_cub *cub, double wall_x)
 
     texture = get_texture(cub, cub->ray.hit);
     tex_x = (int)(wall_x * (texture->w / TILE_SIZE));
-    if (tex_x < 0)
+    if (tex_x < 0)//*
         tex_x = 0;
-
     return (tex_x);
 }
 
@@ -211,8 +210,8 @@ int raycaster(t_cub *cub)
         wall_x = calculate_wall_x(&cub->ray);
         tex_x = get_texture_x(cub, wall_x);
         ft_renderThreeD(cub, cub->ray.distance, nray, tex_x);
-        put_rays(cub,cub->ray.distance  * MINI_MAP, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP, cub->ray.ray_ngl);
-        put_line(cub, 30, (int)cub->plyr.plyr_x * MINI_MAP, (int)cub->plyr.plyr_y * MINI_MAP);
+        // put_rays(cub,cub->ray.distance  * MINI_MAP, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP, cub->ray.ray_ngl);
+        // put_line(cub, 30, (int)cub->plyr.plyr_x * MINI_MAP, (int)cub->plyr.plyr_y * MINI_MAP);
         //  cub->ray.ray_ngl += ngl;
         cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl + ngl);
          nray++;

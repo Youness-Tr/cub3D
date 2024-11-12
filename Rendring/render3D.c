@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render3D.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/06 18:53:27 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/12 14:11:46 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,38 +122,51 @@ void render_textured_wall(t_cub *cub, int x, int wall_height, int wall_top, int 
 }
 
 
-
-
-
-
-// void ft_renderThreeD(t_cub *cub, double distnce, int raypt, int tex_x)
+//just for testing
+// void render_textured_wall(t_cub *cub, int x, int wall_height, int wall_top, int wall_bottom, int tex_x, double distance)
 // {
+//     int tex_y;
+//     int color;
+//     int y;
+//     t_img *texture;
+//     double shading_factor;
+//     unsigned int r, g, b;
 
-//     int s_w;
-//     int s_h;
-//     double wll_h;
-//     int toppxl;
-//     int lowpxl;
-//     // void *tmp_img;
+//     (void)wall_height;
+//     texture = get_texture(cub, cub->ray.hit);
+//     y = wall_top;
 
-//     s_w = WIN_W; // cub->var.s_w;
-//     s_h = WIN_H; // cub->var.s_h;
-//     // printf(WHITE"\t\t\t\t\t %f\n", distnce);
-//     distnce *= cos(cub->ray.ray_ngl - cub->plyr.angle);
-//     // printf(RED "--------------------------->>(S_W : %d)\n\t(S_H : %d)\n" RES, s_w, s_h);
-//     wll_h = (TILE_SIZE / distnce) * ((s_w / 2) * tan(cub->plyr.fov_rd)); // distance of the projection plane
-//     // printf(CYAN"\t\t\t\tWall_H |----->> %f\n", wll_h);
-//     toppxl = (s_h / 2) - (wll_h / 2);
-//     lowpxl = (s_h / 2) + (wll_h / 2);
-//     if (toppxl > s_w) // I think hnaya khass  ikom / s_h
-//         toppxl = s_w;
-//     if (lowpxl < 0)
-//         lowpxl = 0;
-//     render_textured_wall(cub, raypt, wll_h, toppxl, lowpxl, tex_x);
-//     // render_wll(cub, toppxl, lowpxl, raypt);
-//     draw_floor_ceiling(cub, raypt, toppxl, lowpxl);
+//     // Calculate the shading factor based on the distance
+//     double max_distance = 950.0; // Example maximum distance for full shading
+//     shading_factor = 1.0 - (distance / max_distance);
+//     if (shading_factor < 0.2) 
+//         shading_factor = 0.2; // Ensure minimum visibility
+
+//     while (y < wall_bottom)
+//     {
+//         tex_y = ((y - wall_top) * texture->h) / (wall_bottom - wall_top);
+//         color = *(unsigned int *)(texture->addr + (tex_y * texture->len + tex_x * (texture->bpp / 8)));
+
+//         // Extract RGB components
+//         r = (color >> 16) & 0xFF;
+//         g = (color >> 8) & 0xFF;
+//         b = color & 0xFF;
+
+//         // Apply shading factor
+//         r = (unsigned int)(r * shading_factor);
+//         g = (unsigned int)(g * shading_factor);
+//         b = (unsigned int)(b * shading_factor);
+
+//         // Combine back into a single color value
+//         color = (r << 16) | (g << 8) | b;
+
+//         my_mlx_pixel_put(&cub->img, x, y, color);
+//         y++;
+//     }
 // }
 
+
+//! i will add the light effect later in bonus part the far the wall the darker it will be
 void ft_renderThreeD(t_cub *cub, double distnce, int raypt, int tex_x)
 {
     int s_w;
@@ -179,15 +192,12 @@ void ft_renderThreeD(t_cub *cub, double distnce, int raypt, int tex_x)
     toppxl = (s_h / 2) - (wll_h / 2);
     lowpxl = (s_h / 2) + (wll_h / 2);
 
-    // Ensure the top and bottom pixel positions are within screen bounds
     if (toppxl > s_w) // I think hnaya khass  ikom / s_h
         toppxl = s_w;
     if (lowpxl < 0)
         lowpxl = 0;
 
-    // Render the textured wall
+    // render_textured_wall(cub, raypt, wll_h, toppxl, lowpxl, tex_x, cub->ray.distance);
     render_textured_wall(cub, raypt, wll_h, toppxl, lowpxl, tex_x);
-
-    // Draw the floor and ceiling
     draw_floor_ceiling(cub, raypt, toppxl, lowpxl);
 }
