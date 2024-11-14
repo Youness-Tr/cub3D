@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   init1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:57:28 by kali              #+#    #+#             */
-/*   Updated: 2024/11/11 17:38:21 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/14 09:25:51 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d.h"
-//!remove unused vars
-void	init_map(t_cub *cub, char *file)
+
+//! remove unused vars
+void	init_map(t_cub *cub)
 {
-	(void)file;
 	cub->map.map2d = cub->parse.map;
 	if (!cub->map.map2d)
-		ft_errorv2(&cub->parse, "Error: Could not load map"); //*done
+		ft_errorv2(&cub->parse, "Error: Could not load map");
 	cub->map.map_h = cub->parse.lines;
 	cub->map.map_w = cub->parse.map_len;
 	cub->map.posx = cub->parse.player_Y;
@@ -58,16 +58,17 @@ void	init_plyr(t_cub *cub)
 	cub->plyr.rot = ROT_SPEED;
 }
 
-int _close_window(t_cub *cub)
+int	_close_window(t_cub *cub)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (i < 4)
 	{
 		mlx_destroy_image(cub->mlxp, cub->textures[i].img);
 		i++;
 	}
-    mlx_destroy_window(cub->mlxp, cub->mlx_w);
-    ft_exit(&cub->parse);
+	mlx_destroy_window(cub->mlxp, cub->mlx_w);
+	ft_exit(&cub->parse);
 	return (0);
 }

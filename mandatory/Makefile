@@ -3,7 +3,7 @@ NAME = cub3D
 # B_NAME = cub3D_bomus
 FSA = -fsanitize=address -g3
 CFLAGS = -Wall -Wextra -Werror
-MLX_FLAGS = -Lmlx -lmlx_Linux -lXext -lX11 -lm
+MLX_FLAGS =  -Lmlx -lmlx -framework OpenGL -framework AppKit #-Lmlx -lmlx_Linux -lXext -lX11 -lm
 #------------------
 SRC = main_cub.c
 #Utils/

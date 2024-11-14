@@ -10,27 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../Header/cub3d.h"
+#include "../Header/cub3d.h"
 
-char **get_map(char *file)
+char	**get_map(char *file)
 {
-    int fd;
-    char *line;
-    char *tmp;
-    char **map;
+	int		fd;
+	char	*line;
+	char	*tmp;
+	char	**map;
 
-    fd = open(file,O_RDONLY);
-    if (fd < 0)
-        ft_error("Error: map not found");
-    tmp = NULL;
-    while (1)
-    {
-        line = get_next_line(fd);
-        if (!line)
-            break;
-        tmp = ft_strjoin(tmp, line);
-        free(line);
-    }
-    map = ft_split(tmp, '\n');
-    return (free(tmp), map);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		ft_error("Error: map not found");
+	tmp = NULL;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		tmp = ft_strjoin(tmp, line);
+		free(line);
+	}
+	map = ft_split(tmp, '\n');
+	return (free(tmp), map);
 }

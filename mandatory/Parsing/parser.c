@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/11 17:21:04 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/14 09:28:16 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,16 @@ void map_fill(t_data *data)
         free(line);
         line = get_next_line(fd);
     }
-    //!i need to check here for load textures and colors;
+    //*DONE :i need to check here for load textures and colors;
+    if (!data->stop)
+    {
+        //!potential leak
+        ft_error("Error");
+    }
     data->map[j] = NULL;
+    close(fd);
 }
+
 
 void	map_scan(t_data *data)
 {

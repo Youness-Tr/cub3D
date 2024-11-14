@@ -3,27 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   err.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:14:56 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/01 18:50:55 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/14 11:41:41 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../Header/cub3d.h"
+#include "../Header/cub3d.h"
 
-void ft_error(char *s)
+void	ft_error(char *s)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (s[i])
-    {
-        write(2,&s[i], 1);
-        i++;
-    }
-    write(2,"\n", 1);
-    // TODO:
-        // need to free all allocated memory
-    exit(1);
+	i = 0;
+	while (s[i])
+	{
+		write(2, &s[i], 1);
+		i++;
+	}
+	write(2, "\n", 1);
+	exit(1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   playerMoves.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/11 17:41:07 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/14 09:33:39 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ void mvp(t_cub *cub)
     }
     if (cub->move_left)
     {
-        new_x -= sin(cub->plyr.angle) *P_SPEED;
-        new_y += cos(cub->plyr.angle) *P_SPEED;
+        new_x += sin(cub->plyr.angle) *P_SPEED;
+        new_y -= cos(cub->plyr.angle) *P_SPEED;
     }
     if (cub->move_right)
     {
-        new_x += sin(cub->plyr.angle) *P_SPEED;
-        new_y -= cos(cub->plyr.angle) *P_SPEED;
+        new_x -= sin(cub->plyr.angle) *P_SPEED;
+        new_y += cos(cub->plyr.angle) *P_SPEED;
     }
     if (cub->rotate_left)
     {
@@ -104,10 +104,8 @@ void mvp(t_cub *cub)
 
 int main_loop(t_cub *cub)
 {
+    mlx_clear_window(cub->mlxp, cub->mlx_w);
     mvp(cub);
     raycaster(cub);
-    // render_weapon(cub, 20, 20);
-    render_mini_2d(cub);
-    // mlx_clear_window(cub->mlxp, cub->mlx_w);
     return (0);
 }
