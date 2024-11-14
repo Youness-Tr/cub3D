@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/14 10:57:43 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/14 12:54:32 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,21 @@ typedef struct img
 // this struct is for variable for norms or any shared variable
 typedef struct vars
 {
-    int s_w; // screen wigth
-    int s_h; // screen wieght
+    int s_w;
+    int s_h;
+    double	hx;
+	double	hy;
+	double	y_step;
+	double	x_step;
+	int		pxl;
+    double	h_inter;
+	double	v_inter;
+	double	wall_x;
+	int		tex_x;
+	int		nray;
+	double	ngl;
+    double	new_x;
+	double	new_y;
 
 } t_vars;
 /******************/
@@ -219,7 +232,9 @@ void init_plyr(t_cub *cub);
 void init_map(t_cub *cub);
 //Rendering
 t_img* get_texture(t_cub *cub, int flag);
-
+double calculate_wall_x(t_ray *ray);
+int get_texture_x(t_cub *cub, double wall_x);
+int	wall_hit(float x, float y, t_cub *mlx);
 //Leaks:
 void	*ft_malloc(t_cub *cub, size_t size);
 

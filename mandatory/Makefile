@@ -12,7 +12,7 @@ SRC += Utils/init.c
 #Parsing/
 SRC += Parsing/parser.c  Parsing/utils.c Parsing/tool.c Parsing/utils2.c
 #RayCasting/
-SRC += RayCasting/raycaster.c
+SRC += RayCasting/raycaster.c RayCasting/raytools.c
 #Rendring/
 SRC += Rendring/render2d.c Rendring/render3D.c
 #Gnl/
