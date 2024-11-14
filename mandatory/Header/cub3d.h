@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/14 12:54:32 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/14 16:05:30 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,7 +205,7 @@ int count_len(t_data *data);
 void ft_error(char *str);
 void render_2d(t_cub *cub);
 void render_mini_2d(t_cub *cub);
-void ft_renderThreeD(t_cub *cub, double distnce, int raypt, int tex_x);
+void render_three_d(t_cub *cub, double distnce, int raypt, int tex_x);
 int _close_window(t_cub *cub);
 //Glogic > playerMoves.c:
 int mv(int key, t_cub *cub);
@@ -232,9 +232,14 @@ void init_plyr(t_cub *cub);
 void init_map(t_cub *cub);
 //Rendering
 t_img* get_texture(t_cub *cub, int flag);
+void put_line(t_cub *cub, int len, int x, int y);
+void put_rays(t_cub *cub, int len, int x, int y, float ngl);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void draw_floor_ceiling(t_cub *cub, int raypt, int toppxl, int lowpxl);
 double calculate_wall_x(t_ray *ray);
 int get_texture_x(t_cub *cub, double wall_x);
 int	wall_hit(float x, float y, t_cub *mlx);
+
 //Leaks:
 void	*ft_malloc(t_cub *cub, size_t size);
 

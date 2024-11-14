@@ -1,4 +1,16 @@
-# include "../Header/cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/14 12:40:01 by ytarhoua          #+#    #+#             */
+/*   Updated: 2024/11/14 12:41:31 by ytarhoua         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../Header/cub3d.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
@@ -44,15 +56,8 @@ int	ft_atoi(const char *nptr)
 	result = 0;
 	i = 0;
 	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
-		ft_error("not a number"); //?to make sure it's in right fomat 
-		//! i have to free here
-	if (nptr[i] == '+')
-		i++;
-	else if (nptr[i] == '-')
-	{
-		m *= -1;
-		i++;
-	}
+		ft_error("not a number"); //?to make sure it's in right fomat
+									//! i have to free here
 	while (nptr[i] >= 48 && nptr[i] <= 57)
 	{
 		result *= 10;
@@ -64,39 +69,7 @@ int	ft_atoi(const char *nptr)
 	return (result * m);
 }
 
-int is_valid_char(char c)
-{
-    if (c == '1' || c == '0' || c == ' '
-	|| c == 'N' || c == 'S' || c == 'W'
-	|| c == 'E'|| c == '\n')
-        return 1;
-    return (0);
-}
-
 int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
-
-// void file_check(char *file)
-// {
-// 	char *map;
-
-// 	char *ext = ft_substr(file, ft_strlen(file) - 4, 4);
-// 	int i = ft_strlen(file);
-// 	while (i > 0)
-// 	{
-// 		if (file[i] == '/')
-// 		{
-// 			map = ft_substr(file, i, ft_strlen(file) - i);
-// 			break;
-// 		}
-// 		i++;
-// 	}
-// 	if (ft_strcmp(ext, ".cub") || ft_strlen(map) <= 4)
-// 	{
-// 		free(ext);
-// 		free(map);
-// 		ft_error("invalid path");
-// 	}
-// }

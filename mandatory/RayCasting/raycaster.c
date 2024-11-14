@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/14 12:41:25 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/14 16:06:37 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	raycaster(t_cub *cub)
 			* sin(angle_range(cub->ray.ray_ngl));
 		cub->var.wall_x = calculate_wall_x(&cub->ray);
 		cub->var.tex_x = get_texture_x(cub, cub->var.wall_x);
-		ft_renderThreeD(cub, cub->ray.distance, cub->var.nray, cub->var.tex_x);
+		render_three_d(cub, cub->ray.distance, cub->var.nray, cub->var.tex_x);
 		cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl + cub->var.ngl);
 		cub->var.nray++;
 	}

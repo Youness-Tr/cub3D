@@ -1,6 +1,18 @@
-# include "../Header/cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/14 12:42:40 by ytarhoua          #+#    #+#             */
+/*   Updated: 2024/11/14 12:43:01 by ytarhoua         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static	int	n_len(int n)
+#include "../Header/cub3d.h"
+
+static int	n_len(int n)
 {
 	long	result;
 	int		i;
@@ -42,37 +54,38 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
-int count_len(t_data *data)
+int	count_len(t_data *data)
 {
-    int i;
-    char *line;
+	int		i;
+	char	*line;
+	char	*ext;
+	int		fd;
 
 	i = 0;
-	// file_check(data->file_path);
-	char *ext = ft_substr(data->file_path, ft_strlen(data->file_path) - 4, 4);
-    int fd = open(data->file_path, O_RDONLY);
-    if (fd == -1 || ft_strcmp(ext, ".cub"))
+	ext = ft_substr(data->file_path, ft_strlen(data->file_path) - 4, 4);
+	fd = open(data->file_path, O_RDONLY);
+	if (fd == -1 || ft_strcmp(ext, ".cub"))
 	{
 		free(ext);
-        ft_error("invalid path");
+		ft_error("invalid path");
 	}
-    line = get_next_line(fd);
-    while (line)
-    {
-        i++;
+	line = get_next_line(fd);
+	while (line)
+	{
+		i++;
 		free(line);
-        line = get_next_line(fd);
+		line = get_next_line(fd);
 	}
 	free(ext);
-	return i;
+	return (i);
 }
 
-void init(t_data *data)
+void	init(t_data *data)
 {
-    int len;
- 
+	int	len;
+
 	len = 0;
-    data->stop = 0;
+	data->stop = 0;
 	data->len = 0;
 	data->NO = NULL;
 	data->SO = NULL;
@@ -83,47 +96,24 @@ void init(t_data *data)
 	len = count_len(data);
 	if (len == 0)
 		ft_error("empty file");
-    data->map = malloc(sizeof(char *) * len);
+	data->map = malloc(sizeof(char *) * len);
 }
 
-void ft_errorv2(t_data *data ,char *s)
+void	ft_errorv2(t_data *data, char *s)
 {
-    int i;
-
-    i = 0;
-    while (s[i])
-    {
-        write(2,&s[i], 1);
-        i++;
-    }
-    write(2,"\n", 1);
-    ft_free(data->map);
-    free(data->EA);
-    free(data->NO);
-    free(data->SO);
-    free(data->WE);
-    exit(1);
-}
-
-void ft_exit(t_data *data)
-{
-	ft_free(data->map);
-    free(data->EA);
-    free(data->NO);
-    free(data->SO);
-    free(data->WE);
-    exit(0);
-}
-
-void ft_free(char **p)
-{
-    int i;
+	int	i;
 
 	i = 0;
-    while (p[i])
-    {
-        free(p[i]);
-        i++;
-    }
-    free(p);
+	while (s[i])
+	{
+		write(2, &s[i], 1);
+		i++;
+	}
+	write(2, "\n", 1);
+	ft_free(data->map);
+	free(data->EA);
+	free(data->NO);
+	free(data->SO);
+	free(data->WE);
+	exit(1);
 }
