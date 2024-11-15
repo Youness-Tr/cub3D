@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/15 14:14:42 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/15 15:39:18 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ static void	init_textures(t_cub *cub)
 }
 
 //!! Youness you need to handle the extention .cub name if i gave you .cub.cub
+int mouse_press(int button, int x, int y, t_cub *cub);
+int mouse_release(int button, int x, int y, t_cub *cub);
+int mouse_mv(int btn, int x, int y, t_cub *cub);
+
 void	init_engin(t_cub *cub, char *file)
 {
 	cub->parse.file_path = file;
@@ -74,6 +78,8 @@ void	init_engin(t_cub *cub, char *file)
 	init_textures(cub);
 	mlx_hook(cub->mlx_w, 2, 1L << 0, &key_press, cub);
 	mlx_hook(cub->mlx_w, 3, 1L << 1, &key_release, cub);
+	mlx_hook(cub->mlx_w, 4, 1L << 2, &mouse_press, cub);
+    mlx_hook(cub->mlx_w, 5, 1L << 3, &mouse_release, cub);
 	mlx_hook(cub->mlx_w, 17, 0, &_close_window, cub);
 	mlx_loop_hook(cub->mlxp, &main_loop, cub);
 	if (!cub->mlxp || !cub->mlx_w)

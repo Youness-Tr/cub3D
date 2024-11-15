@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 14:16:07 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/15 15:39:11 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ int	key_press(int key, t_cub *cub)
 		cub->move_left = 1;
 	else if (key == D)
 		cub->move_right = 1;
-	else if (key == L_ARROW)
-		cub->rotate_left = 1;
-	else if (key == R_ARROW)
-		cub->rotate_right = 1;
 	else if (key == ESC)
 		ft_exit(&cub->parse);
 	return (0);
@@ -41,9 +37,6 @@ int	key_release(int key, t_cub *cub)
 		cub->move_left = 0;
 	else if (key == D)
 		cub->move_right = 0;
-	else if (key == L_ARROW)
-		cub->rotate_left = 0;
-	else if (key == R_ARROW)
 		cub->rotate_right = 0;
 	return (0);
 }
@@ -68,6 +61,43 @@ void	set_pos(t_cub *cub, double x, double y)
 		if (is_wall(cub, x, cub->plyr.plyr_y))
 			cub->plyr.plyr_x = x;
 	}
+}
+int mouse_press(int button, int x, int y, t_cub *cub)
+{
+	(void)x;
+	(void)y;
+    if (button == L_MOUS) {
+        cub->rotate_left = 1;
+    }
+    if (button == R_MOUS) {
+        cub->rotate_right = 1;
+    }
+    return (0);
+}
+
+int mouse_release(int button, int x, int y, t_cub *cub)
+{
+	(void)x;
+	(void)y;
+    if (button == L_MOUS) {
+        cub->rotate_left = 0;
+    }
+    if (button == R_MOUS) {
+        cub->rotate_right = 0;
+    }
+    return (0);
+}
+
+int mouse_mv(int btn, int x, int y, t_cub *cub)
+{
+	(void)x;
+	(void)y;
+	(void)btn;
+	if (cub->rotate_left)
+		cub->plyr.angle -= ROT_SPEED;
+	if (cub->rotate_right)
+		cub->plyr.angle += ROT_SPEED;
+	return (0);
 }
 
 void	mvp(t_cub *cub)

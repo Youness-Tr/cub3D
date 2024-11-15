@@ -1,3 +1,4 @@
+#//!I need to make one makefile for both  mandatory and bonus parts
 CC = cc
 NAME = cub3D_bonus
 # B_NAME = cub3D_bomus

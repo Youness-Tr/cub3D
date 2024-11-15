@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 11:59:15 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/15 15:39:36 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 // # define PLAYER_RADIUS (TILE_SIZE / 10)
 # define PLR 8     // plYER HIGHT WIEGHT (remove this)
 # define NRAYS 540 //! remove this
-# define ROT_SPEED 0.04
-# define P_SPEED 8
+# define ROT_SPEED 0.1
+# define P_SPEED 12
 # define PI 3.141592653589
 # define FOV (67 * PI) / 180
 // # define L_ARROW 65361
@@ -52,8 +52,8 @@
 # define W 13
 # define ESC 53
 # define S 1
-# define L_ARROW 123
-# define R_ARROW 124
+# define L_MOUS 1
+# define R_MOUS 2
 
 /****************TxTColoR*******************/
 # define RED "\033[1;31m"
