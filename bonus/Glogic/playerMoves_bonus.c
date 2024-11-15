@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 15:39:11 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/15 17:17:00 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,9 @@ void	mvp(t_cub *cub)
 int	main_loop(t_cub *cub)
 {
 	mlx_clear_window(cub->mlxp, cub->mlx_w);
-	mvp(cub);
 	raycaster(cub);
+	render_mini_2d(cub);
+	put_line(cub, 10, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP);
+	mvp(cub);
 	return (0);
 }

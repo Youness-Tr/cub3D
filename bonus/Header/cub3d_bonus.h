@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 15:39:36 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/15 17:16:06 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define WIN_W 1920
 # define WIN_H 1080
 # define TILE_SIZE 64
-# define MINI_MAP 0.15
-// # define PLAYER_RADIUS (TILE_SIZE / 10)
+# define MINI_MAP 0.20
+# define PLAYER_RADIUS 15
 # define PLR 8     // plYER HIGHT WIEGHT (remove this)
 # define NRAYS 540 //! remove this
 # define ROT_SPEED 0.1
@@ -202,7 +202,7 @@ char					*ft_strnstr(const char *big, const char *little,
 							size_t len);
 int						count_len(t_data *data);
 void					ft_error(char *str);
-void					render_2d(t_cub *cub);
+// void					render_2d(t_cub *cub);
 void					render_mini_2d(t_cub *cub);
 void					render_three_d(t_cub *cub, double distnce, int raypt,
 							int tex_x);

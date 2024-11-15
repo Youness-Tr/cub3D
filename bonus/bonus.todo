@@ -2,14 +2,16 @@
   "todotree": {
     "tree": [
       {
-        "key": 1731677056843,
+        "key": 1731677101728,
         "children": [],
         "todo": {
-          "content": "Wall collisions.",
-          "id": 1731677056842,
+          "content": "Rotate the point of view with the mouse",
+          "id": 1731677101728,
           "level": "default",
-          "done": false,
-          "start": 1731677056842
+          "done": true,
+          "start": 1731677101728,
+          "focus": false,
+          "end": 1731681731364
         }
       },
       {
@@ -21,6 +23,28 @@
           "level": "default",
           "done": false,
           "start": 1731677046753
+        }
+      },
+      {
+        "key": 1731677056843,
+        "children": [],
+        "todo": {
+          "content": "Wall collisions.",
+          "id": 1731677056842,
+          "level": "default",
+          "done": false,
+          "start": 1731677056842
+        }
+      },
+      {
+        "key": 1731681806428,
+        "children": [],
+        "todo": {
+          "content": "need to fix the slow Rotation movment when i 'm close to the walls",
+          "id": 1731681806428,
+          "level": "default",
+          "done": false,
+          "start": 1731681806428
         }
       },
       {
@@ -44,17 +68,6 @@
           "done": false,
           "start": 1731677092312
         }
-      },
-      {
-        "key": 1731677101728,
-        "children": [],
-        "todo": {
-          "content": "Rotate the point of view with the mouse",
-          "id": 1731677101728,
-          "level": "default",
-          "done": false,
-          "start": 1731677101728
-        }
       }
     ],
     "expandKeys": [
@@ -71,6 +84,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1731677104528"
+    "version": "1731681881981"
   }
 }
