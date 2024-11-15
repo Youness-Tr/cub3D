@@ -6,11 +6,11 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 19:50:38 by kali              #+#    #+#             */
-/*   Updated: 2024/08/14 11:31:57 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/15 11:59:52 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Header/cub3d.h"
+#include "../Header/cub3d_bonus.h"
 
 t_leak	*ft_lstlastv2(t_leak *lst)
 {

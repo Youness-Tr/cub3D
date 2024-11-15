@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render3D.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/14 15:35:26 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:59:52 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Header/cub3d.h"
+#include "../Header/cub3d_bonus.h"
 
 // int get_color(t_cub *cub, int flag) // get the color of the wall
 // {

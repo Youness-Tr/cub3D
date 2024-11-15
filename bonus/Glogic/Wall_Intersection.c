@@ -6,11 +6,11 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:43:37 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/14 12:44:38 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/15 11:59:52 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Header/cub3d.h"
+#include "../Header/cub3d_bonus.h"
 
 int	is_wall(t_cub *cub, double x, double y)
 {

@@ -6,11 +6,11 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:58:11 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/14 12:07:11 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/15 11:59:52 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Header/cub3d.h"
+#include "../Header/cub3d_bonus.h"
 
 double	angle_range(double ngl)
 {

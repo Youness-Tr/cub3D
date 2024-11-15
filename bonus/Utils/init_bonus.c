@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   err.c                                              :+:      :+:    :+:   */
+/*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 11:14:56 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 11:59:52 by ajabri           ###   ########.fr       */
+/*   Created: 2024/09/19 11:23:16 by ajabri            #+#    #+#             */
+/*   Updated: 2024/11/15 12:04:15 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
 
-void	ft_error(char *s)
+char	**get_map(char *file)
 {
-	int	i;
+	int		fd;
+	char	*line;
+	char	*tmp;
+	char	**map;
 
-	i = 0;
-	while (s[i])
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		ft_error("Error: map not found");
+	tmp = NULL;
+	while (1)
 	{
-		write(2, &s[i], 1);
-		i++;
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		tmp = ft_strjoin(tmp, line);
+		free(line);
 	}
-	write(2, "\n", 1);
-	exit(1);
+	map = ft_split(tmp, '\n');
+	return (free(tmp), map);
 }

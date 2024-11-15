@@ -1,16 +1,16 @@
 CC = cc
-NAME = cub3D
+NAME = cub3D_bonus
 # B_NAME = cub3D_bomus
 FSA = 
 CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit -fsanitize=address -g3 #-Lmlx -lmlx_Linux -lXext -lX11 -lm
 #------------------
-SRC = main_cub.c
+SRC = main_cub_bonus.c 
 #Utils/
-SRC += Utils/utils1.c Utils/substr.c Utils/split.c Utils/err.c
-SRC += Utils/init.c
+SRC += Utils/utils1_bonus.c Utils/substr_bonus.c  Utils/split_bonus.c  Utils/err_bonus.c  
+SRC += Utils/init_bonus.c 
 #Parsing/
-SRC += Parsing/parser.c  Parsing/utils.c Parsing/tool.c Parsing/utils2.c Parsing/utils3.c
+SRC += Parsing/parser_bonus.c   Parsing/utils_bonus.c  Parsing/tool_bonus.c  Parsing/utils2_bonus.c Parsing/utils3_bonus.c
 #RayCasting/
 SRC += RayCasting/raycaster.c RayCasting/raytools.c
 #Rendring/

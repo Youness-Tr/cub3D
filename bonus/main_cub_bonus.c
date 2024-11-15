@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   main_cub_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 11:23:16 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/06 11:10:43 by ajabri           ###   ########.fr       */
+/*   Created: 2024/11/15 12:01:51 by ajabri            #+#    #+#             */
+/*   Updated: 2024/11/15 12:01:57 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Header/cub3d.h"
 
-char	**get_map(char *file)
+#include "Header/cub3d_bonus.h"
+
+int	main(int ac, char **av)
 {
-	int		fd;
-	char	*line;
-	char	*tmp;
-	char	**map;
+	t_cub	cub;
 
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		ft_error("Error: map not found");
-	tmp = NULL;
-	while (1)
+	if (ac != 2)
 	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		tmp = ft_strjoin(tmp, line);
-		free(line);
+		ft_error("Error: ./cub3D Assets/maps/file.cub");
+		return (1);
 	}
-	map = ft_split(tmp, '\n');
-	return (free(tmp), map);
+	init_engin(&cub, av[1]);
+	return (0);
 }
