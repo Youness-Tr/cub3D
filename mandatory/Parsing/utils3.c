@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:43:23 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/14 12:43:34 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/15 09:53:48 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ int	find_direction(t_data *data, char c)
 void	ft_exit(t_data *data)
 {
 	ft_free(data->map);
-	free(data->EA);
-	free(data->NO);
-	free(data->SO);
-	free(data->WE);
+	free(data->ea);
+	free(data->no);
+	free(data->so);
+	free(data->we);
 	exit(0);
 }
 

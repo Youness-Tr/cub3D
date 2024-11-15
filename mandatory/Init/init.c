@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/14 09:28:51 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/15 09:59:24 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ static void	load_texture(t_cub *cub, t_img *texture, char *file_path)
 
 static void	init_textures(t_cub *cub)
 {
-	printf(RED "`%s'\n" RES, cub->parse.NO);
-	load_texture(cub, &cub->textures[0], cub->parse.NO);
-	load_texture(cub, &cub->textures[1], cub->parse.EA);
-	load_texture(cub, &cub->textures[2], cub->parse.WE);
-	load_texture(cub, &cub->textures[3], cub->parse.SO);
+	printf(RED "`%s'\n" RES, cub->parse.no);
+	load_texture(cub, &cub->textures[0], cub->parse.no);
+	load_texture(cub, &cub->textures[1], cub->parse.ea);
+	load_texture(cub, &cub->textures[2], cub->parse.we);
+	load_texture(cub, &cub->textures[3], cub->parse.so);
 }
 
 //!! Youness you need to handle the extention .cub name if i gave you .cub.cub

@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:42:40 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/14 12:43:01 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/15 09:55:41 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,12 @@ void	init(t_data *data)
 	len = 0;
 	data->stop = 0;
 	data->len = 0;
-	data->NO = NULL;
-	data->SO = NULL;
-	data->WE = NULL;
-	data->EA = NULL;
-	data->C = 0;
-	data->F = 0;
+	data->no = NULL;
+	data->so = NULL;
+	data->we = NULL;
+	data->ea = NULL;
+	data->c= 0;
+	data->f= 0;
 	len = count_len(data);
 	if (len == 0)
 		ft_error("empty file");
@@ -111,9 +111,9 @@ void	ft_errorv2(t_data *data, char *s)
 	}
 	write(2, "\n", 1);
 	ft_free(data->map);
-	free(data->EA);
-	free(data->NO);
-	free(data->SO);
-	free(data->WE);
+	free(data->ea);
+	free(data->no);
+	free(data->so);
+	free(data->we);
 	exit(1);
 }

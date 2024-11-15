@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:36:17 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/14 12:39:35 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/15 09:56:16 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,20 @@ void	ft_init(char *line, t_data *data)
 {
 	if (!strncmp("NO ", line, 3))
 		//? space to avoid this case NOOO ./texture.xpm
-		data->NO = get_value(line, 2);
+		data->no = get_value(line, 2);
 	else if (!strncmp("SO ", line, 3))
-		data->SO = get_value(line, 2);
+		data->so = get_value(line, 2);
 	else if (!strncmp("WE ", line, 3))
-		data->WE = get_value(line, 2);
+		data->we = get_value(line, 2);
 	else if (!strncmp("EA ", line, 3))
-		data->EA = get_value(line, 2);
+		data->ea = get_value(line, 2);
 	else if (!strncmp("F ", line, 2))
-		data->F = get_haxe(line, 1);
+		data->f= get_haxe(line, 1);
 	else if (!strncmp("C ", line, 2))
-		data->C = get_haxe(line, 1);
+		data->c= get_haxe(line, 1);
 	else if (!strncmp(" ", line, 1) || !strncmp("\n", line, 1))
 		data->stop = 0;
-	else if (data->NO && data->SO && data->WE && data->EA && data->F && data->C)
+	else if (data->no && data->so && data->we && data->ea && data->f&& data->c)
 		data->stop = 1;
 	else
 		ft_error("args error"); //! i have to free here

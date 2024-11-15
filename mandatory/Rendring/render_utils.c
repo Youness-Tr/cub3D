@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:47:30 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/14 15:28:00 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/15 09:58:13 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void	draw_floor_ceiling(t_cub *cub, int raypt, int toppxl, int lowpxl)
 
 	i = lowpxl;
 	while (i < cub->var.s_h)
-		my_mlx_pixel_put(&cub->img, raypt, i++, cub->parse.F);
+		my_mlx_pixel_put(&cub->img, raypt, i++, cub->parse.f);
 	i = 0;
 	while (i < toppxl)
-		my_mlx_pixel_put(&cub->img, raypt, i++, cub->parse.C);
+		my_mlx_pixel_put(&cub->img, raypt, i++, cub->parse.c);
 }

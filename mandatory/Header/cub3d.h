@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/14 16:05:30 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/15 09:55:28 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 // # include <mlx.h>
-#include "../mlx/mlx.h"
+#include "../zmlx/mlx.h"
 # include <math.h>
 # include <fcntl.h>
 # include "get_next_line.h"
@@ -130,12 +130,12 @@ typedef struct vars
 /******************/
 typedef struct s_data
 {
-    char *NO;
-    char *SO;
-    char *WE;
-    char *EA;
-    int F;
-    int C;
+    char *no;
+    char *so;
+    char *we;
+    char *ea;
+    int f;
+    int c;
     char **map;
     char *file_path; //
     int fd;
