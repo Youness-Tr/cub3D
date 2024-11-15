@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   gnl_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 10:29:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 12:35:01 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/14 13:21:41 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/get_next_line.h"
-
 
 int	ft_strlen(char *c)
 {
@@ -112,6 +111,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	ft_memmove(strs, s1, ft_strlen(s1));
 	ft_memmove(strs + ft_strlen(s1), s2, ft_strlen(s2));
 	strs[t_len] = '\0';
-	free(s1); // added by VENOM
+	free(s1);
 	return (strs);
 }
