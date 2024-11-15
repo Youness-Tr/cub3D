@@ -12,15 +12,15 @@ SRC += Utils/init_bonus.c
 #Parsing/
 SRC += Parsing/parser_bonus.c   Parsing/utils_bonus.c  Parsing/tool_bonus.c  Parsing/utils2_bonus.c Parsing/utils3_bonus.c
 #RayCasting/
-SRC += RayCasting/raycaster.c RayCasting/raytools.c
+SRC += RayCasting/raycaster_bonus.c  RayCasting/raytools_bonus.c
 #Rendring/
-SRC += Rendring/render2d.c Rendring/render3D.c Rendring/render_utils.c
+SRC += Rendring/render2d_bonus.c Rendring/render3D_bonus.c Rendring/render_utils_bonus.c 
 #Gnl/
 SRC += Gnl/get_next_line.c Gnl/gnl_utils.c
 #Glogic/
-SRC += Glogic/playerMoves.c Glogic/Wall_Intersection.c
+SRC += Glogic/playerMoves_bonus.c Glogic/Wall_Intersection_bonus.c
 #Init/
-SRC += Init/init1.c Init/init.c
+SRC += Init/init1_bonus.c Init/init_bonus.c
 #------------------
 
 OBJ = $(SRC:.c=.o)
