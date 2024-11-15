@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:57:28 by kali              #+#    #+#             */
-/*   Updated: 2024/11/14 09:25:51 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/15 10:16:41 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_map(t_cub *cub)
 		ft_errorv2(&cub->parse, "Error: Could not load map");
 	cub->map.map_h = cub->parse.lines;
 	cub->map.map_w = cub->parse.map_len;
-	cub->map.posx = cub->parse.player_Y;
+	cub->map.posx = cub->parse.player_y;
 	cub->map.posy = cub->parse.player_x;
 }
 
@@ -30,7 +30,7 @@ void	player_ngl(t_cub *cub)
 	int	y;
 
 	x = cub->parse.player_x;
-	y = cub->parse.player_Y;
+	y = cub->parse.player_y;
 	if (cub->parse.map[y][x] == 'E')
 		cub->plyr.angle = (90 * PI) / 180;
 	else if (cub->parse.map[y][x] == 'N')

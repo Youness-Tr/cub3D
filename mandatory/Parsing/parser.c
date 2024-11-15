@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/14 12:26:52 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/15 10:16:20 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_check(t_data *data)
 			if (find_direction(data, data->map[i][j])) //! check player here
 			{
 				data->player_x = i;
-				data->player_Y = j;
+				data->player_y = j;
 			}
 			if (!is_valid_char(data->map[i][j]))
 				return (1);
