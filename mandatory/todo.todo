@@ -58,26 +58,30 @@
           "content": "mandatory_norms",
           "id": 1731097734226,
           "level": "default",
-          "done": false,
-          "start": 1731097734226
+          "done": true,
+          "start": 1731097734226,
+          "focus": false,
+          "end": 1731662888192
         }
       },
       {
         "key": 1731429602295,
         "children": [],
         "todo": {
-          "content": "segf in file :: non texture load or other chars are exist",
+          "content": "Fix texture duplication",
           "id": 1731429602295,
           "level": "default",
           "done": false,
-          "start": 1731429602295
+          "start": 1731429602295,
+          "focus": false,
+          "end": 1731662897576
         }
       },
       {
         "key": 1731429657727,
         "children": [],
         "todo": {
-          "content": "colors check and form (3 values)",
+          "content": "colors check and form (3 values) && handle whitespases",
           "id": 1731429657727,
           "level": "default",
           "done": false,
@@ -102,8 +106,10 @@
           "content": "check if all textures are load and colors also",
           "id": 1731429726160,
           "level": "default",
-          "done": false,
-          "start": 1731429726160
+          "done": true,
+          "start": 1731429726160,
+          "focus": false,
+          "end": 1731663912988
         }
       },
       {
@@ -115,6 +121,17 @@
           "level": "default",
           "done": false,
           "start": 1731583466669
+        }
+      },
+      {
+        "key": 1731664173411,
+        "children": [],
+        "todo": {
+          "content": "check if there are more than one player",
+          "id": 1731664173411,
+          "level": "default",
+          "done": false,
+          "start": 1731664173411
         }
       }
     ],
@@ -132,6 +149,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1731583501298"
+    "version": "1731664195704"
   }
 }
