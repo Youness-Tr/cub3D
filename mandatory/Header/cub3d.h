@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 10:24:51 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/15 10:26:59 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define ROT_SPEED 0.04
 # define P_SPEED 8
 # define PI 3.141592653589
-// # define FOV (67 * PI) / 180
+# define FOV (67 * PI) / 180
 // # define L_ARROW 65361
 // #define R_ARROW 65363
 // #define W  119
