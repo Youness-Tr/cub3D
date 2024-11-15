@@ -177,18 +177,16 @@ struct s_mlx // the mlx structure
 int						get_win_h(char **av);
 void					ft_putstr(char *s);
 void					ft_putstrv2(const char *s, char *str);
-char					*ft_substr(char *s, unsigned int start, size_t len);
-char					**ft_split(char *s, char c);
 void					ft_error(char *s);
 void					ft_errorv2(t_data *data, char *s);
 void					ft_exit(t_data *data);
 void					ft_free(char **p);
 char					**get_map(char *file);
-void					*get_value(char *s, unsigned int start);
-int						get_haxe(char *s, unsigned int start);
+void	*get_value(char *s, unsigned int start, t_leak *free);
+int	get_haxe(char *s, unsigned int start, t_leak *free);
 void					ft_init(char *line, t_data *data);
 int						find_direction(t_data *data, char c);
-char					*join_space(char *s1, char *s2);
+char	*join_space(char *s1, char *s2, t_leak *freee);
 void					my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int						raycaster(t_cub *cub);
 void					put_line(t_cub *cub, int len, int x, int y);
@@ -240,6 +238,11 @@ int						get_texture_x(t_cub *cub, double wall_x);
 int						wall_hit(float x, float y, t_cub *mlx);
 
 // Leaks:
-void					*ft_malloc(t_cub *cub, size_t size);
+void					*ft_malloc(t_leak *leaks, size_t size);
+void					ft_free_all(t_cub *cub);
+char	*ft_strdupv2(char *s1, t_leak *leak);
+char	*ft_strjoinv2(char *s1, char *s2, t_leak *leak);
+char	*ft_substrv2(char *s, unsigned int start, size_t len, t_leak *leak);
+char	**ft_splitv2(char *s, char c, t_leak *leak);
 
 #endif

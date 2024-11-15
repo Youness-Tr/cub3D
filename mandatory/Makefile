@@ -3,12 +3,12 @@ NAME = cub3D
 # B_NAME = cub3D_bomus
 FSA = 
 CFLAGS = -Wall -Wextra -Werror
-MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit #-fsanitize=address -g3 #-Lmlx -lmlx_Linux -lXext -lX11 -lm
+MLX_FLAGS = -Lmlx -lmlx_Linux -lXext -lX11 -lm -fsanitize=address -g3 #-Lmlx -lmlx -framework OpenGL -framework AppKit -fsanitize=address -g3
 #------------------
 SRC = main_cub.c
 #Utils/
 SRC += Utils/utils1.c Utils/substr.c Utils/split.c Utils/err.c
-SRC += Utils/init.c
+SRC += Utils/init.c Utils/ft_strdup.c
 #Parsing/
 SRC += Parsing/parser.c  Parsing/utils.c Parsing/tool.c Parsing/utils2.c Parsing/utils3.c
 #RayCasting/
@@ -21,6 +21,8 @@ SRC += Gnl/get_next_line.c Gnl/gnl_utils.c
 SRC += Glogic/playerMoves.c Glogic/Wall_Intersection.c
 #Init/
 SRC += Init/init1.c Init/init.c
+
+SRC += Leaks/garbedge.c Leaks/free_all.c
 #------------------
 
 OBJ = $(SRC:.c=.o)

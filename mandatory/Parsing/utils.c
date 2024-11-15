@@ -49,14 +49,14 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 int	ft_atoi(const char *nptr)
 {
 	int			i;
-	int			m;
+	// int			m;
 	long long	result;
 
-	m = 1;
 	result = 0;
 	i = 0;
 	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
-		ft_error("not a number"); //?to make sure it's in right fomat
+		i++;
+		// ft_error("not a number"); //?to make sure it's in right fomat
 									//! i have to free here
 	while (nptr[i] >= 48 && nptr[i] <= 57)
 	{
@@ -64,9 +64,9 @@ int	ft_atoi(const char *nptr)
 		result += nptr[i] - 48;
 		i++;
 	}
-	if ((result * m) > 255)
+	if ((result > 255))
 		ft_error("not valid number"); //! i have to free here
-	return (result * m);
+	return (result);
 }
 
 int	create_trgb(int t, int r, int g, int b)

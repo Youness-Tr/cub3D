@@ -12,7 +12,7 @@
 
 #include "../Header/cub3d.h"
 
-static int	n_len(int n)
+int	n_len(int n)
 {
 	long	result;
 	int		i;
@@ -27,33 +27,6 @@ static int	n_len(int n)
 	return (i);
 }
 
-char	*ft_itoa(int n)
-{
-	int		i;
-	long	result;
-	char	*str;
-
-	i = 0;
-	if (n <= 0)
-		i++;
-	i += n_len(n);
-	str = malloc(sizeof(char) * (i + 1));
-	if (!str)
-		return (NULL);
-	result = (long)n;
-	str[i] = '\0';
-	if (result < 0)
-		result *= -1;
-	while (i)
-	{
-		str[--i] = result % 10 + 48;
-		result /= 10;
-	}
-	if (n < 0)
-		str[i] = '-';
-	return (str);
-}
-
 int	count_len(t_data *data)
 {
 	int		i;
@@ -62,11 +35,11 @@ int	count_len(t_data *data)
 	int		fd;
 
 	i = 0;
-	ext = ft_substr(data->file_path, ft_strlen(data->file_path) - 4, 4);
+	ext = ft_substrv2(data->file_path, ft_strlen(data->file_path) - 4, 4, data->info->free);
 	fd = open(data->file_path, O_RDONLY);
 	if (fd == -1 || ft_strcmp(ext, ".cub"))
 	{
-		free(ext);
+		// free(ext);
 		ft_error("invalid path");
 	}
 	line = get_next_line(fd);
@@ -76,7 +49,7 @@ int	count_len(t_data *data)
 		free(line);
 		line = get_next_line(fd);
 	}
-	free(ext);
+	// free(ext);
 	return (i);
 }
 
@@ -93,10 +66,12 @@ void	init(t_data *data)
 	data->ea = NULL;
 	data->c= 0;
 	data->f= 0;
+	// data->info->free->address = NULL;
+	// data->info->free->next = NULL;
 	len = count_len(data);
 	if (len == 0)
 		ft_error("empty file");
-	data->map = malloc(sizeof(char *) * len);
+	data->map = ft_malloc(data->info->free, sizeof(char *) * len);
 }
 
 void	ft_errorv2(t_data *data, char *s)

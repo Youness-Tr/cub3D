@@ -74,7 +74,7 @@ static int	ft_mini_malloc(char **ptr, char *s, char c)
 	return (1);
 }
 
-char	**ft_split(char *s, char c)
+char	**ft_splitv2(char *s, char c)
 {
 	char	**dp;
 

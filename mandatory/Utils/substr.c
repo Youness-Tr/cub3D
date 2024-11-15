@@ -32,17 +32,18 @@ static char	*ft_while(char *ptr, char *st, unsigned int star, size_t lent)
 	return (ptr);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substrv2(char *s, unsigned int start, size_t len, t_leak *leak)
 {
 	char	*str;
 
 	if (!s)
 		return (NULL);
 	if (start >= (unsigned int)ft_strlen(s))
-		return (ft_strdup(""));
+		return (ft_strdupv2("", leak));
 	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
-	str = (char *)malloc((len + 1) * sizeof(char));
+	printf("hhhhhhhhhhhhh\n");
+	str = (char *)ft_malloc(leak, (len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	ft_while(str, s, start, len);

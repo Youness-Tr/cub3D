@@ -89,6 +89,7 @@ char	*read_f(int fd, char *save)
 		tmp = ft_strdup(save);
 		free(save);
 		save = ft_strjoin(tmp, buffer);
+		// free(tmp); // edit by VENOM
 		if (ft_strchr(save, '\n'))
 			break ;
 	}

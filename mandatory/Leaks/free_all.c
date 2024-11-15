@@ -1,36 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 11:23:16 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/06 11:10:43 by ajabri           ###   ########.fr       */
+/*   Created: 2024/06/25 16:50:28 by kali              #+#    #+#             */
+/*   Updated: 2024/08/15 12:55:55 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d.h"
 
-// char	**get_map(char *file)
-// {
-// 	int		fd;
-// 	char	*line;
-// 	char	*tmp;
-// 	char	**map;
+void	ft_free_all(t_cub *cub)
+{
+	t_leak	*current;
+	t_leak	*next;
 
-// 	fd = open(file, O_RDONLY);
-// 	if (fd < 0)
-// 		ft_error("Error: map not found");
-// 	tmp = NULL;
-// 	while (1)
-// 	{
-// 		line = get_next_line(fd);
-// 		if (!line)
-// 			break ;
-// 		tmp = ft_strjoin(tmp, line);
-// 		free(line);
-// 	}
-// 	map = ft_split(tmp, '\n');
-// 	return (free(tmp), map);
-// }
+	current = cub->free;
+	while (current != NULL)
+	{
+		next = current->next;
+		free(current->address);
+		free(current);
+		current = next;
+	}
+	cub->free = NULL;
+}
+
+t_leak	*ft_leaks_lstlast(t_leak *lst)
+{
+	t_leak	*tmp;
+
+	if (!lst)
+		return (0);
+	tmp = lst;
+	while (tmp->next != NULL)
+	{
+		tmp = tmp->next;
+	}
+	return (tmp);
+}

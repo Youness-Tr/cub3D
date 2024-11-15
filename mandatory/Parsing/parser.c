@@ -16,8 +16,10 @@ int	ft_check(t_data *data)
 {
 	int	i;
 	int	j;
+	int ply;
 
 	i = 0;
+	ply = 0;
 	while (data->map[i])
 	{
 		j = -1;
@@ -27,12 +29,15 @@ int	ft_check(t_data *data)
 			{
 				data->player_x = i;
 				data->player_y = j;
+				ply++;
 			}
 			if (!is_valid_char(data->map[i][j]))
 				return (1);
 		}
 		i++;
 	}
+	if (ply > 1 || ply == 0)
+		return (1);
 	data->lines = i - 1;
 	return (0);
 }
@@ -55,8 +60,8 @@ void	add_to_map(t_data *data)
 		if (ft_strlen(data->map[i]) < data->map_w)
 		{
 			while (ft_strlen(data->map[i]) < data->map_w)
-				data->map[i] = join_space(data->map[i], " ");
-			data->map[i] = ft_strjoin(data->map[i], "\n");
+				data->map[i] = join_space(data->map[i], " ", data->info->free);
+			data->map[i] = ft_strjoinv2(data->map[i], "\n", data->info->free);
 		}
 		i++;
 	}
@@ -78,7 +83,7 @@ void	map_fill(t_data *data)
 			ft_init(line, data);
 		if (data->stop)
 		{
-			data->map[j] = ft_strdup(line);
+			data->map[j] = ft_strdupv2(line, data->info->free);
 			j++;
 		}
 		free(line);
@@ -131,5 +136,7 @@ int	parser(t_data *data)
 		ft_errorv2(data, "Error\n");
 	add_to_map(data);
 	map_scan(data);
+	ft_free_all(data->info);
+	exit(0);
 	return (0);
 }

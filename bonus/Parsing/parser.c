@@ -118,7 +118,7 @@ int ft_check(t_data *data)
     return 0;
 }
 
-char	*join_space(char *s1, char *s2)
+char	*join_space(char *s1, char *s2, t_leak *leak)
 {
 	int		len1;
     int     i;
@@ -133,7 +133,7 @@ char	*join_space(char *s1, char *s2)
             break;
         i++;
     }
-	str = malloc((i + 2) * sizeof(char));
+	str = ft_malloc(leak, (i + 2) * sizeof(char));
 	if (!str)
 		return (NULL);
 	len1 = 0;
@@ -166,7 +166,7 @@ void add_to_map(t_data *data)
         if (ft_strlen(data->map[i]) < data->map_w)
         {
             while (ft_strlen(data->map[i]) < data->map_w)
-                data->map[i] = join_space(data->map[i], " ");
+                data->map[i] = join_space(data->map[i], " ", data->info);
             data->map[i] = ft_strjoin(data->map[i], "\n");
         }
         i++;
