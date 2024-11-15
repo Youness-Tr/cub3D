@@ -21,8 +21,10 @@
           "content": "A minimap system",
           "id": 1731677046753,
           "level": "default",
-          "done": false,
-          "start": 1731677046753
+          "done": true,
+          "start": 1731677046753,
+          "focus": false,
+          "end": 1731691609882
         }
       },
       {
@@ -32,8 +34,10 @@
           "content": "Wall collisions.",
           "id": 1731677056842,
           "level": "default",
-          "done": false,
-          "start": 1731677056842
+          "done": true,
+          "start": 1731677056842,
+          "focus": false,
+          "end": 1731691615890
         }
       },
       {
@@ -84,6 +88,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1731681881981"
+    "version": "1731691615946"
   }
 }

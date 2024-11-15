@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:49:43 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 17:14:49 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/15 17:25:03 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,60 +89,14 @@ void	render_circle(t_img *img, int cx, int cy, int radius, int color)
 	}
 }
 
-// void render_mini_2d(t_cub *cub)
-// {
-//     int i;
-//     int j;
-//     int len = 0;
-
-//     // Calculate the length of the map row
-//     while (cub->map.map2d[0][len] && cub->map.map2d[0][len] != ' ')
-//         len++;
-
-//     // Mark the player's position on the map
-//     cub->map.map2d[cub->parse.player_x][cub->parse.player_y] = 'P';
-
-//     // Calculate the minimap dimensions
-//     int minimap_width = cub->var.s_w *MINI_MAP;
-//     // int minimap_height = cub->var.s_h * MINI_MAP;
-//     float tile_size = (float)minimap_width / len;
-
-//     // Render the map tiles
-//     for (j = 0; j < cub->map.map_h; j++)
-//     {
-//         for (i = 0; i < len; i++)
-//         {
-//             int x = i * tile_size;
-//             int y = j * tile_size;
-//             if (cub->map.map2d[j][i] == '1' || cub->map.map2d[j][i] == ' ')
-//             {
-//                 render_square(&cub->img, x, y, tile_size, 0xC0C0C0);
-//             }
-//             else if (cub->map.map2d[j][i] == '0' || cub->map.map2d[j][i] == 'P')
-//             {
-//                 render_square(&cub->img, x, y, tile_size, 0x654321);
-//             }
-//         }
-//     }
-
-//     // Render the player on the minimap
-//     int player_x = cub->plyr.plyr_x * tile_size / TILE_SIZE;
-//     int player_y = cub->plyr.plyr_y * tile_size / TILE_SIZE;
-//     render_circle(&cub->img, player_x, player_y, PLAYER_RADIUS * tile_size / TILE_SIZE, 0x000000);
-
-//     // Display the minimap
-//     mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
-// }
-
 void	render_mini_2d(t_cub *cub)
 {
 	int i;
 	int j;
+	int len;
 
 	j = 0;
-	// mlx_clear_window(cub->mlxp, cub->mlx_w);
-	// int len = ft_strlen(cub->map.map2d[0]);
-	int len = 0;
+	len = 0;
 	while (cub->map.map2d[0][len] && cub->map.map2d[0][len] !=' ')
 		len++;
 	cub->map.map2d[cub->parse.player_x][cub->parse.player_y] = 'P';
@@ -166,6 +120,5 @@ void	render_mini_2d(t_cub *cub)
 		j++;
 	}
 	render_circle(&cub->img, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP, PLAYER_RADIUS * MINI_MAP, 0xFF0000);
-	put_line(cub, 15, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP);
 	mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
 }
