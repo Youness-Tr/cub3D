@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tool.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:36:17 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/15 09:56:16 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/16 23:27:59 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d.h"
 
-void	*get_value(char *s, unsigned int start, t_leak *free)
+void	*get_value(char *s, unsigned int start, t_cub *cub)
 {
 	size_t	s_len;
 	char	*ss;
@@ -24,11 +24,11 @@ void	*get_value(char *s, unsigned int start, t_leak *free)
 		start++;
 	while (s_len > 0 && s[s_len - 1] == ' ')
 		s_len--;
-	ss = ft_substrv2(s, start, s_len - start - 1, free);
+	ss = ft_substrv2(s, start, s_len - start - 1, cub);
 	return (ss);
 }
 
-int	get_haxe(char *s, unsigned int start, t_leak *free)
+int	get_haxe(char *s, unsigned int start, t_cub *cub)
 {
 	size_t	s_len;
 	char	*ss;
@@ -42,8 +42,8 @@ int	get_haxe(char *s, unsigned int start, t_leak *free)
 		start++;
 	while (s_len > 0 && s[s_len - 1] == ' ')
 		s_len--;
-	ss = ft_substrv2(s, start, s_len - start, free);
-	db = ft_splitv2(ss, ',', free);
+	ss = ft_substrv2(s, start, s_len - start, cub);
+	db = ft_splitv2(ss, ',', cub);
 	if (!db || !db[0] || !db[1] || !db[2])
 	{
 		// free(ss);
@@ -61,17 +61,17 @@ void	ft_init(char *line, t_data *data)
 {
 	if (!strncmp("NO ", line, 3) && data->no == NULL)
 		//? space to avoid this case NOOO ./texture.xpm
-		data->no = get_value(line, 2, data->info->free);
+		data->no = get_value(line, 2, data->info);
 	else if (!strncmp("SO ", line, 3) && data->so == NULL)
-		data->so = get_value(line, 2, data->info->free);
+		data->so = get_value(line, 2, data->info);
 	else if (!strncmp("WE ", line, 3) && data->we == NULL)
-		data->we = get_value(line, 2, data->info->free);
+		data->we = get_value(line, 2, data->info);
 	else if (!strncmp("EA ", line, 3) && data->ea == NULL)
-		data->ea = get_value(line, 2, data->info->free);
+		data->ea = get_value(line, 2, data->info);
 	else if (!strncmp("F ", line, 2) && data->f == 0)
-		data->f= get_haxe(line, 1, data->info->free);
+		data->f= get_haxe(line, 1, data->info);
 	else if (!strncmp("C ", line, 2) && data->c == 0)
-		data->c= get_haxe(line, 1, data->info->free);
+		data->c= get_haxe(line, 1, data->info);
 	else if (!strncmp(" ", line, 1) || !strncmp("\n", line, 1))
 		data->stop = 0;
 	else if (data->no && data->so && data->we && data->ea && data->f&& data->c)
@@ -80,7 +80,7 @@ void	ft_init(char *line, t_data *data)
 		ft_error("args error"); //! i have to free here
 }
 
-char	*join_space(char *s1, char *s2, t_leak *freee)
+char	*join_space(char *s1, char *s2, t_cub *cub)
 {
 	int		len1;
 	int		i;
@@ -93,7 +93,7 @@ char	*join_space(char *s1, char *s2, t_leak *freee)
 			break ;
 		i++;
 	}
-	str = ft_malloc(freee, (i + 2) * sizeof(char));
+	str = ft_malloc(cub, (i + 2) * sizeof(char));
 	if (!str)
 		return (NULL);
 	len1 = 0;
@@ -104,6 +104,6 @@ char	*join_space(char *s1, char *s2, t_leak *freee)
 	}
 	str[len1] = s2[0];
 	str[len1 + 1] = '\0';
-	free(s1);
+	// free(s1);
 	return (str);
 }

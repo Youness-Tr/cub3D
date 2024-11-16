@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/15 09:59:24 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/16 22:42:53 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	init_engin(t_cub *cub, char *file)
 {
 	cub->parse.file_path = file;
 	cub->parse.info = cub;
+	// cub->free = NULL;
 	parser(&cub->parse);
 	init_map(cub);
 	init_plyr(cub);

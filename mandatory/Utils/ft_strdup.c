@@ -1,6 +1,6 @@
 #include "../Header/cub3d.h"
 
-char	*ft_strdupv2(char *s1, t_leak *leak)
+char	*ft_strdupv2(char *s1, t_cub *leak)
 {
 	char	*str;
 	size_t	i;
@@ -22,7 +22,7 @@ char	*ft_strdupv2(char *s1, t_leak *leak)
 	return (str);
 }
 
-char	*ft_strjoinv2(char *s1, char *s2, t_leak *leak)
+char	*ft_strjoinv2(char *s1, char *s2, t_cub *cub)
 {
 	char	*strs;
 	int		t_len;
@@ -34,12 +34,12 @@ char	*ft_strjoinv2(char *s1, char *s2, t_leak *leak)
 	if (!s2)
 		return (ft_strdup(s1));
 	t_len = ft_strlen(s1) + ft_strlen(s2);
-	strs = ft_malloc(leak, (t_len + 1) * sizeof(char));
+	strs = ft_malloc(cub, (t_len + 1) * sizeof(char));
 	if (!strs)
 		return (NULL);
 	ft_memmove(strs, s1, ft_strlen(s1));
 	ft_memmove(strs + ft_strlen(s1), s2, ft_strlen(s2));
 	strs[t_len] = '\0';
-	free(s1);
+	// free(s1);
 	return (strs);
 }

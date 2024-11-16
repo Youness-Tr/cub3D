@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 10:26:59 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/16 23:19:42 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,11 +182,11 @@ void					ft_errorv2(t_data *data, char *s);
 void					ft_exit(t_data *data);
 void					ft_free(char **p);
 char					**get_map(char *file);
-void	*get_value(char *s, unsigned int start, t_leak *free);
-int	get_haxe(char *s, unsigned int start, t_leak *free);
+void	*get_value(char *s, unsigned int start, t_cub *cub);
+int	get_haxe(char *s, unsigned int start, t_cub *cub);
 void					ft_init(char *line, t_data *data);
 int						find_direction(t_data *data, char c);
-char	*join_space(char *s1, char *s2, t_leak *freee);
+char	*join_space(char *s1, char *s2, t_cub *cub);
 void					my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int						raycaster(t_cub *cub);
 void					put_line(t_cub *cub, int len, int x, int y);
@@ -238,11 +238,12 @@ int						get_texture_x(t_cub *cub, double wall_x);
 int						wall_hit(float x, float y, t_cub *mlx);
 
 // Leaks:
-void					*ft_malloc(t_leak *leaks, size_t size);
-void					ft_free_all(t_cub *cub);
-char	*ft_strdupv2(char *s1, t_leak *leak);
-char	*ft_strjoinv2(char *s1, char *s2, t_leak *leak);
-char	*ft_substrv2(char *s, unsigned int start, size_t len, t_leak *leak);
-char	**ft_splitv2(char *s, char c, t_leak *leak);
+void *ft_malloc(t_cub *cub, size_t size);
+void					ft_free_all(t_leak *cub);
+char	*ft_strdupv2(char *s1, t_cub *leak);
+char	*ft_strjoinv2(char *s1, char *s2, t_cub *cub);
+char	*ft_substrv2(char *s, unsigned int start, size_t len, t_cub *cub);
+char	**ft_splitv2(char *s, char c, t_cub *cub);
+
 
 #endif

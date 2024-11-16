@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:42:40 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/15 09:55:41 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/16 23:24:07 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	count_len(t_data *data)
 	int		fd;
 
 	i = 0;
-	ext = ft_substrv2(data->file_path, ft_strlen(data->file_path) - 4, 4, data->info->free);
+	ext = ft_substrv2(data->file_path, ft_strlen(data->file_path) - 4, 4, data->info);
 	fd = open(data->file_path, O_RDONLY);
 	if (fd == -1 || ft_strcmp(ext, ".cub"))
 	{
@@ -71,7 +71,7 @@ void	init(t_data *data)
 	len = count_len(data);
 	if (len == 0)
 		ft_error("empty file");
-	data->map = ft_malloc(data->info->free, sizeof(char *) * len);
+	data->map = ft_malloc(data->info, sizeof(char *) * len);
 }
 
 void	ft_errorv2(t_data *data, char *s)

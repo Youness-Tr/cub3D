@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   substr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 10:15:47 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/12 12:37:11 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/16 23:22:53 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,17 @@ static char	*ft_while(char *ptr, char *st, unsigned int star, size_t lent)
 	return (ptr);
 }
 
-char	*ft_substrv2(char *s, unsigned int start, size_t len, t_leak *leak)
+char	*ft_substrv2(char *s, unsigned int start, size_t len, t_cub *cub)
 {
 	char	*str;
 
 	if (!s)
 		return (NULL);
 	if (start >= (unsigned int)ft_strlen(s))
-		return (ft_strdupv2("", leak));
+		return (ft_strdupv2("", cub));
 	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
-	printf("hhhhhhhhhhhhh\n");
-	str = (char *)ft_malloc(leak, (len + 1) * sizeof(char));
+	str = (char *)ft_malloc(cub, (len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	ft_while(str, s, start, len);

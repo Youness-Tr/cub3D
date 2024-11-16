@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 10:16:20 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/16 23:31:17 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	add_to_map(t_data *data)
 		if (ft_strlen(data->map[i]) < data->map_w)
 		{
 			while (ft_strlen(data->map[i]) < data->map_w)
-				data->map[i] = join_space(data->map[i], " ", data->info->free);
-			data->map[i] = ft_strjoinv2(data->map[i], "\n", data->info->free);
+				data->map[i] = join_space(data->map[i], " ", data->info);
+			data->map[i] = ft_strjoinv2(data->map[i], "\n", data->info);
 		}
 		i++;
 	}
@@ -83,7 +83,7 @@ void	map_fill(t_data *data)
 			ft_init(line, data);
 		if (data->stop)
 		{
-			data->map[j] = ft_strdupv2(line, data->info->free);
+			data->map[j] = ft_strdupv2(line, data->info);
 			j++;
 		}
 		free(line);
@@ -128,6 +128,17 @@ void	map_scan(t_data *data)
 	}
 }
 
+void print_leaks(t_leak *cub)
+{
+    t_leak *current = cub;
+
+    while (current != NULL)
+    {
+        printf("Leak at %p\n", current->address);
+        current = current->next;
+    }
+}
+
 int	parser(t_data *data)
 {
 	init(data);
@@ -136,7 +147,9 @@ int	parser(t_data *data)
 		ft_errorv2(data, "Error\n");
 	add_to_map(data);
 	map_scan(data);
-	ft_free_all(data->info);
+	// print_leaks(data->info->free);
+	// printf("--------------------------------------------------------\n");
+	ft_free_all(data->info->free);
 	exit(0);
 	return (0);
 }

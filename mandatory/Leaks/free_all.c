@@ -3,29 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 16:50:28 by kali              #+#    #+#             */
-/*   Updated: 2024/08/15 12:55:55 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/16 22:45:53 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d.h"
 
-void	ft_free_all(t_cub *cub)
+void	ft_free_all(t_leak *cub)
 {
-	t_leak	*current;
+	// t_leak	*current;
 	t_leak	*next;
 
-	current = cub->free;
-	while (current != NULL)
+	// current = cub;
+		// printf("address == %p\n", current->address);
+	while (cub != NULL)
 	{
-		next = current->next;
-		free(current->address);
-		free(current);
-		current = next;
+		next = cub->next;
+		free(cub->address);
+		free(cub);
+		cub = next;
 	}
-	cub->free = NULL;
+	cub = NULL;
 }
 
 t_leak	*ft_leaks_lstlast(t_leak *lst)
