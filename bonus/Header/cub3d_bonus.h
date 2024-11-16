@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 17:16:06 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/16 09:18:53 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ struct s_mlx // the mlx structure
 	t_player	plyr;
 	t_data		parse;
 	t_vars		var;
-	t_img		textures[4];
+	t_img		textures[5];
 	t_leak		*free;
 	int			move_forward;
 	int			move_backward;
@@ -243,5 +243,10 @@ int						wall_hit(float x, float y, t_cub *mlx);
 
 // Leaks:
 void					*ft_malloc(t_cub *cub, size_t size);
+
+//Events
+int mouse_press(int button, int x, int y, t_cub *cub);
+int mouse_release(int button, int x, int y, t_cub *cub);
+int mouse_mv(int btn, int x, int y, t_cub *cub);
 
 #endif

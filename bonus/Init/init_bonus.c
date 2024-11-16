@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/15 15:39:18 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/16 09:29:24 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,21 @@ static void	init_textures(t_cub *cub)
 	load_texture(cub, &cub->textures[1], cub->parse.ea);
 	load_texture(cub, &cub->textures[2], cub->parse.we);
 	load_texture(cub, &cub->textures[3], cub->parse.so);
+	load_texture(cub, &cub->textures[4], "Assets/textures/wepon.xpm");
 }
 
 //!! Youness you need to handle the extention .cub name if i gave you .cub.cub
-int mouse_press(int button, int x, int y, t_cub *cub);
-int mouse_release(int button, int x, int y, t_cub *cub);
-int mouse_mv(int btn, int x, int y, t_cub *cub);
+
+
+// int render_wepon(t_cub *cub)
+// {
+// 	printf(RED"rendering wepon\n"RES);
+// 	int weapon_x = (cub->var.s_w ) / 2;
+//     int weapon_y = cub->var.s_h - cub->textures[4].h;
+//     mlx_put_image_to_window(cub->mlxp, cub->mlx_w, &cub->textures[4], weapon_x, weapon_y);
+
+// 	return (0);
+// }
 
 void	init_engin(t_cub *cub, char *file)
 {
@@ -82,6 +91,8 @@ void	init_engin(t_cub *cub, char *file)
     mlx_hook(cub->mlx_w, 5, 1L << 3, &mouse_release, cub);
 	mlx_hook(cub->mlx_w, 17, 0, &_close_window, cub);
 	mlx_loop_hook(cub->mlxp, &main_loop, cub);
+	// mlx_loop_hook(cub->mlxp, &render_wepon, &cub);
+	// mlx_do_sync(cub->mlxp);
 	if (!cub->mlxp || !cub->mlx_w)
 		ft_errorv2(&cub->parse, "Error: Failed to initialize MLX.");
 	mlx_loop(cub->mlxp);

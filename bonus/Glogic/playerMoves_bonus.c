@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 17:25:28 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/16 09:31:01 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,16 @@ void	mvp(t_cub *cub)
 	set_pos(cub, cub->var.new_x, cub->var.new_y);
 }
 
+int render_wepon(t_cub *cub)
+{
+	printf(RED"rendering wepon\n"RES);
+	int weapon_x = (cub->var.s_w ) / 2;
+    int weapon_y = cub->var.s_h - cub->textures[4].h;
+	
+    mlx_put_image_to_window(cub->mlxp, cub->mlx_w, &cub->textures[4], weapon_x, weapon_y);
+	return (0);
+}
+
 int	main_loop(t_cub *cub)
 {
 	mlx_clear_window(cub->mlxp, cub->mlx_w);
@@ -134,5 +144,6 @@ int	main_loop(t_cub *cub)
 	render_mini_2d(cub);
 	put_line(cub, 10, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP);
 	mvp(cub);
+	render_wepon(cub);
 	return (0);
 }
