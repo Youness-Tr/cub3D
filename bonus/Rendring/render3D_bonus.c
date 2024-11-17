@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 14:12:30 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/17 16:30:57 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,26 @@
 
 t_img	*get_texture(t_cub *cub, int flag) // get the color of the wall
 {
+	
 	cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl); // normalize the angle
-	if (flag == 0)
+	if (cub->ray.hit_door)
+		return (&cub->textures[4]);
+	else if (flag == 0)
 	{
 		if (cub->ray.ray_ngl > PI / 2 && cub->ray.ray_ngl < 3 * (PI / 2))
-			return (&cub->textures[0]); // west wall
+			return (&cub->textures[0]);
 		else
-			return (&cub->textures[1]); // east wall
+			return (&cub->textures[1]);
 	}
 	else
 	{
 		if (cub->ray.ray_ngl > 0 && cub->ray.ray_ngl < PI)
-			return (&cub->textures[2]); // south wall
+			return (&cub->textures[2]);
 		else
-			return (&cub->textures[3]); // north wall
+			return (&cub->textures[3]);
 	}
 }
+
 
 void	render_textured_wall(t_cub *cub, int x, int wall_height, int wall_top,
 		int wall_bottom, int tex_x)

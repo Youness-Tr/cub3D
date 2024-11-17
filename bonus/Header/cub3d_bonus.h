@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/16 09:18:53 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/17 15:46:16 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define WIN_W 1920
-# define WIN_H 1080
+# define WIN_W 1000
+# define WIN_H 900
 # define TILE_SIZE 64
 # define MINI_MAP 0.20
 # define PLAYER_RADIUS 15
@@ -85,6 +85,7 @@ typedef struct s_ray // the ray structure
 	int		hit;
 	double	hit_x;
 	double	hit_y;
+	int 	hit_door;
 }						t_ray;
 
 typedef struct s_map // the data structure
@@ -155,6 +156,14 @@ typedef struct s_leak
 	void				*address;
 	struct s_leak		*next;
 }						t_leak;
+// this struct is for door is for the bonus part
+typedef struct s_door
+{
+	int					x;
+	int					y;
+	int					open;
+}						t_door;
+
 
 struct s_mlx // the mlx structure
 {
@@ -174,6 +183,7 @@ struct s_mlx // the mlx structure
 	int			move_right;
 	int			rotate_left;
 	int			rotate_right;
+	t_door		door;
 };
 
 int						get_win_h(char **av);

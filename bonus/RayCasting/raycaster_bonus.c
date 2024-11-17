@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 14:09:55 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/17 16:33:44 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,43 @@ void	set_distance(t_cub *cub)
 	}
 }
 
+void put_rays(t_cub *cub, int len, int x, int y, float ngl)
+{
+    float deltaX;
+    float deltaY;
+
+    int i = 0;
+    deltaX = cos(ngl);
+    deltaY = sin(ngl);
+
+    while (i < len)
+    {
+        int draw_x = x + i * deltaX;
+        int draw_y = y + i * deltaY;
+
+        // Draw only if within window bounds
+        if (draw_x >= 0 && draw_x < TILE_SIZE * cub->map.map_w &&
+            draw_y >= 0 && draw_y < TILE_SIZE * cub->map.map_h)
+        {
+            mlx_pixel_put(cub->mlxp, cub->mlx_w, draw_x, draw_y,0xFF0000);
+        }
+        i++;
+    }
+}
+
+// void set_ray_vars(t_cub *cub)
+// {
+	
+// }
+// int get_door(t_cub *cub)
+// {
+// 	if (distance < 1.0)
+// 		cub->door.open = 1;
+// 	else
+// 		cub->door.open = 0;
+// 	return (cub->door.open);
+// }
+
 int	raycaster(t_cub *cub)
 {
 	cub->var.nray = 0;
@@ -92,14 +129,22 @@ int	raycaster(t_cub *cub)
 	while (cub->var.nray < cub->var.s_w)
 	{
 		cub->ray.hit = 0;
+		cub->ray.hit_door = 0;
 		cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl);
 		cub->var.h_inter = get_hinter(cub, angle_range(cub->ray.ray_ngl));
 		cub->var.v_inter = get_vinter(cub, angle_range(cub->ray.ray_ngl));
 		set_distance(cub);
-		cub->ray.hit_x = cub->plyr.plyr_x + cub->ray.distance
-			* cos(angle_range(cub->ray.ray_ngl));
-		cub->ray.hit_y = cub->plyr.plyr_y + cub->ray.distance
-			* sin(angle_range(cub->ray.ray_ngl));
+		cub->ray.hit_x = cub->plyr.plyr_x + cub->ray.distance * cos(angle_range(cub->ray.ray_ngl));
+		cub->ray.hit_y = cub->plyr.plyr_y + cub->ray.distance * sin(angle_range(cub->ray.ray_ngl));
+		int map_x = (int)(cub->ray.hit_x / TILE_SIZE);
+        int map_y = (int)(cub->ray.hit_y / TILE_SIZE);
+        if (cub->map.map2d[map_y][map_x] == 'D' )
+		{
+			// if (!cub->ray.hit)
+			// 	cub->ray.hit_door = 1;
+            cub->ray.hit_door = 1;
+			printf(RED"door hit %d\n"RES, cub->ray.hit);
+		}
 		cub->var.wall_x = calculate_wall_x(&cub->ray);
 		cub->var.tex_x = get_texture_x(cub, cub->var.wall_x);
 		render_three_d(cub, cub->ray.distance, cub->var.nray, cub->var.tex_x);

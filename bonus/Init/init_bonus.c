@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/16 09:29:24 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/17 16:05:36 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,43 @@ static void	init_textures(t_cub *cub)
 	load_texture(cub, &cub->textures[1], cub->parse.ea);
 	load_texture(cub, &cub->textures[2], cub->parse.we);
 	load_texture(cub, &cub->textures[3], cub->parse.so);
-	load_texture(cub, &cub->textures[4], "Assets/textures/wepon.xpm");
+	load_texture(cub, &cub->textures[4], "Assets/textures/door.xpm");
 }
 
-//!! Youness you need to handle the extention .cub name if i gave you .cub.cub
+/*
+//! Remove this function later
+ */
 
+void find_door_cordn(t_cub *o)
+{
+	int i;
+	int j;
 
-// int render_wepon(t_cub *cub)
-// {
-// 	printf(RED"rendering wepon\n"RES);
-// 	int weapon_x = (cub->var.s_w ) / 2;
-//     int weapon_y = cub->var.s_h - cub->textures[4].h;
-//     mlx_put_image_to_window(cub->mlxp, cub->mlx_w, &cub->textures[4], weapon_x, weapon_y);
+	i = 0;
+	while (i < o->map.map_h)
+	{
+		j = 0;
+		while (j < o->map.map_w)
+		{
+			if (o->map.map2d[i][j] == 'D')
+			{
+				o->door.x = j;
+				o->door.y = i;
+				break;
+			}
+			j++;
+		}
+		i++;
+	}
+}
 
-// 	return (0);
-// }
+void init_door(t_cub *cub)
+{
+	find_door_cordn(cub);
+	cub->door.open = 1;
+}
+
+int  change_frame(t_cub *cub);
 
 void	init_engin(t_cub *cub, char *file)
 {
@@ -83,6 +105,7 @@ void	init_engin(t_cub *cub, char *file)
 	parser(&cub->parse);
 	init_map(cub);
 	init_plyr(cub);
+	init_door(cub);
 	init_mlx(cub);
 	init_textures(cub);
 	mlx_hook(cub->mlx_w, 2, 1L << 0, &key_press, cub);
@@ -91,7 +114,6 @@ void	init_engin(t_cub *cub, char *file)
     mlx_hook(cub->mlx_w, 5, 1L << 3, &mouse_release, cub);
 	mlx_hook(cub->mlx_w, 17, 0, &_close_window, cub);
 	mlx_loop_hook(cub->mlxp, &main_loop, cub);
-	// mlx_loop_hook(cub->mlxp, &render_wepon, &cub);
 	// mlx_do_sync(cub->mlxp);
 	if (!cub->mlxp || !cub->mlx_w)
 		ft_errorv2(&cub->parse, "Error: Failed to initialize MLX.");

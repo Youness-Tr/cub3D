@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/16 09:31:01 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/17 16:06:48 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,13 +137,21 @@ int render_wepon(t_cub *cub)
 	return (0);
 }
 
+double calculate_distance(double x1, double y1, double x2, double y2)
+{
+    return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+}
+
+
+void put_rays(t_cub *cub, int len, int x, int y, float ngl);
 int	main_loop(t_cub *cub)
 {
 	mlx_clear_window(cub->mlxp, cub->mlx_w);
+	mvp(cub);
 	raycaster(cub);
 	render_mini_2d(cub);
-	put_line(cub, 10, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP);
-	mvp(cub);
-	render_wepon(cub);
+	put_line(cub, 18, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP);
+	put_rays(cub, cub->ray.distance * MINI_MAP, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP, cub->ray.ray_ngl);
+	// render_wepon(cub);
 	return (0);
 }

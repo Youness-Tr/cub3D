@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:58:11 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 14:10:17 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/17 15:03:26 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	get_texture_x(t_cub *cub, double wall_x)
 	return (tex_x);
 }
 
+int get_door(t_cub *cub); // ! to the headerfile later on
+
 int	wall_hit(float x, float y, t_cub *mlx)
 {
 	int	x_w;
@@ -57,7 +59,7 @@ int	wall_hit(float x, float y, t_cub *mlx)
 		return (0);
 	if (mlx->map.map2d[y_w] && x_w < (int)strlen(mlx->map.map2d[y_w]))
 	{
-		if (mlx->map.map2d[y_w][x_w] == '1')
+		if (mlx->map.map2d[y_w][x_w] == '1' ||(mlx->map.map2d[y_w][x_w] == 'D'))
 			return (0);
 	}
 	return (1);
