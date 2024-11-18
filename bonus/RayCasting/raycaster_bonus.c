@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/18 15:45:02 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/18 18:47:03 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,10 +140,8 @@ int raycaster(t_cub *cub)
 		int map_x = (int)(cub->ray.hit_x / TILE_SIZE);
         int map_y = (int)(cub->ray.hit_y / TILE_SIZE);
 		// printf("map_x = %d, map_y = %d | `%c'\n", map_x, map_y, cub->map.map2d[map_y][map_x]);
-         if (cub->map.map2d[map_y][map_x] == 'D')
-        {
+         if (cub->map.map2d[map_y][map_x] == 'D' || cub->map.map2d[map_y][map_x] == 'E')
             cub->ray.hit_door = 1;
-        }
         else if (cub->map.map2d[map_y][map_x] == '0' && !cub->door.open)
         {
             if ((map_x > 0 && cub->map.map2d[map_y][map_x - 1] == 'D') ||
@@ -151,7 +149,20 @@ int raycaster(t_cub *cub)
                 (map_y > 0 && cub->map.map2d[map_y - 1][map_x] == 'D') ||
                 (map_y < cub->map.map_h - 1 && cub->map.map2d[map_y + 1][map_x] == 'D'))
             {
+				// cub->map.map2d[map_y][map_x] = 'D';
                 cub->ray.hit_door = 1;
+				cub->door.frame = 9;
+            }
+        }
+		 if (cub->ray.hit_door)
+        {
+            if (cub->door.open)
+            {
+                cub->map.map2d[map_y][map_x] = 'E'; // Open door texture
+            }
+            else
+            {
+                cub->map.map2d[map_y][map_x] = 'D'; // Closed door texture
             }
         }
 		cub->var.wall_x = calculate_wall_x(&cub->ray);

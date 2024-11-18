@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/18 17:04:05 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/18 18:19:50 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define P_SPEED 12
 # define PI 3.141592653589
 # define FOV (67 * PI) / 180
+#define DOOR_OPEN_DISTANCE 2.1
 
 #define W  119
 #define A 97
@@ -43,7 +44,7 @@
 #define D 100
 # define L_ARROW 65361
 #define R_ARROW 65363
-// #define Q 113//*REMOVE
+#define O 24//*REMOVE
 // #define R 114//*REMOVE
 # define E 32
 #define ESC 65307
@@ -164,9 +165,8 @@ typedef struct s_door
 	int					x;
 	int					y;
 	int					open;
-}						t_door;
-
-
+	int frame;
+} t_door;
 
 struct s_mlx // the mlx structure
 {
@@ -178,7 +178,7 @@ struct s_mlx // the mlx structure
 	t_player	plyr;
 	t_data		parse;
 	t_vars		var;
-	t_img		textures[9];
+	t_img		textures[10];
 	t_leak		*free;
 	int			move_forward;
 	int			move_backward;

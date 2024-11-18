@@ -6,15 +6,11 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/18 17:06:13 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/18 18:39:43 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
-
-#define DOOR_OPEN_DISTANCE 1.5 // Define the distance threshold for opening the door
-// # define DOOR_ANIMATION_FRAMES 10 // Define the number of frames for the door animation
-
 
 void find_door_cordn(t_cub *o);
 
@@ -31,12 +27,14 @@ void handle_door_interaction(t_cub *cub)
     {
         cub->door.open = 1; // Open the door
 		// find_door_cordn(cub);
-		cub->map.map2d[cub->door.y][cub->door.x] = '0'; // Change map to open door
+		cub->map.map2d[cub->door.y][cub->door.x] = 'E'; // Change map to open door
+		cub->door.frame = 9;
 	}
     else
     {
         cub->door.open = 0; // Close the door
 		// find_door_cordn(cub);
+		cub->door.frame = 6;
         cub->map.map2d[cub->door.y][cub->door.x] = 'D'; // Change map to closed door
     }
 }
@@ -67,6 +65,10 @@ int	key_press(int key, t_cub *cub)
 		cub->rotate_right = 1;
 	else if (key == E)
 		cub->gun_frame = 5;
+	// else if (key == O)
+	// {
+	// 	 handle_door_interaction(cub);
+	// }
 	else if (key == ESC)
 		ft_exit(&cub->parse);
 	return (0);
@@ -224,12 +226,20 @@ int	main_loop(t_cub *cub)
 {
 	mlx_clear_window(cub->mlxp, cub->mlx_w);
 	mvp(cub);
-	handle_door_interaction(cub);
 	raycaster(cub);
+	handle_door_interaction(cub);
 	render_mini_2d(cub);
 	put_line(cub, 18, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP);
 	render_weapon(cub);
 	render_zoom(cub);
+	// if (cub->door.open)
+    // {
+    //     mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->textures[9].img, cub->door.x * TILE_SIZE, cub->door.y * TILE_SIZE);
+    // }
+    // else
+    // {
+    //     mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->textures[6].img, cub->door.x * TILE_SIZE, cub->door.y * TILE_SIZE);
+    // }
 	// put_rays(cub, cub->ray.distance * MINI_MAP, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP, cub->ray.ray_ngl);
 	// mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->textures[4].img, cub->door.x, cub->door.y);
 	return (0);

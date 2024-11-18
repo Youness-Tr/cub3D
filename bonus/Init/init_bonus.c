@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/18 17:06:47 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/18 19:09:12 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,12 @@ static void	init_textures(t_cub *cub)
 	load_texture(cub, &cub->textures[2], cub->parse.we);
 	load_texture(cub, &cub->textures[3], cub->parse.so);
 	///home/kali/Desktop/Cub/bonus/Assets/sprites/portal.xpm
-	load_texture(cub, &cub->textures[4], "./Assets/sprites/gun.xpm");
+	load_texture(cub, &cub->textures[4], "./Assets/sprites/w6.xpm");
 	load_texture(cub, &cub->textures[5], "./Assets/sprites/gun_shoot.xpm");
-	load_texture(cub, &cub->textures[6], "./Assets/sprites/portal.xpm");
+	load_texture(cub, &cub->textures[6], "./Assets/sprites/metal_door_close.xpm");
 	load_texture(cub, &cub->textures[7], "./Assets/sprites/zoom.xpm");
 	load_texture(cub, &cub->textures[8], "./Assets/sprites/cover.xpm");
+	load_texture(cub, &cub->textures[9], "./Assets/sprites/metal_door_op.xpm");
 }
 
 /*
@@ -99,6 +100,7 @@ void init_door(t_cub *cub)
 	find_door_cordn(cub);
 	cub->door.open = 0;
 	cub->gun_frame = 4;
+	cub->door.frame = 6;
 }
 
 

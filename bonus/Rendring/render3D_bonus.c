@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/18 16:32:11 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/18 18:08:34 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_img	*get_texture(t_cub *cub, int flag) // get the color of the wall
 
 	cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl); // normalize the angle
 	if (cub->ray.hit_door)
-		return (&cub->textures[6]);
+		return (&cub->textures[cub->door.frame]);
 	if (flag == 0)
 	{
 		if (cub->ray.ray_ngl > PI / 2 && cub->ray.ray_ngl < 3 * (PI / 2))
