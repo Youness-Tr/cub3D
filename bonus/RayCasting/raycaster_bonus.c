@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/17 16:33:44 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/18 15:45:02 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void put_rays(t_cub *cub, int len, int x, int y, float ngl)
 
 // void set_ray_vars(t_cub *cub)
 // {
-	
+
 // }
 // int get_door(t_cub *cub)
 // {
@@ -121,7 +121,8 @@ void put_rays(t_cub *cub, int len, int x, int y, float ngl)
 // 	return (cub->door.open);
 // }
 
-int	raycaster(t_cub *cub)
+// void render_weapon(t_cub *cub);
+int raycaster(t_cub *cub)
 {
 	cub->var.nray = 0;
 	cub->ray.ray_ngl = angle_range(cub->plyr.angle - (cub->plyr.fov_rd / 2));
@@ -138,13 +139,21 @@ int	raycaster(t_cub *cub)
 		cub->ray.hit_y = cub->plyr.plyr_y + cub->ray.distance * sin(angle_range(cub->ray.ray_ngl));
 		int map_x = (int)(cub->ray.hit_x / TILE_SIZE);
         int map_y = (int)(cub->ray.hit_y / TILE_SIZE);
-        if (cub->map.map2d[map_y][map_x] == 'D' )
-		{
-			// if (!cub->ray.hit)
-			// 	cub->ray.hit_door = 1;
+		// printf("map_x = %d, map_y = %d | `%c'\n", map_x, map_y, cub->map.map2d[map_y][map_x]);
+         if (cub->map.map2d[map_y][map_x] == 'D')
+        {
             cub->ray.hit_door = 1;
-			printf(RED"door hit %d\n"RES, cub->ray.hit);
-		}
+        }
+        else if (cub->map.map2d[map_y][map_x] == '0' && !cub->door.open)
+        {
+            if ((map_x > 0 && cub->map.map2d[map_y][map_x - 1] == 'D') ||
+                (map_x < cub->map.map_w - 1 && cub->map.map2d[map_y][map_x + 1] == 'D') ||
+                (map_y > 0 && cub->map.map2d[map_y - 1][map_x] == 'D') ||
+                (map_y < cub->map.map_h - 1 && cub->map.map2d[map_y + 1][map_x] == 'D'))
+            {
+                cub->ray.hit_door = 1;
+            }
+        }
 		cub->var.wall_x = calculate_wall_x(&cub->ray);
 		cub->var.tex_x = get_texture_x(cub, cub->var.wall_x);
 		render_three_d(cub, cub->ray.distance, cub->var.nray, cub->var.tex_x);

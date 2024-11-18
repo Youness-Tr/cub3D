@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 12:28:14 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 11:59:52 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/18 10:38:08 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Header/cub3d_bonus.h"
+#include "../Header/cub3d.h"
 
 static size_t	ft_words(char *s, char c)
 {

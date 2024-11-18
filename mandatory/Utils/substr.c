@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   substr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 10:15:47 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 11:59:52 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/18 10:38:02 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Header/cub3d_bonus.h"
+#include "../Header/cub3d.h"
 
 static char	*ft_while(char *ptr, char *st, unsigned int star, size_t lent)
 {

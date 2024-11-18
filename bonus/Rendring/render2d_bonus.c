@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render2d_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:49:43 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 17:25:03 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/18 17:10:05 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,12 @@ void	render_mini_2d(t_cub *cub)
 				render_square(&cub->img, (i * TILE_SIZE) * MINI_MAP, (j
 						* TILE_SIZE) * MINI_MAP, factor,
 					0xffffff); // 0x8B5A2B
+			}
+			else if (cub->map.map2d[j][i] == 'D')
+			{
+				render_square(&cub->img, (i * TILE_SIZE) * MINI_MAP, (j
+						* TILE_SIZE) * MINI_MAP, factor,
+					0x00FF00); // 0x8B5A2B
 			}
 			i++;
 		}

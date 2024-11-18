@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render3D_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/17 16:30:57 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/18 16:32:11 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,14 @@
 //         my_mlx_pixel_put(&cub->img, raypt, toppxl++, color);
 // }
 
+
 t_img	*get_texture(t_cub *cub, int flag) // get the color of the wall
 {
-	
+
 	cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl); // normalize the angle
 	if (cub->ray.hit_door)
-		return (&cub->textures[4]);
-	else if (flag == 0)
+		return (&cub->textures[6]);
+	if (flag == 0)
 	{
 		if (cub->ray.ray_ngl > PI / 2 && cub->ray.ray_ngl < 3 * (PI / 2))
 			return (&cub->textures[0]);
@@ -60,6 +61,7 @@ t_img	*get_texture(t_cub *cub, int flag) // get the color of the wall
 			return (&cub->textures[3]);
 	}
 }
+
 
 
 void	render_textured_wall(t_cub *cub, int x, int wall_height, int wall_top,
@@ -78,12 +80,15 @@ void	render_textured_wall(t_cub *cub, int x, int wall_height, int wall_top,
 		tex_y = ((y - wall_top) * texture->h) / (wall_bottom - wall_top);
 		color = *(unsigned int *)(texture->addr + (tex_y * texture->len + tex_x
 					* (texture->bpp / 8)));
-		my_mlx_pixel_put(&cub->img, x, y, color);
+
+            my_mlx_pixel_put(&cub->img, x, y, color);
 		y++;
 	}
 }
 
-void	render_three_d(t_cub *cub, double distnce, int raypt, int tex_x)
+// void render_door(t_cub *cub, int x, int y, double offset);
+
+void render_three_d(t_cub *cub, double distnce, int raypt, int tex_x)
 {
 	int		s_w;
 	int		s_h;
@@ -107,4 +112,5 @@ void	render_three_d(t_cub *cub, double distnce, int raypt, int tex_x)
 	//     lowpxl = 0;
 	render_textured_wall(cub, raypt, wll_h, toppxl, lowpxl, tex_x);
 	draw_floor_ceiling(cub, raypt, toppxl, lowpxl);
+	// render_door(cub, cub->door.x, cub->door.y, cub->door.offset);
 }

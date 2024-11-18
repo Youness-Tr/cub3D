@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/17 15:46:16 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/18 17:04:05 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@
 # include <string.h>
 # include <unistd.h>
 // # include <mlx.h>
-# include "../zmlx/mlx.h"
+# include "../mlx/mlx.h"
 # include "get_next_line.h"
 # include <fcntl.h>
 # include <math.h>
 
-# define WIN_W 1000
-# define WIN_H 900
+# define WIN_W 1920
+# define WIN_H 1080
 # define TILE_SIZE 64
 # define MINI_MAP 0.20
 # define PLAYER_RADIUS 15
@@ -36,22 +36,24 @@
 # define P_SPEED 12
 # define PI 3.141592653589
 # define FOV (67 * PI) / 180
-// # define L_ARROW 65361
-// #define R_ARROW 65363
-// #define W  119
-// #define A 97
-// #define S 115
-// #define D 100
+
+#define W  119
+#define A 97
+#define S 115
+#define D 100
+# define L_ARROW 65361
+#define R_ARROW 65363
 // #define Q 113//*REMOVE
 // #define R 114//*REMOVE
-// #define ESC 65307
+# define E 32
+#define ESC 65307
 
-# define A 0
-# define S 1
-# define D 2
-# define W 13
-# define ESC 53
-# define S 1
+// # define A 0
+// # define S 1
+// # define D 2
+// # define W 13
+// # define ESC 53
+// # define S 1
 # define L_MOUS 1
 # define R_MOUS 2
 
@@ -165,6 +167,7 @@ typedef struct s_door
 }						t_door;
 
 
+
 struct s_mlx // the mlx structure
 {
 	t_img		img;
@@ -175,7 +178,7 @@ struct s_mlx // the mlx structure
 	t_player	plyr;
 	t_data		parse;
 	t_vars		var;
-	t_img		textures[5];
+	t_img		textures[9];
 	t_leak		*free;
 	int			move_forward;
 	int			move_backward;
@@ -183,6 +186,7 @@ struct s_mlx // the mlx structure
 	int			move_right;
 	int			rotate_left;
 	int			rotate_right;
+	int			gun_frame;
 	t_door		door;
 };
 

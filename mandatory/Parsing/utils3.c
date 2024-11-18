@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:43:23 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/15 18:25:28 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/18 10:39:33 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Header/cub3d_bonus.h"
+#include "../Header/cub3d.h"
 
 int	ft_isdigit(int c)
 {

@@ -3,14 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   playerMoves_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/17 16:06:48 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/18 17:06:13 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
+
+#define DOOR_OPEN_DISTANCE 1.5 // Define the distance threshold for opening the door
+// # define DOOR_ANIMATION_FRAMES 10 // Define the number of frames for the door animation
+
+
+void find_door_cordn(t_cub *o);
+
+void handle_door_interaction(t_cub *cub)
+{
+    double player_x = cub->plyr.plyr_x / TILE_SIZE;
+    double player_y = cub->plyr.plyr_y / TILE_SIZE;
+    double door_x = cub->door.x;
+    double door_y = cub->door.y;
+
+    double distance = sqrt(pow(player_x - door_x, 2) + pow(player_y - door_y, 2));
+
+    if (distance <= DOOR_OPEN_DISTANCE)
+    {
+        cub->door.open = 1; // Open the door
+		// find_door_cordn(cub);
+		cub->map.map2d[cub->door.y][cub->door.x] = '0'; // Change map to open door
+	}
+    else
+    {
+        cub->door.open = 0; // Close the door
+		// find_door_cordn(cub);
+        cub->map.map2d[cub->door.y][cub->door.x] = 'D'; // Change map to closed door
+    }
+}
+
+void set_gun(t_cub *cub, char *file)
+{
+	cub->textures[4].img = mlx_xpm_file_to_image(cub->mlxp, file, &cub->textures[4].w, &cub->textures[4].h);
+	if (!cub->textures[4].img)
+	{
+		ft_errorv2(&cub->parse, "Error: Could not load texture");
+		_close_window(cub);
+	}
+}
 
 int	key_press(int key, t_cub *cub)
 {
@@ -22,6 +61,12 @@ int	key_press(int key, t_cub *cub)
 		cub->move_left = 1;
 	else if (key == D)
 		cub->move_right = 1;
+	else if (key == L_ARROW)
+		cub->rotate_left = 1;
+	else if (key == R_ARROW)
+		cub->rotate_right = 1;
+	else if (key == E)
+		cub->gun_frame = 5;
 	else if (key == ESC)
 		ft_exit(&cub->parse);
 	return (0);
@@ -37,7 +82,12 @@ int	key_release(int key, t_cub *cub)
 		cub->move_left = 0;
 	else if (key == D)
 		cub->move_right = 0;
+	else if (key == L_ARROW)
+		cub->rotate_left = 0;
+	else if (key == R_ARROW)
 		cub->rotate_right = 0;
+	else if (key == E)
+		cub->gun_frame = 4;
 	return (0);
 }
 
@@ -127,20 +177,46 @@ void	mvp(t_cub *cub)
 	set_pos(cub, cub->var.new_x, cub->var.new_y);
 }
 
-int render_wepon(t_cub *cub)
+void render_weapon(t_cub *cub)
 {
-	printf(RED"rendering wepon\n"RES);
-	int weapon_x = (cub->var.s_w ) / 2;
-    int weapon_y = cub->var.s_h - cub->textures[4].h;
-	
-    mlx_put_image_to_window(cub->mlxp, cub->mlx_w, &cub->textures[4], weapon_x, weapon_y);
-	return (0);
+    int weapon_x = (cub->var.s_w - (cub->textures[cub->gun_frame].w)) / 2;
+    int weapon_y = cub->var.s_h - cub->textures[cub->gun_frame].h;
+    int x, y;
+    unsigned int color;
+
+    for (y = 0; y < cub->textures[cub->gun_frame].h; y++)
+    {
+        for (x = 0; x < cub->textures[cub->gun_frame].w; x++)
+        {
+            color = *(unsigned int *)(cub->textures[cub->gun_frame].addr + (y * cub->textures[cub->gun_frame].len + x * (cub->textures[cub->gun_frame].bpp / 8)));
+            if ((color & 0xFF000000) != 0xFF000000) // Check if the pixel is not fully transparent
+            {
+                my_mlx_pixel_put(&cub->img, weapon_x + x, weapon_y + y, color);
+            }
+        }
+    }
 }
 
-double calculate_distance(double x1, double y1, double x2, double y2)
+void render_zoom(t_cub *cub)
 {
-    return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+    int image_x = ((cub->var.s_w )- cub->textures[7].w) / 3;
+    int image_y = (cub->var.s_h - cub->textures[7].h) / 2;
+    int x, y;
+    unsigned int color;
+
+    for (y = 0; y < cub->textures[7].h; y++)
+    {
+        for (x = 0; x < cub->textures[7].w; x++)
+        {
+            color = *(unsigned int *)(cub->textures[7].addr + (y * cub->textures[7].len + x * (cub->textures[7].bpp / 8)));
+            if ((color & 0xFF000000) != 0xFF000000) // Check if the pixel is not fully transparent
+            {
+                my_mlx_pixel_put(&cub->img, image_x + x, image_y + y, color);
+            }
+        }
+    }
 }
+
 
 
 void put_rays(t_cub *cub, int len, int x, int y, float ngl);
@@ -148,10 +224,13 @@ int	main_loop(t_cub *cub)
 {
 	mlx_clear_window(cub->mlxp, cub->mlx_w);
 	mvp(cub);
+	handle_door_interaction(cub);
 	raycaster(cub);
 	render_mini_2d(cub);
 	put_line(cub, 18, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP);
-	put_rays(cub, cub->ray.distance * MINI_MAP, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP, cub->ray.ray_ngl);
-	// render_wepon(cub);
+	render_weapon(cub);
+	render_zoom(cub);
+	// put_rays(cub, cub->ray.distance * MINI_MAP, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP, cub->ray.ray_ngl);
+	// mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->textures[4].img, cub->door.x, cub->door.y);
 	return (0);
 }

@@ -2,20 +2,20 @@
 CC = cc
 NAME = cub3D_bonus
 # B_NAME = cub3D_bomus
-FSA = 
+FSA =
 CFLAGS = -Wall -Wextra -Werror
-MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit -fsanitize=address -g3 #-Lmlx -lmlx_Linux -lXext -lX11 -lm
+MLX_FLAGS =-Lmlx -lmlx_Linux -lXext -lX11 -lm  -fsanitize=address -g3 # # -Lmlx -lmlx -framework OpenGL -framework AppKit
 #------------------
-SRC = main_cub_bonus.c 
+SRC = main_cub_bonus.c
 #Utils/
-SRC += Utils/utils1_bonus.c Utils/substr_bonus.c  Utils/split_bonus.c  Utils/err_bonus.c  
-SRC += Utils/init_bonus.c 
+SRC += Utils/utils1_bonus.c Utils/substr_bonus.c  Utils/split_bonus.c  Utils/err_bonus.c
+SRC += Utils/init_bonus.c
 #Parsing/
 SRC += Parsing/parser_bonus.c   Parsing/utils_bonus.c  Parsing/tool_bonus.c  Parsing/utils2_bonus.c Parsing/utils3_bonus.c
 #RayCasting/
 SRC += RayCasting/raycaster_bonus.c  RayCasting/raytools_bonus.c
 #Rendring/
-SRC += Rendring/render2d_bonus.c Rendring/render3D_bonus.c Rendring/render_utils_bonus.c 
+SRC += Rendring/render2d_bonus.c Rendring/render3D_bonus.c Rendring/render_utils_bonus.c
 #Gnl/
 SRC += Gnl/get_next_line.c Gnl/gnl_utils.c
 #Glogic/
