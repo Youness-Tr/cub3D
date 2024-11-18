@@ -1,9 +1,9 @@
 
 
-NO ./Assets/Textures/wall_1.xpm
-SO ./Assets/Textures/wall_2.xpm
-WE ./Assets/Textures/wall_3.xpm
-EA ./Assets/Textures/wall_4.xpm
+NO ./Assets/Textures/eagle_wolf.xpm
+SO ./Assets/Textures/eagle_wolf.xpm
+WE ./Assets/Textures/eagle_wolf.xpm
+EA ./Assets/Textures/eagle_wolf.xpm
 
 
 F 42,42,42

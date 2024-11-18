@@ -1,1 +1,1 @@
-make && make clean && ./cub3D Assets/maps/map01.cub
+make && make clean && ./cub3D_bonus Assets/maps/map01.cub
