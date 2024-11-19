@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/18 18:19:50 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/19 15:26:43 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,12 @@
 # define L_ARROW 65361
 #define R_ARROW 65363
 #define O 24//*REMOVE
-// #define R 114//*REMOVE
+// // #define R 114//*REMOVE
 # define E 32
 #define ESC 65307
+
+# define L_MOUS 1
+# define R_MOUS 2
 
 // # define A 0
 // # define S 1
@@ -55,8 +58,7 @@
 // # define W 13
 // # define ESC 53
 // # define S 1
-# define L_MOUS 1
-# define R_MOUS 2
+// # define E 49
 
 /****************TxTColoR*******************/
 # define RED "\033[1;31m"

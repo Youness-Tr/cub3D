@@ -4,8 +4,8 @@ NAME = cub3D_bonus
 # B_NAME = cub3D_bomus
 FSA =
 CFLAGS = -Wall -Wextra -Werror
-MLX_FLAGS =-Lmlx -lmlx_Linux -lXext -lX11 -lm  -fsanitize=address -g3 # # -Lmlx -lmlx -framework OpenGL -framework AppKit
-#------------------
+MLX_FLAGS =  -Lmlx -lmlx_Linux -lXext -lX11 -lm  -fsanitize=address -g3 # # -Lmlx -lmlx -framework OpenGL -framework AppKit
+#------------------           
 SRC = main_cub_bonus.c
 #Utils/
 SRC += Utils/utils1_bonus.c Utils/substr_bonus.c  Utils/split_bonus.c  Utils/err_bonus.c

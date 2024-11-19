@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/18 18:47:03 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/19 14:32:33 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,29 +142,18 @@ int raycaster(t_cub *cub)
 		// printf("map_x = %d, map_y = %d | `%c'\n", map_x, map_y, cub->map.map2d[map_y][map_x]);
          if (cub->map.map2d[map_y][map_x] == 'D' || cub->map.map2d[map_y][map_x] == 'E')
             cub->ray.hit_door = 1;
-        else if (cub->map.map2d[map_y][map_x] == '0' && !cub->door.open)
-        {
-            if ((map_x > 0 && cub->map.map2d[map_y][map_x - 1] == 'D') ||
-                (map_x < cub->map.map_w - 1 && cub->map.map2d[map_y][map_x + 1] == 'D') ||
-                (map_y > 0 && cub->map.map2d[map_y - 1][map_x] == 'D') ||
-                (map_y < cub->map.map_h - 1 && cub->map.map2d[map_y + 1][map_x] == 'D'))
-            {
-				// cub->map.map2d[map_y][map_x] = 'D';
-                cub->ray.hit_door = 1;
-				cub->door.frame = 9;
-            }
-        }
-		 if (cub->ray.hit_door)
-        {
-            if (cub->door.open)
-            {
-                cub->map.map2d[map_y][map_x] = 'E'; // Open door texture
-            }
-            else
-            {
-                cub->map.map2d[map_y][map_x] = 'D'; // Closed door texture
-            }
-        }
+        // else if (cub->map.map2d[map_y][map_x] == '0' && !cub->door.open)
+        // {
+        //     if ((map_x > 0 && cub->map.map2d[map_y][map_x - 1] == 'D') ||
+        //         (map_x < cub->map.map_w - 1 && cub->map.map2d[map_y][map_x + 1] == 'D') ||
+        //         (map_y > 0 && cub->map.map2d[map_y - 1][map_x] == 'D') ||
+        //         (map_y < cub->map.map_h - 1 && cub->map.map2d[map_y + 1][map_x] == 'D'))
+        //     {
+		// 		// cub->map.map2d[map_y][map_x] = 'D';
+        //         cub->ray.hit_door = 1;
+		// 		cub->door.frame = 9;
+        //     }
+        // }
 		cub->var.wall_x = calculate_wall_x(&cub->ray);
 		cub->var.tex_x = get_texture_x(cub, cub->var.wall_x);
 		render_three_d(cub, cub->ray.distance, cub->var.nray, cub->var.tex_x);
