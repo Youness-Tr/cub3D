@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/20 09:24:10 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/20 10:27:09 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void handle_door_interaction(t_cub *cub)
         cub->door.open = 1; // Open the door
 		// find_door_cordn(cub);
 		// cub->map.map2d[cub->door.y][cub->door.x] = 'E'; // Change map to open door
-		cub->door.frame = 9;
+		cub->door.frame = 7;
 	}
     else
     {
         cub->door.open = 0; // Close the door
 		// find_door_cordn(cub);
-		cub->door.frame = 6;
+		cub->door.frame = 4;
         cub->map.map2d[cub->door.y][cub->door.x] = 'D'; // Change map to closed door
     }
 }
@@ -64,11 +64,11 @@ int	key_press(int key, t_cub *cub)
 	else if (key == R_ARROW)
 		cub->rotate_right = 1;
 	else if (key == E)
-		cub->gun_frame = 5;
-	// else if (key == O)
-	// {
-	// 	 handle_door_interaction(cub);
-	// }
+	{
+		cub->gun_frame++;
+		if (cub->gun_frame == 5)
+			cub->gun_frame = 0;	
+	}
 	else if (key == ESC)
 		ft_exit(&cub->parse);
 	return (0);
@@ -90,8 +90,7 @@ int	key_release(int key, t_cub *cub)
 		cub->rotate_right = 0;
 	else if (key == E)
 	{
-		// printf("E key released\n");
-		cub->gun_frame = 4;
+		cub->gun_frame = 0;
 	}
 	return (0);
 }
@@ -184,16 +183,16 @@ void	mvp(t_cub *cub)
 
 void render_weapon(t_cub *cub)
 {
-    int weapon_x = (cub->var.s_w - (cub->textures[cub->gun_frame].w)) / 2;
-    int weapon_y = cub->var.s_h - cub->textures[cub->gun_frame].h;
+    int weapon_x = (cub->var.s_w - (cub->gun[cub->gun_frame].w)) / 2;
+    int weapon_y = cub->var.s_h - cub->gun[cub->gun_frame].h;
     int x, y;
     unsigned int color;
 
-    for (y = 0; y < cub->textures[cub->gun_frame].h; y++)
+    for (y = 0; y < cub->gun[cub->gun_frame].h; y++)
     {
-        for (x = 0; x < cub->textures[cub->gun_frame].w; x++)
+        for (x = 0; x < cub->gun[cub->gun_frame].w; x++)
         {
-            color = *(unsigned int *)(cub->textures[cub->gun_frame].addr + (y * cub->textures[cub->gun_frame].len + x * (cub->textures[cub->gun_frame].bpp / 8)));
+            color = *(unsigned int *)(cub->gun[cub->gun_frame].addr + (y * cub->gun[cub->gun_frame].len + x * (cub->gun[cub->gun_frame].bpp / 8)));
             if ((color & 0xFF000000) != 0xFF000000) // Check if the pixel is not fully transparent
             {
                 my_mlx_pixel_put(&cub->img, weapon_x + x, weapon_y + y, color);
@@ -204,16 +203,16 @@ void render_weapon(t_cub *cub)
 
 void render_zoom(t_cub *cub)
 {
-    int image_x = ((cub->var.s_w )- cub->textures[7].w) / 3;
-    int image_y = (cub->var.s_h - cub->textures[7].h) / 2;
+    int image_x = ((cub->var.s_w )- cub->textures[5].w) / 3;
+    int image_y = (cub->var.s_h - cub->textures[5].h) / 2;
     int x, y;
     unsigned int color;
 
-    for (y = 0; y < cub->textures[7].h; y++)
+    for (y = 0; y < cub->textures[5].h; y++)
     {
-        for (x = 0; x < cub->textures[7].w; x++)
+        for (x = 0; x < cub->textures[5].w; x++)
         {
-            color = *(unsigned int *)(cub->textures[7].addr + (y * cub->textures[7].len + x * (cub->textures[7].bpp / 8)));
+            color = *(unsigned int *)(cub->textures[5].addr + (y * cub->textures[5].len + x * (cub->textures[5].bpp / 8)));
             if ((color & 0xFF000000) != 0xFF000000) // Check if the pixel is not fully transparent
             {
                 my_mlx_pixel_put(&cub->img, image_x + x, image_y + y, color);
@@ -234,6 +233,6 @@ int	main_loop(t_cub *cub)
 	render_zoom(cub);
 	render_weapon(cub);
 	render_mini_2d(cub);
-	put_line(cub, 18, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP);
+	put_line(cub, 10, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP);
 	return (0);
 }

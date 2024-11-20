@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render2d_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:49:43 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/18 17:10:05 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/20 09:56:09 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,16 +97,16 @@ void	render_mini_2d(t_cub *cub)
 
 	j = 0;
 	len = 0;
-	while (cub->map.map2d[0][len] && cub->map.map2d[0][len] !=' ')
-		len++;
+	// while (cub->map.map2d[0][len] && cub->map.map2d[0][len] !=' ')
+	// 	len++;
 	cub->map.map2d[cub->parse.player_x][cub->parse.player_y] = 'P';
-	int factor = (float)(cub->var.s_w * MINI_MAP) / len;
+	int factor = (float)(cub->var.s_w * MINI_MAP) / cub->map.map_w +1;
 	while (j < cub->map.map_h + 1)
 	{
 		i = 0;
-		while (i < len)
+		while (i < cub->map.map_w + 1)
 		{
-			if (cub->map.map2d[j][i] == '1' || cub->map.map2d[j][i] == ' ')
+			if (cub->map.map2d[j][i] == '1')
 				render_square(&cub->img, (i * TILE_SIZE) * MINI_MAP, (j* TILE_SIZE) * MINI_MAP, factor,
 					0x000000);
 			else if (cub->map.map2d[j][i] == '0' || cub->map.map2d[j][i] == 'P')

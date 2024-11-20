@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:43:37 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/19 15:25:02 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/20 10:26:03 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_wall(t_cub *cub, double x, double y)
 	double	dy;
 	double	step;
 
-	step = 20;
+	step = 10;
 	dx = -step;
 	while (dx <= step)
 	{

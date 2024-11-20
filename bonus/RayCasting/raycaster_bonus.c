@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/20 09:33:36 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/20 10:21:25 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,7 @@ int raycaster(t_cub *cub)
 		cub->ray.hit_y = cub->plyr.plyr_y + cub->ray.distance * sin(angle_range(cub->ray.ray_ngl));
 		int map_x = (int)(cub->ray.hit_x / TILE_SIZE);
         int map_y = (int)(cub->ray.hit_y / TILE_SIZE);
-		printf("map_x = %d, map_y = %d | `%c', %d\n", map_x, map_y, cub->map.map2d[map_y][map_x], cub->ray.hit);
-         if (cub->map.map2d[map_y][map_x] == 'D')
+        if (cub->map.map2d[map_y][map_x] == 'D')
             cub->ray.hit_door = 1;
         else if (cub->map.map2d[map_y][map_x] == '0')
         {
@@ -149,7 +148,6 @@ int raycaster(t_cub *cub)
                 (map_y > 0 && cub->map.map2d[map_y - 1][map_x] == 'D') ||
                 (map_y < cub->map.map_h - 1 && cub->map.map2d[map_y + 1][map_x] == 'D'))
             {
-				// cub->map.map2d[map_y][map_x] = 'D';
                 cub->ray.hit_door = 1;
             }
         }
@@ -162,8 +160,3 @@ int raycaster(t_cub *cub)
 	mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
 	return (0);
 }
-
-// put_rays(cub,cub->ray.distance  * MINI_MAP, cub->plyr.plyr_x * MINI_MAP,
-// cub->plyr.plyr_y * MINI_MAP, cub->ray.ray_ngl);
-// put_line(cub, 30, (int)cub->plyr.plyr_x * MINI_MAP, (int)cub->plyr.plyr_y
-// * MINI_MAP);

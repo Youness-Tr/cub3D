@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/19 20:20:44 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/20 10:31:17 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define WIN_W 1920
-# define WIN_H 1080
-# define TILE_SIZE 64
+# define WIN_W 1000
+# define WIN_H 900
+# define TILE_SIZE 32
 # define MINI_MAP 0.20
 # define PLAYER_RADIUS 15
 # define PLR 8     // plYER HIGHT WIEGHT (remove this)
 # define NRAYS 540 //! remove this
-# define ROT_SPEED 0.1
-# define P_SPEED 12
+# define ROT_SPEED 0.09
+# define P_SPEED 6
 # define PI 3.141592653589
-# define FOV (67 * PI) / 180
+# define FOV (63 * PI) / 180
 #define DOOR_OPEN_DISTANCE 2.1
 
 // #define W  119
@@ -180,7 +180,8 @@ struct s_mlx // the mlx structure
 	t_player	plyr;
 	t_data		parse;
 	t_vars		var;
-	t_img		textures[10];
+	t_img		textures[8];
+	t_img		gun[7];
 	t_leak		*free;
 	int			move_forward;
 	int			move_backward;

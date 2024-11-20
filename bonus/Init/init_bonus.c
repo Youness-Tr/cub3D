@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/19 20:33:46 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/20 10:22:55 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,19 @@ static void	init_textures(t_cub *cub)
 	load_texture(cub, &cub->textures[3], cub->parse.so);
 	///home/kali/Desktop/Cub/bonus/Assets/sprites/portal.xpm
 	// /Users/ajabri/Desktop/cub/bonus/Assets/Textures/wepon.xpm
-	load_texture(cub, &cub->textures[4], "./Assets/sprites/w0.xpm");
-	load_texture(cub, &cub->textures[5], "./Assets/sprites/w1.xpm");
-	load_texture(cub, &cub->textures[6], "./Assets/sprites/metal_door_close.xpm");
-	load_texture(cub, &cub->textures[7], "./Assets/sprites/zoom.xpm");
-	load_texture(cub, &cub->textures[8], "./Assets/sprites/cover.xpm");
-	load_texture(cub, &cub->textures[9], "./Assets/sprites/metal_door_op.xpm");
+	load_texture(cub, &cub->textures[4], "./Assets/sprites/metal_door_close.xpm");
+	load_texture(cub, &cub->textures[5], "./Assets/sprites/zoom.xpm");
+	load_texture(cub, &cub->textures[6], "./Assets/sprites/cover.xpm");
+	load_texture(cub, &cub->textures[7], "./Assets/sprites/metal_door_op.xpm");
+	// load_texture(cub, &cub->textures[10], "./Assets/sprites/barrel_wolf.xpm");
+	load_texture(cub, &cub->gun[0], "./Assets/sprites/w0.xpm");
+	load_texture(cub, &cub->gun[1], "./Assets/sprites/w1.xpm");
+	load_texture(cub, &cub->gun[2], "./Assets/sprites/w2.xpm");
+	load_texture(cub, &cub->gun[3], "./Assets/sprites/w4.xpm");
+	load_texture(cub, &cub->gun[4], "./Assets/sprites/w5.xpm");
+	load_texture(cub, &cub->gun[5], "./Assets/sprites/w6.xpm");
+	// load_texture(cub, &cub->gun[3], "./Assets/sprites/w3.xpm");
+	
 }
 
 /*
@@ -100,8 +107,8 @@ void init_door(t_cub *cub)
 {
 	find_door_cordn(cub);
 	cub->door.open = 0;
-	cub->gun_frame = 4;
-	cub->door.frame = 6;
+	cub->gun_frame = 0;
+	cub->door.frame = 4;
 }
 
 
