@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/20 09:31:08 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/20 09:33:36 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,6 @@ int raycaster(t_cub *cub)
             {
 				// cub->map.map2d[map_y][map_x] = 'D';
                 cub->ray.hit_door = 1;
-				// cub->door.frame = 9;
             }
         }
 		cub->var.wall_x = calculate_wall_x(&cub->ray);
