@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/19 15:15:38 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/19 20:33:46 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ static void	init_textures(t_cub *cub)
 	load_texture(cub, &cub->textures[3], cub->parse.so);
 	///home/kali/Desktop/Cub/bonus/Assets/sprites/portal.xpm
 	// /Users/ajabri/Desktop/cub/bonus/Assets/Textures/wepon.xpm
-	load_texture(cub, &cub->textures[4], "./Assets/Textures/wepon1.xpm");
-	load_texture(cub, &cub->textures[5], "./Assets/sprites/gun_shoot.xpm");
+	load_texture(cub, &cub->textures[4], "./Assets/sprites/w0.xpm");
+	load_texture(cub, &cub->textures[5], "./Assets/sprites/w1.xpm");
 	load_texture(cub, &cub->textures[6], "./Assets/sprites/metal_door_close.xpm");
 	load_texture(cub, &cub->textures[7], "./Assets/sprites/zoom.xpm");
 	load_texture(cub, &cub->textures[8], "./Assets/sprites/cover.xpm");

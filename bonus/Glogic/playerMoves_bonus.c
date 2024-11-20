@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/19 14:36:31 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/20 09:24:10 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	key_release(int key, t_cub *cub)
 		cub->rotate_right = 0;
 	else if (key == E)
 	{
-		printf("E key released\n");
+		// printf("E key released\n");
 		cub->gun_frame = 4;
 	}
 	return (0);
