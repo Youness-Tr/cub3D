@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/20 10:31:17 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/20 16:11:14 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ struct s_mlx // the mlx structure
 	t_data		parse;
 	t_vars		var;
 	t_img		textures[8];
-	t_img		gun[7];
+	t_img		gun[19];
 	t_leak		*free;
 	int			move_forward;
 	int			move_backward;

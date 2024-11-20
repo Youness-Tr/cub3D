@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   playerMoves_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/20 10:27:09 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/20 16:13:10 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ int	key_press(int key, t_cub *cub)
 		cub->rotate_right = 1;
 	else if (key == E)
 	{
-		cub->gun_frame++;
-		if (cub->gun_frame == 5)
-			cub->gun_frame = 0;	
+			cub->gun_frame++;
+		if (cub->gun_frame == 18)
+			cub->gun_frame = 0;
 	}
 	else if (key == ESC)
 		ft_exit(&cub->parse);
