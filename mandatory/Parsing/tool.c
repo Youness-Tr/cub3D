@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:36:17 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/16 23:27:59 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/18 10:02:46 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,10 @@ int	get_haxe(char *s, unsigned int start, t_cub *cub)
 	db = ft_splitv2(ss, ',', cub);
 	if (!db || !db[0] || !db[1] || !db[2])
 	{
-		// free(ss);
-		// ft_free(db);
-		ft_error("color error");//!free textures
+		ft_errorv2(&cub->parse, "color error");
 		return (0);
 	}
 	hexa = create_trgb(0, ft_atoi(db[0]), ft_atoi(db[1]), ft_atoi(db[2]));
-	// free(ss);
-	// ft_free(db);
 	return (hexa);
 }
 
@@ -77,7 +73,7 @@ void	ft_init(char *line, t_data *data)
 	else if (data->no && data->so && data->we && data->ea && data->f&& data->c)
 		data->stop = 1;
 	else
-		ft_error("args error"); //! i have to free here
+		ft_errorv2(data, "data not valid");
 }
 
 char	*join_space(char *s1, char *s2, t_cub *cub)

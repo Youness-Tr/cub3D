@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/16 23:31:17 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/18 10:21:02 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_check(t_data *data)
 		j = -1;
 		while (data->map[i][++j])
 		{
-			if (find_direction(data, data->map[i][j])) //! check player here
+			if (find_direction(data, data->map[i][j]))
 			{
 				data->player_x = i;
 				data->player_y = j;
@@ -92,8 +92,7 @@ void	map_fill(t_data *data)
 	//*DONE :i need to check here for load textures and colors;
 	if (!data->stop)
 	{
-		//! potential leak
-		ft_error("Error");
+		ft_errorv2(data, "Error");
 	}
 	data->map[j] = NULL;
 	close(fd);
@@ -147,8 +146,8 @@ int	parser(t_data *data)
 		ft_errorv2(data, "Error\n");
 	add_to_map(data);
 	map_scan(data);
+	printf("--------------------------------------------------------\n");
 	// print_leaks(data->info->free);
-	// printf("--------------------------------------------------------\n");
 	ft_free_all(data->info->free);
 	exit(0);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:42:40 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/16 23:24:07 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/17 00:12:07 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	count_len(t_data *data)
 	if (fd == -1 || ft_strcmp(ext, ".cub"))
 	{
 		// free(ext);
-		ft_error("invalid path");
+		ft_errorv2(data, "invalid path");
 	}
 	line = get_next_line(fd);
 	while (line)
@@ -70,7 +70,7 @@ void	init(t_data *data)
 	// data->info->free->next = NULL;
 	len = count_len(data);
 	if (len == 0)
-		ft_error("empty file");
+		ft_errorv2(data, "empty file");
 	data->map = ft_malloc(data->info, sizeof(char *) * len);
 }
 
@@ -85,10 +85,6 @@ void	ft_errorv2(t_data *data, char *s)
 		i++;
 	}
 	write(2, "\n", 1);
-	ft_free(data->map);
-	free(data->ea);
-	free(data->no);
-	free(data->so);
-	free(data->we);
+	ft_free_all(data->info->free);
 	exit(1);
 }

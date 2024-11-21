@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:40:01 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/14 12:41:31 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/17 00:09:26 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	ft_atoi(const char *nptr)
 	i = 0;
 	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
 		i++;
-		// ft_error("not a number"); //?to make sure it's in right fomat
+		// ft_errorv2("not a number"); //?to make sure it's in right fomat
 									//! i have to free here
 	while (nptr[i] >= 48 && nptr[i] <= 57)
 	{
@@ -65,7 +65,7 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	if ((result > 255))
-		ft_error("not valid number"); //! i have to free here
+		return (-1); //! i have to free here
 	return (result);
 }
 

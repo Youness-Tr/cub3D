@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:23:16 by ajabri            #+#    #+#             */
-/*   Updated: 2024/10/06 11:10:43 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/16 23:58:50 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 // 	fd = open(file, O_RDONLY);
 // 	if (fd < 0)
-// 		ft_error("Error: map not found");
+// 		ft_errorv2("Error: map not found");
 // 	tmp = NULL;
 // 	while (1)
 // 	{

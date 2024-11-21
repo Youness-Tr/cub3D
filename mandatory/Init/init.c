@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/16 22:42:53 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/18 10:19:54 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	load_texture(t_cub *cub, t_img *texture, char *file_path)
 			&texture->h);
 	if (!texture->img)
 	{
-		ft_errorv2(&cub->parse, "Error: Could not load texture");
+		// ft_errorv2(&cub->parse, "Error: Could not load texture");
 		_close_window(cub);
 	}
 	texture->addr = mlx_get_data_addr(texture->img, &texture->bpp,
@@ -67,7 +67,7 @@ void	init_engin(t_cub *cub, char *file)
 {
 	cub->parse.file_path = file;
 	cub->parse.info = cub;
-	// cub->free = NULL;
+	cub->free = NULL;
 	parser(&cub->parse);
 	init_map(cub);
 	init_plyr(cub);
