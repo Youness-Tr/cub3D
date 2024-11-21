@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/21 11:42:07 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:21:10 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <string.h>
 # include <unistd.h>
 // # include <mlx.h>
-# include "../mlx/mlx.h"
+# include "../../mlx/mlx.h"
 # include "get_next_line.h"
 # include <fcntl.h>
 # include <math.h>
@@ -34,24 +34,24 @@
 # define P_SPEED 8
 # define PI 3.141592653589
 # define FOV (67 * PI) / 180
-# define L_ARROW 65361
-#define R_ARROW 65363
-#define W  119
-#define A 97
-#define S 115
-#define D 100
-#define Q 113//*REMOVE
-#define R 114//*REMOVE
-#define ESC 65307
+// # define L_ARROW 65361
+// #define R_ARROW 65363
+// #define W  119
+// #define A 97
+// #define S 115
+// #define D 100
+// #define Q 113//*REMOVE
+// #define R 114//*REMOVE
+// #define ESC 65307
 
-// # define A 0
+# define A 0
+# define S 1
+# define D 2
+# define W 13
+# define ESC 53
 // # define S 1
-// # define D 2
-// # define W 13
-// # define ESC 53
-// # define S 1
-// # define L_ARROW 123
-// # define R_ARROW 124
+# define L_ARROW 123
+# define R_ARROW 124
 
 /****************TxTColoR*******************/
 # define RED "\033[1;31m"

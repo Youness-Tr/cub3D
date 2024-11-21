@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:36:17 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/21 11:30:02 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:01:38 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	get_haxe(char *s, unsigned int start, t_cub *cub)
 	db = ft_splitv2(ss, ',', cub);
 	if (!db || !db[0] || !db[1] || !db[2])
 	{
-		ft_errorv2(&cub->parse, "color error");
+		ft_errorv2(&cub->parse, "ERROR :: INVALID COLOR FORMAT");
 		return (0);
 	}
 	hexa = create_trgb(0, ft_atoi(db[0]), ft_atoi(db[1]), ft_atoi(db[2]));
@@ -73,7 +73,7 @@ void	ft_init(char *line, t_data *data)
 	else if (data->no && data->so && data->we && data->ea && data->f&& data->c)
 		data->stop = 1;
 	else
-		ft_errorv2(data, "data not valid");
+		ft_errorv2(data, "ERROR :: INVALID DATA");
 }
 
 char	*join_space(char *s1, char *s2, t_cub *cub)
@@ -100,6 +100,5 @@ char	*join_space(char *s1, char *s2, t_cub *cub)
 	}
 	str[len1] = s2[0];
 	str[len1 + 1] = '\0';
-	// free(s1);
 	return (str);
 }

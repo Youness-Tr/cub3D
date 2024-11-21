@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/21 12:21:30 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:50:58 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,8 @@ void	map_fill(t_data *data)
 		free(line);
 		line = get_next_line(fd);
 	}
-	//*DONE :i need to check here for load textures and colors;
 	if (!data->stop)
-	{
-		ft_errorv2(data, "Error");
-	}
+		ft_errorv2(data, "ERROR :: MAP DOSEN'T EXIST\n");
 	data->map[j] = NULL;
 	close(fd);
 }
@@ -115,13 +112,10 @@ void	map_scan(t_data *data)
 			{
 				if (i == 0 || i == data->lines || j == 0 || j == data->map_w
 					- 2)
-				{
-					printf("i ::%i && j ::%i", data->lines, data->map_w);
-					ft_errorv2(data, "error::::: invalid map");
-				}
+					ft_errorv2(data, "ERROR :: INVALID MAP");
 				if (data->map[i - 1][j] == ' ' || data->map[(i) + 1][j] == ' '
 					|| data->map[i][j - 1] == ' ' || data->map[i][j + 1] == ' ')
-					ft_errorv2(data, "error::::: invalid map");
+					ft_errorv2(data, "ERROR :: INVALID MAP");
 			}
 		}
 	}
@@ -143,10 +137,10 @@ int	parser(t_data *data)
 	init(data);
 	map_fill(data);
 	if (ft_check(data))
-		ft_errorv2(data, "Error\n");
+		ft_errorv2(data, "ERROR :: MAP ELEMENT\n");
 	add_to_map(data);
 	map_scan(data);
-	printf("--------------------------------------------------------\n");
+	// printf("--------------------------------------------------------\n");
 	// print_leaks(data->info->free);
 	// ft_free_all(data->info->free);
 	// exit(0);

@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:42:40 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/21 11:30:59 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:03:07 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ int	count_len(t_data *data)
 	ext = ft_substrv2(data->file_path, ft_strlen(data->file_path) - 4, 4, data->info);
 	fd = open(data->file_path, O_RDONLY);
 	if (fd == -1 || ft_strcmp(ext, ".cub"))
-	{
-		// free(ext);
-		ft_errorv2(data, "invalid path");
-	}
+		ft_errorv2(data, "ERROR :: INVALID FILE");
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -49,7 +46,6 @@ int	count_len(t_data *data)
 		free(line);
 		line = get_next_line(fd);
 	}
-	// free(ext);
 	return (i);
 }
 
@@ -66,11 +62,9 @@ void	init(t_data *data)
 	data->ea = NULL;
 	data->c= 0;
 	data->f= 0;
-	// data->info->free->address = NULL;
-	// data->info->free->next = NULL;
 	len = count_len(data);
 	if (len == 0)
-		ft_errorv2(data, "empty file");
+		ft_errorv2(data, "ERROR :: EMPTY FILE");
 	data->map = ft_malloc(data->info, sizeof(char *) * len);
 }
 

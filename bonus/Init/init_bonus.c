@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/21 12:14:10 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:46:42 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,34 +61,34 @@ static void	init_textures(t_cub *cub)
 	load_texture(cub, &cub->textures[3], cub->parse.so);
 	///home/kali/Desktop/Cub/bonus/Assets/sprites/portal.xpm
 	// /Users/ajabri/Desktop/cub/bonus/Assets/Textures/wepon.xpm
-	load_texture(cub, &cub->textures[4], "./Assets/sprites/metal_door_close.xpm");
-	load_texture(cub, &cub->textures[5], "./Assets/sprites/zoom.xpm");
-	load_texture(cub, &cub->textures[6], "./Assets/sprites/cover.xpm");
-	load_texture(cub, &cub->textures[7], "./Assets/sprites/metal_door_op.xpm");
+	load_texture(cub, &cub->textures[4], "./bonus/Assets/sprites/metal_door_close.xpm");
+	load_texture(cub, &cub->textures[5], "./bonus/Assets/sprites/zoom.xpm");
+	load_texture(cub, &cub->textures[6], "./bonus/Assets/sprites/cover.xpm");
+	load_texture(cub, &cub->textures[7], "./bonus/Assets/sprites/metal_door_op.xpm");
 	// load_texture(cub, &cub->textures[10], "./Assets/sprites/barrel_wolf.xpm");
 // Assets/youness/gun_two/frame_01.xpm
 	// load_texture(cub, &cub->gun[0], "./Assets/youness/gun_two/frame_00.xpm");
 	// load_texture(cub, &cub->gun[1], "./Assets/youness/gun_two/frame_01.xpm");
 	// load_texture(cub, &cub->gun[2], "./Assets/youness/gun_two/frame_02.xpm");
-	load_texture(cub, &cub->gun[0], "./Assets/youness/gun_two/frame_03.xpm");
-	load_texture(cub, &cub->gun[1], "./Assets/youness/gun_two/frame_04.xpm");
-	load_texture(cub, &cub->gun[2], "./Assets/youness/gun_two/frame_05.xpm");
-	load_texture(cub, &cub->gun[3], "./Assets/youness/gun_two/frame_06.xpm");
-	load_texture(cub, &cub->gun[4], "./Assets/youness/gun_two/frame_07.xpm");
-	load_texture(cub, &cub->gun[5], "./Assets/youness/gun_two/frame_08.xpm");
-	load_texture(cub, &cub->gun[6], "./Assets/youness/gun_two/frame_09.xpm");
-	load_texture(cub, &cub->gun[7], "./Assets/youness/gun_two/frame_10.xpm");
-	load_texture(cub, &cub->gun[8], "./Assets/youness/gun_two/frame_11.xpm");
-	load_texture(cub, &cub->gun[9], "./Assets/youness/gun_two/frame_12.xpm");
-	load_texture(cub, &cub->gun[10], "./Assets/youness/gun_two/frame_13.xpm");
-	load_texture(cub, &cub->gun[11], "./Assets/youness/gun_two/frame_14.xpm");
-	load_texture(cub, &cub->gun[12], "./Assets/youness/gun_two/frame_15.xpm");
-	load_texture(cub, &cub->gun[13], "./Assets/youness/gun_two/frame_16.xpm");
-	load_texture(cub, &cub->gun[14], "./Assets/youness/gun_two/frame_17.xpm");
-	load_texture(cub, &cub->gun[15], "./Assets/youness/gun_two/frame_18.xpm");
-	load_texture(cub, &cub->gun[16], "./Assets/youness/gun_two/frame_19.xpm");
-	load_texture(cub, &cub->gun[17], "./Assets/youness/gun_two/frame_20.xpm");
-	load_texture(cub, &cub->gun[18], "./Assets/youness/gun_two/frame_21.xpm");
+	load_texture(cub, &cub->gun[0], "./bonus/Assets/youness/gun_two/frame_03.xpm");
+	load_texture(cub, &cub->gun[1], "./bonus/Assets/youness/gun_two/frame_04.xpm");
+	load_texture(cub, &cub->gun[2], "./bonus/Assets/youness/gun_two/frame_05.xpm");
+	load_texture(cub, &cub->gun[3], "./bonus/Assets/youness/gun_two/frame_06.xpm");
+	load_texture(cub, &cub->gun[4], "./bonus/Assets/youness/gun_two/frame_07.xpm");
+	load_texture(cub, &cub->gun[5], "./bonus/Assets/youness/gun_two/frame_08.xpm");
+	load_texture(cub, &cub->gun[6], "./bonus/Assets/youness/gun_two/frame_09.xpm");
+	load_texture(cub, &cub->gun[7], "./bonus/Assets/youness/gun_two/frame_10.xpm");
+	load_texture(cub, &cub->gun[8], "./bonus/Assets/youness/gun_two/frame_11.xpm");
+	load_texture(cub, &cub->gun[9], "./bonus/Assets/youness/gun_two/frame_12.xpm");
+	load_texture(cub, &cub->gun[10], "./bonus/Assets/youness/gun_two/frame_13.xpm");
+	load_texture(cub, &cub->gun[11], "./bonus/Assets/youness/gun_two/frame_14.xpm");
+	load_texture(cub, &cub->gun[12], "./bonus/Assets/youness/gun_two/frame_15.xpm");
+	load_texture(cub, &cub->gun[13], "./bonus/Assets/youness/gun_two/frame_16.xpm");
+	load_texture(cub, &cub->gun[14], "./bonus/Assets/youness/gun_two/frame_17.xpm");
+	load_texture(cub, &cub->gun[15], "./bonus/Assets/youness/gun_two/frame_18.xpm");
+	load_texture(cub, &cub->gun[16], "./bonus/Assets/youness/gun_two/frame_19.xpm");
+	load_texture(cub, &cub->gun[17], "./bonus/Assets/youness/gun_two/frame_20.xpm");
+	load_texture(cub, &cub->gun[18], "./bonus/Assets/youness/gun_two/frame_21.xpm");
 	// load_texture(cub, &cub->gun[3], "./Assets/sprites/w3.xpm");
 	
 }
