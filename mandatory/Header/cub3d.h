@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 10:26:59 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/21 11:42:07 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <string.h>
 # include <unistd.h>
 // # include <mlx.h>
-# include "../zmlx/mlx.h"
+# include "../mlx/mlx.h"
 # include "get_next_line.h"
 # include <fcntl.h>
 # include <math.h>
@@ -34,24 +34,24 @@
 # define P_SPEED 8
 # define PI 3.141592653589
 # define FOV (67 * PI) / 180
-// # define L_ARROW 65361
-// #define R_ARROW 65363
-// #define W  119
-// #define A 97
-// #define S 115
-// #define D 100
-// #define Q 113//*REMOVE
-// #define R 114//*REMOVE
-// #define ESC 65307
+# define L_ARROW 65361
+#define R_ARROW 65363
+#define W  119
+#define A 97
+#define S 115
+#define D 100
+#define Q 113//*REMOVE
+#define R 114//*REMOVE
+#define ESC 65307
 
-# define A 0
-# define S 1
-# define D 2
-# define W 13
-# define ESC 53
-# define S 1
-# define L_ARROW 123
-# define R_ARROW 124
+// # define A 0
+// # define S 1
+// # define D 2
+// # define W 13
+// # define ESC 53
+// # define S 1
+// # define L_ARROW 123
+// # define R_ARROW 124
 
 /****************TxTColoR*******************/
 # define RED "\033[1;31m"
@@ -184,11 +184,12 @@ void					ft_errorv2(t_data *data, char *s);
 void					ft_exit(t_data *data);
 void					ft_free(char **p);
 char					**get_map(char *file);
-void					*get_value(char *s, unsigned int start);
-int						get_haxe(char *s, unsigned int start);
+void	*get_value(char *s, unsigned int start, t_cub *cub);
+int	get_haxe(char *s, unsigned int start, t_cub *cub);
 void					ft_init(char *line, t_data *data);
 int						find_direction(t_data *data, char c);
-char					*join_space(char *s1, char *s2);
+
+char					*join_space(char *s1, char *s2, t_cub *cub);
 void					my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int						raycaster(t_cub *cub);
 void					put_line(t_cub *cub, int len, int x, int y);
@@ -240,6 +241,11 @@ int						get_texture_x(t_cub *cub, double wall_x);
 int						wall_hit(float x, float y, t_cub *mlx);
 
 // Leaks:
-void					*ft_malloc(t_cub *cub, size_t size);
+void	*ft_malloc(t_cub *cub, size_t size);
+void	ft_free_all(t_leak *cub);
+char	*ft_strdupv2(char *s1, t_cub *leak);
+char	*ft_strjoinv2(char *s1, char *s2, t_cub *cub);
+char	*ft_substrv2(char *s, unsigned int start, size_t len, t_cub *cub);
+char	**ft_splitv2(char *s, char c, t_cub *cub);
 
 #endif

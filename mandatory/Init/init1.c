@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:57:28 by kali              #+#    #+#             */
-/*   Updated: 2024/11/15 10:16:41 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/18 10:39:48 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	player_ngl(t_cub *cub)
 	int	x;
 	int	y;
 
-	x = cub->parse.player_x;
-	y = cub->parse.player_y;
+	x = cub->parse.player_y;
+	y = cub->parse.player_x;
 	if (cub->parse.map[y][x] == 'E')
 		cub->plyr.angle = (90 * PI) / 180;
 	else if (cub->parse.map[y][x] == 'N')

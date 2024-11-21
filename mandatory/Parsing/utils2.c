@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:42:40 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/15 09:55:41 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/17 00:12:07 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d.h"
 
-static int	n_len(int n)
+int	n_len(int n)
 {
 	long	result;
 	int		i;
@@ -27,33 +27,6 @@ static int	n_len(int n)
 	return (i);
 }
 
-char	*ft_itoa(int n)
-{
-	int		i;
-	long	result;
-	char	*str;
-
-	i = 0;
-	if (n <= 0)
-		i++;
-	i += n_len(n);
-	str = malloc(sizeof(char) * (i + 1));
-	if (!str)
-		return (NULL);
-	result = (long)n;
-	str[i] = '\0';
-	if (result < 0)
-		result *= -1;
-	while (i)
-	{
-		str[--i] = result % 10 + 48;
-		result /= 10;
-	}
-	if (n < 0)
-		str[i] = '-';
-	return (str);
-}
-
 int	count_len(t_data *data)
 {
 	int		i;
@@ -62,12 +35,12 @@ int	count_len(t_data *data)
 	int		fd;
 
 	i = 0;
-	ext = ft_substr(data->file_path, ft_strlen(data->file_path) - 4, 4);
+	ext = ft_substrv2(data->file_path, ft_strlen(data->file_path) - 4, 4, data->info);
 	fd = open(data->file_path, O_RDONLY);
 	if (fd == -1 || ft_strcmp(ext, ".cub"))
 	{
-		free(ext);
-		ft_error("invalid path");
+		// free(ext);
+		ft_errorv2(data, "invalid path");
 	}
 	line = get_next_line(fd);
 	while (line)
@@ -76,7 +49,7 @@ int	count_len(t_data *data)
 		free(line);
 		line = get_next_line(fd);
 	}
-	free(ext);
+	// free(ext);
 	return (i);
 }
 
@@ -93,10 +66,12 @@ void	init(t_data *data)
 	data->ea = NULL;
 	data->c= 0;
 	data->f= 0;
+	// data->info->free->address = NULL;
+	// data->info->free->next = NULL;
 	len = count_len(data);
 	if (len == 0)
-		ft_error("empty file");
-	data->map = malloc(sizeof(char *) * len);
+		ft_errorv2(data, "empty file");
+	data->map = ft_malloc(data->info, sizeof(char *) * len);
 }
 
 void	ft_errorv2(t_data *data, char *s)
@@ -110,10 +85,6 @@ void	ft_errorv2(t_data *data, char *s)
 		i++;
 	}
 	write(2, "\n", 1);
-	ft_free(data->map);
-	free(data->ea);
-	free(data->no);
-	free(data->so);
-	free(data->we);
+	ft_free_all(data->info->free);
 	exit(1);
 }

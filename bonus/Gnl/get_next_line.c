@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 10:28:57 by ajabri            #+#    #+#             */
-/*   Updated: 2024/09/15 10:07:46 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/14 13:22:13 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ char	*read_f(int fd, char *save)
 		tmp = ft_strdup(save);
 		free(save);
 		save = ft_strjoin(tmp, buffer);
-		// free(tmp); // edit by VENOM
 		if (ft_strchr(save, '\n'))
 			break ;
 	}
