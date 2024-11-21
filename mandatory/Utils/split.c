@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 12:28:14 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/18 10:38:08 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/16 23:08:14 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	malloc_error_free(char **ret, size_t i)
 	free(ret);
 }
 
-static int	ft_mini_malloc(char **ptr, char *s, char c)
+static int	ft_mini_malloc(char **ptr, char *s, char c, t_cub *cub)
 {
 	size_t	i;
 	size_t	len;
@@ -59,7 +59,7 @@ static int	ft_mini_malloc(char **ptr, char *s, char c)
 			len = 0;
 			while (*s && *s != c && ++len)
 				s++;
-			ptr[i] = ft_substr(s - len, 0, len);
+			ptr[i] = ft_substrv2(s - len, 0, len, cub);
 			if (!ptr[i])
 			{
 				malloc_error_free(ptr, i);
@@ -74,16 +74,16 @@ static int	ft_mini_malloc(char **ptr, char *s, char c)
 	return (1);
 }
 
-char	**ft_split(char *s, char c)
+char	**ft_splitv2(char *s, char c, t_cub *cub)
 {
 	char	**dp;
 
 	if (!s)
 		return (NULL);
-	dp = malloc(sizeof(char *) * (ft_words(s, c) + 1));
+	dp = ft_malloc(cub, sizeof(char *) * (ft_words(s, c) + 1));
 	if (!dp)
 		return (NULL);
-	if (!ft_mini_malloc(dp, s, c))
+	if (!ft_mini_malloc(dp, s, c, cub))
 		return (NULL);
 	return (dp);
 }

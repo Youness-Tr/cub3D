@@ -9,7 +9,7 @@ MLX_FLAGS =  -Lmlx -lmlx -framework OpenGL -framework AppKit  -fsanitize=address
 SRC = main_cub_bonus.c
 #Utils/
 SRC += Utils/utils1_bonus.c Utils/substr_bonus.c  Utils/split_bonus.c  Utils/err_bonus.c
-SRC += Utils/init_bonus.c
+SRC += Utils/strdup_bonus.c
 #Parsing/
 SRC += Parsing/parser_bonus.c   Parsing/utils_bonus.c  Parsing/tool_bonus.c  Parsing/utils2_bonus.c Parsing/utils3_bonus.c
 #RayCasting/
@@ -23,6 +23,7 @@ SRC += Glogic/playerMoves_bonus.c Glogic/Wall_Intersection_bonus.c
 #Init/
 SRC += Init/init1_bonus.c Init/init_bonus.c
 #------------------
+SRC += Leaks/free_all.c Leaks/garbedge.c
 
 OBJ = $(SRC:.c=.o)
 # B_OBJ = $(B_SRC:.c=.o)

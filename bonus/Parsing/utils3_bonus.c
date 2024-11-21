@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:43:23 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/20 09:35:12 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/21 12:12:18 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_isdigit(int c)
 int	is_valid_char(char c)
 {
 	if (c == '1' || c == '0' || c == ' ' || c == 'N' || c == 'S' || c == 'W'
-		|| c == 'E' || c == '\n' || c == 'D' || c == 'C')
+		|| c == 'E' || c == 'D' || c == '\n')
 		return (1);
 	return (0);
 }
@@ -45,11 +45,7 @@ int	find_direction(t_data *data, char c)
 
 void	ft_exit(t_data *data)
 {
-	ft_free(data->map);
-	free(data->ea);
-	free(data->no);
-	free(data->so);
-	free(data->we);
+	ft_free_all(data->info->free);
 	exit(0);
 }
 

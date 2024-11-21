@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:36:52 by lissam            #+#    #+#             */
-/*   Updated: 2024/11/15 12:05:41 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/21 12:04:31 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,6 @@ void	ft_putstr(char *s)
 		i++;
 	}
 }
-
-// int	ft_strcmp(char *ptr1, char *ptr2)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (ptr1[i] == ptr2[i] && ptr1[i] != '\0' && ptr2[i] != '\0')
-// 		i++;
-// 	return (ptr1[i] - ptr2[i]);
-// }
 
 void	ft_putstrv2(const char *s, char *str)
 {

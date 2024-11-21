@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:40:01 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/18 10:39:23 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/17 00:09:26 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 int	ft_atoi(const char *nptr)
 {
 	int			i;
-	int			m;
+	// int			m;
 	long long	result;
 
-	m = 1;
 	result = 0;
 	i = 0;
 	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
-		ft_error("not a number"); //?to make sure it's in right fomat
+		i++;
+		// ft_errorv2("not a number"); //?to make sure it's in right fomat
 									//! i have to free here
 	while (nptr[i] >= 48 && nptr[i] <= 57)
 	{
@@ -64,9 +64,9 @@ int	ft_atoi(const char *nptr)
 		result += nptr[i] - 48;
 		i++;
 	}
-	if ((result * m) > 255)
-		ft_error("not valid number"); //! i have to free here
-	return (result * m);
+	if ((result > 255))
+		return (-1); //! i have to free here
+	return (result);
 }
 
 int	create_trgb(int t, int r, int g, int b)

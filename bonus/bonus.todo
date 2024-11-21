@@ -47,8 +47,10 @@
           "content": "need to fix the slow Rotation movment when i 'm close to the walls",
           "id": 1731681806428,
           "level": "default",
-          "done": false,
-          "start": 1731681806428
+          "done": true,
+          "start": 1731681806428,
+          "focus": false,
+          "end": 1732184849980
         }
       },
       {
@@ -58,8 +60,10 @@
           "content": "Doors which can open and close",
           "id": 1731677081744,
           "level": "default",
-          "done": false,
-          "start": 1731677081744
+          "done": true,
+          "start": 1731677081744,
+          "focus": false,
+          "end": 1732184855260
         }
       },
       {
@@ -99,6 +103,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1731857699718"
+    "version": "1732184855317"
   }
 }

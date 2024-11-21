@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:43:23 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/18 10:39:33 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/18 10:14:30 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,7 @@ int	find_direction(t_data *data, char c)
 
 void	ft_exit(t_data *data)
 {
-	ft_free(data->map);
-	free(data->ea);
-	free(data->no);
-	free(data->so);
-	free(data->we);
+	ft_free_all(data->info->free);
 	exit(0);
 }
 

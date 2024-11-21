@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 12:11:00 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/21 12:34:37 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,28 @@ int	ft_check(t_data *data)
 {
 	int	i;
 	int	j;
-	
+	int ply;
+
 	i = 0;
+	ply = 0;
 	while (data->map[i])
 	{
 		j = -1;
 		while (data->map[i][++j])
 		{
-			if (find_direction(data, data->map[i][j])) //! check player here
+			if (find_direction(data, data->map[i][j]))
 			{
 				data->player_x = i;
 				data->player_y = j;
+				ply++;
 			}
 			if (!is_valid_char(data->map[i][j]))
 				return (1);
 		}
 		i++;
 	}
+	if (ply > 1 || ply == 0)
+		return (1);
 	data->lines = i - 1;
 	return (0);
 }
@@ -56,8 +61,8 @@ void	add_to_map(t_data *data)
 		if (ft_strlen(data->map[i]) < data->map_w)
 		{
 			while (ft_strlen(data->map[i]) < data->map_w)
-				data->map[i] = join_space(data->map[i], " ");
-			data->map[i] = ft_strjoin(data->map[i], "\n");
+				data->map[i] = join_space(data->map[i], " ", data->info);
+			data->map[i] = ft_strjoinv2(data->map[i], "\n", data->info);
 		}
 		i++;
 	}
@@ -79,7 +84,7 @@ void	map_fill(t_data *data)
 			ft_init(line, data);
 		if (data->stop)
 		{
-			data->map[j] = ft_strdup(line);
+			data->map[j] = ft_strdupv2(line, data->info);
 			j++;
 		}
 		free(line);
@@ -88,8 +93,7 @@ void	map_fill(t_data *data)
 	//*DONE :i need to check here for load textures and colors;
 	if (!data->stop)
 	{
-		//! potential leak
-		ft_error("Error");
+		ft_errorv2(data, "Error");
 	}
 	data->map[j] = NULL;
 	close(fd);
@@ -120,8 +124,31 @@ void	map_scan(t_data *data)
 					|| data->map[i][j - 1] == ' ' || data->map[i][j + 1] == ' ')
 					ft_errorv2(data, "error::::: invalid map");
 			}
+			if (data->map[i][j] == 'D')
+			{
+				if (i == 0 || i == data->lines || j == 0 || j == data->map_w
+					- 2)
+					ft_errorv2(data, "error::::: invalid map");
+				if ((data->map[i - 1][j] != '1' && (data->map[i][j - 1] != '1'))
+					|| (data->map[i - 1][j] != '1' && data->map[i][j + 1] != '1'))
+					ft_errorv2(data, "error::::: invalid map");
+				if ((data->map[i + 1][j] != '1' && data->map[i][j + 1] != '1')
+					|| (data->map[i + 1][j] != '1' && data->map[i][j - 1] != '1'))
+					ft_errorv2(data, "error::::: invalid map");
+			}
 		}
 	}
+}
+
+void print_leaks(t_leak *cub)
+{
+    t_leak *current = cub;
+
+    while (current != NULL)
+    {
+        printf("Leak at %p\n", current->address);
+        current = current->next;
+    }
 }
 
 int	parser(t_data *data)
@@ -132,5 +159,9 @@ int	parser(t_data *data)
 		ft_errorv2(data, "Error\n");
 	add_to_map(data);
 	map_scan(data);
+	printf("--------------------------------------------------------\n");
+	// print_leaks(data->info->free);
+	// ft_free_all(data->info->free);
+	// exit(0);
 	return (0);
 }

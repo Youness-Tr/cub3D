@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/20 16:12:48 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/21 12:14:10 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ void	init_engin(t_cub *cub, char *file)
 {
 	cub->parse.file_path = file;
 	cub->parse.info = cub;
+	cub->free = NULL;
 	parser(&cub->parse);
 	init_map(cub);
 	init_plyr(cub);

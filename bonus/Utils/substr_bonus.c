@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   substr_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 10:15:47 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/15 12:05:16 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/21 12:04:34 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ static char	*ft_while(char *ptr, char *st, unsigned int star, size_t lent)
 	return (ptr);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substrv2(char *s, unsigned int start, size_t len, t_cub *cub)
 {
 	char	*str;
 
 	if (!s)
 		return (NULL);
 	if (start >= (unsigned int)ft_strlen(s))
-		return (ft_strdup(""));
+		return (ft_strdupv2("", cub));
 	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
-	str = (char *)malloc((len + 1) * sizeof(char));
+	str = (char *)ft_malloc(cub, (len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	ft_while(str, s, start, len);
