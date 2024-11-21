@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:57:28 by kali              #+#    #+#             */
-/*   Updated: 2024/11/18 10:39:48 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/21 20:51:28 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_map(t_cub *cub)
 {
 	cub->map.map2d = cub->parse.map;
 	if (!cub->map.map2d)
-		ft_errorv2(&cub->parse, "Error: Could not load map");
+		ft_errorv2(&cub->parse, "ERROR : MAP NOT LOADED !!!\n");
 	cub->map.map_h = cub->parse.lines;
 	cub->map.map_w = cub->parse.map_len;
 	cub->map.posx = cub->parse.player_y;

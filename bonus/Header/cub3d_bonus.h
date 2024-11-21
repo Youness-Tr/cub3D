@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/21 19:21:31 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:43:50 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,17 @@
 // #define S 115
 // #define D 100
 // #define ESC 65307
-# define L_ARROW 65361
-#define R_ARROW 65363
+// # define L_ARROW 65361
+// #define R_ARROW 65363
 #define O 24//*REMOVE
 // // #define R 114//*REMOVE
 // # define E 32
 
 # define L_MOUS 1
 # define R_MOUS 2
+
+# define L_ARROW 123
+# define R_ARROW 124
 
 # define A 0
 # define S 1

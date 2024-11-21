@@ -51,6 +51,6 @@ clean:
 	@rm -rf $(OBJ) $(B_OBJ)
 
 fclean: clean
-	@rm -rf $(NAME) $(B_NAME)
+	@rm -rf $(NAME) $(BONUS_NAME)
 
 re: fclean all

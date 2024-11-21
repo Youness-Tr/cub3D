@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/21 19:21:10 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:42:12 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 // # define PLAYER_RADIUS (TILE_SIZE / 10)
 # define PLR 8     // plYER HIGHT WIEGHT (remove this)
 # define NRAYS 540 //! remove this
-# define ROT_SPEED 0.04
-# define P_SPEED 8
+# define ROT_SPEED 0.09
+# define P_SPEED 6
 # define PI 3.141592653589
 # define FOV (67 * PI) / 180
 // # define L_ARROW 65361

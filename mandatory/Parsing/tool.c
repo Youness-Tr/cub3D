@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:36:17 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/21 18:49:36 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:19:32 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,32 @@ void	*get_value(char *s, unsigned int start, t_cub *cub)
 	return (ss);
 }
 
+int check_color(char **p)
+{
+	int i;
+	int j;
+
+	j = 0;
+	i = 0;
+	while (p[i])
+	{
+		j = 0;
+		while (p[i][j])
+		{
+			if (!ft_isdigit(p[i][j]) || p[i][j] != ' ')
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	if (i != 3)
+		return (1);
+	if ((!p || !p[0] || !p[1] || !p[2])
+		|| (ft_atoi(p[0]) == -1 || ft_atoi(p[1]) == -1 || ft_atoi(p[2]) == -1))
+		return (1);
+	return (0);
+}
+
 int	get_haxe(char *s, unsigned int start, t_cub *cub)
 {
 	size_t	s_len;
@@ -44,7 +70,7 @@ int	get_haxe(char *s, unsigned int start, t_cub *cub)
 		s_len--;
 	ss = ft_substrv2(s, start, s_len - start, cub);
 	db = ft_splitv2(ss, ',', cub);
-	if (!db || !db[0] || !db[1] || !db[2])
+	if ((check_color(db)))
 	{
 		ft_errorv2(&cub->parse, "ERROR :: INVALID COLOR FORMAT");
 		return (0);

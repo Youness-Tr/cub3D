@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/21 18:50:58 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:02:43 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	map_fill(t_data *data)
 		line = get_next_line(fd);
 	}
 	if (!data->stop)
-		ft_errorv2(data, "ERROR :: MAP DOSEN'T EXIST\n");
+		ft_errorv2(data, "ERROR :: MAP DOSEN'T EXIST");
 	data->map[j] = NULL;
 	close(fd);
 }
@@ -137,7 +137,7 @@ int	parser(t_data *data)
 	init(data);
 	map_fill(data);
 	if (ft_check(data))
-		ft_errorv2(data, "ERROR :: MAP ELEMENT\n");
+		ft_errorv2(data, "ERROR :: MAP ELEMENT");
 	add_to_map(data);
 	map_scan(data);
 	// printf("--------------------------------------------------------\n");
