@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:36:17 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/22 14:17:22 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:14:18 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,25 @@ int check_color(char **p)
 {
 	int i;
 	int j;
+	int count = 0;
 
 	j = 0;
 	i = 0;
 	while (p[i])
 	{
 		j = 0;
+		count = 0;
 		while (p[i][j])
 		{
 			printf("p[%i][%i] = %c\n", i, j, p[i][j]);
-			if (ft_isdigit(p[i][j]) == 0 && p[i][j] && p[i][j] != ' ')
+			if (!ft_isdigit(p[i][j]) && p[i][j] != '\n' && p[i][j] != ' ')
 				return (1);
+			if (ft_isdigit(p[i][j]))
+				count++;
 			j++;
 		}
+		if (count == 0)
+			return (1);
 		i++;
 	}
 	if (i != 3)
