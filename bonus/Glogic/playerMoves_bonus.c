@@ -6,36 +6,36 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/22 16:59:40 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/22 19:37:02 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
 
-void find_door_cordn(t_cub *o);
-
+//! remove unused variabe like index
 void handle_door_interaction(t_cub *cub)
 {
     double player_x = cub->plyr.plyr_x / TILE_SIZE;
     double player_y = cub->plyr.plyr_y / TILE_SIZE;
-    double door_x = cub->door.x;
-    double door_y = cub->door.y;
+    int i;
 
-    double distance = sqrt(pow(player_x - door_x, 2) + pow(player_y - door_y, 2));
-
-    if (distance <= DOOR_OPEN_DISTANCE)
+    i = 0;
+    while (i < cub->ndoors)
     {
-        cub->door.open = 1; // Open the door
-		// find_door_cordn(cub);
-		// cub->map.map2d[cub->door.y][cub->door.x] = 'E'; // Change map to open door
-		cub->door.frame = 7;
-	}
-    else
-    {
-        cub->door.open = 0; // Close the door
-		// find_door_cordn(cub);
-		cub->door.frame = 4;
-        cub->map.map2d[cub->door.y][cub->door.x] = 'D'; // Change map to closed door
+        cub->doors[i].distance = sqrt(pow(player_x - cub->doors[i].x/ TILE_SIZE, 2) + pow(player_y - cub->doors[i].y/TILE_SIZE, 2));
+        if (cub->doors[i].distance <= DOOR_OPEN_DISTANCE)
+        {
+            cub->doors[i].open = 1;
+            cub->doors[i].frame = 7;
+			cub->index = i;
+        }
+        else
+        {
+            cub->doors[i].open = 0;
+			// cub->index = i;
+            cub->doors[i].frame = 4;
+        }
+        i++;
     }
 }
 
@@ -202,8 +202,8 @@ void render_weapon(t_cub *cub)
 
 void render_zoom(t_cub *cub)
 {
-    int image_x = ((cub->var.s_w )- cub->textures[5].w) / 3;
-    int image_y = (cub->var.s_h - cub->textures[5].h) / 2;
+    int image_x = ((cub->var.s_w )- cub->textures[5].w + 100) / 2;
+    int image_y = (cub->var.s_h - cub->textures[5].h) - 290;
     int x, y;
     unsigned int color;
 

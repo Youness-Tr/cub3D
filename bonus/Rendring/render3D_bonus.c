@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render3D_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/20 09:46:44 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/22 19:08:41 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,26 @@
 // }
 
 
+t_img *get_door_frame(t_cub *cub)
+{
+	int i;
+
+	i = 0;
+	while (i < cub->ndoors)
+	{
+		if (cub->doors[i].open)
+			return (&cub->textures[cub->doors[i].frame]);
+		i++;
+	}
+	return (&cub->textures[4]);
+}
 t_img	*get_texture(t_cub *cub, int flag) // get the color of the wall
 {
-
 	cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl); // normalize the angle
-	if (cub->ray.hit_door)
-		return (&cub->textures[cub->door.frame]);
+	if (cub->ray.hit_door == 1)
+		return (get_door_frame(cub));
+	if (cub->ray.hit_door == 2)
+		return (&cub->textures[6]);
 	if (flag == 0)
 	{
 		if (cub->ray.ray_ngl > PI / 2 && cub->ray.ray_ngl < 3 * (PI / 2))
@@ -61,6 +75,7 @@ t_img	*get_texture(t_cub *cub, int flag) // get the color of the wall
 			return (&cub->textures[3]);
 	}
 }
+
 
 
 
@@ -80,8 +95,13 @@ void	render_textured_wall(t_cub *cub, int x, int wall_height, int wall_top,
 		tex_y = ((y - wall_top) * texture->h) / (wall_bottom - wall_top);
 		color = *(unsigned int *)(texture->addr + (tex_y * texture->len + tex_x
 					* (texture->bpp / 8)));
-
-            my_mlx_pixel_put(&cub->img, x, y, color);
+			if (cub->ray.hit_door == 2)
+			{
+				if ((unsigned int)color  != 0xFF000000) // Check if the pixel is not fully transparent
+					 my_mlx_pixel_put(&cub->img, x, y, color);
+			}
+			else
+            	my_mlx_pixel_put(&cub->img, x, y, color);
 		y++;
 	}
 }
@@ -110,6 +130,7 @@ void render_three_d(t_cub *cub, double distnce, int raypt, int tex_x)
 	//     toppxl = s_h;
 	// if (lowpxl < 0)
 	//     lowpxl = 0;
+	
 	render_textured_wall(cub, raypt, wll_h, toppxl, lowpxl, tex_x);
 	draw_floor_ceiling(cub, raypt, toppxl, lowpxl);
 	// render_door(cub, cub->door.x, cub->door.y, cub->door.offset);

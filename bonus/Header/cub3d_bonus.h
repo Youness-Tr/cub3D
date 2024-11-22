@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/22 16:29:59 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/22 21:33:57 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 # include <math.h>
 
 # define WIN_W 1000
-# define WIN_H 900
+# define WIN_H 950
 # define TILE_SIZE 32
-# define MINI_MAP 0.15
+# define MINI_MAP 0.25
 # define PLAYER_RADIUS 15
 # define PLR 8     // plYER HIGHT WIEGHT (remove this)
 # define NRAYS 540 //! remove this
@@ -165,10 +165,11 @@ typedef struct s_leak
 // this struct is for door is for the bonus part
 typedef struct s_door
 {
-	int					x;
-	int					y;
-	int					open;
-	int frame;
+	int				x;
+	int				y;
+	int				open;
+	int				frame;
+	double distance;
 } t_door;
 
 struct s_mlx // the mlx structure
@@ -192,7 +193,9 @@ struct s_mlx // the mlx structure
 	int			rotate_right;
 	int			gun_frame;
 	int			is_shooting;
-	t_door		door;
+	t_door 		*doors;
+	int index;
+	int			ndoors;
 };
 
 int						get_win_h(char **av);

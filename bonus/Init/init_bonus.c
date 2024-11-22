@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/22 16:25:09 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/22 22:02:03 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	init_textures(t_cub *cub)
 	// /Users/ajabri/Desktop/cub/bonus/Assets/Textures/wepon.xpm
 	load_texture(cub, &cub->textures[4], "./Assets/sprites/metal_door_close.xpm");
 	load_texture(cub, &cub->textures[5], "./Assets/sprites/zoom.xpm");
-	load_texture(cub, &cub->textures[6], "./Assets/sprites/cover.xpm");
+	load_texture(cub, &cub->textures[6], "./Assets/sprites/barrel_wolf.xpm");
 	load_texture(cub, &cub->textures[7], "./Assets/sprites/metal_door_op.xpm");
 	// load_texture(cub, &cub->textures[10], "./Assets/sprites/barrel_wolf.xpm");
 // Assets/youness/gun_two/frame_01.xpm
@@ -97,7 +97,36 @@ static void	init_textures(t_cub *cub)
 //! Remove this function later
  */
 
-void find_door_cordn(t_cub *o)
+void get_doors_cordn(t_cub *o)
+{
+	int i;
+	int j;
+	int k;
+
+	i = 0;
+	k = 0;
+	while (i < o->map.map_h)
+	{
+		j = 0;
+		while (j < o->map.map_w)
+		{
+			if (o->map.map2d[i][j] == 'D')
+			{
+				o->doors[k].x = j * TILE_SIZE;
+				o->doors[k].y = i * TILE_SIZE;
+				o->doors[k].open = 0;
+				o->doors[k].frame = 4;
+				k++;
+				// break;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+
+void ndoors(t_cub *o)
 {
 	int i;
 	int j;
@@ -110,9 +139,8 @@ void find_door_cordn(t_cub *o)
 		{
 			if (o->map.map2d[i][j] == 'D')
 			{
-				o->door.x = j;
-				o->door.y = i;
-				break;
+				o->ndoors++;
+				// break;
 			}
 			j++;
 		}
@@ -122,9 +150,14 @@ void find_door_cordn(t_cub *o)
 
 void init_door(t_cub *cub)
 {
-	find_door_cordn(cub);
-	cub->door.open = 0;
-	cub->door.frame = 4;
+
+	cub->ndoors = 0;
+	cub->index = 0;
+	ndoors(cub);
+	if (cub->ndoors == 0)
+		ft_errorv2(&cub->parse, "Error: NO DOORS IN THE MAP.");
+	cub->doors = ft_malloc(cub, sizeof(t_door) * cub->ndoors);
+	get_doors_cordn(cub);
 }
 
 
