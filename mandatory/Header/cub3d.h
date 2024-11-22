@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/21 20:42:12 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/22 13:33:14 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ void	*get_value(char *s, unsigned int start, t_cub *cub);
 int	get_haxe(char *s, unsigned int start, t_cub *cub);
 void					ft_init(char *line, t_data *data);
 int						find_direction(t_data *data, char c);
-
+int	ft_isdigit(int c);
 char					*join_space(char *s1, char *s2, t_cub *cub);
 void					my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int						raycaster(t_cub *cub);
