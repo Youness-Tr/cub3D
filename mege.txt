@@ -1,0 +1,7 @@
+bonus :
+    playerMovement_bonus.c
+    add shoot function
+    header/cub3D_bonus.h
+        add variables:
+            int is_shooting
+        

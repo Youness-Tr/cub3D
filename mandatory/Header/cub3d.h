@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/22 13:33:14 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:00:23 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define WIN_W 1920
-# define WIN_H 1080
-# define TILE_SIZE 64
+# define WIN_W 1000
+# define WIN_H 900
+# define TILE_SIZE 32
 # define MINI_MAP 0.15
 // # define PLAYER_RADIUS (TILE_SIZE / 10)
 # define PLR 8     // plYER HIGHT WIEGHT (remove this)
@@ -33,25 +33,23 @@
 # define ROT_SPEED 0.09
 # define P_SPEED 6
 # define PI 3.141592653589
-# define FOV (67 * PI) / 180
-// # define L_ARROW 65361
-// #define R_ARROW 65363
-// #define W  119
-// #define A 97
-// #define S 115
-// #define D 100
-// #define Q 113//*REMOVE
-// #define R 114//*REMOVE
-// #define ESC 65307
+# define FOV (60 * PI) / 180
+# define L_ARROW 65361
+#define R_ARROW 65363
+#define W  119
+#define A 97
+#define S 115
+#define D 100
+#define ESC 65307
 
-# define A 0
-# define S 1
-# define D 2
-# define W 13
-# define ESC 53
+// # define A 0
 // # define S 1
-# define L_ARROW 123
-# define R_ARROW 124
+// # define D 2
+// # define W 13
+// # define ESC 53
+// // # define S 1
+// # define L_ARROW 123
+// # define R_ARROW 124
 
 /****************TxTColoR*******************/
 # define RED "\033[1;31m"

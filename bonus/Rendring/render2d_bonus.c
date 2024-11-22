@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render2d_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:49:43 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/20 09:56:09 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/22 16:01:37 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,41 +31,6 @@ void	render_square(t_img *img, int x_start, int y_start, int size, int color)
 		y++;
 	}
 }
-
-
-/*******just for debuging ********************/
-
-// void	render_2d(t_cub *cub)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	j = 0;
-// 	mlx_clear_window(cub->mlxp, cub->mlx_w);
-// 	while (j < cub->map.map_h)
-// 	{
-// 		i = 0;
-// 		while (i < cub->map.map_w)
-// 		{
-// 			if (cub->map.map2d[j][i] == '1')
-// 				render_square(&cub->img, i * TILE_SIZE, j * TILE_SIZE,
-// 					TILE_SIZE, 0xC0C0C0);
-// 			else if (cub->map.map2d[j][i] == '0' || cub->map.map2d[j][i] == 'N')
-// 			{
-// 				render_square(&cub->img, i * TILE_SIZE, j * TILE_SIZE,
-// 					TILE_SIZE, 0x654321); // 0x8B5A2B
-// 			}
-// 			i++;
-// 		}
-// 		j++;
-// 	}
-// 	// render_square(&cub->img, cub->plyr.plyr_x , cub->plyr.plyr_y,
-// 		PLAYER_RADIUS,0xFFFFFF);
-// 	render_circle(&cub->img, cub->plyr.plyr_x, cub->plyr.plyr_y, PLAYER_RADIUS,
-// 		0x000000);
-// 	mlx_clear_window(cub->mlxp, cub->mlx_w);
-// 	mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
-// }
 
 void	render_circle(t_img *img, int cx, int cy, int radius, int color)
 {
@@ -93,12 +58,8 @@ void	render_mini_2d(t_cub *cub)
 {
 	int i;
 	int j;
-	int len;
 
 	j = 0;
-	len = 0;
-	// while (cub->map.map2d[0][len] && cub->map.map2d[0][len] !=' ')
-	// 	len++;
 	cub->map.map2d[cub->parse.player_x][cub->parse.player_y] = 'P';
 	int factor = (float)(cub->var.s_w * MINI_MAP) / cub->map.map_w +1;
 	while (j < cub->map.map_h + 1)

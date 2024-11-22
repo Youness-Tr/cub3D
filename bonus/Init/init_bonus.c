@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/21 20:54:43 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:25:09 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void	init_textures(t_cub *cub)
 	load_texture(cub, &cub->gun[17], "./Assets/youness/gun_two/frame_20.xpm");
 	load_texture(cub, &cub->gun[18], "./Assets/youness/gun_two/frame_21.xpm");
 	// load_texture(cub, &cub->gun[3], "./Assets/sprites/w3.xpm");
-	
+
 }
 
 /*
@@ -124,7 +124,6 @@ void init_door(t_cub *cub)
 {
 	find_door_cordn(cub);
 	cub->door.open = 0;
-	cub->gun_frame = 0;
 	cub->door.frame = 4;
 }
 
@@ -134,13 +133,15 @@ void	init_engin(t_cub *cub, char *file)
 	cub->parse.file_path = file;
 	cub->parse.info = cub;
 	cub->free = NULL;
+	cub->gun_frame = 0;
+	cub->is_shooting = 0;
 	parser(&cub->parse);
 	init_map(cub);
 	init_plyr(cub);
 	init_door(cub);
 	init_mlx(cub);
 	init_textures(cub);
-	mlx_hook(cub->mlx_w, 2, 1L << 0, &key_press, cub); 
+	mlx_hook(cub->mlx_w, 2, 1L << 0, &key_press, cub);
 	mlx_hook(cub->mlx_w, 3, 1L << 1, &key_release, cub);
 	mlx_hook(cub->mlx_w, 4, 1L << 2, &mouse_press, cub);
     mlx_hook(cub->mlx_w, 5, 1L << 3, &mouse_release, cub);
