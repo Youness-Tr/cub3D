@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/22 19:37:02 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/24 19:38:07 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,10 +240,10 @@ int	main_loop(t_cub *cub)
 	mlx_clear_window(cub->mlxp, cub->mlx_w);
 	mvp(cub);
 	raycaster(cub);
+	render_mini_2d(cub);
 	handle_door_interaction(cub);
 	render_zoom(cub);
 	render_weapon(cub);
-	render_mini_2d(cub);
 	put_line(cub, 10, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP);
 	shoot(cub);
 	return (0);

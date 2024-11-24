@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/21 19:03:49 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/24 19:38:58 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,18 +119,18 @@ void	map_scan(t_data *data)
 					|| data->map[i][j - 1] == ' ' || data->map[i][j + 1] == ' ')
 					ft_errorv2(data, "ERROR :: INVALID MAP");
 			}
-			if (data->map[i][j] == 'D')
-			{
-				if (i == 0 || i == data->lines || j == 0 || j == data->map_w
-					- 2)
-					ft_errorv2(data, "ERROR :: INVALID MAP");
-				if ((data->map[i - 1][j] != '1' && (data->map[i][j - 1] != '1'))
-					|| (data->map[i - 1][j] != '1' && data->map[i][j + 1] != '1'))
-					ft_errorv2(data, "ERROR :: INVALID MAP");
-				if ((data->map[i + 1][j] != '1' && data->map[i][j + 1] != '1')
-					|| (data->map[i + 1][j] != '1' && data->map[i][j - 1] != '1'))
-					ft_errorv2(data, "ERROR :: INVALID MAP");
-			}
+			// if (data->map[i][j] == 'D')
+			// {
+			// 	if (i == 0 || i == data->lines || j == 0 || j == data->map_w
+			// 		- 2)
+			// 		ft_errorv2(data, "ERROR :: INVALID MAP");
+			// 	if ((data->map[i - 1][j] != '1' && (data->map[i][j - 1] != '1'))
+			// 		|| (data->map[i - 1][j] != '1' && data->map[i][j + 1] != '1'))
+			// 		ft_errorv2(data, "ERROR :: INVALID MAP");
+			// 	if ((data->map[i + 1][j] != '1' && data->map[i][j + 1] != '1')
+			// 		|| (data->map[i + 1][j] != '1' && data->map[i][j - 1] != '1'))
+			// 		ft_errorv2(data, "ERROR :: INVALID MAP");
+			// }
 		}
 	}
 }

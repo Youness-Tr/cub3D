@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/22 21:33:57 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/24 19:37:30 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define ROT_SPEED 0.09
 # define P_SPEED 4
 # define PI 3.141592653589
-# define FOV (63 * PI) / 180
+# define FOV (60 * PI) / 180
 #define DOOR_OPEN_DISTANCE 2.1
 
 #define W  119
