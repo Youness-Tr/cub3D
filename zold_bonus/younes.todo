@@ -1,0 +1,63 @@
+{
+  "todotree": {
+    "tree": [
+      {
+        "key": 1732026035636,
+        "children": [],
+        "todo": {
+          "content": "weapon textures",
+          "id": 1732026035636,
+          "level": "default",
+          "done": false,
+          "start": 1732026035636
+        }
+      },
+      {
+        "key": 1732026049163,
+        "children": [],
+        "todo": {
+          "content": "the parsing part the door should be between the walls (1D1)",
+          "id": 1732026049163,
+          "level": "default",
+          "done": false,
+          "start": 1732026049163
+        }
+      },
+      {
+        "key": 1732026122196,
+        "children": [],
+        "todo": {
+          "content": "door texture",
+          "id": 1732026122196,
+          "level": "default",
+          "done": false,
+          "start": 1732026122196
+        }
+      },
+      {
+        "key": 1732026182251,
+        "children": [],
+        "todo": {
+          "content": "go to wall_intersection_bonus.c and change the step variable to 20 instead of 8",
+          "id": 1732026182251,
+          "level": "default",
+          "done": false,
+          "start": 1732026182251
+        }
+      }
+    ],
+    "expandKeys": [],
+    "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
+    "add_mode": "bottom",
+    "virtual": false,
+    "timelines": [],
+    "showLine": false,
+    "playFontSize": 24,
+    "title": "younes",
+    "autoSort": false,
+    "showEndTime": false,
+    "simpleMode": false,
+    "lang": "en",
+    "version": "1732026269097"
+  }
+}

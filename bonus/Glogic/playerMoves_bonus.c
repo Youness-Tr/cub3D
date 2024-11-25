@@ -3,39 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   playerMoves_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/20 16:13:10 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:09:36 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
 
-void find_door_cordn(t_cub *o);
-
+//! remove unused variabe like index
 void handle_door_interaction(t_cub *cub)
 {
     double player_x = cub->plyr.plyr_x / TILE_SIZE;
     double player_y = cub->plyr.plyr_y / TILE_SIZE;
-    double door_x = cub->door.x;
-    double door_y = cub->door.y;
+    int i;
 
-    double distance = sqrt(pow(player_x - door_x, 2) + pow(player_y - door_y, 2));
-
-    if (distance <= DOOR_OPEN_DISTANCE)
+    i = 0;
+    while (i < cub->ndoors)
     {
-        cub->door.open = 1; // Open the door
-		// find_door_cordn(cub);
-		// cub->map.map2d[cub->door.y][cub->door.x] = 'E'; // Change map to open door
-		cub->door.frame = 7;
-	}
-    else
-    {
-        cub->door.open = 0; // Close the door
-		// find_door_cordn(cub);
-		cub->door.frame = 4;
-        cub->map.map2d[cub->door.y][cub->door.x] = 'D'; // Change map to closed door
+        cub->doors[i].distance = sqrt(pow(player_x - cub->doors[i].x/ TILE_SIZE, 2) + pow(player_y - cub->doors[i].y/TILE_SIZE, 2));
+        if (cub->doors[i].distance <= DOOR_OPEN_DISTANCE)
+        {
+            cub->doors[i].open = 1;
+            cub->doors[i].frame++;
+			if (cub->doors[i].frame > 21)
+				cub->doors[i].frame = 21;
+			cub->index = i;
+        }
+        else
+        {
+            cub->doors[i].open = 0;
+			// cub->index = i;
+            cub->doors[i].frame--;
+			if (cub->doors[i].frame < 1)
+				cub->doors[i].frame = 1;
+        }
+        i++;
     }
 }
 
@@ -51,6 +55,7 @@ void set_gun(t_cub *cub, char *file)
 
 int	key_press(int key, t_cub *cub)
 {
+
 	if (key == W)
 		cub->move_forward = 1;
 	else if (key == S)
@@ -65,9 +70,7 @@ int	key_press(int key, t_cub *cub)
 		cub->rotate_right = 1;
 	else if (key == E)
 	{
-			cub->gun_frame++;
-		if (cub->gun_frame == 18)
-			cub->gun_frame = 0;
+		cub->is_shooting = 1;
 	}
 	else if (key == ESC)
 		ft_exit(&cub->parse);
@@ -90,7 +93,7 @@ int	key_release(int key, t_cub *cub)
 		cub->rotate_right = 0;
 	else if (key == E)
 	{
-		cub->gun_frame = 0;
+		cub->is_shooting = 0;
 	}
 	return (0);
 }
@@ -193,7 +196,7 @@ void render_weapon(t_cub *cub)
         for (x = 0; x < cub->gun[cub->gun_frame].w; x++)
         {
             color = *(unsigned int *)(cub->gun[cub->gun_frame].addr + (y * cub->gun[cub->gun_frame].len + x * (cub->gun[cub->gun_frame].bpp / 8)));
-            if ((color & 0xFF000000) != 0xFF000000) // Check if the pixel is not fully transparent
+            if (color  != 0xFF000000) // Check if the pixel is not fully transparent
             {
                 my_mlx_pixel_put(&cub->img, weapon_x + x, weapon_y + y, color);
             }
@@ -203,8 +206,8 @@ void render_weapon(t_cub *cub)
 
 void render_zoom(t_cub *cub)
 {
-    int image_x = ((cub->var.s_w )- cub->textures[5].w) / 3;
-    int image_y = (cub->var.s_h - cub->textures[5].h) / 2;
+    int image_x = ((cub->var.s_w )- cub->textures[5].w + 100) / 2;
+    int image_y = (cub->var.s_h - cub->textures[5].h) - 290;
     int x, y;
     unsigned int color;
 
@@ -221,18 +224,33 @@ void render_zoom(t_cub *cub)
     }
 }
 
+// *this function to merge
+void shoot(t_cub *cub)
+{
+	if (cub->is_shooting)
+    {
+        cub->gun_frame++;
+		usleep(50000);
+        if (cub->gun_frame >= 18)
+            cub->gun_frame = 0;
+    }
+	if (!cub->is_shooting && cub->gun_frame != 0)
+	{
+		cub->gun_frame--;
+		usleep(50000);
+	}
+}
 
-
-void put_rays(t_cub *cub, int len, int x, int y, float ngl);
 int	main_loop(t_cub *cub)
 {
 	mlx_clear_window(cub->mlxp, cub->mlx_w);
 	mvp(cub);
 	raycaster(cub);
+	render_mini_2d(cub);
 	handle_door_interaction(cub);
 	render_zoom(cub);
 	render_weapon(cub);
-	render_mini_2d(cub);
 	put_line(cub, 10, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP);
+	shoot(cub);
 	return (0);
 }

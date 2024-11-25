@@ -3,49 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   render3D_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/20 09:46:44 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/25 17:07:25 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
 
-// int get_color(t_cub *cub, int flag) // get the color of the wall
-// {
-// 	cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl); // normalize the angle
-// 	if (flag == 0)
-// 	{
-// 		if (cub->ray.ray_ngl > PI / 2 && cub->ray.ray_ngl < 3 * (PI / 2))
-// 			return (0xA5D6A7); // west wall
-// 		else
-// 			return (0x81C784); // east wall
-// 	}
-// 	else
-// 	{
-// 		if (cub->ray.ray_ngl > 0 && cub->ray.ray_ngl < PI)
-// 			return (0x388E3C); // south wall
-// 		else
-// 			return (0x4CAF50); // north wall
-// 	}
-// }
-// void render_wll(t_cub *cub, int toppxl, int lowpxl, int raypt)
-// {
-//     int color;
 
-//     color = get_color(cub, cub->ray.hit);
-//     while (lowpxl > toppxl)
-//         my_mlx_pixel_put(&cub->img, raypt, toppxl++, color);
-// }
+t_img *get_door_frame(t_cub *cub)
+{
+	int i;
 
-
+	i = 0;
+	while (i < cub->ndoors)
+	{
+		if (cub->doors[i].open)
+			return (&cub->door[cub->doors[i].frame]);
+		i++;
+	}
+	i--;
+	return (&cub->door[cub->doors[i].frame]);
+}
 t_img	*get_texture(t_cub *cub, int flag) // get the color of the wall
 {
-
 	cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl); // normalize the angle
-	if (cub->ray.hit_door)
-		return (&cub->textures[cub->door.frame]);
+	if (cub->ray.hit_door == 1)
+		return (get_door_frame(cub));
+	if (cub->ray.hit_door == 2)
+		return (&cub->textures[6]);
 	if (flag == 0)
 	{
 		if (cub->ray.ray_ngl > PI / 2 && cub->ray.ray_ngl < 3 * (PI / 2))
@@ -64,7 +52,8 @@ t_img	*get_texture(t_cub *cub, int flag) // get the color of the wall
 
 
 
-void	render_textured_wall(t_cub *cub, int x, int wall_height, int wall_top,
+
+void	render_textured_wall(t_cub *cub, int x, int wall_top,
 		int wall_bottom, int tex_x)
 {
 	int		tex_y;
@@ -72,7 +61,6 @@ void	render_textured_wall(t_cub *cub, int x, int wall_height, int wall_top,
 	int		y;
 	t_img	*texture;
 
-	(void)wall_height;
 	texture = get_texture(cub, cub->ray.hit);
 	y = wall_top;
 	while (y < wall_bottom)
@@ -80,11 +68,18 @@ void	render_textured_wall(t_cub *cub, int x, int wall_height, int wall_top,
 		tex_y = ((y - wall_top) * texture->h) / (wall_bottom - wall_top);
 		color = *(unsigned int *)(texture->addr + (tex_y * texture->len + tex_x
 					* (texture->bpp / 8)));
-
-            my_mlx_pixel_put(&cub->img, x, y, color);
+			if (cub->ray.hit_door == 2)
+			{
+				if ((unsigned int)color  != 0xFF000000) // Check if the pixel is not fully transparent
+					 my_mlx_pixel_put(&cub->img, x, y, color);
+			}
+			else
+            	my_mlx_pixel_put(&cub->img, x, y, color);
 		y++;
 	}
 }
+
+
 
 // void render_door(t_cub *cub, int x, int y, double offset);
 
@@ -110,7 +105,8 @@ void render_three_d(t_cub *cub, double distnce, int raypt, int tex_x)
 	//     toppxl = s_h;
 	// if (lowpxl < 0)
 	//     lowpxl = 0;
-	render_textured_wall(cub, raypt, wll_h, toppxl, lowpxl, tex_x);
+
+	render_textured_wall(cub, raypt, toppxl, lowpxl, tex_x);
 	draw_floor_ceiling(cub, raypt, toppxl, lowpxl);
 	// render_door(cub, cub->door.x, cub->door.y, cub->door.offset);
 }
