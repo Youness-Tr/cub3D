@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/25 19:31:44 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/25 20:57:58 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void put_rays(t_cub *cub, int len, int x, int y, float ngl)
 int raycaster(t_cub *cub)
 {
 	cub->var.nray = 0;
+	// int n = 50;
 	cub->ray.ray_ngl = angle_range(cub->plyr.angle - (cub->plyr.fov_rd / 2));
 	cub->var.ngl = (cub->plyr.fov_rd / ((double)cub->var.s_w));
 	while (cub->var.nray < cub->var.s_w)
@@ -129,15 +130,11 @@ int raycaster(t_cub *cub)
 		cub->ray.hit_x = cub->plyr.plyr_x + cub->ray.distance * cos(angle_range(cub->ray.ray_ngl));
 		cub->ray.hit_y = cub->plyr.plyr_y + cub->ray.distance * sin(angle_range(cub->ray.ray_ngl));
 		int x, y;
-		x = (int)floor(cub->ray.hit_x / TILE_SIZE);
-		y = (int)floor(cub->ray.hit_y / TILE_SIZE);
+		x = (int)(cub->ray.hit_x / TILE_SIZE);
+		y = (int)(cub->ray.hit_y / TILE_SIZE);
 		printf(YELLOW"hit_x: %d, hit_y: %d===%c\n"RES, x, y, cub->map.map2d[y][x]);
 		if (cub->map.map2d[y][x] == 'D')
 		{
-			if (cub->map.map2d[y][x] == '1')
-			{
-				cub->ray.hit_door = 0;
-			}
 			cub->ray.hit_door = 1;
 		}
 		else if (cub->map.map2d[y][x] == '0')
@@ -150,6 +147,16 @@ int raycaster(t_cub *cub)
 			else if (cub->map.map2d[y][x - 1] == 'D' && !cub->ray.hit)
 			{
 				// p<rintf(GREEN"x - 1 hit_x: %d, hit_y: %d===%c\nRES", x - 1, y, cub->map.map2d[y][x - 1]);
+				cub->ray.hit_door = 1;
+			}
+			else if (cub->map.map2d[y + 1][x] == 'D' && cub->ray.hit)
+			{
+				// printf(BLUE"y + 1 hit_x: %d, hit_y: %d===%c\nRES", x, y + 1, cub->map.map2d[y + 1][x]);
+				cub->ray.hit_door = 1;
+			}
+			else if (cub->map.map2d[y][x + 1] == 'D' && !cub->ray.hit)
+			{
+				// printf(MAGENTA"x + 1 hit_x: %d, hit_y: %d===%c\nRES", x + 1, y, cub->map.map2d[y][x + 1]);
 				cub->ray.hit_door = 1;
 			}
 			else
