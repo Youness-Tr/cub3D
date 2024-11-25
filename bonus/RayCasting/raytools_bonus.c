@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:58:11 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/24 19:45:52 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/25 19:11:19 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,8 @@ int	wall_hit(float x, float y, t_cub *mlx)
 		return (0);
 	if (mlx->map.map2d[y_w] && x_w < (int)strlen(mlx->map.map2d[y_w]))
 	{
-		if (mlx->map.map2d[y_w][x_w] == '1' || (mlx->map.map2d[y_w][x_w] == 'D')
-		|| mlx->map.map2d[y_w][x_w] == 'C')
+		if (mlx->map.map2d[y_w][x_w] == '1' || (mlx->map.map2d[y_w][x_w] == 'D'))
 		{
-			if (mlx->map.map2d[y_w][x_w] == 'D')
-				mlx->ray.hit_door = 1;
-			else if (mlx->map.map2d[y_w][x_w] == 'C')
-				mlx->ray.hit_door = 2;
 			return (0);
 		}
 	}

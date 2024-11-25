@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/24 19:37:14 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/25 19:31:44 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,13 +128,43 @@ int raycaster(t_cub *cub)
 		set_distance(cub);
 		cub->ray.hit_x = cub->plyr.plyr_x + cub->ray.distance * cos(angle_range(cub->ray.ray_ngl));
 		cub->ray.hit_y = cub->plyr.plyr_y + cub->ray.distance * sin(angle_range(cub->ray.ray_ngl));
-		if (cub->map.map2d[(int)(cub->ray.hit_y / TILE_SIZE)][(int)(cub->ray.hit_x / TILE_SIZE)] == '1')
+		int x, y;
+		x = (int)floor(cub->ray.hit_x / TILE_SIZE);
+		y = (int)floor(cub->ray.hit_y / TILE_SIZE);
+		printf(YELLOW"hit_x: %d, hit_y: %d===%c\n"RES, x, y, cub->map.map2d[y][x]);
+		if (cub->map.map2d[y][x] == 'D')
+		{
+			if (cub->map.map2d[y][x] == '1')
+			{
+				cub->ray.hit_door = 0;
+			}
+			cub->ray.hit_door = 1;
+		}
+		else if (cub->map.map2d[y][x] == '0')
+		{
+			if (cub->map.map2d[y - 1][x] == 'D' && cub->ray.hit)
+			{
+				cub->ray.hit_door = 1;
+				// printf(RED"y - 1 hit_x: %d, hit_y: %d===%c\nRES", x, y - 1, cub->map.map2d[y - 1][x]);
+			}
+			else if (cub->map.map2d[y][x - 1] == 'D' && !cub->ray.hit)
+			{
+				// p<rintf(GREEN"x - 1 hit_x: %d, hit_y: %d===%c\nRES", x - 1, y, cub->map.map2d[y][x - 1]);
+				cub->ray.hit_door = 1;
+			}
+			else
+			{
+
+				cub->ray.hit_door = 0;
+			}
+		}
+		else
 			cub->ray.hit_door = 0;
 		cub->var.wall_x = calculate_wall_x(&cub->ray);
 		cub->var.tex_x = get_texture_x(cub, cub->var.wall_x);
 		render_three_d(cub, cub->ray.distance, cub->var.nray, cub->var.tex_x);
 		cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl + cub->var.ngl);
-		// put_rays(cub, cub->ray.distance * MINI_MAP, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP, cub->ray.ray_ngl);
+		put_rays(cub, cub->ray.distance * MINI_MAP, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP, cub->ray.ray_ngl);
 		cub->var.nray++;
 	}
 	mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);

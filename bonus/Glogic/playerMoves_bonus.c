@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   playerMoves_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/25 17:09:36 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/25 19:29:41 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,7 +243,7 @@ void shoot(t_cub *cub)
 
 int	main_loop(t_cub *cub)
 {
-	mlx_clear_window(cub->mlxp, cub->mlx_w);
+	// mlx_clear_window(cub->mlxp, cub->mlx_w);
 	mvp(cub);
 	raycaster(cub);
 	render_mini_2d(cub);
