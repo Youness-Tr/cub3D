@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/26 15:43:47 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 15:56:56 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,6 +242,16 @@ int						mv(int key, t_cub *cub);
 int						is_wall(t_cub *cub, double x, double y);
 // Glogic/
 double					angle_range(double ngl);
+void shoot(t_cub *cub);
+void render_weapon(t_cub *cub);
+void count_door_distances(t_cub *cub);
+void handle_door_interaction(t_cub *cub);
+void set_gun(t_cub *cub, char *file);
+int	key_press(int key, t_cub *cub);
+int	key_release(int key, t_cub *cub);
+int mouse_press(int button, int x, int y, t_cub *cub);
+int mouse_release(int button, int x, int y, t_cub *cub);
+int mouse_mv(int btn, int x, int y, t_cub *cub);
 
 // int is_valid_char(char c);
 int						create_trgb(int t, int r, int g, int b);
