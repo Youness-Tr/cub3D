@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/26 15:32:33 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:12:02 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void door_handling(t_cub *cub)
 
 		x = (int)(cub->ray.hit_x / TILE_SIZE);
 		y = (int)(cub->ray.hit_y / TILE_SIZE);
-		printf(YELLOW"hit_x: %d, hit_y: %d===%c\n"RES, x, y, cub->map.map2d[y][x]);
 		if (cub->map.map2d[y][x] == 'D')
 			cub->ray.hit_door = 1;
 		else if (cub->map.map2d[y][x] == '0')
@@ -109,7 +108,6 @@ void door_handling(t_cub *cub)
 int raycaster(t_cub *cub)
 {
 	cub->var.nray = 0;
-	// int n = 50;
 	cub->ray.ray_ngl = angle_range(cub->plyr.angle - (cub->plyr.fov_rd / 2));
 	cub->var.ngl = (cub->plyr.fov_rd / ((double)cub->var.s_w));
 	while (cub->var.nray < cub->var.s_w)

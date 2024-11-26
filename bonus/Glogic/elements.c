@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   elements.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:53:20 by youness           #+#    #+#             */
-/*   Updated: 2024/11/26 16:03:14 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:11:31 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void count_door_distances(t_cub *cub)
 	for (i = 0; i < cub->ndoors; i++)
 	{
 		cub->doors[i].distance = sqrt(pow(player_x - cub->doors[i].x / TILE_SIZE, 2) + pow(player_y - cub->doors[i].y / TILE_SIZE, 2));
-		printf("distance to door %d is %f\n", i, cub->doors[i].distance);
 	}
 }
 
