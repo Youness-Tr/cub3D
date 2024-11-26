@@ -40,12 +40,12 @@ B_OBJ = $(SRC_B:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) ./mandatory/Header/cub3d.h
 	$(CC) $(SRC) $(CFLAGS) $(MLX_FLAGS)  -o $(NAME)
 
 bonus:$(BONUS_NAME)
 
-$(BONUS_NAME):$(B_OBJ)
+$(BONUS_NAME):$(B_OBJ) ./bonus/Header/cub3d_bonus.h
 	$(CC) $(SRC_B) $(CFLAGS) $(MLX_FLAGS) -o $(BONUS_NAME)
 
 clean:

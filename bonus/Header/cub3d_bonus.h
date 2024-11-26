@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/26 18:41:59 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 19:02:51 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define WIN_W 1000
-# define WIN_H 950
+# define WIN_W 1920
+# define WIN_H 1080
 # define TILE_SIZE 32
 # define PLAYER_RADIUS 5
 # define MINI_MAP 0.25

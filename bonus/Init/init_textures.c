@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:08:00 by youness           #+#    #+#             */
-/*   Updated: 2024/11/26 18:40:52 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 18:54:14 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,51 +27,51 @@ void	load_texture(t_cub *cub, t_img *texture, char *file_path)
 
 void init_gun_textures(t_cub *cub)
 {
-	load_texture(cub, &cub->gun[0], "./Assets/youness/gun_two/frame_03.xpm");
-	load_texture(cub, &cub->gun[1], "./Assets/youness/gun_two/frame_04.xpm");
-	load_texture(cub, &cub->gun[2], "./Assets/youness/gun_two/frame_05.xpm");
-	load_texture(cub, &cub->gun[3], "./Assets/youness/gun_two/frame_06.xpm");
-	load_texture(cub, &cub->gun[4], "./Assets/youness/gun_two/frame_07.xpm");
-	load_texture(cub, &cub->gun[5], "./Assets/youness/gun_two/frame_08.xpm");
-	load_texture(cub, &cub->gun[6], "./Assets/youness/gun_two/frame_09.xpm");
-	load_texture(cub, &cub->gun[7], "./Assets/youness/gun_two/frame_10.xpm");
-	load_texture(cub, &cub->gun[8], "./Assets/youness/gun_two/frame_11.xpm");
-	load_texture(cub, &cub->gun[9], "./Assets/youness/gun_two/frame_12.xpm");
-	load_texture(cub, &cub->gun[10], "./Assets/youness/gun_two/frame_13.xpm");
-	load_texture(cub, &cub->gun[11], "./Assets/youness/gun_two/frame_14.xpm");
-	load_texture(cub, &cub->gun[12], "./Assets/youness/gun_two/frame_15.xpm");
-	load_texture(cub, &cub->gun[13], "./Assets/youness/gun_two/frame_16.xpm");
-	load_texture(cub, &cub->gun[14], "./Assets/youness/gun_two/frame_17.xpm");
-	load_texture(cub, &cub->gun[15], "./Assets/youness/gun_two/frame_18.xpm");
-	load_texture(cub, &cub->gun[16], "./Assets/youness/gun_two/frame_19.xpm");
-	load_texture(cub, &cub->gun[17], "./Assets/youness/gun_two/frame_20.xpm");
-	load_texture(cub, &cub->gun[18], "./Assets/youness/gun_two/frame_21.xpm");
+	load_texture(cub, &cub->gun[0], "./Assets/gun/frame_03.xpm");
+	load_texture(cub, &cub->gun[1], "./Assets/gun/frame_04.xpm");
+	load_texture(cub, &cub->gun[2], "./Assets/gun/frame_05.xpm");
+	load_texture(cub, &cub->gun[3], "./Assets/gun/frame_06.xpm");
+	load_texture(cub, &cub->gun[4], "./Assets/gun/frame_07.xpm");
+	load_texture(cub, &cub->gun[5], "./Assets/gun/frame_08.xpm");
+	load_texture(cub, &cub->gun[6], "./Assets/gun/frame_09.xpm");
+	load_texture(cub, &cub->gun[7], "./Assets/gun/frame_10.xpm");
+	load_texture(cub, &cub->gun[8], "./Assets/gun/frame_11.xpm");
+	load_texture(cub, &cub->gun[9], "./Assets/gun/frame_12.xpm");
+	load_texture(cub, &cub->gun[10], "./Assets/gun/frame_13.xpm");
+	load_texture(cub, &cub->gun[11], "./Assets/gun/frame_14.xpm");
+	load_texture(cub, &cub->gun[12], "./Assets/gun/frame_15.xpm");
+	load_texture(cub, &cub->gun[13], "./Assets/gun/frame_16.xpm");
+	load_texture(cub, &cub->gun[14], "./Assets/gun/frame_17.xpm");
+	load_texture(cub, &cub->gun[15], "./Assets/gun/frame_18.xpm");
+	load_texture(cub, &cub->gun[16], "./Assets/gun/frame_19.xpm");
+	load_texture(cub, &cub->gun[17], "./Assets/gun/frame_20.xpm");
+	load_texture(cub, &cub->gun[18], "./Assets/gun/frame_21.xpm");
 	
 }
 
 void init_door_textures(t_cub *cub)
 {
-	load_texture(cub, &cub->door[0], "./Assets/youness/door/frame_01.xpm");
-	load_texture(cub, &cub->door[1], "./Assets/youness/door/frame_02.xpm");
-	load_texture(cub, &cub->door[2], "./Assets/youness/door/frame_03.xpm");
-	load_texture(cub, &cub->door[3], "./Assets/youness/door/frame_04.xpm");
-	load_texture(cub, &cub->door[4], "./Assets/youness/door/frame_05.xpm");
-	load_texture(cub, &cub->door[5], "./Assets/youness/door/frame_06.xpm");
-	load_texture(cub, &cub->door[6], "./Assets/youness/door/frame_07.xpm");
-	load_texture(cub, &cub->door[7], "./Assets/youness/door/frame_08.xpm");
-	load_texture(cub, &cub->door[8], "./Assets/youness/door/frame_09.xpm");
-	load_texture(cub, &cub->door[9], "./Assets/youness/door/frame_10.xpm");
-	load_texture(cub, &cub->door[10], "./Assets/youness/door/frame_11.xpm");
-	load_texture(cub, &cub->door[11], "./Assets/youness/door/frame_12.xpm");
-	load_texture(cub, &cub->door[12], "./Assets/youness/door/frame_13.xpm");
-	load_texture(cub, &cub->door[13], "./Assets/youness/door/frame_14.xpm");
-	load_texture(cub, &cub->door[14], "./Assets/youness/door/frame_15.xpm");
-	load_texture(cub, &cub->door[15], "./Assets/youness/door/frame_16.xpm");
-	load_texture(cub, &cub->door[16], "./Assets/youness/door/frame_17.xpm");
-	load_texture(cub, &cub->door[17], "./Assets/youness/door/frame_18.xpm");
-	load_texture(cub, &cub->door[18], "./Assets/youness/door/frame_19.xpm");
-	load_texture(cub, &cub->door[19], "./Assets/youness/door/frame_20.xpm");
-	load_texture(cub, &cub->door[20], "./Assets/youness/door/frame_21.xpm");
+	load_texture(cub, &cub->door[0], "./Assets/door/frame_01.xpm");
+	load_texture(cub, &cub->door[1], "./Assets/door/frame_02.xpm");
+	load_texture(cub, &cub->door[2], "./Assets/door/frame_03.xpm");
+	load_texture(cub, &cub->door[3], "./Assets/door/frame_04.xpm");
+	load_texture(cub, &cub->door[4], "./Assets/door/frame_05.xpm");
+	load_texture(cub, &cub->door[5], "./Assets/door/frame_06.xpm");
+	load_texture(cub, &cub->door[6], "./Assets/door/frame_07.xpm");
+	load_texture(cub, &cub->door[7], "./Assets/door/frame_08.xpm");
+	load_texture(cub, &cub->door[8], "./Assets/door/frame_09.xpm");
+	load_texture(cub, &cub->door[9], "./Assets/door/frame_10.xpm");
+	load_texture(cub, &cub->door[10], "./Assets/door/frame_11.xpm");
+	load_texture(cub, &cub->door[11], "./Assets/door/frame_12.xpm");
+	load_texture(cub, &cub->door[12], "./Assets/door/frame_13.xpm");
+	load_texture(cub, &cub->door[13], "./Assets/door/frame_14.xpm");
+	load_texture(cub, &cub->door[14], "./Assets/door/frame_15.xpm");
+	load_texture(cub, &cub->door[15], "./Assets/door/frame_16.xpm");
+	load_texture(cub, &cub->door[16], "./Assets/door/frame_17.xpm");
+	load_texture(cub, &cub->door[17], "./Assets/door/frame_18.xpm");
+	load_texture(cub, &cub->door[18], "./Assets/door/frame_19.xpm");
+	load_texture(cub, &cub->door[19], "./Assets/door/frame_20.xpm");
+	load_texture(cub, &cub->door[20], "./Assets/door/frame_21.xpm");
 }
 
 
