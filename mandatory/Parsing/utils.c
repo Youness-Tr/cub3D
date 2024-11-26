@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:40:01 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/17 00:09:26 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/22 18:22:37 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,12 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 int	ft_atoi(const char *nptr)
 {
 	int			i;
-	// int			m;
 	long long	result;
 
 	result = 0;
 	i = 0;
 	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
 		i++;
-		// ft_errorv2("not a number"); //?to make sure it's in right fomat
-									//! i have to free here
 	while (nptr[i] >= 48 && nptr[i] <= 57)
 	{
 		result *= 10;
@@ -65,7 +62,7 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	if ((result > 255))
-		return (-1); //! i have to free here
+		return (-1);
 	return (result);
 }
 

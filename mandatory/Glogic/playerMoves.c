@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   playerMoves.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/18 09:55:13 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/18 10:39:59 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	key_press(int key, t_cub *cub)
 	else if (key == R_ARROW)
 		cub->rotate_right = 1;
 	else if (key == ESC)
-		_close_window(cub);
+		ft_exit(&cub->parse);
 	return (0);
 }
 

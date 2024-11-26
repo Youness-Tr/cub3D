@@ -1,0 +1,108 @@
+{
+  "todotree": {
+    "tree": [
+      {
+        "key": 1731677101728,
+        "children": [],
+        "todo": {
+          "content": "Rotate the point of view with the mouse",
+          "id": 1731677101728,
+          "level": "default",
+          "done": true,
+          "start": 1731677101728,
+          "focus": false,
+          "end": 1731681731364
+        }
+      },
+      {
+        "key": 1731677046753,
+        "children": [],
+        "todo": {
+          "content": "A minimap system",
+          "id": 1731677046753,
+          "level": "default",
+          "done": true,
+          "start": 1731677046753,
+          "focus": false,
+          "end": 1731691609882
+        }
+      },
+      {
+        "key": 1731677056843,
+        "children": [],
+        "todo": {
+          "content": "Wall collisions.",
+          "id": 1731677056842,
+          "level": "default",
+          "done": true,
+          "start": 1731677056842,
+          "focus": false,
+          "end": 1731691615890
+        }
+      },
+      {
+        "key": 1731681806428,
+        "children": [],
+        "todo": {
+          "content": "need to fix the slow Rotation movment when i 'm close to the walls",
+          "id": 1731681806428,
+          "level": "default",
+          "done": true,
+          "start": 1731681806428,
+          "focus": false,
+          "end": 1732184849980
+        }
+      },
+      {
+        "key": 1731677081744,
+        "children": [],
+        "todo": {
+          "content": "Doors which can open and close",
+          "id": 1731677081744,
+          "level": "default",
+          "done": true,
+          "start": 1731677081744,
+          "focus": false,
+          "end": 1732184855260
+        }
+      },
+      {
+        "key": 1731677092312,
+        "children": [],
+        "todo": {
+          "content": "animated sprite.",
+          "id": 1731677092312,
+          "level": "default",
+          "done": false,
+          "start": 1731677092312
+        }
+      },
+      {
+        "key": 1731857667894,
+        "children": [],
+        "todo": {
+          "content": "buffer_over_flow when i rotate alot",
+          "id": 1731857667894,
+          "level": "default",
+          "done": false,
+          "start": 1731857667894
+        }
+      }
+    ],
+    "expandKeys": [
+      1731677046753
+    ],
+    "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
+    "add_mode": "bottom",
+    "virtual": false,
+    "timelines": [],
+    "showLine": false,
+    "playFontSize": 24,
+    "title": "bonus",
+    "autoSort": false,
+    "showEndTime": false,
+    "simpleMode": false,
+    "lang": "en",
+    "version": "1732184855317"
+  }
+}

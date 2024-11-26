@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/18 10:19:54 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/21 20:51:02 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	init_image(t_cub *cub)
 	cub->img.addr = mlx_get_data_addr(imge->img, &imge->bpp, &imge->len,
 			&imge->endian);
 	if (!cub->img.img)
-		ft_errorv2(&cub->parse, "Error : the image is not loaded\n");
+		ft_errorv2(&cub->parse, "ERROR : IMAGE NOT LOADED !!!\n");
 }
 
 static void	init_mlx(t_cub *mlx)
@@ -30,13 +30,13 @@ static void	init_mlx(t_cub *mlx)
 	mlx->var.s_h = WIN_H;
 	mlx->mlxp = mlx_init();
 	if (!mlx->mlxp)
-		ft_errorv2(&mlx->parse, "Error : mlx pointer\n");
+		ft_errorv2(&mlx->parse, "ERROR : INITALIZE MLX\n");
 	mlx->img.img = mlx_new_image(mlx->mlxp, mlx->var.s_w, mlx->var.s_h);
 	if (!mlx->img.img)
-		ft_errorv2(&mlx->parse, "Error : the image is not loaded\n");
+		ft_errorv2(&mlx->parse, "ERROR : IMAGE NOT LOADED !!!\n");
 	mlx->mlx_w = mlx_new_window(mlx->mlxp, mlx->var.s_w, mlx->var.s_h, "Cub3D");
 	if (!mlx->mlx_w)
-		ft_errorv2(&mlx->parse, "Error : mlx pointer\n");
+		ft_errorv2(&mlx->parse, "ERROR : MLX WINDOW\n");
 	init_image(mlx);
 }
 
@@ -46,7 +46,7 @@ static void	load_texture(t_cub *cub, t_img *texture, char *file_path)
 			&texture->h);
 	if (!texture->img)
 	{
-		// ft_errorv2(&cub->parse, "Error: Could not load texture");
+		ft_errorv2(&cub->parse, "ERROR: FAILED TO LOAD TEXTURE !");
 		_close_window(cub);
 	}
 	texture->addr = mlx_get_data_addr(texture->img, &texture->bpp,
@@ -78,6 +78,6 @@ void	init_engin(t_cub *cub, char *file)
 	mlx_hook(cub->mlx_w, 17, 0, &_close_window, cub);
 	mlx_loop_hook(cub->mlxp, &main_loop, cub);
 	if (!cub->mlxp || !cub->mlx_w)
-		ft_errorv2(&cub->parse, "Error: Failed to initialize MLX.");
+		ft_errorv2(&cub->parse, "Error: FIALED TO INITALIZE MLX.");
 	mlx_loop(cub->mlxp);
 }
