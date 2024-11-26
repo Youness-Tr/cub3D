@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:43:23 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/21 12:12:18 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/26 18:11:46 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,4 @@ void	ft_exit(t_data *data)
 {
 	ft_free_all(data->info->free);
 	exit(0);
-}
-
-void	ft_free(char **p)
-{
-	int	i;
-
-	i = 0;
-	while (p[i])
-	{
-		free(p[i]);
-		i++;
-	}
-	free(p);
 }

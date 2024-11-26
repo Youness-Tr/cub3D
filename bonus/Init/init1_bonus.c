@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init1_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:57:28 by kali              #+#    #+#             */
-/*   Updated: 2024/11/21 20:55:00 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/26 18:46:18 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
 
-//! remove unused vars
 void	init_map(t_cub *cub)
 {
 	cub->map.map2d = cub->parse.map;
@@ -56,7 +55,6 @@ void	init_plyr(t_cub *cub)
 	cub->move_right = 0;
 	cub->rotate_left = 0;
 	cub->rotate_right = 0;
-	cub->plyr.rot = ROT_SPEED;
 }
 
 int	_close_window(t_cub *cub)
@@ -64,9 +62,21 @@ int	_close_window(t_cub *cub)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < MAX_TEXTURES)
 	{
 		mlx_destroy_image(cub->mlxp, cub->textures[i].img);
+		i++;
+	}
+	i = 0;
+	while (i < MAX_GUN)
+	{
+		mlx_destroy_image(cub->mlxp, cub->gun[i].img);
+		i++;
+	}
+	i = 0;
+	while (i <= MAX_DOOR)
+	{
+		mlx_destroy_image(cub->mlxp, cub->door[i].img);
 		i++;
 	}
 	mlx_destroy_window(cub->mlxp, cub->mlx_w);

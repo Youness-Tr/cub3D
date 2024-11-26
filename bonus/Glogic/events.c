@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement.c                                         :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:50:16 by youness           #+#    #+#             */
-/*   Updated: 2024/11/26 15:50:55 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 18:26:13 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,9 @@ int	key_press(int key, t_cub *cub)
 	else if (key == R_ARROW)
 		cub->rotate_right = 1;
 	else if (key == E)
-	{
 		cub->is_shooting = 1;
-	}
 	else if (key == ESC)
-		ft_exit(&cub->parse);
+		_close_window(cub);
 	return (0);
 }
 
@@ -51,9 +49,7 @@ int	key_release(int key, t_cub *cub)
 	else if (key == R_ARROW)
 		cub->rotate_right = 0;
 	else if (key == E)
-	{
 		cub->is_shooting = 0;
-	}
 	return (0);
 }
 
@@ -61,12 +57,10 @@ int mouse_press(int button, int x, int y, t_cub *cub)
 {
 	(void)x;
 	(void)y;
-    if (button == L_MOUS) {
+    if (button == L_MOUS)
         cub->rotate_left = 1;
-    }
-    if (button == R_MOUS) {
+    if (button == R_MOUS)
         cub->rotate_right = 1;
-    }
     return (0);
 }
 
@@ -74,12 +68,10 @@ int mouse_release(int button, int x, int y, t_cub *cub)
 {
 	(void)x;
 	(void)y;
-    if (button == L_MOUS) {
+    if (button == L_MOUS)
         cub->rotate_left = 0;
-    }
-    if (button == R_MOUS) {
+    if (button == R_MOUS)
         cub->rotate_right = 0;
-    }
     return (0);
 }
 

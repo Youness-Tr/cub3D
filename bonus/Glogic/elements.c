@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   elements.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:53:20 by youness           #+#    #+#             */
-/*   Updated: 2024/11/26 16:11:31 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/26 18:45:54 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,11 @@ void shoot(t_cub *cub)
 	if (cub->is_shooting)
     {
         cub->gun_frame++;
-		usleep(50000);
-        if (cub->gun_frame >= 18)
+        if (cub->gun_frame >= MAX_GUN)
             cub->gun_frame = 0;
     }
 	if (!cub->is_shooting && cub->gun_frame != 0)
-	{
 		cub->gun_frame--;
-		usleep(50000);
-	}
 }
 
 void render_weapon(t_cub *cub)
@@ -40,7 +36,7 @@ void render_weapon(t_cub *cub)
         for (x = 0; x < cub->gun[cub->gun_frame].w; x++)
         {
             color = *(unsigned int *)(cub->gun[cub->gun_frame].addr + (y * cub->gun[cub->gun_frame].len + x * (cub->gun[cub->gun_frame].bpp / 8)));
-            if (color  != 0xFF000000) // Check if the pixel is not fully transparent
+            if (color  != 0xFF000000)
             {
                 my_mlx_pixel_put(&cub->img, weapon_x + x, weapon_y + y, color);
             }
@@ -71,18 +67,18 @@ void handle_door_interaction(t_cub *cub, int i)
             cub->default_door.open = 0;
             cub->default_door.frame = MAX_DOOR;
             cub->doors[i].frame++;
-            if (cub->doors[i].frame > 21)
-                cub->doors[i].frame = 21;
+            if (cub->doors[i].frame > MAX_DOOR)
+                cub->doors[i].frame = MAX_DOOR;
         }
         else
         {
             cub->doors[i].open = 0;
             cub->doors[i].frame--;
             cub->default_door.frame--;
-            if (cub->default_door.frame < 1)
-                cub->default_door.frame = 1;
-            if (cub->doors[i].frame < 1)
-                cub->doors[i].frame = 1;
+            if (cub->default_door.frame < 0)
+                cub->default_door.frame = 0;
+            if (cub->doors[i].frame < 0)
+                cub->doors[i].frame = 0;
         }
         i++;
     }

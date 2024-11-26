@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/26 16:04:25 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 18:08:12 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	init_engin(t_cub *cub, char *file)
     mlx_hook(cub->mlx_w, 5, 1L << 3, &mouse_release, cub);
 	mlx_hook(cub->mlx_w, 17, 0, &_close_window, cub);
 	mlx_loop_hook(cub->mlxp, &main_loop, cub);
-	// mlx_do_sync(cub->mlxp);
 	if (!cub->mlxp || !cub->mlx_w)
 		ft_errorv2(&cub->parse, "Error: FIALED TO INITALIZE MLX.");
 	mlx_loop(cub->mlxp);

@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/26 17:08:58 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 18:43:11 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ t_img *get_door_frame(t_cub *cub)
     }
     if (cub->default_door.open == -1)
     {
-        return (&cub->door[1]);
+        return (&cub->door[0]);
     }
     else
         return (&cub->door[cub->default_door.frame]);
 }
-t_img	*get_texture(t_cub *cub, int flag) // get the color of the wall
+t_img	*get_texture(t_cub *cub, int flag)
 {
-	cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl); // normalize the angle
+	cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl);
 	if (cub->ray.hit_door == 1)
 		return (get_door_frame(cub));
 	if (flag == 0)

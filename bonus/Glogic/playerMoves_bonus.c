@@ -6,13 +6,11 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/26 16:03:43 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 18:44:11 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
-
-//! remove unused variabe like index
 
 void	set_pos(t_cub *cub, double x, double y)
 {
@@ -65,20 +63,18 @@ void	mvp(t_cub *cub)
 
 void render_zoom(t_cub *cub)
 {
-    int image_x = ((cub->var.s_w )- cub->textures[5].w + 100) / 2;
-    int image_y = (cub->var.s_h - cub->textures[5].h) - 290;
+    int image_x = ((cub->var.s_w )- cub->textures[4].w + 100) / 2;
+    int image_y = (cub->var.s_h - cub->textures[4].h) - 290;
     int x, y;
     unsigned int color;
 
-    for (y = 0; y < cub->textures[5].h; y++)
+    for (y = 0; y < cub->textures[4].h; y++)
     {
-        for (x = 0; x < cub->textures[5].w; x++)
+        for (x = 0; x < cub->textures[4].w; x++)
         {
-            color = *(unsigned int *)(cub->textures[5].addr + (y * cub->textures[5].len + x * (cub->textures[5].bpp / 8)));
-            if ((color & 0xFF000000) != 0xFF000000) // Check if the pixel is not fully transparent
-            {
+            color = *(unsigned int *)(cub->textures[4].addr + (y * cub->textures[4].len + x * (cub->textures[4].bpp / 8)));
+            if (color  != 0xFF000000)
                 my_mlx_pixel_put(&cub->img, image_x + x, image_y + y, color);
-            }
         }
     }
 }

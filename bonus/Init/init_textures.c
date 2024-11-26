@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:08:00 by youness           #+#    #+#             */
-/*   Updated: 2024/11/26 15:23:35 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 18:40:52 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,27 +51,27 @@ void init_gun_textures(t_cub *cub)
 
 void init_door_textures(t_cub *cub)
 {
-	load_texture(cub, &cub->door[1], "./Assets/youness/door/frame_01.xpm");
-	load_texture(cub, &cub->door[2], "./Assets/youness/door/frame_02.xpm");
-	load_texture(cub, &cub->door[3], "./Assets/youness/door/frame_03.xpm");
-	load_texture(cub, &cub->door[4], "./Assets/youness/door/frame_04.xpm");
-	load_texture(cub, &cub->door[5], "./Assets/youness/door/frame_05.xpm");
-	load_texture(cub, &cub->door[6], "./Assets/youness/door/frame_06.xpm");
-	load_texture(cub, &cub->door[7], "./Assets/youness/door/frame_07.xpm");
-	load_texture(cub, &cub->door[8], "./Assets/youness/door/frame_08.xpm");
-	load_texture(cub, &cub->door[9], "./Assets/youness/door/frame_09.xpm");
-	load_texture(cub, &cub->door[10], "./Assets/youness/door/frame_10.xpm");
-	load_texture(cub, &cub->door[11], "./Assets/youness/door/frame_11.xpm");
-	load_texture(cub, &cub->door[12], "./Assets/youness/door/frame_12.xpm");
-	load_texture(cub, &cub->door[13], "./Assets/youness/door/frame_13.xpm");
-	load_texture(cub, &cub->door[14], "./Assets/youness/door/frame_14.xpm");
-	load_texture(cub, &cub->door[15], "./Assets/youness/door/frame_15.xpm");
-	load_texture(cub, &cub->door[16], "./Assets/youness/door/frame_16.xpm");
-	load_texture(cub, &cub->door[17], "./Assets/youness/door/frame_17.xpm");
-	load_texture(cub, &cub->door[18], "./Assets/youness/door/frame_18.xpm");
-	load_texture(cub, &cub->door[19], "./Assets/youness/door/frame_19.xpm");
-	load_texture(cub, &cub->door[20], "./Assets/youness/door/frame_20.xpm");
-	load_texture(cub, &cub->door[21], "./Assets/youness/door/frame_21.xpm");
+	load_texture(cub, &cub->door[0], "./Assets/youness/door/frame_01.xpm");
+	load_texture(cub, &cub->door[1], "./Assets/youness/door/frame_02.xpm");
+	load_texture(cub, &cub->door[2], "./Assets/youness/door/frame_03.xpm");
+	load_texture(cub, &cub->door[3], "./Assets/youness/door/frame_04.xpm");
+	load_texture(cub, &cub->door[4], "./Assets/youness/door/frame_05.xpm");
+	load_texture(cub, &cub->door[5], "./Assets/youness/door/frame_06.xpm");
+	load_texture(cub, &cub->door[6], "./Assets/youness/door/frame_07.xpm");
+	load_texture(cub, &cub->door[7], "./Assets/youness/door/frame_08.xpm");
+	load_texture(cub, &cub->door[8], "./Assets/youness/door/frame_09.xpm");
+	load_texture(cub, &cub->door[9], "./Assets/youness/door/frame_10.xpm");
+	load_texture(cub, &cub->door[10], "./Assets/youness/door/frame_11.xpm");
+	load_texture(cub, &cub->door[11], "./Assets/youness/door/frame_12.xpm");
+	load_texture(cub, &cub->door[12], "./Assets/youness/door/frame_13.xpm");
+	load_texture(cub, &cub->door[13], "./Assets/youness/door/frame_14.xpm");
+	load_texture(cub, &cub->door[14], "./Assets/youness/door/frame_15.xpm");
+	load_texture(cub, &cub->door[15], "./Assets/youness/door/frame_16.xpm");
+	load_texture(cub, &cub->door[16], "./Assets/youness/door/frame_17.xpm");
+	load_texture(cub, &cub->door[17], "./Assets/youness/door/frame_18.xpm");
+	load_texture(cub, &cub->door[18], "./Assets/youness/door/frame_19.xpm");
+	load_texture(cub, &cub->door[19], "./Assets/youness/door/frame_20.xpm");
+	load_texture(cub, &cub->door[20], "./Assets/youness/door/frame_21.xpm");
 }
 
 
@@ -81,16 +81,11 @@ void	init_textures(t_cub *cub)
 	load_texture(cub, &cub->textures[1], cub->parse.ea);
 	load_texture(cub, &cub->textures[2], cub->parse.we);
 	load_texture(cub, &cub->textures[3], cub->parse.so);
+	load_texture(cub, &cub->textures[4], "./Assets/sprites/zoom.xpm");
 
-	load_texture(cub, &cub->textures[5], "./Assets/sprites/zoom.xpm");
-	load_texture(cub, &cub->textures[6], "./Assets/sprites/barrel_wolf.xpm");
 	init_gun_textures(cub);
 	init_door_textures(cub);
 }
-
-/*
-//! Remove this function later
- */
 
 void get_doors_cordn(t_cub *o)
 {
@@ -110,9 +105,8 @@ void get_doors_cordn(t_cub *o)
 				o->doors[k].x = j * TILE_SIZE;
 				o->doors[k].y = i * TILE_SIZE;
 				o->doors[k].open = 0;
-				o->doors[k].frame = 1;
+				o->doors[k].frame = 0;
 				k++;
-				// break;
 			}
 			j++;
 		}
@@ -134,7 +128,6 @@ void ndoors(t_cub *o)
 			if (o->map.map2d[i][j] == 'D')
 			{
 				o->ndoors++;
-				// break;
 			}
 			j++;
 		}
