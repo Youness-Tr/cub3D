@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/26 15:43:54 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:04:25 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void init_door(t_cub *cub)
 {
 
 	cub->ndoors = 0;
-	cub->index = 0;
 	cub->default_door.open = -1;
 	cub->default_door.frame = MAX_DOOR;
 	ndoors(cub);

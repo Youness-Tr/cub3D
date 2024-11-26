@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/26 15:54:16 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:03:43 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ void render_zoom(t_cub *cub)
 
 int	main_loop(t_cub *cub)
 {
-	// mlx_clear_window(cub->mlxp, cub->mlx_w);
+	mlx_clear_window(cub->mlxp, cub->mlx_w);
 	mvp(cub);
 	raycaster(cub);
 	render_mini_2d(cub);
-	handle_door_interaction(cub);
+	handle_door_interaction(cub, 0);
 	render_zoom(cub);
 	render_weapon(cub);
 	put_line(cub, 10, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP);

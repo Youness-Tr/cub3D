@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:53:20 by youness           #+#    #+#             */
-/*   Updated: 2024/11/26 16:00:14 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:03:14 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,8 @@ void count_door_distances(t_cub *cub)
 	}
 }
 
-void handle_door_interaction(t_cub *cub)
+void handle_door_interaction(t_cub *cub, int i)
 {
-    int i;
-
-    i = 0;
     while (i < cub->ndoors)
     {
         count_door_distances(cub);
@@ -74,16 +71,13 @@ void handle_door_interaction(t_cub *cub)
             cub->doors[i].open = 1;
             cub->default_door.open = 0;
             cub->default_door.frame = MAX_DOOR;
-            cub->index = 1;
             cub->doors[i].frame++;
             if (cub->doors[i].frame > 21)
                 cub->doors[i].frame = 21;
-            cub->index = i; // !to remove
         }
         else
         {
             cub->doors[i].open = 0;
-            cub->index = 0;
             cub->doors[i].frame--;
             cub->default_door.frame--;
             if (cub->default_door.frame < 1)
@@ -93,9 +87,6 @@ void handle_door_interaction(t_cub *cub)
         }
         i++;
     }
-    i = 0;
-    while (i < cub->ndoors)
-        i++;
 }
 
 void set_gun(t_cub *cub, char *file)

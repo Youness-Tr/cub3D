@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/26 15:56:56 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:04:07 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,6 @@ struct s_mlx // the mlx structure
 	int			is_shooting;
 	t_door 		*doors;
 	t_door		default_door;
-	int index;
 	int			ndoors;
 };
 
@@ -245,7 +244,7 @@ double					angle_range(double ngl);
 void shoot(t_cub *cub);
 void render_weapon(t_cub *cub);
 void count_door_distances(t_cub *cub);
-void handle_door_interaction(t_cub *cub);
+void handle_door_interaction(t_cub *cub, int i);
 void set_gun(t_cub *cub, char *file);
 int	key_press(int key, t_cub *cub);
 int	key_release(int key, t_cub *cub);
