@@ -3,16 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   playerMoves_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/25 19:29:41 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/26 15:45:09 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
 
 //! remove unused variabe like index
+
+void count_door_distances(t_cub *cub)
+{
+	int i;
+	double player_x = cub->plyr.plyr_x / TILE_SIZE;
+	double player_y = cub->plyr.plyr_y / TILE_SIZE;
+
+	for (i = 0; i < cub->ndoors; i++)
+	{
+		cub->doors[i].distance = sqrt(pow(player_x - cub->doors[i].x / TILE_SIZE, 2) + pow(player_y - cub->doors[i].y / TILE_SIZE, 2));
+		printf("distance to door %d is %f\n", i, cub->doors[i].distance);
+	}
+}
+
 void handle_door_interaction(t_cub *cub)
 {
     double player_x = cub->plyr.plyr_x / TILE_SIZE;
@@ -25,22 +39,37 @@ void handle_door_interaction(t_cub *cub)
         cub->doors[i].distance = sqrt(pow(player_x - cub->doors[i].x/ TILE_SIZE, 2) + pow(player_y - cub->doors[i].y/TILE_SIZE, 2));
         if (cub->doors[i].distance <= DOOR_OPEN_DISTANCE)
         {
+            // printf("hello %d\n", i);
             cub->doors[i].open = 1;
+            cub->default_door.open = 0;
+            cub->default_door.frame = MAX_DOOR;
+            cub->index = 1;
             cub->doors[i].frame++;
-			if (cub->doors[i].frame > 21)
-				cub->doors[i].frame = 21;
-			cub->index = i;
+            if (cub->doors[i].frame > 21)
+                cub->doors[i].frame = 21;
+
+            cub->index = i; // !to remove
         }
         else
         {
             cub->doors[i].open = 0;
-			// cub->index = i;
+            cub->index = 0;
             cub->doors[i].frame--;
-			if (cub->doors[i].frame < 1)
-				cub->doors[i].frame = 1;
+            cub->default_door.frame--;
+            if (cub->default_door.frame < 1)
+                cub->default_door.frame = 1;
+            if (cub->doors[i].frame < 1)
+                cub->doors[i].frame = 1;
         }
         i++;
     }
+    i = 0;
+    while (i < cub->ndoors)
+    {
+        printf("is_open %d\n", cub->doors[i].open);
+        i++;
+    }
+    // sleep(10);
 }
 
 void set_gun(t_cub *cub, char *file)

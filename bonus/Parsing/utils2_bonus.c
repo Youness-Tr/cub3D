@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:42:40 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/21 19:03:07 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/22 18:37:06 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	count_len(t_data *data)
 	int		fd;
 
 	i = 0;
-	ext = ft_substrv2(data->file_path, ft_strlen(data->file_path) - 4, 4, data->info);
+	ext = ft_substrv2(data->file_path, ft_strlen(data->file_path) - 4, 4,
+			data->info);
 	fd = open(data->file_path, O_RDONLY);
 	if (fd == -1 || ft_strcmp(ext, ".cub"))
 		ft_errorv2(data, "ERROR :: INVALID FILE");
@@ -60,12 +61,24 @@ void	init(t_data *data)
 	data->so = NULL;
 	data->we = NULL;
 	data->ea = NULL;
-	data->c= 0;
-	data->f= 0;
+	data->c = 0;
+	data->f = 0;
 	len = count_len(data);
 	if (len == 0)
 		ft_errorv2(data, "ERROR :: EMPTY FILE");
 	data->map = ft_malloc(data->info, sizeof(char *) * len);
+}
+
+void	door_checking(t_data *data, int i, int j)
+{
+	if (i == 0 || i == data->lines || j == 0 || j == data->map_w - 2)
+		ft_errorv2(data, "ERROR :: INVALID MAP");
+	if ((data->map[i - 1][j] != '1' && (data->map[i][j - 1] != '1'))
+		|| (data->map[i - 1][j] != '1' && data->map[i][j + 1] != '1'))
+		ft_errorv2(data, "ERROR :: INVALID MAP");
+	if ((data->map[i + 1][j] != '1' && data->map[i][j + 1] != '1')
+		|| (data->map[i + 1][j] != '1' && data->map[i][j - 1] != '1'))
+		ft_errorv2(data, "ERROR :: INVALID MAP");
 }
 
 void	ft_errorv2(t_data *data, char *s)
@@ -82,4 +95,3 @@ void	ft_errorv2(t_data *data, char *s)
 	ft_free_all(data->info->free);
 	exit(1);
 }
-

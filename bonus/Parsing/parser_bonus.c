@@ -3,25 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   parser_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/25 15:18:04 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/22 18:36:55 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
 
-
 int	ft_check(t_data *data)
 {
 	int	i;
 	int	j;
-	int ply;
+	int	ply;
 
-	i = 0;
+	i = -1;
 	ply = 0;
-	while (data->map[i])
+	while (data->map[++i])
 	{
 		j = -1;
 		while (data->map[i][++j])
@@ -35,7 +34,6 @@ int	ft_check(t_data *data)
 			if (!is_valid_char(data->map[i][j]))
 				return (1);
 		}
-		i++;
 	}
 	if (ply > 1 || ply == 0)
 		return (1);
@@ -90,7 +88,6 @@ void	map_fill(t_data *data)
 		free(line);
 		line = get_next_line(fd);
 	}
-	//*DONE :i need to check here for load textures and colors;
 	if (!data->stop)
 		ft_errorv2(data, "ERROR :: MAP DOSEN'T EXIST\n");
 	data->map[j] = NULL;
@@ -120,30 +117,9 @@ void	map_scan(t_data *data)
 					ft_errorv2(data, "ERROR :: INVALID MAP");
 			}
 			if (data->map[i][j] == 'D')
-			{
-				if (i == 0 || i == data->lines || j == 0 || j == data->map_w
-					- 2)
-					ft_errorv2(data, "ERROR :: INVALID MAP");
-				if ((data->map[i - 1][j] != '1' && (data->map[i][j - 1] != '1'))
-					|| (data->map[i - 1][j] != '1' && data->map[i][j + 1] != '1'))
-					ft_errorv2(data, "ERROR :: INVALID MAP");
-				if ((data->map[i + 1][j] != '1' && data->map[i][j + 1] != '1')
-					|| (data->map[i + 1][j] != '1' && data->map[i][j - 1] != '1'))
-					ft_errorv2(data, "ERROR :: INVALID MAP");
-			}
+				door_checking(data, i, j);
 		}
 	}
-}
-
-void print_leaks(t_leak *cub)
-{
-    t_leak *current = cub;
-
-    while (current != NULL)
-    {
-        printf("Leak at %p\n", current->address);
-        current = current->next;
-    }
 }
 
 int	parser(t_data *data)
@@ -154,9 +130,5 @@ int	parser(t_data *data)
 		ft_errorv2(data, "ERROR :: MAP ELEMENT\n");
 	add_to_map(data);
 	map_scan(data);
-	printf("--------------------------------------------------------\n");
-	// print_leaks(data->info->free);
-	// ft_free_all(data->info->free);
-	// exit(0);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytools_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:58:11 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/25 20:56:48 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/26 15:31:57 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ int	wall_hit(float x, float y, t_cub *mlx)
 		}
 	}
 	return (1);
+}
+
+double	distance(t_cub *cub, double x, double y)
+{
+	return (sqrt(pow(x - cub->plyr.plyr_x, 2) + pow(y - cub->plyr.plyr_y, 2)));
 }
 
 

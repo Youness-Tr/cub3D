@@ -6,34 +6,37 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/25 17:07:25 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 15:45:56 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
 
-
 t_img *get_door_frame(t_cub *cub)
 {
-	int i;
+    int i;
 
-	i = 0;
-	while (i < cub->ndoors)
-	{
-		if (cub->doors[i].open)
-			return (&cub->door[cub->doors[i].frame]);
-		i++;
-	}
-	i--;
-	return (&cub->door[cub->doors[i].frame]);
+    i = 0;
+    while (i < cub->ndoors)
+    {
+        if (cub->doors[i].open && cub->doors[i].distance <= DOOR_OPEN_DISTANCE)
+        {
+            return (&cub->door[cub->doors[i].frame]);
+        }
+        i++;
+    }
+    if (cub->default_door.open == -1)
+    {
+        return (&cub->door[1]);
+    }
+    else
+        return (&cub->door[cub->default_door.frame]);
 }
 t_img	*get_texture(t_cub *cub, int flag) // get the color of the wall
 {
 	cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl); // normalize the angle
 	if (cub->ray.hit_door == 1)
 		return (get_door_frame(cub));
-	if (cub->ray.hit_door == 2)
-		return (&cub->textures[6]);
 	if (flag == 0)
 	{
 		if (cub->ray.ray_ngl > PI / 2 && cub->ray.ray_ngl < 3 * (PI / 2))

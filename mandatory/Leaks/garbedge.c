@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 19:50:38 by kali              #+#    #+#             */
-/*   Updated: 2024/11/21 11:48:26 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/22 18:25:31 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,32 +41,24 @@ void	ft_leaks_lstadd_back(t_leak **lst, t_leak *newx)
 	{
 		*lst = newx;
 	}
-	    // printf("Added new leak at %p to leaks list\n", newx->address);
 }
 
-void *ft_malloc(t_cub *cub, size_t size)
+void	*ft_malloc(t_cub *cub, size_t size)
 {
-    void *res;
-    t_leak *new_leak;
+	void	*res;
+	t_leak	*new_leak;
 
-    res = malloc(size);
-    if (!res)
-        return (NULL);
-
-    new_leak = (t_leak *)malloc(sizeof(t_leak));
-    if (!new_leak)
-    {
-        free(res);
-        return (NULL);
-    }
-
-    new_leak->address = res;
-    new_leak->next = NULL;
-
-    ft_leaks_lstadd_back(&cub->free, new_leak);
-
-    // Debugging print
-    // printf("Allocated %zu bytes at %p, added to leaks list\n", size, res);
-
-    return (res);
+	res = malloc(size);
+	if (!res)
+		return (NULL);
+	new_leak = (t_leak *)malloc(sizeof(t_leak));
+	if (!new_leak)
+	{
+		free(res);
+		return (NULL);
+	}
+	new_leak->address = res;
+	new_leak->next = NULL;
+	ft_leaks_lstadd_back(&cub->free, new_leak);
+	return (res);
 }

@@ -29,7 +29,7 @@ SRC += mandatory/Glogic/playerMoves.c mandatory/Glogic/Wall_Intersection.c
 SRC_B += bonus/Glogic/playerMoves_bonus.c bonus/Glogic/Wall_Intersection_bonus.c
 #Init/
 SRC += mandatory/Init/init1.c mandatory/Init/init.c
-SRC_B += bonus/Init/init1_bonus.c bonus/Init/init_bonus.c
+SRC_B += bonus/Init/init1_bonus.c bonus/Init/init_bonus.c bonus/Init/init_textures.c
 #------------------
 SRC += mandatory/Leaks/free_all.c mandatory/Leaks/garbedge.c
 SRC_B += bonus/Leaks/free_all.c bonus/Leaks/garbedge.c

@@ -35,7 +35,8 @@ int	count_len(t_data *data)
 	int		fd;
 
 	i = 0;
-	ext = ft_substrv2(data->file_path, ft_strlen(data->file_path) - 4, 4, data->info);
+	ext = ft_substrv2(data->file_path, ft_strlen(data->file_path) - 4, 4,
+			data->info);
 	fd = open(data->file_path, O_RDONLY);
 	if (fd == -1 || ft_strcmp(ext, ".cub"))
 		ft_errorv2(data, "ERROR :: INVALID FILE");
@@ -60,8 +61,8 @@ void	init(t_data *data)
 	data->so = NULL;
 	data->we = NULL;
 	data->ea = NULL;
-	data->c= 0;
-	data->f= 0;
+	data->c = 0;
+	data->f = 0;
 	len = count_len(data);
 	if (len == 0)
 		ft_errorv2(data, "ERROR :: EMPTY FILE");

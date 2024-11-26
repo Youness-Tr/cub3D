@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 16:50:28 by kali              #+#    #+#             */
-/*   Updated: 2024/11/21 11:45:37 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/22 18:25:10 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 void	ft_free_all(t_leak *cub)
 {
-	// t_leak	*current;
 	t_leak	*next;
 
-	// current = cub;
-		// printf("address == %p\n", current->address);
 	while (cub != NULL)
 	{
 		next = cub->next;

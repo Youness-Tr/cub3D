@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   strdup_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/22 18:42:56 by ytarhoua          #+#    #+#             */
+/*   Updated: 2024/11/22 18:43:03 by ytarhoua         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Header/cub3d_bonus.h"
 
 char	*ft_strdupv2(char *s1, t_cub *leak)
@@ -40,6 +52,5 @@ char	*ft_strjoinv2(char *s1, char *s2, t_cub *cub)
 	ft_memmove(strs, s1, ft_strlen(s1));
 	ft_memmove(strs + ft_strlen(s1), s2, ft_strlen(s2));
 	strs[t_len] = '\0';
-	// free(s1);
 	return (strs);
 }

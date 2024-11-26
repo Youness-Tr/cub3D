@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/25 19:50:29 by kali             ###   ########.fr       */
+/*   Updated: 2024/11/26 15:43:47 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define PI 3.141592653589
 # define FOV (60 * PI) / 180
 #define DOOR_OPEN_DISTANCE 1.5
+#define MAX_DOOR 21
 
 #define W  119
 #define A 97
@@ -195,6 +196,7 @@ struct s_mlx // the mlx structure
 	int			gun_frame;
 	int			is_shooting;
 	t_door 		*doors;
+	t_door		default_door;
 	int index;
 	int			ndoors;
 };
@@ -213,6 +215,8 @@ void	*get_value(char *s, unsigned int start, t_cub *cub);
 int	get_haxe(char *s, unsigned int start, t_cub *cub);
 void					ft_init(char *line, t_data *data);
 int						find_direction(t_data *data, char c);
+int	ft_isdigit(int c);
+void	door_checking(t_data *data, int i, int j);
 void put_rays(t_cub *cub, int len, int x, int y, float ngl);
 
 char					*join_space(char *s1, char *s2, t_cub *cub);
@@ -255,6 +259,10 @@ int						key_press(int key, t_cub *cub);
 void					init_engin(t_cub *cub, char *file);
 void					init_plyr(t_cub *cub);
 void					init_map(t_cub *cub);
+void	load_texture(t_cub *cub, t_img *texture, char *file_path);
+void	init_textures(t_cub *cub);
+void get_doors_cordn(t_cub *o);
+void ndoors(t_cub *o);
 // Rendering
 t_img					*get_texture(t_cub *cub, int flag);
 void					put_line(t_cub *cub, int len, int x, int y);
@@ -273,6 +281,9 @@ char	*ft_strdupv2(char *s1, t_cub *leak);
 char	*ft_strjoinv2(char *s1, char *s2, t_cub *cub);
 char	*ft_substrv2(char *s, unsigned int start, size_t len, t_cub *cub);
 char	**ft_splitv2(char *s, char c, t_cub *cub);
+
+// RayCasting
+double	distance(t_cub *cub, double x, double y);
 
 //Events
 int mouse_press(int button, int x, int y, t_cub *cub);

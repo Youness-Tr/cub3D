@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/21 21:02:43 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:59:56 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int	ft_check(t_data *data)
 {
 	int	i;
 	int	j;
-	int ply;
+	int	ply;
 
-	i = 0;
+	i = -1;
 	ply = 0;
-	while (data->map[i])
+	while (data->map[++i])
 	{
 		j = -1;
 		while (data->map[i][++j])
@@ -34,7 +34,6 @@ int	ft_check(t_data *data)
 			if (!is_valid_char(data->map[i][j]))
 				return (1);
 		}
-		i++;
 	}
 	if (ply > 1 || ply == 0)
 		return (1);
@@ -121,17 +120,6 @@ void	map_scan(t_data *data)
 	}
 }
 
-void print_leaks(t_leak *cub)
-{
-    t_leak *current = cub;
-
-    while (current != NULL)
-    {
-        printf("Leak at %p\n", current->address);
-        current = current->next;
-    }
-}
-
 int	parser(t_data *data)
 {
 	init(data);
@@ -140,9 +128,5 @@ int	parser(t_data *data)
 		ft_errorv2(data, "ERROR :: MAP ELEMENT");
 	add_to_map(data);
 	map_scan(data);
-	// printf("--------------------------------------------------------\n");
-	// print_leaks(data->info->free);
-	// ft_free_all(data->info->free);
-	// exit(0);
 	return (0);
 }
