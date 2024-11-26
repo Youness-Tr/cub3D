@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/26 16:56:21 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 17:56:22 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,15 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-// # include <mlx.h>
 # include "../../mlx/mlx.h"
 # include "get_next_line.h"
 # include <fcntl.h>
 # include <math.h>
 
-# define WIN_W 1920
-# define WIN_H 1080
+# define WIN_W 1000
+# define WIN_H 950
 # define TILE_SIZE 64
 # define MINI_MAP 0.15
-// # define PLAYER_RADIUS (TILE_SIZE / 10)
-# define PLR 8     // plYER HIGHT WIEGHT (remove this)
-# define NRAYS 540 //! remove this
 # define ROT_SPEED 0.09
 # define P_SPEED 6
 # define PI 3.141592653589
@@ -61,20 +57,18 @@
 # define WHITE "\033[1;37m"
 # define RES "\033[0m"
 /****************TxTColoR*******************/
+
 typedef struct s_mlx	t_cub;
-typedef struct s_player // the player structure
+typedef struct s_player
 {
 	int		plyr_x;
 	int		plyr_y;
 	double	angle;
 	double	fov_rd;
-	double	rot; // i think i'll use the macros i don'y need that
 	double	plyr_speed;
-	double	px; // remove me later
-	double	py; // remove me later
 }						t_player;
 
-typedef struct s_ray // the ray structure
+typedef struct s_ray
 {
 	double	ray_ngl;
 	double	distance;
@@ -83,7 +77,7 @@ typedef struct s_ray // the ray structure
 	double	hit_y;
 }						t_ray;
 
-typedef struct s_map // the data structure
+typedef struct s_map
 {
 	char	**map2d;
 	int		posx;
@@ -103,7 +97,7 @@ typedef struct img
 	int					h;
 	int					w;
 }						t_img;
-// this struct is for variable for norms or any shared variable
+
 typedef struct vars
 {
 	int					s_w;
@@ -125,7 +119,7 @@ typedef struct vars
 	int					lowpxl;
 
 }						t_vars;
-/******************/
+
 typedef struct s_data
 {
 	char				*no;
@@ -146,7 +140,7 @@ typedef struct s_data
 	int					map_len;
 	t_cub				*info;
 }						t_data;
-/***************************/
+
 
 typedef struct s_leak
 {
@@ -154,7 +148,7 @@ typedef struct s_leak
 	struct s_leak		*next;
 }						t_leak;
 
-struct s_mlx // the mlx structure
+struct s_mlx
 {
 	t_img		img;
 	void		*mlx_w;
@@ -174,7 +168,7 @@ struct s_mlx // the mlx structure
 	int			rotate_right;
 };
 
-int						get_win_h(char **av);
+
 void					ft_putstr(char *s);
 void					ft_putstrv2(const char *s, char *str);
 char					*ft_substr(char *s, unsigned int start, size_t len);
@@ -182,17 +176,15 @@ char					**ft_split(char *s, char c);
 void					ft_error(char *s);
 void					ft_errorv2(t_data *data, char *s);
 void					ft_exit(t_data *data);
-void					ft_free(char **p);
 char					**get_map(char *file);
-void	*get_value(char *s, unsigned int start, t_cub *cub);
-int	get_haxe(char *s, unsigned int start, t_cub *cub);
+void					*get_value(char *s, unsigned int start, t_cub *cub);
+int						get_haxe(char *s, unsigned int start, t_cub *cub);
 void					ft_init(char *line, t_data *data);
 int						find_direction(t_data *data, char c);
-int	ft_isdigit(int c);
+int						ft_isdigit(int c);
 char					*join_space(char *s1, char *s2, t_cub *cub);
 void					my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int						raycaster(t_cub *cub);
-void					put_line(t_cub *cub, int len, int x, int y);
 int						parser(t_data *data);
 int						is_valid_char(char c);
 void					init(t_data *data);
@@ -200,9 +192,6 @@ int						ft_strcmp(const char *s1, const char *s2);
 char					*ft_strnstr(const char *big, const char *little,
 							size_t len);
 int						count_len(t_data *data);
-void					ft_error(char *str);
-void					render_2d(t_cub *cub);
-void					render_mini_2d(t_cub *cub);
 void					render_three_d(t_cub *cub, double distnce, int raypt,
 							int tex_x);
 int						_close_window(t_cub *cub);
@@ -220,11 +209,6 @@ char					*ft_itoa(int n);
 int						main_loop(t_cub *cub);
 int						key_release(int key, t_cub *cub);
 int						key_press(int key, t_cub *cub);
-// int count_len(t_data *data);
-// void					put_rays(t_cub *cub, int len, int x, int y, float ngl);
-// int	ft_strcmp(const char *s1, const char *s2);
-// char	*ft_strnstr(const char *big, const char *little, size_t len);
-
 // INIT :
 void					init_engin(t_cub *cub, char *file);
 void					init_plyr(t_cub *cub);
@@ -232,8 +216,6 @@ void					init_map(t_cub *cub);
 // Rendering
 t_img					*get_texture(t_cub *cub, int flag);
 void					put_line(t_cub *cub, int len, int x, int y);
-// void					put_rays(t_cub *cub, int len, int x, int y, float ngl);
-void					my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void					draw_floor_ceiling(t_cub *cub, int raypt, int toppxl,
 							int lowpxl);
 double					calculate_wall_x(t_ray *ray);

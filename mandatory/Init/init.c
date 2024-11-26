@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/21 20:51:02 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:34:20 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,12 @@ static void	load_texture(t_cub *cub, t_img *texture, char *file_path)
 
 static void	init_textures(t_cub *cub)
 {
-	printf(RED "`%s'\n" RES, cub->parse.no);
 	load_texture(cub, &cub->textures[0], cub->parse.no);
 	load_texture(cub, &cub->textures[1], cub->parse.ea);
 	load_texture(cub, &cub->textures[2], cub->parse.we);
 	load_texture(cub, &cub->textures[3], cub->parse.so);
 }
 
-//!! Youness you need to handle the extention .cub name if i gave you .cub.cub
 void	init_engin(t_cub *cub, char *file)
 {
 	cub->parse.file_path = file;

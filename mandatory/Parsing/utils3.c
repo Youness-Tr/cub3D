@@ -6,7 +6,7 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:43:23 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/18 10:14:30 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 17:36:01 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,4 @@ void	ft_exit(t_data *data)
 {
 	ft_free_all(data->info->free);
 	exit(0);
-}
-
-void	ft_free(char **p)
-{
-	int	i;
-
-	i = 0;
-	while (p[i])
-	{
-		free(p[i]);
-		i++;
-	}
-	free(p);
 }

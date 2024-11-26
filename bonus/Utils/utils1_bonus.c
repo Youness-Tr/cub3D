@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils1_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/07 15:36:52 by lissam            #+#    #+#             */
-/*   Updated: 2024/11/21 12:04:31 by ytarhoua         ###   ########.fr       */
+/*   Created: 2024/11/26 17:50:21 by youness           #+#    #+#             */
+/*   Updated: 2024/11/26 17:50:24 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
-
-int	get_win_h(char **av)
-{
-	int	h;
-
-	h = 0;
-	if (!av)
-		return (0);
-	while (av[h])
-		h++;
-	return (h);
-}
 
 void	ft_putstr(char *s)
 {

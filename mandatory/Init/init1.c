@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:57:28 by kali              #+#    #+#             */
-/*   Updated: 2024/11/21 20:51:28 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:47:09 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d.h"
 
-//! remove unused vars
 void	init_map(t_cub *cub)
 {
 	cub->map.map2d = cub->parse.map;
@@ -55,7 +54,6 @@ void	init_plyr(t_cub *cub)
 	cub->move_right = 0;
 	cub->rotate_left = 0;
 	cub->rotate_right = 0;
-	cub->plyr.rot = ROT_SPEED;
 }
 
 int	_close_window(t_cub *cub)

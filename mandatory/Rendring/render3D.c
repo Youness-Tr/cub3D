@@ -6,55 +6,28 @@
 /*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/26 16:55:37 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/26 17:41:26 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d.h"
 
-// int get_color(t_cub *cub, int flag) // get the color of the wall
-// {
-// 	cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl); // normalize the angle
-// 	if (flag == 0)
-// 	{
-// 		if (cub->ray.ray_ngl > PI / 2 && cub->ray.ray_ngl < 3 * (PI / 2))
-// 			return (0xA5D6A7); // west wall
-// 		else
-// 			return (0x81C784); // east wall
-// 	}
-// 	else
-// 	{
-// 		if (cub->ray.ray_ngl > 0 && cub->ray.ray_ngl < PI)
-// 			return (0x388E3C); // south wall
-// 		else
-// 			return (0x4CAF50); // north wall
-// 	}
-// }
-// void render_wll(t_cub *cub, int toppxl, int lowpxl, int raypt)
-// {
-//     int color;
-
-//     color = get_color(cub, cub->ray.hit);
-//     while (lowpxl > toppxl)
-//         my_mlx_pixel_put(&cub->img, raypt, toppxl++, color);
-// }
-
-t_img	*get_texture(t_cub *cub, int flag) // get the color of the wall
+t_img	*get_texture(t_cub *cub, int flag)
 {
-	cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl); // normalize the angle
+	cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl);
 	if (flag == 0)
 	{
 		if (cub->ray.ray_ngl > PI / 2 && cub->ray.ray_ngl < 3 * (PI / 2))
-			return (&cub->textures[0]); // west wall
+			return (&cub->textures[0]);
 		else
-			return (&cub->textures[1]); // east wall
+			return (&cub->textures[1]);
 	}
 	else
 	{
 		if (cub->ray.ray_ngl > 0 && cub->ray.ray_ngl < PI)
-			return (&cub->textures[2]); // south wall
+			return (&cub->textures[2]);
 		else
-			return (&cub->textures[3]); // north wall
+			return (&cub->textures[3]);
 	}
 }
 
