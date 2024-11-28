@@ -14,7 +14,6 @@
 
 int	key_press(int key, t_cub *cub)
 {
-
 	if (key == W)
 		cub->move_forward = 1;
 	else if (key == S)
@@ -53,29 +52,29 @@ int	key_release(int key, t_cub *cub)
 	return (0);
 }
 
-int mouse_press(int button, int x, int y, t_cub *cub)
+int	mouse_press(int button, int x, int y, t_cub *cub)
 {
 	(void)x;
 	(void)y;
-    if (button == L_MOUS)
-        cub->rotate_left = 1;
-    if (button == R_MOUS)
-        cub->rotate_right = 1;
-    return (0);
+	if (button == L_MOUS)
+		cub->rotate_left = 1;
+	if (button == R_MOUS)
+		cub->rotate_right = 1;
+	return (0);
 }
 
-int mouse_release(int button, int x, int y, t_cub *cub)
+int	mouse_release(int button, int x, int y, t_cub *cub)
 {
 	(void)x;
 	(void)y;
-    if (button == L_MOUS)
-        cub->rotate_left = 0;
-    if (button == R_MOUS)
-        cub->rotate_right = 0;
-    return (0);
+	if (button == L_MOUS)
+		cub->rotate_left = 0;
+	if (button == R_MOUS)
+		cub->rotate_right = 0;
+	return (0);
 }
 
-int mouse_mv(int btn, int x, int y, t_cub *cub)
+int	mouse_mv(int btn, int x, int y, t_cub *cub)
 {
 	(void)x;
 	(void)y;

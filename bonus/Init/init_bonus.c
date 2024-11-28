@@ -40,9 +40,8 @@ static void	init_mlx(t_cub *mlx)
 	init_image(mlx);
 }
 
-void init_door(t_cub *cub)
+void	init_door(t_cub *cub)
 {
-
 	cub->ndoors = 0;
 	cub->default_door.open = -1;
 	cub->default_door.frame = MAX_DOOR;
@@ -52,7 +51,6 @@ void init_door(t_cub *cub)
 	cub->doors = ft_malloc(cub, sizeof(t_door) * cub->ndoors);
 	get_doors_cordn(cub);
 }
-
 
 void	init_engin(t_cub *cub, char *file)
 {
@@ -70,7 +68,7 @@ void	init_engin(t_cub *cub, char *file)
 	mlx_hook(cub->mlx_w, 2, 1L << 0, &key_press, cub);
 	mlx_hook(cub->mlx_w, 3, 1L << 1, &key_release, cub);
 	mlx_hook(cub->mlx_w, 4, 1L << 2, &mouse_press, cub);
-    mlx_hook(cub->mlx_w, 5, 1L << 3, &mouse_release, cub);
+	mlx_hook(cub->mlx_w, 5, 1L << 3, &mouse_release, cub);
 	mlx_hook(cub->mlx_w, 17, 0, &_close_window, cub);
 	mlx_loop_hook(cub->mlxp, &main_loop, cub);
 	if (!cub->mlxp || !cub->mlx_w)

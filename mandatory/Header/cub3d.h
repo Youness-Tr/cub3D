@@ -13,14 +13,14 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
 # include "../../mlx/mlx.h"
 # include "get_next_line.h"
 # include <fcntl.h>
 # include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 
 # define WIN_W 1000
 # define WIN_H 950
@@ -32,12 +32,12 @@
 # define FOV (60 * PI) / 180
 
 # define L_ARROW 65361
-#define R_ARROW 65363
-#define W  119
-#define A 97
-#define S 115
-#define D 100
-#define ESC 65307
+# define R_ARROW 65363
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define ESC 65307
 
 // # define A 0
 // # define S 1
@@ -61,29 +61,29 @@
 typedef struct s_mlx	t_cub;
 typedef struct s_player
 {
-	int		plyr_x;
-	int		plyr_y;
-	double	angle;
-	double	fov_rd;
-	double	plyr_speed;
+	int					plyr_x;
+	int					plyr_y;
+	double				angle;
+	double				fov_rd;
+	double				plyr_speed;
 }						t_player;
 
 typedef struct s_ray
 {
-	double	ray_ngl;
-	double	distance;
-	int		hit;
-	double	hit_x;
-	double	hit_y;
+	double				ray_ngl;
+	double				distance;
+	int					hit;
+	double				hit_x;
+	double				hit_y;
 }						t_ray;
 
 typedef struct s_map
 {
-	char	**map2d;
-	int		posx;
-	int		posy;
-	int		map_w;
-	int		map_h;
+	char				**map2d;
+	int					posx;
+	int					posy;
+	int					map_w;
+	int					map_h;
 }						t_map;
 
 typedef struct img
@@ -141,33 +141,31 @@ typedef struct s_data
 	t_cub				*info;
 }						t_data;
 
-
 typedef struct s_leak
 {
 	void				*address;
 	struct s_leak		*next;
 }						t_leak;
 
-struct s_mlx
+struct					s_mlx
 {
-	t_img		img;
-	void		*mlx_w;
-	void		*mlxp;
-	t_ray		ray;
-	t_map		map;
-	t_player	plyr;
-	t_data		parse;
-	t_vars		var;
-	t_img		textures[4];
-	t_leak		*free;
-	int			move_forward;
-	int			move_backward;
-	int			move_left;
-	int			move_right;
-	int			rotate_left;
-	int			rotate_right;
+	t_img				img;
+	void				*mlx_w;
+	void				*mlxp;
+	t_ray				ray;
+	t_map				map;
+	t_player			plyr;
+	t_data				parse;
+	t_vars				var;
+	t_img				textures[4];
+	t_leak				*free;
+	int					move_forward;
+	int					move_backward;
+	int					move_left;
+	int					move_right;
+	int					rotate_left;
+	int					rotate_right;
 };
-
 
 void					ft_putstr(char *s);
 void					ft_putstrv2(const char *s, char *str);
@@ -223,11 +221,12 @@ int						get_texture_x(t_cub *cub, double wall_x);
 int						wall_hit(float x, float y, t_cub *mlx);
 
 // Leaks:
-void	*ft_malloc(t_cub *cub, size_t size);
-void	ft_free_all(t_leak *cub);
-char	*ft_strdupv2(char *s1, t_cub *leak);
-char	*ft_strjoinv2(char *s1, char *s2, t_cub *cub);
-char	*ft_substrv2(char *s, unsigned int start, size_t len, t_cub *cub);
-char	**ft_splitv2(char *s, char c, t_cub *cub);
+void					*ft_malloc(t_cub *cub, size_t size);
+void					ft_free_all(t_leak *cub);
+char					*ft_strdupv2(char *s1, t_cub *leak);
+char					*ft_strjoinv2(char *s1, char *s2, t_cub *cub);
+char					*ft_substrv2(char *s, unsigned int start, size_t len,
+							t_cub *cub);
+char					**ft_splitv2(char *s, char c, t_cub *cub);
 
 #endif

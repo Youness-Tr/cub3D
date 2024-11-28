@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   playerMoves_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/26 18:44:11 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/28 10:49:16 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,22 +61,32 @@ void	mvp(t_cub *cub)
 	set_pos(cub, cub->var.new_x, cub->var.new_y);
 }
 
-void render_zoom(t_cub *cub)
+void	render_zoom(t_cub *cub)
 {
-    int image_x = ((cub->var.s_w )- cub->textures[4].w + 100) / 2;
-    int image_y = (cub->var.s_h - cub->textures[4].h) - 290;
-    int x, y;
-    unsigned int color;
+	int				image_x;
+	int				image_y;
+	unsigned int	color;
 
-    for (y = 0; y < cub->textures[4].h; y++)
-    {
-        for (x = 0; x < cub->textures[4].w; x++)
-        {
-            color = *(unsigned int *)(cub->textures[4].addr + (y * cub->textures[4].len + x * (cub->textures[4].bpp / 8)));
-            if (color  != 0xFF000000)
-                my_mlx_pixel_put(&cub->img, image_x + x, image_y + y, color);
-        }
-    }
+	image_x = ((cub->var.s_w) - cub->textures[ZOOM_TEXTURE].w + 100) / 2;
+	image_y = (cub->var.s_h - cub->textures[ZOOM_TEXTURE].h) - 290;
+	cub->var.y = 0;
+	while (cub->var.y < cub->textures[ZOOM_TEXTURE].h)
+	{
+		cub->var.x = 0;
+		while (cub->var.x < cub->textures[ZOOM_TEXTURE].w)
+		{
+			color = *(unsigned int *)(cub->textures[ZOOM_TEXTURE].addr
+					+ (cub->var.y * cub->textures[ZOOM_TEXTURE].len + cub->var.x
+						* (cub->textures[ZOOM_TEXTURE].bpp / 8)));
+			if (color != 0xFF000000)
+			{
+				my_mlx_pixel_put(&cub->img, image_x + cub->var.x, image_y
+					+ cub->var.y, color);
+			}
+			cub->var.x++;
+		}
+		cub->var.y++;
+	}
 }
 
 int	main_loop(t_cub *cub)
@@ -88,7 +98,8 @@ int	main_loop(t_cub *cub)
 	handle_door_interaction(cub, 0);
 	render_zoom(cub);
 	render_weapon(cub);
-	put_line(cub, 10, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP);
 	shoot(cub);
 	return (0);
 }
+
+	// put_line(cub, 10, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP);

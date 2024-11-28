@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytools_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:58:11 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/26 15:31:57 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/28 10:45:19 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,11 @@ int	get_texture_x(t_cub *cub, double wall_x)
 	return (tex_x);
 }
 
-int get_door(t_cub *cub); // ! to the headerfile later on
-
 int	wall_hit(float x, float y, t_cub *mlx)
 {
 	int	x_w;
 	int	y_w;
 
-	// mlx->ray.hit_door = 0;
 	if (x < 0 || y < 0)
 		return (0);
 	x_w = floor(x / TILE_SIZE);
@@ -60,7 +57,8 @@ int	wall_hit(float x, float y, t_cub *mlx)
 		return (0);
 	if (mlx->map.map2d[y_w] && x_w < (int)strlen(mlx->map.map2d[y_w]))
 	{
-		if (mlx->map.map2d[y_w][x_w] == '1' || (mlx->map.map2d[y_w][x_w] == 'D'))
+		if (mlx->map.map2d[y_w][x_w] == '1'
+			|| (mlx->map.map2d[y_w][x_w] == 'D'))
 		{
 			return (0);
 		}
@@ -72,6 +70,3 @@ double	distance(t_cub *cub, double x, double y)
 {
 	return (sqrt(pow(x - cub->plyr.plyr_x, 2) + pow(y - cub->plyr.plyr_y, 2)));
 }
-
-
-

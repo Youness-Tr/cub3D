@@ -3,35 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   render3D_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/26 18:43:11 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/28 10:47:17 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
 
-t_img *get_door_frame(t_cub *cub)
+t_img	*get_door_frame(t_cub *cub)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (i < cub->ndoors)
-    {
-        if (cub->doors[i].open && cub->doors[i].distance <= DOOR_OPEN_DISTANCE)
-        {
-            return (&cub->door[cub->doors[i].frame]);
-        }
-        i++;
-    }
-    if (cub->default_door.open == -1)
-    {
-        return (&cub->door[0]);
-    }
-    else
-        return (&cub->door[cub->default_door.frame]);
+	i = 0;
+	while (i < cub->ndoors)
+	{
+		if (cub->doors[i].open && cub->doors[i].distance <= DOOR_OPEN_DISTANCE)
+		{
+			return (&cub->door[cub->doors[i].frame]);
+		}
+		i++;
+	}
+	if (cub->default_door.open == -1)
+	{
+		return (&cub->door[0]);
+	}
+	else
+		return (&cub->door[cub->default_door.frame]);
 }
+
 t_img	*get_texture(t_cub *cub, int flag)
 {
 	cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl);
@@ -53,9 +54,6 @@ t_img	*get_texture(t_cub *cub, int flag)
 	}
 }
 
-
-
-
 void	render_textured_wall(t_cub *cub, int x, int tex_x)
 {
 	int		tex_y;
@@ -67,7 +65,8 @@ void	render_textured_wall(t_cub *cub, int x, int tex_x)
 	y = cub->var.toppxl;
 	while (y < cub->var.lowpxl)
 	{
-		tex_y = ((y - cub->var.toppxl) * texture->h) / (cub->var.lowpxl - cub->var.toppxl);
+		tex_y = ((y - cub->var.toppxl) * texture->h) / (cub->var.lowpxl
+				- cub->var.toppxl);
 		color = *(unsigned int *)(texture->addr + (tex_y * texture->len + tex_x
 					* (texture->bpp / 8)));
 		my_mlx_pixel_put(&cub->img, x, y, color);
@@ -90,5 +89,5 @@ void	render_three_d(t_cub *cub, double distnce, int raypt, int tex_x)
 	cub->var.toppxl = (s_h / 2) - (wll_h / 2);
 	cub->var.lowpxl = (s_h / 2) + (wll_h / 2);
 	render_textured_wall(cub, raypt, tex_x);
-	draw_floor_ceiling(cub, raypt,cub->var.toppxl, cub->var.lowpxl);
+	draw_floor_ceiling(cub, raypt, cub->var.toppxl, cub->var.lowpxl);
 }

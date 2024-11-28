@@ -42,7 +42,8 @@ void	render_textured_wall(t_cub *cub, int x, int tex_x)
 	y = cub->var.toppxl;
 	while (y < cub->var.lowpxl)
 	{
-		tex_y = ((y - cub->var.toppxl) * texture->h) / (cub->var.lowpxl - cub->var.toppxl);
+		tex_y = ((y - cub->var.toppxl) * texture->h) / (cub->var.lowpxl
+				- cub->var.toppxl);
 		color = *(unsigned int *)(texture->addr + (tex_y * texture->len + tex_x
 					* (texture->bpp / 8)));
 		my_mlx_pixel_put(&cub->img, x, y, color);
@@ -65,5 +66,5 @@ void	render_three_d(t_cub *cub, double distnce, int raypt, int tex_x)
 	cub->var.toppxl = (s_h / 2) - (wll_h / 2);
 	cub->var.lowpxl = (s_h / 2) + (wll_h / 2);
 	render_textured_wall(cub, raypt, tex_x);
-	draw_floor_ceiling(cub, raypt,cub->var.toppxl, cub->var.lowpxl);
+	draw_floor_ceiling(cub, raypt, cub->var.toppxl, cub->var.lowpxl);
 }

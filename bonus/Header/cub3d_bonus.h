@@ -3,29 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/26 19:02:51 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/28 10:51:43 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #ifndef CUB3D_BONUS_H
 # define CUB3D_BONUS_H
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
 # include "../../mlx/mlx.h"
 # include "get_next_line.h"
 # include <fcntl.h>
 # include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 
-# define WIN_W 1920
-# define WIN_H 1080
+# define WIN_W 1000
+# define WIN_H 950
 # define TILE_SIZE 32
 # define PLAYER_RADIUS 5
 # define MINI_MAP 0.25
@@ -33,18 +31,19 @@
 # define P_SPEED 4
 # define PI 3.141592653589
 # define FOV (60 * PI) / 180
-#define DOOR_OPEN_DISTANCE 1.5
-#define MAX_DOOR 20
+# define DOOR_OPEN_DISTANCE 1.5
+# define MAX_DOOR 20
 # define MAX_TEXTURES 5
 # define MAX_GUN 19
+# define ZOOM_TEXTURE 4
 
-#define W  119
-#define A 97
-#define S 115
-#define D 100
-#define ESC 65307
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define ESC 65307
 # define L_ARROW 65361
-#define R_ARROW 65363
+# define R_ARROW 65363
 # define E 32
 
 # define L_MOUS 1
@@ -74,30 +73,30 @@
 typedef struct s_mlx	t_cub;
 typedef struct s_player
 {
-	int		plyr_x;
-	int		plyr_y;
-	double	angle;
-	double	fov_rd;
-	double	plyr_speed;
+	int					plyr_x;
+	int					plyr_y;
+	double				angle;
+	double				fov_rd;
+	double				plyr_speed;
 }						t_player;
 
 typedef struct s_ray
 {
-	double	ray_ngl;
-	double	distance;
-	int		hit;
-	double	hit_x;
-	double	hit_y;
-	int 	hit_door;
+	double				ray_ngl;
+	double				distance;
+	int					hit;
+	double				hit_x;
+	double				hit_y;
+	int					hit_door;
 }						t_ray;
 
 typedef struct s_map
 {
-	char	**map2d;
-	int		posx;
-	int		posy;
-	int		map_w;
-	int		map_h;
+	char				**map2d;
+	int					posx;
+	int					posy;
+	int					map_w;
+	int					map_h;
 }						t_map;
 
 typedef struct img
@@ -131,6 +130,8 @@ typedef struct vars
 	double				new_y;
 	int					toppxl;
 	int					lowpxl;
+	int					x;
+	int					y;
 
 }						t_vars;
 
@@ -163,38 +164,38 @@ typedef struct s_leak
 
 typedef struct s_door
 {
-	int				x;
-	int				y;
-	int				open;
-	int				frame;
-	double distance;
-} t_door;
+	int					x;
+	int					y;
+	int					open;
+	int					frame;
+	double				distance;
+}						t_door;
 
-struct s_mlx
+struct					s_mlx
 {
-	t_img		img;
-	void		*mlx_w;
-	void		*mlxp;
-	t_ray		ray;
-	t_map		map;
-	t_player	plyr;
-	t_data		parse;
-	t_vars		var;
-	t_img		textures[5];
-	t_img		gun[19];
-	t_img		door[22];
-	t_leak		*free;
-	int			move_forward;
-	int			move_backward;
-	int			move_left;
-	int			move_right;
-	int			rotate_left;
-	int			rotate_right;
-	int			gun_frame;
-	int			is_shooting;
-	t_door 		*doors;
-	t_door		default_door;
-	int			ndoors;
+	t_img				img;
+	void				*mlx_w;
+	void				*mlxp;
+	t_ray				ray;
+	t_map				map;
+	t_player			plyr;
+	t_data				parse;
+	t_vars				var;
+	t_img				textures[5];
+	t_img				gun[19];
+	t_img				door[22];
+	t_leak				*free;
+	int					move_forward;
+	int					move_backward;
+	int					move_left;
+	int					move_right;
+	int					rotate_left;
+	int					rotate_right;
+	int					gun_frame;
+	int					is_shooting;
+	t_door				*doors;
+	t_door				default_door;
+	int					ndoors;
 };
 
 void					ft_putstr(char *s);
@@ -239,9 +240,9 @@ void					handle_door_interaction(t_cub *cub, int i);
 void					set_gun(t_cub *cub, char *file);
 int						key_press(int key, t_cub *cub);
 int						key_release(int key, t_cub *cub);
-int 					mouse_press(int button, int x, int y, t_cub *cub);
-int 					mouse_release(int button, int x, int y, t_cub *cub);
-int 					mouse_mv(int btn, int x, int y, t_cub *cub);
+int						mouse_press(int button, int x, int y, t_cub *cub);
+int						mouse_release(int button, int x, int y, t_cub *cub);
+int						mouse_mv(int btn, int x, int y, t_cub *cub);
 
 // int is_valid_char(char c);
 int						create_trgb(int t, int r, int g, int b);
@@ -255,7 +256,8 @@ int						key_press(int key, t_cub *cub);
 void					init_engin(t_cub *cub, char *file);
 void					init_plyr(t_cub *cub);
 void					init_map(t_cub *cub);
-void					load_texture(t_cub *cub, t_img *texture, char *file_path);
+void					load_texture(t_cub *cub, t_img *texture,
+							char *file_path);
 void					init_textures(t_cub *cub);
 void					get_doors_cordn(t_cub *o);
 void					ndoors(t_cub *o);
@@ -274,13 +276,14 @@ void					*ft_malloc(t_cub *cub, size_t size);
 void					ft_free_all(t_leak *cub);
 char					*ft_strdupv2(char *s1, t_cub *leak);
 char					*ft_strjoinv2(char *s1, char *s2, t_cub *cub);
-char					*ft_substrv2(char *s, unsigned int start, size_t len, t_cub *cub);
+char					*ft_substrv2(char *s, unsigned int start, size_t len,
+							t_cub *cub);
 char					**ft_splitv2(char *s, char c, t_cub *cub);
 
 // RayCasting
 double					distance(t_cub *cub, double x, double y);
 
-//Events
+// Events
 int						mouse_press(int button, int x, int y, t_cub *cub);
 int						mouse_release(int button, int x, int y, t_cub *cub);
 int						mouse_mv(int btn, int x, int y, t_cub *cub);

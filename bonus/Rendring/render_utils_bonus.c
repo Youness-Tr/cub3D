@@ -6,34 +6,35 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:47:30 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/15 17:15:01 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/28 10:48:35 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
 
-void put_line(t_cub *cub, int len, int x, int y)
-{
-    float deltaX;
-    float deltaY;
+// void	put_line(t_cub *cub, int len, int x, int y)
+// {
+// 	float	deltaX;
+// 	float	deltaY;
+// 	int		i;
+// 	int		draw_x;
+// 	int		draw_y;
 
-    int i = 0;
-    deltaX = cos(cub->plyr.angle);
-    deltaY = sin(cub->plyr.angle);
-
-    while (i < len)
-    {
-        int draw_x = x + i * deltaX;
-        int draw_y = y + i * deltaY;
-
-        if (draw_x >= 0 && draw_x < TILE_SIZE * cub->map.map_w &&
-            draw_y >= 0 && draw_y < TILE_SIZE * cub->map.map_h)
-        {
-            mlx_pixel_put(cub->mlxp, cub->mlx_w, draw_x, draw_y, 0xFF0000);
-        }
-        i++;
-    }
-}
+// 	i = 0;
+// 	deltaX = cos(cub->plyr.angle);
+// 	deltaY = sin(cub->plyr.angle);
+// 	while (i < len)
+// 	{
+// 		draw_x = x + i * deltaX;
+// 		draw_y = y + i * deltaY;
+// 		if (draw_x >= 0 && draw_x < TILE_SIZE * cub->map.map_w && draw_y >= 0
+// 			&& draw_y < TILE_SIZE * cub->map.map_h)
+// 		{
+// 			mlx_pixel_put(cub->mlxp, cub->mlx_w, draw_x, draw_y, 0xFF0000);
+// 		}
+// 		i++;
+// 	}
+// }
 
 // void put_rays(t_cub *cub, int len, int x, int y, float ngl)
 // {

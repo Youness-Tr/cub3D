@@ -25,7 +25,7 @@ void	load_texture(t_cub *cub, t_img *texture, char *file_path)
 			&texture->len, &texture->endian);
 }
 
-void init_gun_textures(t_cub *cub)
+void	init_gun_textures(t_cub *cub)
 {
 	load_texture(cub, &cub->gun[0], "./Assets/gun/frame_03.xpm");
 	load_texture(cub, &cub->gun[1], "./Assets/gun/frame_04.xpm");
@@ -46,10 +46,9 @@ void init_gun_textures(t_cub *cub)
 	load_texture(cub, &cub->gun[16], "./Assets/gun/frame_19.xpm");
 	load_texture(cub, &cub->gun[17], "./Assets/gun/frame_20.xpm");
 	load_texture(cub, &cub->gun[18], "./Assets/gun/frame_21.xpm");
-	
 }
 
-void init_door_textures(t_cub *cub)
+void	init_door_textures(t_cub *cub)
 {
 	load_texture(cub, &cub->door[0], "./Assets/door/frame_01.xpm");
 	load_texture(cub, &cub->door[1], "./Assets/door/frame_02.xpm");
@@ -74,7 +73,6 @@ void init_door_textures(t_cub *cub)
 	load_texture(cub, &cub->door[20], "./Assets/door/frame_21.xpm");
 }
 
-
 void	init_textures(t_cub *cub)
 {
 	load_texture(cub, &cub->textures[0], cub->parse.no);
@@ -82,55 +80,6 @@ void	init_textures(t_cub *cub)
 	load_texture(cub, &cub->textures[2], cub->parse.we);
 	load_texture(cub, &cub->textures[3], cub->parse.so);
 	load_texture(cub, &cub->textures[4], "./Assets/sprites/zoom.xpm");
-
 	init_gun_textures(cub);
 	init_door_textures(cub);
-}
-
-void get_doors_cordn(t_cub *o)
-{
-	int i;
-	int j;
-	int k;
-
-	i = 0;
-	k = 0;
-	while (i < o->map.map_h)
-	{
-		j = 0;
-		while (j < o->map.map_w)
-		{
-			if (o->map.map2d[i][j] == 'D')
-			{
-				o->doors[k].x = j * TILE_SIZE;
-				o->doors[k].y = i * TILE_SIZE;
-				o->doors[k].open = 0;
-				o->doors[k].frame = 0;
-				k++;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void ndoors(t_cub *o)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < o->map.map_h)
-	{
-		j = 0;
-		while (j < o->map.map_w)
-		{
-			if (o->map.map2d[i][j] == 'D')
-			{
-				o->ndoors++;
-			}
-			j++;
-		}
-		i++;
-	}
 }
