@@ -102,4 +102,4 @@ int	main_loop(t_cub *cub)
 	return (0);
 }
 
-	// put_line(cub, 10, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP);
+// put_line(cub, 10, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP);

@@ -62,9 +62,9 @@ void	count_door_distances(t_cub *cub)
 	cub->var.x = 0;
 	while (cub->var.x < cub->ndoors)
 	{
-		cub->doors[cub->var.x].distance = sqrt(pow(player_x - cub->doors[cub->var.x].x
-					/ TILE_SIZE, 2) + pow(player_y - cub->doors[cub->var.x].y
-					/ TILE_SIZE, 2));
+		cub->doors[cub->var.x].distance = sqrt(pow(player_x
+					- cub->doors[cub->var.x].x / TILE_SIZE, 2) + pow(player_y
+					- cub->doors[cub->var.x].y / TILE_SIZE, 2));
 		cub->var.x++;
 	}
 }

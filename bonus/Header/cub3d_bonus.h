@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/28 10:51:43 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/11/29 11:23:29 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define ROT_SPEED 0.09
 # define P_SPEED 4
 # define PI 3.141592653589
-# define FOV (60 * PI) / 180
+# define FOV 60
 # define DOOR_OPEN_DISTANCE 1.5
 # define MAX_DOOR 20
 # define MAX_TEXTURES 5
@@ -48,17 +48,6 @@
 
 # define L_MOUS 1
 # define R_MOUS 2
-
-// # define L_ARROW 123
-// # define R_ARROW 124
-
-// # define A 0
-// # define S 1
-// # define D 2
-// # define W 13
-// # define ESC 53
-// # define S 1
-// # define E 49
 
 /****************TxTColoR*******************/
 # define RED "\033[1;31m"
@@ -171,6 +160,13 @@ typedef struct s_door
 	double				distance;
 }						t_door;
 
+typedef struct s_mini_map
+{
+	int					i;
+	int					j;
+	int					factor;
+}						t_mini_map;
+
 struct					s_mlx
 {
 	t_img				img;
@@ -195,6 +191,7 @@ struct					s_mlx
 	int					is_shooting;
 	t_door				*doors;
 	t_door				default_door;
+	t_mini_map			topv;
 	int					ndoors;
 };
 

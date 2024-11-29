@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/26 18:58:05 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/29 10:48:54 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define ROT_SPEED 0.09
 # define P_SPEED 6
 # define PI 3.141592653589
-# define FOV (60 * PI) / 180
+# define FOV 60
 
 # define L_ARROW 65361
 # define R_ARROW 65363

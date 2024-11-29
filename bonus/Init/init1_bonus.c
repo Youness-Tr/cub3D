@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init1_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:57:28 by kali              #+#    #+#             */
-/*   Updated: 2024/11/26 18:46:18 by youness          ###   ########.fr       */
+/*   Updated: 2024/11/29 10:54:33 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	player_ngl(t_cub *cub)
 
 	x = cub->parse.player_y;
 	y = cub->parse.player_x;
-	printf("x: %d, y: %d char is ::%c\n", x, y, cub->parse.map[y][x]);
 	if (cub->parse.map[y][x] == 'E')
 		cub->plyr.angle = (90 * PI) / 180;
 	else if (cub->parse.map[y][x] == 'N')
@@ -47,7 +46,7 @@ void	init_plyr(t_cub *cub)
 {
 	cub->plyr.plyr_x = cub->map.posx * TILE_SIZE + TILE_SIZE / 2;
 	cub->plyr.plyr_y = cub->map.posy * TILE_SIZE + TILE_SIZE / 2;
-	cub->plyr.fov_rd = FOV;
+	cub->plyr.fov_rd = (FOV * PI) / 180;
 	player_ngl(cub);
 	cub->move_forward = 0;
 	cub->move_backward = 0;
