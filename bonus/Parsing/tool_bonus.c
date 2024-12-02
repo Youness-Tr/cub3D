@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:36:17 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/22 18:39:46 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:02:37 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	ft_init(char *line, t_data *data)
 		data->f = get_haxe(line, 1, data->info);
 	else if (!strncmp("C ", line, 2) && data->c == 0)
 		data->c = get_haxe(line, 1, data->info);
-	else if (!strncmp(" ", line, 1) || !strncmp("\n", line, 1))
+	else if (space_skip(line))
 		data->stop = 0;
 	else if (data->no && data->so && data->we && data->ea && data->f && data->c)
 		data->stop = 1;
