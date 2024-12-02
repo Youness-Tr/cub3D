@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:40:01 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/22 18:22:37 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:45:11 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,16 @@ int	ft_atoi(const char *nptr)
 int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+int	space_skip(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && (s[i] == ' ' || s[i] == '\t' || s[i] == '\n'))
+		i++;
+	if (s[i] == '\0')
+		return (1);
+	return (0);
 }

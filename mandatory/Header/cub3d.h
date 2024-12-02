@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/29 10:48:54 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/02 14:43:37 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ char					**get_map(char *file);
 void					*get_value(char *s, unsigned int start, t_cub *cub);
 int						get_haxe(char *s, unsigned int start, t_cub *cub);
 void					ft_init(char *line, t_data *data);
+int						space_skip(char *s);
 int						find_direction(t_data *data, char c);
 int						ft_isdigit(int c);
 char					*join_space(char *s1, char *s2, t_cub *cub);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/29 11:23:29 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/02 14:43:59 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <string.h>
 # include <unistd.h>
 
-# define WIN_W 1000
-# define WIN_H 950
+# define WIN_W 1920
+# define WIN_H 1080
 # define TILE_SIZE 32
 # define PLAYER_RADIUS 5
 # define MINI_MAP 0.25
@@ -206,6 +206,7 @@ char					**get_map(char *file);
 void					*get_value(char *s, unsigned int start, t_cub *cub);
 int						get_haxe(char *s, unsigned int start, t_cub *cub);
 void					ft_init(char *line, t_data *data);
+int						space_skip(char *s);
 int						find_direction(t_data *data, char c);
 int						ft_isdigit(int c);
 void					door_checking(t_data *data, int i, int j);
