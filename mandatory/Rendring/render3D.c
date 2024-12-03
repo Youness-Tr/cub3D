@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render3D.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/26 17:41:26 by youness          ###   ########.fr       */
+/*   Updated: 2024/12/03 17:19:22 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	render_three_d(t_cub *cub, double distnce, int raypt, int tex_x)
 	s_w = WIN_W;
 	s_h = WIN_H;
 	distnce *= cos(cub->ray.ray_ngl - cub->plyr.angle);
+	if (distnce < 0.01)
+		distnce = 0.1;
 	dstnceplane = (s_w / 2) / tan(cub->plyr.fov_rd / 2);
 	wll_h = (TILE_SIZE / distnce) * dstnceplane;
 	cub->var.toppxl = (s_h / 2) - (wll_h / 2);
