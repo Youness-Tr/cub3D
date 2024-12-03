@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/03 17:34:55 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/03 19:04:53 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ void	render_three_d(t_cub *cub, double distnce, int raypt, int tex_x)
 	wll_h = (TILE_SIZE / distnce) * dstnceplane;
 	cub->var.toppxl = (s_h / 2) - (wll_h / 2);
 	cub->var.lowpxl = (s_h / 2) + (wll_h / 2);
-	if (cub->map.map2d[cub->plyr.plyr_y / TILE_SIZE][cub->plyr.plyr_x/ TILE_SIZE] != 'D')
+	if (cub->map.map2d[cub->plyr.plyr_y / TILE_SIZE][cub->plyr.plyr_x
+		/ TILE_SIZE] != 'D')
 	{
 		render_textured_wall(cub, raypt, tex_x);
 		draw_floor_ceiling(cub, raypt, cub->var.toppxl, cub->var.lowpxl);

@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/03 16:43:59 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/03 19:04:15 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ int	raycaster(t_cub *cub)
 	cub->var.ngl = (cub->plyr.fov_rd / ((double)cub->var.s_w));
 	while (cub->var.nray < cub->var.s_w + 1)
 	{
-		// printf("raycasting loop [%d]\n", cub->var.nray);
 		cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl);
 		cub->ray.hit = 0;
 		cub->ray.hit_door = 0;

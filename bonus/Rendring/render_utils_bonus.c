@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:47:30 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/12/03 17:26:38 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/03 19:05:33 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 	dst = data->addr + (y * data->len + x * (data->bpp / 8));
 	*(unsigned int *)dst = color;
 }
-//!the problem of freezing is here !!!!
+
 void	draw_floor_ceiling(t_cub *cub, int raypt, int toppxl, int lowpxl)
 {
 	int	i;
