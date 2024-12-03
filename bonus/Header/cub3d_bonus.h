@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/03 16:02:13 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/03 17:11:34 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define MINI_MAP 0.25
 # define ROT_SPEED 0.04
 # define P_SPEED 4
-# define PI 3.141592653589
+# define PI 3.14159265358979323846
 # define FOV 60
 # define DOOR_OPEN_DISTANCE 1.5
 # define MAX_DOOR 20

@@ -6,11 +6,13 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:57:28 by kali              #+#    #+#             */
-/*   Updated: 2024/11/29 10:54:33 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/03 17:11:25 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
+// #include <math.h>
+// # include<limits.h>
 
 void	init_map(t_cub *cub)
 {

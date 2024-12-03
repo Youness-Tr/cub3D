@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/02 17:47:01 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/12/03 17:12:44 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define MINI_MAP 0.15
 # define ROT_SPEED 0.09
 # define P_SPEED 1
-# define PI 3.141592653589
+# define PI 3.14159265358979323846
 # define FOV 60
 
 # define L_ARROW 65361
