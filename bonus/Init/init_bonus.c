@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/26 18:08:12 by youness          ###   ########.fr       */
+/*   Updated: 2024/12/03 17:49:30 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	init_door(t_cub *cub)
 	cub->default_door.open = -1;
 	cub->default_door.frame = MAX_DOOR;
 	ndoors(cub);
-	if (cub->ndoors == 0)
-		ft_errorv2(&cub->parse, "Error: NO DOORS IN THE MAP.");
 	cub->doors = ft_malloc(cub, sizeof(t_door) * cub->ndoors);
 	get_doors_cordn(cub);
 }

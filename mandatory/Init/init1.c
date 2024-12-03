@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:57:28 by kali              #+#    #+#             */
-/*   Updated: 2024/11/29 10:49:08 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/03 17:48:56 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void	player_ngl(t_cub *cub)
 	x = cub->parse.player_y;
 	y = cub->parse.player_x;
 	if (cub->parse.map[y][x] == 'E')
-		cub->plyr.angle = (90 * PI) / 180;
+		cub->plyr.angle = 0;
 	else if (cub->parse.map[y][x] == 'N')
 		cub->plyr.angle = (3 * PI) / 2;
 	else if (cub->parse.map[y][x] == 'W')
 		cub->plyr.angle = PI;
 	else if (cub->parse.map[y][x] == 'S')
-		cub->plyr.angle = 0;
+		cub->plyr.angle = (90 * PI) / 180;
 	cub->map.map2d[y][x] = 'P';
 	cub->plyr.angle = angle_range(cub->plyr.angle);
 }

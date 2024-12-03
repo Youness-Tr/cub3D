@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:47:30 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/12/03 17:01:57 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/03 17:26:38 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,9 @@ void	draw_floor_ceiling(t_cub *cub, int raypt, int toppxl, int lowpxl)
 	int	i;
 
 	i = lowpxl;
-	printf("lowpxl %d\n", lowpxl);
-	printf("\ttoppxl %d\n", toppxl);
 	while (i < cub->var.s_h)
-	{
 		my_mlx_pixel_put(&cub->img, raypt, i++, cub->parse.f);
-	}
 	i = 0;
 	while (i < toppxl)
-	{
-			my_mlx_pixel_put(&cub->img, raypt, i++, cub->parse.c);
-	}
+		my_mlx_pixel_put(&cub->img, raypt, i++, cub->parse.c);
 }

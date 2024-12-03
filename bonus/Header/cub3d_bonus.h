@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/03 17:11:34 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/03 17:38:50 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define TILE_SIZE 64
 # define PLAYER_RADIUS 5
 # define MINI_MAP 0.25
-# define ROT_SPEED 0.04
+# define ROT_SPEED 0.02
 # define P_SPEED 4
 # define PI 3.14159265358979323846
 # define FOV 60
@@ -47,7 +47,7 @@
 # define E 32
 
 # define L_MOUS 1
-# define R_MOUS 2
+# define R_MOUS 3
 
 /****************TxTColoR*******************/
 # define RED "\033[1;31m"
