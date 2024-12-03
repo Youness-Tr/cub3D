@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/02 14:43:59 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:02:13 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 # include <string.h>
 # include <unistd.h>
 
-# define WIN_W 1920
-# define WIN_H 1080
-# define TILE_SIZE 32
+# define WIN_W 1000
+# define WIN_H 920
+# define TILE_SIZE 64
 # define PLAYER_RADIUS 5
 # define MINI_MAP 0.25
-# define ROT_SPEED 0.09
+# define ROT_SPEED 0.04
 # define P_SPEED 4
 # define PI 3.141592653589
 # define FOV 60
