@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:36:17 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/12/02 14:42:01 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/12/03 22:45:26 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	get_haxe(char *s, unsigned int start, t_cub *cub)
 	db = ft_splitv2(ss, ',', cub);
 	if ((check_color(db, 0, 0)))
 	{
-		ft_errorv2(&cub->parse, "ERROR :: INVALID COLOR FORMAT");
+		ft_errorv2(&cub->parse, "Error\n:: INVALID COLOR FORMAT");
 		return (0);
 	}
 	hexa = create_trgb(0, ft_atoi(db[0]), ft_atoi(db[1]), ft_atoi(db[2]));
@@ -101,7 +101,7 @@ void	ft_init(char *line, t_data *data)
 	else if (data->no && data->so && data->we && data->ea && data->f && data->c)
 		data->stop = 1;
 	else
-		ft_errorv2(data, "ERROR :: INVALID DATA");
+		ft_errorv2(data, "Error\n:: INVALID DATA");
 }
 
 char	*join_space(char *s1, char *s2, t_cub *cub)

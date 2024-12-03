@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/11/26 17:34:20 by youness          ###   ########.fr       */
+/*   Updated: 2024/12/03 22:45:26 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	init_image(t_cub *cub)
 	cub->img.addr = mlx_get_data_addr(imge->img, &imge->bpp, &imge->len,
 			&imge->endian);
 	if (!cub->img.img)
-		ft_errorv2(&cub->parse, "ERROR : IMAGE NOT LOADED !!!\n");
+		ft_errorv2(&cub->parse, "Error\n: IMAGE NOT LOADED !!!\n");
 }
 
 static void	init_mlx(t_cub *mlx)
@@ -30,13 +30,13 @@ static void	init_mlx(t_cub *mlx)
 	mlx->var.s_h = WIN_H;
 	mlx->mlxp = mlx_init();
 	if (!mlx->mlxp)
-		ft_errorv2(&mlx->parse, "ERROR : INITALIZE MLX\n");
+		ft_errorv2(&mlx->parse, "Error\n: INITALIZE MLX\n");
 	mlx->img.img = mlx_new_image(mlx->mlxp, mlx->var.s_w, mlx->var.s_h);
 	if (!mlx->img.img)
-		ft_errorv2(&mlx->parse, "ERROR : IMAGE NOT LOADED !!!\n");
+		ft_errorv2(&mlx->parse, "Error\n: IMAGE NOT LOADED !!!\n");
 	mlx->mlx_w = mlx_new_window(mlx->mlxp, mlx->var.s_w, mlx->var.s_h, "Cub3D");
 	if (!mlx->mlx_w)
-		ft_errorv2(&mlx->parse, "ERROR : MLX WINDOW\n");
+		ft_errorv2(&mlx->parse, "Error\n: MLX WINDOW\n");
 	init_image(mlx);
 }
 
