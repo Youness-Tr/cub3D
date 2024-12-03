@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/22 18:36:55 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/12/03 22:32:43 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	map_scan(t_data *data)
 			{
 				if (i == 0 || i == data->lines || j == 0 || j == data->map_w
 					- 2)
-					ft_errorv2(data, "ERROR :: INVALID MAP");
+					ft_errorv2(data, "ERROR :: INVALID MAP"); 
 				if (data->map[i - 1][j] == ' ' || data->map[(i) + 1][j] == ' '
 					|| data->map[i][j - 1] == ' ' || data->map[i][j + 1] == ' ')
 					ft_errorv2(data, "ERROR :: INVALID MAP");
