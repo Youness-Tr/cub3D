@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:20:39 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/03 17:12:44 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/03 17:16:32 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 # include <unistd.h>
 
 # define WIN_W 1000
-# define WIN_H 950
+# define WIN_H 920
 # define TILE_SIZE 64
 # define MINI_MAP 0.15
-# define ROT_SPEED 0.09
-# define P_SPEED 1
+# define ROT_SPEED 0.04
+# define P_SPEED 4
 # define PI 3.14159265358979323846
 # define FOV 60
 
