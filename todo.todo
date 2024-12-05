@@ -8,8 +8,10 @@
           "content": "DIRECTION ANGEL",
           "id": 1733157813843,
           "level": "default",
-          "done": false,
-          "start": 1733157813843
+          "done": true,
+          "start": 1733157813843,
+          "focus": false,
+          "end": 1733320597965
         }
       },
       {
@@ -19,8 +21,10 @@
           "content": "SILDING WALL",
           "id": 1733157827434,
           "level": "default",
-          "done": false,
-          "start": 1733157827434
+          "done": true,
+          "start": 1733157827434,
+          "focus": false,
+          "end": 1733320598725
         }
       },
       {
@@ -30,8 +34,10 @@
           "content": "MOVEMENTS FORWARD SHOULD GO DIRECTLY NOT INCLINED",
           "id": 1733158139588,
           "level": "default",
-          "done": false,
-          "start": 1733158139588
+          "done": true,
+          "start": 1733158139588,
+          "focus": false,
+          "end": 1733320599548
         }
       },
       {
@@ -41,8 +47,23 @@
           "content": "DOOR DISPLAY FREEZ",
           "id": 1733158903953,
           "level": "default",
-          "done": false,
-          "start": 1733158903954
+          "done": true,
+          "start": 1733158903954,
+          "focus": false,
+          "end": 1733320601324
+        }
+      },
+      {
+        "key": 1733262099815,
+        "children": [],
+        "todo": {
+          "content": "CHANGE ERRORS TO Error\\n",
+          "id": 1733262099815,
+          "level": "default",
+          "done": true,
+          "start": 1733262099815,
+          "focus": false,
+          "end": 1733320618861
         }
       },
       {
@@ -53,18 +74,9 @@
           "id": 1733159118459,
           "level": "default",
           "done": false,
-          "start": 1733159118459
-        }
-      },
-      {
-        "key": 1733262099815,
-        "children": [],
-        "todo": {
-          "content": "CHANGE ERRORS TO Error\\n",
-          "id": 1733262099815,
-          "level": "default",
-          "done": false,
-          "start": 1733262099815
+          "start": 1733159118459,
+          "focus": false,
+          "end": 1733320602132
         }
       }
     ],
@@ -80,6 +92,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1733262119191"
+    "version": "1733387486748"
   }
 }

@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:53:20 by youness           #+#    #+#             */
-/*   Updated: 2024/11/28 10:51:02 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/05 10:40:42 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,17 @@ void	shoot(t_cub *cub)
 {
 	if (cub->is_shooting)
 	{
+		
+		usleep(40000);// !need to find an other way
 		cub->gun_frame++;
 		if (cub->gun_frame >= MAX_GUN)
 			cub->gun_frame = 0;
 	}
 	if (!cub->is_shooting && cub->gun_frame != 0)
+	{
+		usleep(40000);// !need to find an other way
 		cub->gun_frame--;
+	}
 }
 
 void	render_weapon(t_cub *cub)

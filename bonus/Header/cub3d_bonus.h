@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/03 17:38:50 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/05 11:39:15 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 # define WIN_W 1000
 # define WIN_H 920
 # define TILE_SIZE 64
-# define PLAYER_RADIUS 5
+# define PLAYER_RADIUS 10
+# define PLAYER_RANGE 300
 # define MINI_MAP 0.25
 # define ROT_SPEED 0.02
 # define P_SPEED 4
@@ -165,6 +166,7 @@ typedef struct s_mini_map
 	int					i;
 	int					j;
 	int					factor;
+	int					range;
 }						t_mini_map;
 
 struct					s_mlx
