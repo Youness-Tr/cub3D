@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/05 11:39:15 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/05 12:29:14 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 # define WIN_H 920
 # define TILE_SIZE 64
 # define PLAYER_RADIUS 10
-# define PLAYER_RANGE 300
+# define PLAYER_RANGE 800
+# define MINI_TILE 8
 # define MINI_MAP 0.25
 # define ROT_SPEED 0.02
 # define P_SPEED 4
