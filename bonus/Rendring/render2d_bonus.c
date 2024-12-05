@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:49:43 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/05 12:28:00 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/05 14:10:17 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,18 +95,18 @@ void render_topv(t_cub *cub)
 				{
 					
 					// printf("\tHERE\n");
-					render_square(cub, 0x000000);
+					render_square(cub, 0x003049);
 				}
 				else if (cub->map.map2d[cub->topv.j][cub->topv.i] == '0' || cub->map.map2d[cub->topv.j][cub->topv.i] == 'P')
-					render_square(cub, 0xffffff);
+					render_square(cub, 0xdad8d8);
 				else if (cub->map.map2d[cub->topv.j][cub->topv.i] == 'D')
-				render_square(cub, 0x00FF00);
+				render_square(cub, 0xfca311);
 			}
 			cub->topv.i++;
 		}
 		cub->topv.j++;
 	}
-	render_circle(cub, 0xFF0000);
+	render_circle(cub, 0xff9505);
 	mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
 }
 
@@ -122,7 +122,7 @@ void	render_mini_2d(t_cub *cub)
 		while (cub->topv.i < cub->map.map_w + 1)
 		{
 			if (cub->map.map2d[cub->topv.j][cub->topv.i] == '1')
-				render_square(cub, 0x000000);
+				render_square(cub, 0x003049);
 			else if (cub->map.map2d[cub->topv.j][cub->topv.i] == '0'
 				|| cub->map.map2d[cub->topv.j][cub->topv.i] == 'P')
 			{
