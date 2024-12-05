@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:49:43 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/05 11:50:16 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/05 11:52:12 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	render_square(t_cub *cub, int color)
 	int	y;
 
 	y = 0;
-	while (y < cub->topv.factor)
+	while (y < TILE_SIZE / 2)
 	{
 		x = 0;
-		while (x < cub->topv.factor)
+		while (x < TILE_SIZE / 2)
 		{
 			my_mlx_pixel_put(&cub->img, ((cub->topv.i * TILE_SIZE) * MINI_MAP)
 				+ x, ((cub->topv.j * TILE_SIZE) * MINI_MAP + y), color);
