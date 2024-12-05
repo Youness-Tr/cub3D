@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   elements_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:53:20 by youness           #+#    #+#             */
-/*   Updated: 2024/12/05 10:40:42 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/05 18:36:32 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	set_gun(t_cub *cub, char *file)
 			&cub->textures[4].w, &cub->textures[4].h);
 	if (!cub->textures[4].img)
 	{
-		ft_errorv2(&cub->parse, "Error: Could not load texture");
+		ft_errorv2(&cub->parse, "Error\n: Could not load texture");
 		_close_window(cub);
 	}
 }

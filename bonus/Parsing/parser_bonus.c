@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/03 22:45:26 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/12/05 18:32:30 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	map_fill(t_data *data)
 		line = get_next_line(fd);
 	}
 	if (!data->stop)
-		ft_errorv2(data, "Error\n:: MAP DOSEN'T EXIST\n");
+		ft_errorv2(data, "Error\n:: MAP DOSEN'T EXIST");
 	data->map[j] = NULL;
 	close(fd);
 }
@@ -107,7 +107,7 @@ void	map_scan(t_data *data)
 		{
 			if (data->map[i][j] == '0' || data->map[i][j] == 'N'
 				|| data->map[i][j] == 'S' || data->map[i][j] == 'W'
-				|| data->map[i][j] == 'E')
+				|| data->map[i][j] == 'E' || data->map[i][j] == 'D')
 			{
 				if (i == 0 || i == data->lines || j == 0 || j == data->map_w
 					- 2)
@@ -127,7 +127,7 @@ int	parser(t_data *data)
 	init(data);
 	map_fill(data);
 	if (ft_check(data))
-		ft_errorv2(data, "Error\n:: MAP ELEMENT\n");
+		ft_errorv2(data, "Error\n:: MAP ELEMENT");
 	add_to_map(data);
 	map_scan(data);
 	return (0);

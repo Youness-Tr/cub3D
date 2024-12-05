@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:57:28 by kali              #+#    #+#             */
-/*   Updated: 2024/12/03 22:45:26 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/12/05 18:32:17 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_map(t_cub *cub)
 {
 	cub->map.map2d = cub->parse.map;
 	if (!cub->map.map2d)
-		ft_errorv2(&cub->parse, "Error\n: MAP NOT LOADED !!!\n");
+		ft_errorv2(&cub->parse, "Error\n: MAP NOT LOADED !!!");
 	cub->map.map_h = cub->parse.lines;
 	cub->map.map_w = cub->parse.map_len;
 	cub->map.posx = cub->parse.player_y;

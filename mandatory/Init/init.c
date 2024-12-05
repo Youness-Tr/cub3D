@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/12/03 22:45:26 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/12/05 18:35:40 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	init_image(t_cub *cub)
 	cub->img.addr = mlx_get_data_addr(imge->img, &imge->bpp, &imge->len,
 			&imge->endian);
 	if (!cub->img.img)
-		ft_errorv2(&cub->parse, "Error\n: IMAGE NOT LOADED !!!\n");
+		ft_errorv2(&cub->parse, "Error\n: IMAGE NOT LOADED !!!");
 }
 
 static void	init_mlx(t_cub *mlx)
@@ -30,13 +30,13 @@ static void	init_mlx(t_cub *mlx)
 	mlx->var.s_h = WIN_H;
 	mlx->mlxp = mlx_init();
 	if (!mlx->mlxp)
-		ft_errorv2(&mlx->parse, "Error\n: INITALIZE MLX\n");
+		ft_errorv2(&mlx->parse, "Error\n: INITALIZE MLX");
 	mlx->img.img = mlx_new_image(mlx->mlxp, mlx->var.s_w, mlx->var.s_h);
 	if (!mlx->img.img)
-		ft_errorv2(&mlx->parse, "Error\n: IMAGE NOT LOADED !!!\n");
+		ft_errorv2(&mlx->parse, "Error\n: IMAGE NOT LOADED !!!");
 	mlx->mlx_w = mlx_new_window(mlx->mlxp, mlx->var.s_w, mlx->var.s_h, "Cub3D");
 	if (!mlx->mlx_w)
-		ft_errorv2(&mlx->parse, "Error\n: MLX WINDOW\n");
+		ft_errorv2(&mlx->parse, "Error\n: MLX WINDOW");
 	init_image(mlx);
 }
 
@@ -46,7 +46,7 @@ static void	load_texture(t_cub *cub, t_img *texture, char *file_path)
 			&texture->h);
 	if (!texture->img)
 	{
-		ft_errorv2(&cub->parse, "ERROR: FAILED TO LOAD TEXTURE !");
+		ft_errorv2(&cub->parse, "ERROR\n: FAILED TO LOAD TEXTURE !");
 		_close_window(cub);
 	}
 	texture->addr = mlx_get_data_addr(texture->img, &texture->bpp,
@@ -76,6 +76,6 @@ void	init_engin(t_cub *cub, char *file)
 	mlx_hook(cub->mlx_w, 17, 0, &_close_window, cub);
 	mlx_loop_hook(cub->mlxp, &main_loop, cub);
 	if (!cub->mlxp || !cub->mlx_w)
-		ft_errorv2(&cub->parse, "Error: FIALED TO INITALIZE MLX.");
+		ft_errorv2(&cub->parse, "Error\n: FIALED TO INITALIZE MLX.");
 	mlx_loop(cub->mlxp);
 }

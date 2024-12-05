@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:08:00 by youness           #+#    #+#             */
-/*   Updated: 2024/11/26 18:54:14 by youness          ###   ########.fr       */
+/*   Updated: 2024/12/05 18:37:32 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	load_texture(t_cub *cub, t_img *texture, char *file_path)
 			&texture->h);
 	if (!texture->img)
 	{
-		ft_errorv2(&cub->parse, "ERROR: FAILED TO LOAD TEXTURE !");
+		ft_errorv2(&cub->parse, "Error\n FAILED TO LOAD TEXTURE !");
 		_close_window(cub);
 	}
 	texture->addr = mlx_get_data_addr(texture->img, &texture->bpp,

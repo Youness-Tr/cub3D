@@ -78,6 +78,39 @@
           "focus": false,
           "end": 1733320602132
         }
+      },
+      {
+        "key": 1733418447753,
+        "children": [],
+        "todo": {
+          "content": "door error when spawn closer to the door first time",
+          "id": 1733418447753,
+          "level": "default",
+          "done": false,
+          "start": 1733418447753
+        }
+      },
+      {
+        "key": 1733418495754,
+        "children": [],
+        "todo": {
+          "content": "didn't distroy image when i entred the door",
+          "id": 1733418495754,
+          "level": "default",
+          "done": false,
+          "start": 1733418495754
+        }
+      },
+      {
+        "key": 1733418544210,
+        "children": [],
+        "todo": {
+          "content": "moves are incorrect by simo lah ilgiha lih",
+          "id": 1733418544210,
+          "level": "default",
+          "done": false,
+          "start": 1733418544210
+        }
       }
     ],
     "expandKeys": [],
@@ -92,6 +125,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1733387486748"
+    "version": "1733418579339"
   }
 }
