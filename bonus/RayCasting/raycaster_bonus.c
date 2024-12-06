@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/06 17:32:23 by kali             ###   ########.fr       */
+/*   Updated: 2024/12/06 17:41:27 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,20 +88,32 @@ void	door_handling(t_cub *cub)
 	y = (int)(cub->ray.hit_y / TILE_SIZE);
 	if (cub->map.map2d[y][x] == 'D' || cub->map.map2d[y][x] == 'P')
 	{
-		// printf("I'm here\n");
 		cub->ray.hit_door = 1;
 	}
 	else if (cub->map.map2d[y][x] == '0')
 	{
 
 		if (cub->map.map2d[y - 1][x] == 'D' && cub->ray.hit)
+		{
+
+		// printf("I'm here\n");
 			cub->ray.hit_door = 1;
+		}
 		else if (cub->map.map2d[y][x - 1] == 'D' && !cub->ray.hit)
+		{
+			// printf("I'm here\n");
 			cub->ray.hit_door = 1;
+		}
 		else if (cub->map.map2d[y + 1][x] == 'D' && cub->ray.hit)
+		{
+			// printf("I'm here\n");
 			cub->ray.hit_door = 1;
-		else if (cub->map.map2d[y][x + 1] == 'D' && !cub->ray.hit)
+		}
+		else if (cub->map.map2d[y][x + 1] == 'D' && cub->ray.hit)
+		{
+			printf("I'm here\n");
 			cub->ray.hit_door = 1;
+		}
 		else
 			cub->ray.hit_door = 0;
 	}
