@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/03 19:04:15 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/06 17:32:23 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,14 @@ void	door_handling(t_cub *cub)
 
 	x = (int)(cub->ray.hit_x / TILE_SIZE);
 	y = (int)(cub->ray.hit_y / TILE_SIZE);
-	if (cub->map.map2d[y][x] == 'D')
+	if (cub->map.map2d[y][x] == 'D' || cub->map.map2d[y][x] == 'P')
+	{
+		// printf("I'm here\n");
 		cub->ray.hit_door = 1;
+	}
 	else if (cub->map.map2d[y][x] == '0')
 	{
+
 		if (cub->map.map2d[y - 1][x] == 'D' && cub->ray.hit)
 			cub->ray.hit_door = 1;
 		else if (cub->map.map2d[y][x - 1] == 'D' && !cub->ray.hit)

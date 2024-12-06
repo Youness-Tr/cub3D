@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   playerMoves_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/05 11:29:53 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/06 17:16:09 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,15 @@ void	render_zoom(t_cub *cub)
 	}
 }
 void render_topv(t_cub *cub);
-int	main_loop(t_cub *cub)
+void render_minimap(t_cub *cub);
+int main_loop(t_cub *cub)
 {
 	mlx_clear_window(cub->mlxp, cub->mlx_w);
 	mvp(cub);
 	raycaster(cub);
+	render_minimap(cub);
 	// render_mini_2d(cub);
-	render_topv(cub);
+	// render_topv(cub);
 	handle_door_interaction(cub, 0);
 	render_zoom(cub);
 	render_weapon(cub);
