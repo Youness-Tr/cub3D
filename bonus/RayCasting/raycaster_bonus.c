@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/06 17:55:19 by kali             ###   ########.fr       */
+/*   Updated: 2024/12/07 15:58:45 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,35 +47,41 @@ double	get_vinter(t_cub *cub, double ngl)
 	if (ngl > PI / 2 && ngl < 3 * PI / 2)
 		cub->var.x_step = -TILE_SIZE;
 	cub->var.y_step = cub->var.x_step * tan(ngl);
-	cub->var.hx = floor(cub->plyr.plyr_x / TILE_SIZE) * TILE_SIZE;
+	cub->var.vx = floor(cub->plyr.plyr_x / TILE_SIZE) * TILE_SIZE;
 	if (ngl < PI / 2 || ngl > 3 * PI / 2)
-		cub->var.hx += TILE_SIZE;
+		cub->var.vx += TILE_SIZE;
 	if (ngl < PI / 2 || ngl > 3 * PI / 2)
 		cub->var.pxl = 0;
 	else
 		cub->var.pxl = -1;
-	cub->var.hy = cub->plyr.plyr_y + (cub->var.hx - cub->plyr.plyr_x)
+	cub->var.vy = cub->plyr.plyr_y + (cub->var.vx - cub->plyr.plyr_x)
 		* tan(ngl);
 	if ((ngl > 0 && ngl < PI) && cub->var.y_step < 0)
 		cub->var.y_step *= -1;
 	if ((ngl > PI && ngl < 2 * PI) && cub->var.y_step > 0)
 		cub->var.y_step *= -1;
-	while (wall_hit(cub->var.hx + cub->var.pxl, cub->var.hy, cub))
+	while (wall_hit(cub->var.vx + cub->var.pxl, cub->var.vy, cub))
 	{
-		cub->var.hx += cub->var.x_step;
-		cub->var.hy += cub->var.y_step;
+		cub->var.vx += cub->var.x_step;
+		cub->var.vy += cub->var.y_step;
 	}
-	return (distance(cub, cub->var.hx, cub->var.hy));
+	return (distance(cub, cub->var.vx, cub->var.vy));
 }
 
 void	set_distance(t_cub *cub)
 {
 	if (cub->var.v_inter <= cub->var.h_inter)
+	{
 		cub->ray.distance = cub->var.v_inter;
+		cub->ray.hit_y = cub->var.vy;
+		cub->ray.hit_x = cub->var.vx;
+	}
 	else
 	{
 		cub->ray.distance = cub->var.h_inter;
 		cub->ray.hit = 1;
+		cub->ray.hit_x = cub->var.hx;
+		cub->ray.hit_y = cub->var.hy;
 	}
 }
 
@@ -86,6 +92,8 @@ void	door_handling(t_cub *cub)
 
 	x = (int)(cub->ray.hit_x / TILE_SIZE);
 	y = (int)(cub->ray.hit_y / TILE_SIZE);
+    printf("x[%d] y[%d] map[%c]\n", x, y, cub->map.map2d[y][x]);
+
 	if (cub->map.map2d[y][x] == 'D' || cub->map.map2d[y][x] == 'P')
 	{
 		cub->ray.hit_door = 1;
@@ -93,33 +101,26 @@ void	door_handling(t_cub *cub)
 	else if (cub->map.map2d[y][x] == '0')
 	{
 
-		if (cub->map.map2d[y - 1][x] == 'D' && cub->ray.hit)
+		if (cub->map.map2d[y - 1][x] == 'D')
 		{
-
+			// y = (int)(cub->ray.hit_y - 1 / TILE_SIZE);
+			// if (cub->map.map2d[y - 1][x] == '1') 
+			// 	cub->ray.hit_door = 0;
+			// else
+				cub->ray.hit_door = 1;
 		// printf("I'm here\n");
-			cub->ray.hit_door = 1;
 		}
-		else if (cub->map.map2d[y][x - 1] == 'D' && !cub->ray.hit)
+		else if (cub->map.map2d[y][x - 1] == 'D')
 		{
 			// printf("I'm here\n");
 			cub->ray.hit_door = 1;
 		}
-		else if (cub->map.map2d[y + 1][x] == 'D' && cub->ray.hit)
-		{
-			// printf("I'm here\n");
-			cub->ray.hit_door = 1;
-		}
-		else if (cub->map.map2d[y][x + 1] == 'D' && !cub->ray.hit)
-		{
-			printf("I'm here\n");
-			cub->ray.hit_door = 1;
-		}
-		else
-			cub->ray.hit_door = 0;
+	
 	}
 	else
 		cub->ray.hit_door = 0;
 }
+
 
 int	raycaster(t_cub *cub)
 {
@@ -134,10 +135,10 @@ int	raycaster(t_cub *cub)
 		cub->var.h_inter = get_hinter(cub, angle_range(cub->ray.ray_ngl));
 		cub->var.v_inter = get_vinter(cub, angle_range(cub->ray.ray_ngl));
 		set_distance(cub);
-		cub->ray.hit_x = cub->plyr.plyr_x + cub->ray.distance
-			* cos(angle_range(cub->ray.ray_ngl));
-		cub->ray.hit_y = cub->plyr.plyr_y + cub->ray.distance
-			* sin(angle_range(cub->ray.ray_ngl));
+		// cub->ray.hit_x = cub->plyr.plyr_x + cub->ray.distance
+		// 	* cos(angle_range(cub->ray.ray_ngl));
+		// cub->ray.hit_y = cub->plyr.plyr_y + cub->ray.distance
+		// 	* sin(angle_range(cub->ray.ray_ngl));
 		door_handling(cub);
 		cub->var.wall_x = calculate_wall_x(&cub->ray);
 		cub->var.tex_x = get_texture_x(cub, cub->var.wall_x);
@@ -148,3 +149,33 @@ int	raycaster(t_cub *cub)
 	mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
 	return (0);
 }
+
+// void    door_handling(t_cub *cub)
+// {
+//     int    x;
+//     int    y;
+//     // static int    i = 0;
+
+//     x = (int)floor(cub->ray.hit_x / TILE_SIZE);
+//     y = (int)floor(cub->ray.hit_y / TILE_SIZE);
+//     printf("x[%d] y[%d] map[%c]\n", x, y, cub->map.map2d[y][x]);
+
+//     if (cub->map.map2d[y][x] == 'D' || cub->map.map2d[y][x] == 'P'
+//         || (cub->map.map2d[y][x] == '0' && cub->map.map2d[y - 1][x] == 'D' && cub->ray.hit)
+//         || (cub->map.map2d[y][x] == '0' && cub->map.map2d[y][x - 1] == 'D' && !cub->ray.hit))
+//     {
+//         // printf("I'm here %d[%c]\n", i++,cub->map.map2d[y][x]);
+//         cub->ray.hit_door = 1;
+
+//     }
+//     else if (cub->map.map2d[y][x] == 'D' || cub->map.map2d[y][x] == 'P'
+        
+//         || (cub->map.map2d[y][x] == '0' && cub->map.map2d[y][x + 1] == 'D' && !cub->ray.hit))
+//     {
+//         // printf("I'm here %d[%c]\n", i++,cub->map.map2d[y][x]);
+//         cub->ray.hit_door = 1;
+
+//     }
+//     else
+//         cub->ray.hit_door = 0;
+// }

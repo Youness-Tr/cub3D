@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/06 17:27:14 by kali             ###   ########.fr       */
+/*   Updated: 2024/12/07 15:51:20 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ typedef struct vars
 	int					s_h;
 	double				hx;
 	double				hy;
+	double				vx;
+	double				vy;
 	double				y_step;
 	double				x_step;
 	int					pxl;
