@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/07 14:19:33 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/07 16:05:47 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ void	map_scan(t_data *data)
 					|| data->map[i][j - 1] == ' ' || data->map[i][j + 1] == ' ')
 					ft_errorv2(data, "Error\n:: INVALID MAP");
 			}
-			// if (data->map[i][j] == 'D')
-			// 	door_checking(data, i, j);
+			if (data->map[i][j] == 'D')
+				door_checking(data, i, j);
 		}
 	}
 }
