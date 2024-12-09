@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/07 16:04:40 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/09 18:23:39 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,10 +136,10 @@ void door_handling(t_cub *cub)
         x = (int)((cub->ray.hit_x - 1) / TILE_SIZE);
 
     // Debugging: Check hit point and map value
-    printf("Ray hit point: x[%d], y[%d], map[%c]\n", x, y, cub->map.map2d[y][x]);
+    // printf("Ray hit point: x[%d], y[%d], map[%c]\n", x, y, cub->map.map2d[y][x]);
 
     // Check if the ray hit a door ('D')
-    if (cub->map.map2d[y][x] == 'D')
+    if (cub->map.map2d[y][x] == 'D' || cub->map.map2d[y][x] == 'P')
         cub->ray.hit_door = 1;
     else
         cub->ray.hit_door = 0;

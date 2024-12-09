@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:33:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/07 15:17:04 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/09 18:28:44 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,10 @@ void	render_three_d(t_cub *cub, double distnce, int raypt, int tex_x)
 	if (cub->map.map2d[cub->plyr.plyr_y / TILE_SIZE][cub->plyr.plyr_x
 		/ TILE_SIZE] != 'D')
 	{
+		cub->var.shoot = true;
 		render_textured_wall(cub, raypt, tex_x);
 		draw_floor_ceiling(cub, raypt, cub->var.toppxl, cub->var.lowpxl);
 	}
+	else
+		cub->var.shoot = false;
 }

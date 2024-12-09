@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   playerMoves_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/06 17:16:09 by kali             ###   ########.fr       */
+/*   Updated: 2024/12/09 18:24:36 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,13 @@ int main_loop(t_cub *cub)
 	mvp(cub);
 	raycaster(cub);
 	render_minimap(cub);
-	// render_mini_2d(cub);
-	// render_topv(cub);
 	handle_door_interaction(cub, 0);
 	render_zoom(cub);
 	render_weapon(cub);
-	shoot(cub);
+	if (cub->var.shoot)
+	{
+		printf("Here\n");
+		shoot(cub);
+	}
 	return (0);
 }

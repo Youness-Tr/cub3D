@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/12/05 18:35:58 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/12/09 18:20:15 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	init_engin(t_cub *cub, char *file)
 	cub->free = NULL;
 	cub->gun_frame = 0;
 	cub->is_shooting = 0;
+	cub->var.shoot = true;
 	parser(&cub->parse);
 	init_map(cub);
 	init_plyr(cub);

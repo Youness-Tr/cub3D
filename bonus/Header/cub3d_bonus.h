@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/07 15:51:20 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/09 18:29:59 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 # define WIN_W 1000
 # define WIN_H 920
-# define TILE_SIZE 64
+# define TILE_SIZE 32
 # define PLAYER_RADIUS 10
-# define PLAYER_RANGE 920
+# define PLAYER_RANGE 500
 # define MINI_TILE 8
 # define MINI_MAP 0.25 //! I think that i don't need this
 # define ROT_SPEED 0.02
@@ -123,6 +124,7 @@ typedef struct vars
 	double				new_y;
 	int					toppxl;
 	int					lowpxl;
+	bool			shoot;
 	int					x;
 	int					y;
 
