@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/13 18:24:00 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/13 18:34:49 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	mvp(t_cub *cub)
 		cub->var.new_x -= sin(cub->plyr.angle) * P_SPEED;
 		cub->var.new_y += cos(cub->plyr.angle) * P_SPEED;
 	}
-	printf("player x = %.2f, y = %.2f\n", cub->var.new_x, cub->var.new_y);
 	set_pos(cub, cub->var.new_x, cub->var.new_y);
 }
 
