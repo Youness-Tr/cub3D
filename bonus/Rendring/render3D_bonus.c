@@ -54,7 +54,6 @@ t_img	*get_texture(t_cub *cub, int flag)
 	}
 }
 
-
 void	render_textured_wall(t_cub *cub, int x, int tex_x)
 {
 	int		tex_y;

@@ -16,7 +16,6 @@ void	shoot(t_cub *cub)
 {
 	if (cub->is_shooting)
 	{
-		
 		usleep(40000);
 		cub->gun_frame++;
 		if (cub->gun_frame >= MAX_GUN)
@@ -101,4 +100,3 @@ void	handle_door_interaction(t_cub *cub, int i)
 		i++;
 	}
 }
-

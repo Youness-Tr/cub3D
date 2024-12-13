@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:09:19 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/10 12:20:01 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/13 18:27:42 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,24 +85,22 @@ void	set_distance(t_cub *cub)
 	}
 }
 
-void door_handling(t_cub *cub)
+void	door_handling(t_cub *cub)
 {
-    int x, y;
+	int	x;
+	int	y;
 
-    x = (int)(cub->ray.hit_x / TILE_SIZE);
-    y = (int)(cub->ray.hit_y / TILE_SIZE);
-
-    // Adjust based on ray direction
-    if (cub->ray.ray_ngl > PI && cub->ray.ray_ngl < 2 * PI) // Facing up
-        y = (int)((cub->ray.hit_y - 1) / TILE_SIZE);
-    if (cub->ray.ray_ngl > PI / 2 && cub->ray.ray_ngl < 3 * PI / 2) // Facing left
-        x = (int)((cub->ray.hit_x - 1) / TILE_SIZE);
-    if (cub->map.map2d[y][x] == 'D' || cub->map.map2d[y][x] == 'P')
-        cub->ray.hit_door = 1;
-    else
-        cub->ray.hit_door = 0;
+	x = (int)(cub->ray.hit_x / TILE_SIZE);
+	y = (int)(cub->ray.hit_y / TILE_SIZE);
+	if (cub->ray.ray_ngl > PI && cub->ray.ray_ngl < 2 * PI)
+		y = (int)((cub->ray.hit_y - 1) / TILE_SIZE);
+	if (cub->ray.ray_ngl > PI / 2 && cub->ray.ray_ngl < 3 * PI / 2)
+		x = (int)((cub->ray.hit_x - 1) / TILE_SIZE);
+	if (cub->map.map2d[y][x] == 'D' || cub->map.map2d[y][x] == 'P')
+		cub->ray.hit_door = 1;
+	else
+		cub->ray.hit_door = 0;
 }
-
 
 int	raycaster(t_cub *cub)
 {
@@ -124,6 +122,5 @@ int	raycaster(t_cub *cub)
 		cub->ray.ray_ngl = angle_range(cub->ray.ray_ngl + cub->var.ngl);
 		cub->var.nray++;
 	}
-	// mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
 	return (0);
 }

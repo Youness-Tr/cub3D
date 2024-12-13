@@ -17,11 +17,11 @@
 # include "get_next_line.h"
 # include <fcntl.h>
 # include <math.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include <stdbool.h>
 
 # define WIN_W 1000
 # define WIN_H 920
@@ -65,7 +65,7 @@ typedef struct s_mlx	t_cub;
 typedef struct s_player
 {
 	double				plyr_x;
-	double					plyr_y;
+	double				plyr_y;
 	double				angle;
 	double				fov_rd;
 }						t_player;
@@ -126,7 +126,7 @@ typedef struct vars
 	int					x;
 	int					y;
 	int					map_x;
-	int 				map_y;
+	int					map_y;
 	int					start_x;
 	int					end_x;
 	int					start_y;
@@ -197,7 +197,7 @@ struct					s_mlx
 	t_door				*doors;
 	t_door				default_door;
 	int					ndoors;
-	int mv;
+	int					mv;
 };
 
 void					ft_putstr(char *s);

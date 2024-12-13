@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/12/13 15:17:33 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/13 18:25:32 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	init_engin(t_cub *cub, char *file)
 	cub->gun_frame = 0;
 	cub->is_shooting = 0;
 	cub->var.shoot = true;
-	cub->mv = 0; //!
+	cub->mv = 0;
 	parser(&cub->parse);
 	init_map(cub);
 	init_plyr(cub);

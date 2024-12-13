@@ -111,7 +111,7 @@ void	map_scan(t_data *data)
 			{
 				if (i == 0 || i == data->lines || j == 0 || j == data->map_w
 					- 2)
-					ft_errorv2(data, "Error\n:: INVALID MAP"); 
+					ft_errorv2(data, "Error\n:: INVALID MAP");
 				if (data->map[i - 1][j] == ' ' || data->map[(i) + 1][j] == ' '
 					|| data->map[i][j - 1] == ' ' || data->map[i][j + 1] == ' ')
 					ft_errorv2(data, "Error\n:: INVALID MAP");
