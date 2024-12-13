@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   events_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:50:16 by youness           #+#    #+#             */
-/*   Updated: 2024/11/26 18:26:13 by youness          ###   ########.fr       */
+/*   Updated: 2024/12/13 15:21:32 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int	key_press(int key, t_cub *cub)
 	else if (key == R_ARROW)
 		cub->rotate_right = 1;
 	else if (key == E)
+	{
+		cub->mv = 50;
 		cub->is_shooting = 1;
+	}
 	else if (key == ESC)
 		_close_window(cub);
 	return (0);
@@ -48,7 +51,10 @@ int	key_release(int key, t_cub *cub)
 	else if (key == R_ARROW)
 		cub->rotate_right = 0;
 	else if (key == E)
+	{
+		cub->mv = 0;
 		cub->is_shooting = 0;
+	}
 	return (0);
 }
 

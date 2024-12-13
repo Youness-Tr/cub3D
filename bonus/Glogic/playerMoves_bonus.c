@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/09 18:24:36 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/13 18:14:31 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,21 @@
 void	set_pos(t_cub *cub, double x, double y)
 {
 	if (cub->rotate_left)
-		cub->plyr.angle -= ROT_SPEED;
+	 cub->plyr.angle = angle_range(cub->plyr.angle - ROT_SPEED);
 	if (cub->rotate_right)
-		cub->plyr.angle += ROT_SPEED;
+		cub->plyr.angle = angle_range(cub->plyr.angle + ROT_SPEED);
 	if (is_wall(cub, x, cub->plyr.plyr_y))
 		cub->plyr.plyr_x = x;
-	else
-	{
-		if (is_wall(cub, cub->plyr.plyr_x, y))
-			cub->plyr.plyr_y = y;
-	}
 	if (is_wall(cub, cub->plyr.plyr_x, y))
 		cub->plyr.plyr_y = y;
-	else
-	{
-		if (is_wall(cub, x, cub->plyr.plyr_y))
-			cub->plyr.plyr_x = x;
-	}
 }
 
 void	mvp(t_cub *cub)
 {
 	cub->var.new_x = cub->plyr.plyr_x;
 	cub->var.new_y = cub->plyr.plyr_y;
+	cub->plyr.angle = angle_range(cub->plyr.angle);
+	// printf("player angle %f\n", cub->plyr.angle);
 	if (cub->move_forward)
 	{
 		cub->var.new_x += cos(cub->plyr.angle) * P_SPEED;
@@ -58,6 +50,7 @@ void	mvp(t_cub *cub)
 		cub->var.new_x -= sin(cub->plyr.angle) * P_SPEED;
 		cub->var.new_y += cos(cub->plyr.angle) * P_SPEED;
 	}
+	printf("player x = %.2f, y = %.2f\n",cub->var.new_x,cub->var.new_y);
 	set_pos(cub, cub->var.new_x, cub->var.new_y);
 }
 
@@ -67,8 +60,8 @@ void	render_zoom(t_cub *cub)
 	int				image_y;
 	unsigned int	color;
 
-	image_x = ((cub->var.s_w) - cub->textures[ZOOM_TEXTURE].w + 100) / 2;
-	image_y = (cub->var.s_h - cub->textures[ZOOM_TEXTURE].h) - 290;
+	image_x = ((cub->var.s_w) - cub->textures[ZOOM_TEXTURE].w) / 2;
+	image_y = ((cub->var.s_h - cub->textures[ZOOM_TEXTURE].h) + 50) / 2;
 	cub->var.y = 0;
 	while (cub->var.y < cub->textures[ZOOM_TEXTURE].h)
 	{
@@ -88,11 +81,11 @@ void	render_zoom(t_cub *cub)
 		cub->var.y++;
 	}
 }
-void render_topv(t_cub *cub);
-void render_minimap(t_cub *cub);
+
 int main_loop(t_cub *cub)
 {
 	mlx_clear_window(cub->mlxp, cub->mlx_w);
+	cub->plyr.angle = angle_range(cub->plyr.angle);
 	mvp(cub);
 	raycaster(cub);
 	render_minimap(cub);
@@ -100,9 +93,7 @@ int main_loop(t_cub *cub)
 	render_zoom(cub);
 	render_weapon(cub);
 	if (cub->var.shoot)
-	{
-		printf("Here\n");
 		shoot(cub);
-	}
+	mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
 	return (0);
 }

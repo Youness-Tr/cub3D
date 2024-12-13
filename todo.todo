@@ -86,8 +86,10 @@
           "content": "door error when spawn closer to the door first time",
           "id": 1733418447753,
           "level": "default",
-          "done": false,
-          "start": 1733418447753
+          "done": true,
+          "start": 1733418447753,
+          "focus": false,
+          "end": 1733765832956
         }
       },
       {
@@ -97,8 +99,10 @@
           "content": "didn't distroy image when i entred the door",
           "id": 1733418495754,
           "level": "default",
-          "done": false,
-          "start": 1733418495754
+          "done": true,
+          "start": 1733418495754,
+          "focus": false,
+          "end": 1733765838892
         }
       },
       {
@@ -138,6 +142,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1733577303382"
+    "version": "1733765838943"
   }
 }

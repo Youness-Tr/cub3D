@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:52:58 by kali              #+#    #+#             */
-/*   Updated: 2024/12/09 18:20:15 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/13 15:17:33 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ static void	init_mlx(t_cub *mlx)
 	mlx->var.s_h = WIN_H;
 	mlx->mlxp = mlx_init();
 	if (!mlx->mlxp)
-		ft_errorv2(&mlx->parse, "Error\n: INITALIZE MLX");
+		ft_errorv2(&mlx->parse, "Error\n: INITALIZE MLX\n");
 	mlx->img.img = mlx_new_image(mlx->mlxp, mlx->var.s_w, mlx->var.s_h);
 	if (!mlx->img.img)
-		ft_errorv2(&mlx->parse, "Error\n: IMAGE NOT LOADED !!!");
+		ft_errorv2(&mlx->parse, "Error\n: IMAGE NOT LOADED !!!\n");
 	mlx->mlx_w = mlx_new_window(mlx->mlxp, mlx->var.s_w, mlx->var.s_h, "Cub3D");
 	if (!mlx->mlx_w)
-		ft_errorv2(&mlx->parse, "Error\n: MLX WINDOW");
+		ft_errorv2(&mlx->parse, "Error\n: MLX WINDOW\n");
 	init_image(mlx);
 }
 
@@ -58,6 +58,7 @@ void	init_engin(t_cub *cub, char *file)
 	cub->gun_frame = 0;
 	cub->is_shooting = 0;
 	cub->var.shoot = true;
+	cub->mv = 0; //!
 	parser(&cub->parse);
 	init_map(cub);
 	init_plyr(cub);

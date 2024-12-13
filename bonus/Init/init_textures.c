@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:08:00 by youness           #+#    #+#             */
-/*   Updated: 2024/12/05 18:37:32 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/12/13 15:07:44 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	init_textures(t_cub *cub)
 	load_texture(cub, &cub->textures[1], cub->parse.ea);
 	load_texture(cub, &cub->textures[2], cub->parse.we);
 	load_texture(cub, &cub->textures[3], cub->parse.so);
-	load_texture(cub, &cub->textures[4], "./Assets/sprites/zoom.xpm");
+	load_texture(cub, &cub->textures[4], "./Assets/sprites/zoom1.xpm");
 	init_gun_textures(cub);
 	init_door_textures(cub);
 }

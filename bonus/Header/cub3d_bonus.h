@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:58:58 by ajabri            #+#    #+#             */
-/*   Updated: 2024/12/09 18:29:59 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/13 18:16:50 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@
 # define WIN_W 1000
 # define WIN_H 920
 # define TILE_SIZE 32
-# define PLAYER_RADIUS 10
+# define PLAYER_RADIUS 16
 # define PLAYER_RANGE 500
 # define MINI_TILE 8
-# define MINI_MAP 0.25 //! I think that i don't need this
-# define ROT_SPEED 0.02
-# define P_SPEED 4
+# define MINI_MAP 0.25
+# define ROT_SPEED 0.01
+# define P_SPEED 2
 # define PI 3.14159265358979323846
 # define FOV 60
 # define DOOR_OPEN_DISTANCE 1.5
@@ -39,7 +39,6 @@
 # define MAX_TEXTURES 5
 # define MAX_GUN 19
 # define ZOOM_TEXTURE 4
-
 # define W 119
 # define A 97
 # define S 115
@@ -65,11 +64,10 @@
 typedef struct s_mlx	t_cub;
 typedef struct s_player
 {
-	int					plyr_x;
-	int					plyr_y;
+	double				plyr_x;
+	double					plyr_y;
 	double				angle;
 	double				fov_rd;
-	double				plyr_speed;
 }						t_player;
 
 typedef struct s_ray
@@ -124,9 +122,17 @@ typedef struct vars
 	double				new_y;
 	int					toppxl;
 	int					lowpxl;
-	bool			shoot;
+	bool				shoot;
 	int					x;
 	int					y;
+	int					map_x;
+	int 				map_y;
+	int					start_x;
+	int					end_x;
+	int					start_y;
+	int					end_y;
+	int					render_x;
+	int					render_y;
 
 }						t_vars;
 
@@ -166,14 +172,6 @@ typedef struct s_door
 	double				distance;
 }						t_door;
 
-typedef struct s_mini_map
-{
-	int					i;
-	int					j;
-	int					factor;
-	int					range;
-}						t_mini_map;
-
 struct					s_mlx
 {
 	t_img				img;
@@ -198,8 +196,8 @@ struct					s_mlx
 	int					is_shooting;
 	t_door				*doors;
 	t_door				default_door;
-	t_mini_map			topv;
 	int					ndoors;
+	int mv;
 };
 
 void					ft_putstr(char *s);
@@ -242,7 +240,7 @@ void					shoot(t_cub *cub);
 void					count_door_distances(t_cub *cub);
 void					render_weapon(t_cub *cub);
 void					handle_door_interaction(t_cub *cub, int i);
-void					set_gun(t_cub *cub, char *file);
+// void					set_gun(t_cub *cub, char *file);
 int						key_press(int key, t_cub *cub);
 int						key_release(int key, t_cub *cub);
 int						mouse_press(int button, int x, int y, t_cub *cub);
@@ -268,7 +266,7 @@ void					get_doors_cordn(t_cub *o);
 void					ndoors(t_cub *o);
 // Rendering
 t_img					*get_texture(t_cub *cub, int flag);
-void					put_line(t_cub *cub, int len, int x, int y);
+// void					put_line(t_cub *cub, int len, int x, int y);
 void					my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void					draw_floor_ceiling(t_cub *cub, int raypt, int toppxl,
 							int lowpxl);
@@ -292,5 +290,6 @@ double					distance(t_cub *cub, double x, double y);
 int						mouse_press(int button, int x, int y, t_cub *cub);
 int						mouse_release(int button, int x, int y, t_cub *cub);
 int						mouse_mv(int btn, int x, int y, t_cub *cub);
+void					render_minimap(t_cub *cub);
 
 #endif

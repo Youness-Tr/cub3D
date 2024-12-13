@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init1_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:57:28 by kali              #+#    #+#             */
-/*   Updated: 2024/12/05 18:32:17 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/12/13 14:48:01 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
-// #include <math.h>
-// # include<limits.h>
 
 void	init_map(t_cub *cub)
 {
@@ -41,7 +39,7 @@ void	player_ngl(t_cub *cub)
 	else if (cub->parse.map[y][x] == 'S')
 		cub->plyr.angle = (90 * PI) / 180;
 	cub->map.map2d[y][x] = 'P';
-	cub->plyr.angle = angle_range(cub->plyr.angle);
+	// cub->plyr.angle = angle_range(cub->plyr.angle); //! check if this important
 }
 
 void	init_plyr(t_cub *cub)

@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:58:11 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/28 10:45:19 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/12/13 17:58:27 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ double	angle_range(double ngl)
 {
 	if (ngl < 0)
 		ngl += (2 * PI);
-	if (ngl > (2 * PI))
+	if (ngl >= (2 * PI))
 		ngl -= (2 * PI);
 	return (ngl);
 }

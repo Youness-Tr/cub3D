@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   elements_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:53:20 by youness           #+#    #+#             */
-/*   Updated: 2024/12/05 18:36:32 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/12/13 15:17:19 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	shoot(t_cub *cub)
 	if (cub->is_shooting)
 	{
 		
-		usleep(40000);// !need to find an other way
+		usleep(40000);
 		cub->gun_frame++;
 		if (cub->gun_frame >= MAX_GUN)
 			cub->gun_frame = 0;
 	}
 	if (!cub->is_shooting && cub->gun_frame != 0)
 	{
-		usleep(40000);// !need to find an other way
+		usleep(40000);
 		cub->gun_frame--;
 	}
 }
@@ -36,7 +36,7 @@ void	render_weapon(t_cub *cub)
 	unsigned int	color;
 
 	weapon_x = (cub->var.s_w - (cub->gun[cub->gun_frame].w)) / 2;
-	weapon_y = cub->var.s_h - cub->gun[cub->gun_frame].h;
+	weapon_y = cub->var.s_h - cub->gun[cub->gun_frame].h + cub->mv;
 	cub->var.y = 0;
 	while (cub->var.y < cub->gun[cub->gun_frame].h)
 	{
@@ -102,13 +102,3 @@ void	handle_door_interaction(t_cub *cub, int i)
 	}
 }
 
-void	set_gun(t_cub *cub, char *file)
-{
-	cub->textures[4].img = mlx_xpm_file_to_image(cub->mlxp, file,
-			&cub->textures[4].w, &cub->textures[4].h);
-	if (!cub->textures[4].img)
-	{
-		ft_errorv2(&cub->parse, "Error\n: Could not load texture");
-		_close_window(cub);
-	}
-}
