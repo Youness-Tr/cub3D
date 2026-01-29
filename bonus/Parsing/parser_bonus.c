@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:03:02 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/22 18:36:55 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/12/09 18:40:57 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	map_fill(t_data *data)
 		line = get_next_line(fd);
 	}
 	if (!data->stop)
-		ft_errorv2(data, "ERROR :: MAP DOSEN'T EXIST\n");
+		ft_errorv2(data, "Error\n:: MAP DOSEN'T EXIST");
 	data->map[j] = NULL;
 	close(fd);
 }
@@ -107,14 +107,14 @@ void	map_scan(t_data *data)
 		{
 			if (data->map[i][j] == '0' || data->map[i][j] == 'N'
 				|| data->map[i][j] == 'S' || data->map[i][j] == 'W'
-				|| data->map[i][j] == 'E')
+				|| data->map[i][j] == 'E' || data->map[i][j] == 'D')
 			{
 				if (i == 0 || i == data->lines || j == 0 || j == data->map_w
 					- 2)
-					ft_errorv2(data, "ERROR :: INVALID MAP");
+					ft_errorv2(data, "Error\n:: INVALID MAP");
 				if (data->map[i - 1][j] == ' ' || data->map[(i) + 1][j] == ' '
 					|| data->map[i][j - 1] == ' ' || data->map[i][j + 1] == ' ')
-					ft_errorv2(data, "ERROR :: INVALID MAP");
+					ft_errorv2(data, "Error\n:: INVALID MAP");
 			}
 			if (data->map[i][j] == 'D')
 				door_checking(data, i, j);
@@ -127,7 +127,7 @@ int	parser(t_data *data)
 	init(data);
 	map_fill(data);
 	if (ft_check(data))
-		ft_errorv2(data, "ERROR :: MAP ELEMENT\n");
+		ft_errorv2(data, "Error\n:: MAP ELEMENT");
 	add_to_map(data);
 	map_scan(data);
 	return (0);

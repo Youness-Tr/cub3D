@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   playerMoves.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:41:28 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/18 10:39:59 by kali             ###   ########.fr       */
+/*   Updated: 2024/12/16 12:01:57 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	key_press(int key, t_cub *cub)
 	else if (key == R_ARROW)
 		cub->rotate_right = 1;
 	else if (key == ESC)
-		ft_exit(&cub->parse);
+		_close_window(cub);
 	return (0);
 }
 
@@ -54,19 +54,10 @@ void	set_pos(t_cub *cub, double x, double y)
 		cub->plyr.angle -= ROT_SPEED;
 	if (cub->rotate_right)
 		cub->plyr.angle += ROT_SPEED;
-	if (is_wall(cub, x, cub->plyr.plyr_y))
+	if (is_wall(cub, x, y))
+	{
 		cub->plyr.plyr_x = x;
-	else
-	{
-		if (is_wall(cub, cub->plyr.plyr_x, y))
-			cub->plyr.plyr_y = y;
-	}
-	if (is_wall(cub, cub->plyr.plyr_x, y))
 		cub->plyr.plyr_y = y;
-	else
-	{
-		if (is_wall(cub, x, cub->plyr.plyr_y))
-			cub->plyr.plyr_x = x;
 	}
 }
 
@@ -102,5 +93,6 @@ int	main_loop(t_cub *cub)
 	mlx_clear_window(cub->mlxp, cub->mlx_w);
 	mvp(cub);
 	raycaster(cub);
+	mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
 	return (0);
 }

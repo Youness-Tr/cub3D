@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Wall_Intersection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:43:37 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/18 10:40:08 by kali             ###   ########.fr       */
+/*   Updated: 2024/12/16 12:01:22 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_wall(t_cub *cub, double x, double y)
 	double	dy;
 	double	step;
 
-	step = 5.0;
+	step = 4;
 	dx = -step;
 	while (dx <= step)
 	{

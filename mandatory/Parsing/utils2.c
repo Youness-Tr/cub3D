@@ -6,7 +6,7 @@
 /*   By: ytarhoua <ytarhoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:42:40 by ytarhoua          #+#    #+#             */
-/*   Updated: 2024/11/21 18:45:26 by ytarhoua         ###   ########.fr       */
+/*   Updated: 2024/12/16 11:48:29 by ytarhoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	count_len(t_data *data)
 			data->info);
 	fd = open(data->file_path, O_RDONLY);
 	if (fd == -1 || ft_strcmp(ext, ".cub"))
-		ft_errorv2(data, "ERROR :: INVALID FILE");
+		ft_errorv2(data, "Error\n:: INVALID FILE");
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -65,7 +65,7 @@ void	init(t_data *data)
 	data->f = 0;
 	len = count_len(data);
 	if (len == 0)
-		ft_errorv2(data, "ERROR :: EMPTY FILE");
+		ft_errorv2(data, "Error\n:: EMPTY FILE");
 	data->map = ft_malloc(data->info, sizeof(char *) * len);
 }
 

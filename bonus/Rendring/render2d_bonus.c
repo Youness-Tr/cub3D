@@ -3,50 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   render2d_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:49:43 by ajabri            #+#    #+#             */
-/*   Updated: 2024/11/22 16:01:37 by kali             ###   ########.fr       */
+/*   Updated: 2024/12/13 18:30:26 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d_bonus.h"
 
-/*******just for debuging ********************/
-
-void	render_square(t_img *img, int x_start, int y_start, int size, int color)
+void	render_fixed_square(t_cub *cub, int x, int y, int color)
 {
-	int	x;
-	int	y;
+	int	i;
+	int	j;
 
-	y = 0;
-	while (y < size)
+	j = 0;
+	while (j < MINI_TILE)
 	{
-		x = 0;
-		while (x < size)
+		i = 0;
+		while (i < MINI_TILE)
 		{
-			my_mlx_pixel_put(img, x_start + x, y_start + y, color);
-			x++;
+			my_mlx_pixel_put(&cub->img, x + i, y + j, color);
+			i++;
 		}
-		y++;
+		j++;
 	}
 }
 
-void	render_circle(t_img *img, int cx, int cy, int radius, int color)
+void	render_fixed_circle(t_cub *cub, int cx, int cy, int color)
 {
+	int	radius;
 	int	x;
 	int	y;
 
+	radius = PLAYER_RADIUS / MINI_TILE;
 	y = -radius;
 	while (y <= radius)
 	{
 		x = -radius;
 		while (x <= radius)
 		{
-			// Check if the point (cx + x, cy + y) is inside the circle
 			if (x * x + y * y <= radius * radius)
 			{
-				my_mlx_pixel_put(img, cx + x, cy + y, color);
+				my_mlx_pixel_put(&cub->img, cx + x, cy + y, color);
 			}
 			x++;
 		}
@@ -54,38 +53,48 @@ void	render_circle(t_img *img, int cx, int cy, int radius, int color)
 	}
 }
 
-void	render_mini_2d(t_cub *cub)
+void	set_range(t_cub *cub)
 {
-	int i;
-	int j;
+	cub->var.start_x = cub->plyr.plyr_x / TILE_SIZE - PLAYER_RANGE / TILE_SIZE;
+	cub->var.start_y = cub->plyr.plyr_y / TILE_SIZE - PLAYER_RANGE / TILE_SIZE;
+	if (cub->var.start_x < 0)
+		cub->var.start_x = 0;
+	if (cub->var.start_y < 0)
+		cub->var.start_y = 0;
+	cub->var.end_x = cub->var.start_x + (cub->var.s_w * MINI_MAP) / MINI_TILE;
+	cub->var.end_y = cub->var.start_y + (cub->var.s_h * MINI_MAP) / MINI_TILE;
+	if (cub->var.end_x >= cub->map.map_w)
+		cub->var.end_x = cub->map.map_w + 1;
+	if (cub->var.end_y >= cub->map.map_h)
+		cub->var.end_y = cub->map.map_h + 1;
+	cub->var.map_y = cub->var.start_y;
+}
 
-	j = 0;
-	cub->map.map2d[cub->parse.player_x][cub->parse.player_y] = 'P';
-	int factor = (float)(cub->var.s_w * MINI_MAP) / cub->map.map_w +1;
-	while (j < cub->map.map_h + 1)
+void	render_minimap(t_cub *cub)
+{
+	set_range(cub);
+	while (cub->var.map_y < cub->var.end_y)
 	{
-		i = 0;
-		while (i < cub->map.map_w + 1)
+		cub->var.map_x = cub->var.start_x;
+		while (cub->var.map_x < cub->var.end_x)
 		{
-			if (cub->map.map2d[j][i] == '1')
-				render_square(&cub->img, (i * TILE_SIZE) * MINI_MAP, (j* TILE_SIZE) * MINI_MAP, factor,
-					0x000000);
-			else if (cub->map.map2d[j][i] == '0' || cub->map.map2d[j][i] == 'P')
-			{
-				render_square(&cub->img, (i * TILE_SIZE) * MINI_MAP, (j
-						* TILE_SIZE) * MINI_MAP, factor,
-					0xffffff); // 0x8B5A2B
-			}
-			else if (cub->map.map2d[j][i] == 'D')
-			{
-				render_square(&cub->img, (i * TILE_SIZE) * MINI_MAP, (j
-						* TILE_SIZE) * MINI_MAP, factor,
-					0x00FF00); // 0x8B5A2B
-			}
-			i++;
+			cub->var.render_x = (cub->var.map_x - cub->var.start_x) * MINI_TILE;
+			cub->var.render_y = (cub->var.map_y - cub->var.start_y) * MINI_TILE;
+			if (cub->map.map2d[cub->var.map_y][cub->var.map_x] == '1')
+				render_fixed_square(cub, cub->var.render_x + 1,
+					cub->var.render_y + 1, 0x003049);
+			else if (cub->map.map2d[cub->var.map_y][cub->var.map_x] == '0'
+				|| cub->map.map2d[cub->var.map_y][cub->var.map_x] == 'P')
+				render_fixed_square(cub, cub->var.render_x + 1,
+					cub->var.render_y + 1, 0xdad8d8);
+			else if (cub->map.map2d[cub->var.map_y][cub->var.map_x] == 'D')
+				render_fixed_square(cub, cub->var.render_x + 1,
+					cub->var.render_y + 1, 0xfca311);
+			cub->var.map_x++;
 		}
-		j++;
+		cub->var.map_y++;
 	}
-	render_circle(&cub->img, cub->plyr.plyr_x * MINI_MAP, cub->plyr.plyr_y * MINI_MAP, PLAYER_RADIUS * MINI_MAP, 0xFF0000);
-	mlx_put_image_to_window(cub->mlxp, cub->mlx_w, cub->img.img, 0, 0);
+	render_fixed_circle(cub, ((cub->plyr.plyr_x / TILE_SIZE - cub->var.start_x)
+			* MINI_TILE), ((cub->plyr.plyr_y / TILE_SIZE - cub->var.start_y)
+			* MINI_TILE), 0xff9505);
 }

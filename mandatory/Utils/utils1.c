@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youness <youness@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/07 15:36:52 by lissam            #+#    #+#             */
-/*   Updated: 2024/10/06 11:42:10 by ajabri           ###   ########.fr       */
+/*   Created: 2024/11/26 17:52:05 by youness           #+#    #+#             */
+/*   Updated: 2024/11/26 17:52:07 by youness          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Header/cub3d.h"
-
-int	get_win_h(char **av)
-{
-	int	h;
-
-	h = 0;
-	if (!av)
-		return (0);
-	while (av[h])
-		h++;
-	return (h);
-}
 
 void	ft_putstr(char *s)
 {
@@ -37,16 +25,6 @@ void	ft_putstr(char *s)
 		i++;
 	}
 }
-
-// int	ft_strcmp(char *ptr1, char *ptr2)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (ptr1[i] == ptr2[i] && ptr1[i] != '\0' && ptr2[i] != '\0')
-// 		i++;
-// 	return (ptr1[i] - ptr2[i]);
-// }
 
 void	ft_putstrv2(const char *s, char *str)
 {

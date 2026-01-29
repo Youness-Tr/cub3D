@@ -1,0 +1,22 @@
+NO ./Assets/Textures/eagle_wolf.xpm
+SO ./Assets/Textures/bluestone_wolf.xpm
+WE ./Assets/Textures/mossy_wolf.xpm
+EA ./Assets/Textures/greystone_wolf.xpm
+
+
+
+F 56,56,56
+C 112,112,11
+
+
+
+111111
+110001
+10N001
+110011
+ 1001
+ 1001
+110011
+100001
+100001
+111111
